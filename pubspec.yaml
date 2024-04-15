@@ -1,5 +1,5 @@
 name: ad_board
-description: "Ad Board: Anonymous Dating"
+description: "Ad Board"
 publish_to: 'none'
 version: 0.1.0+1
 
@@ -9,6 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase: ^9.0.3
+  firebase_analytics: ^10.10.1
+  firebase_crashlytics: ^3.5.1
+  firebase_auth: ^4.19.1
+  firebase_core: ^2.29.0
+  cloud_firestore: ^4.16.1
+  easy_localization: ^3.0.5
+  get_it: ^7.7.0
+  freezed: ^2.5.2
+  auto_route: ^8.0.3
 
 dev_dependencies:
   flutter_test:
