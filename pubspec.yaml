@@ -1,5 +1,5 @@
-name: ad_board
-description: "Ad Board"
+name: post_board
+description: "Post Board"
 publish_to: 'none'
 version: 0.1.0+1
 
@@ -16,14 +16,37 @@ dependencies:
   firebase_core: ^2.29.0
   cloud_firestore: ^4.16.1
   easy_localization: ^3.0.5
+  intl: ^0.18.1
+  auto_route: ^8.0.3
   get_it: ^7.7.0
   freezed: ^2.5.2
-  auto_route: ^8.0.3
+  freezed_annotation: ^2.4.1
+  riverpod: ^2.5.0
+  riverpod_annotation: ^2.3.4
+  flutter_riverpod: ^2.4.10
+  shared_preferences: ^2.2.3
+  json_serializable: ^6.7.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.13.1
+  build_runner: ^2.4.8
+  riverpod_generator: ^2.3.11
+  auto_route_generator: ^8.0.0
+
+flutter_launcher_icons:
+  image_path_android: "assets/icons/android.png"
+  image_path_ios: "assets/icons/ios.png"  
+  android: true
+  ios: true
+  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/translations/en.json
+    - assets/translations/ru.json
+    - assets/icons/android.png
+    - assets/icons/ios.png

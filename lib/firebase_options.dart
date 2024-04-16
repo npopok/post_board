@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAj9xDZIh6yU70zv1pBFYngGPNQGgPv-ZQ',
-    appId: '1:774628695695:android:aecfaf5b796864b3db1afa',
-    messagingSenderId: '774628695695',
-    projectId: 'indentix-ad-board',
-    storageBucket: 'indentix-ad-board.appspot.com',
+    apiKey: 'AIzaSyC7KYfZsFxKVvKMk5dcMTozU4jJU5661LY',
+    appId: '1:738442908516:android:08c233b526505dc1292071',
+    messagingSenderId: '738442908516',
+    projectId: 'indentix-post-board',
+    storageBucket: 'indentix-post-board.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBu-5_YvEh8G_A6q-Yb_zZpguUPHmbfEyc',
-    appId: '1:774628695695:ios:f96e046e44c2de13db1afa',
-    messagingSenderId: '774628695695',
-    projectId: 'indentix-ad-board',
-    storageBucket: 'indentix-ad-board.appspot.com',
-    iosBundleId: 'com.indentix.adBoard',
+    apiKey: 'AIzaSyBnGyzvYiazWUIvfZfNmXyr9_F2GvJogAA',
+    appId: '1:738442908516:ios:9f11dfccdbb26db6292071',
+    messagingSenderId: '738442908516',
+    projectId: 'indentix-post-board',
+    storageBucket: 'indentix-post-board.appspot.com',
+    iosBundleId: 'com.indentix.postboard',
   );
+
 }

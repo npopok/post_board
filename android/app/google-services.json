@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "774628695695",
-    "project_id": "indentix-ad-board",
-    "storage_bucket": "indentix-ad-board.appspot.com"
+    "project_number": "738442908516",
+    "project_id": "indentix-post-board",
+    "storage_bucket": "indentix-post-board.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:774628695695:android:aecfaf5b796864b3db1afa",
+        "mobilesdk_app_id": "1:738442908516:android:08c233b526505dc1292071",
         "android_client_info": {
-          "package_name": "com.indentix.adboard"
+          "package_name": "com.indentix.postboard"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAj9xDZIh6yU70zv1pBFYngGPNQGgPv-ZQ"
+          "current_key": "AIzaSyC7KYfZsFxKVvKMk5dcMTozU4jJU5661LY"
         }
       ],
       "services": {

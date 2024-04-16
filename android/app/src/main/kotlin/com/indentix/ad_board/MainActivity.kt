@@ -1,4 +1,4 @@
-package com.indentix.adboard
+package com.indentix.postboard
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,17 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:post_board/common/common.dart';
 
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   EasyLocalization.logger.enableBuildModes = [];
   await EasyLocalization.ensureInitialized();
@@ -20,7 +20,7 @@ void main() async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
-//  Resources.initialize();
+  Resources.initialize();
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   PlatformDispatcher.instance.onError = (error, stack) {
@@ -28,19 +28,50 @@ void main() async {
     return true;
   };
 
-  runApp(const MainApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ru')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: const MainApp(),
+    ),
+  );
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  final routes = Routes();
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return ProviderScope(
+      child: Consumer(
+        builder: (context, ref, _) => _buildApp(context, ref),
+      ),
+    );
+  }
+
+  Widget _buildApp(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      onGenerateTitle: (_) => 'App.Title'.tr(),
+      //   themeMode: settings.themeMode,
+      themeMode: ThemeMode.dark,
+      theme: getIt<Themes>().lightTheme,
+      darkTheme: getIt<Themes>().darkTheme,
+      routerConfig: routes.config(
+        navigatorObservers: () => [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+        ],
       ),
     );
   }

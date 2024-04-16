@@ -1,0 +1,20 @@
+{
+    "App.Title": "Доска объявлений",
+
+    "HomeScreen.Posts": "Объявления",
+    "HomeScreen.Profile": "Профиль",
+
+    "PostsScreen.Title": "Объявления",
+
+    "PostDetailScreen.Title": "Добавить объявление",
+    "PostDetailScreen.Submit": "Отправить",
+
+    "ProfileScreen.Title": "Профиль",
+    "ProfileScreen.Gender": "Пол",   
+    "ProfileScreen.Age": "Возраст",
+    "ProfileScreen.Location": "Местоположение",
+
+    "Gender.unknown": "Неизвестный",
+    "Gender.male": "Мужчина",
+    "Gender.female": "Женщина"
+}

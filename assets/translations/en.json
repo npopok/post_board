@@ -1,0 +1,20 @@
+{
+    "App.Title": "Ad Board",
+    
+    "HomeScreen.Posts": "Posts",
+    "HomeScreen.Profile": "Profile",
+
+    "PostsScreen.Title": "Posts",
+
+    "PostDetailScreen.Title": "Add Post",
+    "PostDetailScreen.Submit": "Submit",
+
+    "ProfileScreen.Title": "Profile",
+    "ProfileScreen.Gender": "Gender",
+    "ProfileScreen.Age": "Age",
+    "ProfileScreen.Location": "Location",
+
+    "Gender.unknown": "Unknown",
+    "Gender.male": "Male",
+    "Gender.female": "Female"
+}
