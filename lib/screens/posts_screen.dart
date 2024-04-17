@@ -18,9 +18,10 @@ class PostsScreen extends StatelessWidget {
       body: const Center(
         child: Text('Ad list goes here...'),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
-        child: const Icon(Icons.post_add),
+        child: const Icon(Icons.add),
         onPressed: () => context.pushRoute(const PostDetailRoute()),
       ),
     );

@@ -6,7 +6,7 @@ enum AnalyticsEvent {
   //
   // Event Name | Parameters
   //
-  profileUpdate, // profile_gender
+  profileUpdate, // profile_name | profile_gender | profile_age | profile_city
 }
 
 class AnalyticsHelper {

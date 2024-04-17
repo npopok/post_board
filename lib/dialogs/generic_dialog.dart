@@ -34,7 +34,7 @@ class GenericDialog extends StatelessWidget {
             padding: contentPadding,
             child: contentBuilder(context),
           ),
-          if (actions != null && actions!.isNotEmpty) _buildActionButtons(context),
+          if (actions?.isNotEmpty == true) _buildActionButtons(context),
         ],
       ),
     );

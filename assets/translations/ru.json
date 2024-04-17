@@ -10,11 +10,15 @@
     "PostDetailScreen.Submit": "Отправить",
 
     "ProfileScreen.Title": "Профиль",
+    "ProfileScreen.Name": "Имя",   
     "ProfileScreen.Gender": "Пол",   
     "ProfileScreen.Age": "Возраст",
-    "ProfileScreen.Location": "Местоположение",
+    "ProfileScreen.City": "Город",
 
     "Gender.unknown": "Неизвестный",
     "Gender.male": "Мужчина",
-    "Gender.female": "Женщина"
+    "Gender.female": "Женщина",
+
+    "Button.OK": "ОК",
+    "Button.Cancel": "Отмена"
 }

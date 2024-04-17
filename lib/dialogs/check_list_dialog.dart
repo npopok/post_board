@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:post_board/common/common.dart';
 import 'generic_dialog.dart';
 
-class CheckboxListDialog extends StatefulWidget {
+class CheckListDialog extends StatefulWidget {
   final String title;
   final List<String> items;
   final List<bool> values;
   final bool Function(List<bool>) onValidate;
 
-  const CheckboxListDialog({
+  const CheckListDialog({
     required this.title,
     required this.items,
     required this.values,
@@ -20,10 +20,10 @@ class CheckboxListDialog extends StatefulWidget {
   });
 
   @override
-  State<CheckboxListDialog> createState() => _CheckboxListDialogState();
+  State<CheckListDialog> createState() => _CheckListDialogState();
 }
 
-class _CheckboxListDialogState extends State<CheckboxListDialog> {
+class _CheckListDialogState extends State<CheckListDialog> {
   late List<bool> checks;
 
   @override

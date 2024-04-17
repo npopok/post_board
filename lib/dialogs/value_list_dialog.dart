@@ -47,6 +47,7 @@ class ValueListDialog<T> extends StatelessWidget {
           children: List.generate(
             items.length,
             (index) => ListTile(
+              contentPadding: kValueTilePadding,
               title: Align(
                 alignment: alignment,
                 child: Text(

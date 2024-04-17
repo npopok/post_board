@@ -10,11 +10,15 @@
     "PostDetailScreen.Submit": "Submit",
 
     "ProfileScreen.Title": "Profile",
+    "ProfileScreen.Name": "Name",
     "ProfileScreen.Gender": "Gender",
     "ProfileScreen.Age": "Age",
-    "ProfileScreen.Location": "Location",
+    "ProfileScreen.City": "City",
 
     "Gender.unknown": "Unknown",
     "Gender.male": "Male",
-    "Gender.female": "Female"
+    "Gender.female": "Female",
+
+    "Button.OK": "OK",
+    "Button.Cancel": "Cancel"
 }

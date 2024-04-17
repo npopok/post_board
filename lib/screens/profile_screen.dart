@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
@@ -28,11 +29,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       ),
       body: ListView(
         children: [
+          _buildNameTile(context, profile),
           _buildGenderTile(context, profile),
           _buildAgeTile(context, profile),
           _buildCityTile(context, profile),
         ],
       ),
+    );
+  }
+
+  Widget _buildNameTile(BuildContext context, Profile profile) {
+    return ListTile(
+      leading: const Icon(Icons.person),
+      title: Text('ProfileScreen.Name'.tr()),
+      subtitle: Text(profile.name),
+      onTap: () => showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => InputDialog(
+          initialValue: profile.name,
+          maxLength: kMaxNameLength,
+        ),
+      ).then((value) => value == null ? 0 : _updateName(value)),
     );
   }
 
@@ -57,7 +75,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Widget _buildAgeTile(BuildContext context, Profile profile) {
-    final ages = List.generate(80 - 18, (index) => index + 18);
+    final ages = List.generate(81 - 18, (index) => index + 18);
 
     return ListTile(
       leading: const Icon(Icons.person),
@@ -73,6 +91,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           values: ages,
           initialValue: profile.age,
+          alignment: Alignment.center,
         ),
       ).then((value) => value == null ? 0 : _updateAge(value)),
     );
@@ -81,7 +100,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildCityTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.place),
-      title: Text('ProfileScreen.Location'.tr()),
+      title: Text('ProfileScreen.City'.tr()),
       subtitle: Text(profile.city),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -93,6 +112,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       ).then((value) => value == null ? 0 : _updateCity(value)),
     );
+  }
+
+  void _updateName(String value) {
+    ref.read(profileStateProvider.notifier).name = value;
+    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_name': value});
   }
 
   void _updateGender(Gender value) {

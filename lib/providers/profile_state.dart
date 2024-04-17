@@ -11,6 +11,11 @@ class ProfileState extends _$ProfileState {
   @override
   Profile build() => loadData();
 
+  set name(String value) {
+    state = state.copyWith(name: value);
+    saveData();
+  }
+
   set gender(Gender value) {
     state = state.copyWith(gender: value);
     saveData();
