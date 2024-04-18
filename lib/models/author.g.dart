@@ -7,12 +7,12 @@ part of 'author.dart';
 // **************************************************************************
 
 _$AuthorImpl _$$AuthorImplFromJson(Map<String, dynamic> json) => _$AuthorImpl(
-      authorId: json['authorId'] as String,
+      name: json['name'] as String,
       age: json['age'] as int,
     );
 
 Map<String, dynamic> _$$AuthorImplToJson(_$AuthorImpl instance) =>
     <String, dynamic>{
-      'authorId': instance.authorId,
+      'name': instance.name,
       'age': instance.age,
     };

@@ -6,7 +6,7 @@ part 'author.g.dart';
 @freezed
 class Author with _$Author {
   const factory Author({
-    required final String authorId,
+    required final String name,
     required final int age,
   }) = _Author;
 

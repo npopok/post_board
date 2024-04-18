@@ -15,6 +15,9 @@
     "ProfileScreen.Age": "Возраст",
     "ProfileScreen.City": "Город",
 
+    "PostDetailScreen.Success": "Ваше объявление добавлено.", 
+    "PostDetailScreen.Error": "Произошла ошибка. Попробуйте снова позднее.",
+
     "Gender.unknown": "Неизвестный",
     "Gender.male": "Мужчина",
     "Gender.female": "Женщина",

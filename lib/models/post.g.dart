@@ -14,7 +14,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
-      'author': instance.author,
+      'author': instance.author.toJson(),
       'message': instance.message,
       'createdAt': instance.createdAt.toIso8601String(),
     };

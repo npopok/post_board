@@ -15,6 +15,9 @@
     "ProfileScreen.Age": "Age",
     "ProfileScreen.City": "City",
 
+    "PostDetailScreen.Success": "Your post has been added.", 
+    "PostDetailScreen.Error": "Error occuried. Try again later.",
+
     "Gender.unknown": "Unknown",
     "Gender.male": "Male",
     "Gender.female": "Female",

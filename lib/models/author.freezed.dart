@@ -20,7 +20,7 @@ Author _$AuthorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Author {
-  String get authorId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
       _$AuthorCopyWithImpl<$Res, Author>;
   @useResult
-  $Res call({String authorId, int age});
+  $Res call({String name, int age});
 }
 
 /// @nodoc
@@ -49,13 +49,13 @@ class _$AuthorCopyWithImpl<$Res, $Val extends Author>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authorId = null,
+    Object? name = null,
     Object? age = null,
   }) {
     return _then(_value.copyWith(
-      authorId: null == authorId
-          ? _value.authorId
-          : authorId // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -72,7 +72,7 @@ abstract class _$$AuthorImplCopyWith<$Res> implements $AuthorCopyWith<$Res> {
       __$$AuthorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String authorId, int age});
+  $Res call({String name, int age});
 }
 
 /// @nodoc
@@ -86,13 +86,13 @@ class __$$AuthorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authorId = null,
+    Object? name = null,
     Object? age = null,
   }) {
     return _then(_$AuthorImpl(
-      authorId: null == authorId
-          ? _value.authorId
-          : authorId // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -105,19 +105,19 @@ class __$$AuthorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthorImpl implements _Author {
-  const _$AuthorImpl({required this.authorId, required this.age});
+  const _$AuthorImpl({required this.name, required this.age});
 
   factory _$AuthorImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthorImplFromJson(json);
 
   @override
-  final String authorId;
+  final String name;
   @override
   final int age;
 
   @override
   String toString() {
-    return 'Author(authorId: $authorId, age: $age)';
+    return 'Author(name: $name, age: $age)';
   }
 
   @override
@@ -125,14 +125,13 @@ class _$AuthorImpl implements _Author {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthorImpl &&
-            (identical(other.authorId, authorId) ||
-                other.authorId == authorId) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.age, age) || other.age == age));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, authorId, age);
+  int get hashCode => Object.hash(runtimeType, name, age);
 
   @JsonKey(ignore: true)
   @override
@@ -149,13 +148,13 @@ class _$AuthorImpl implements _Author {
 }
 
 abstract class _Author implements Author {
-  const factory _Author(
-      {required final String authorId, required final int age}) = _$AuthorImpl;
+  const factory _Author({required final String name, required final int age}) =
+      _$AuthorImpl;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$AuthorImpl.fromJson;
 
   @override
-  String get authorId;
+  String get name;
   @override
   int get age;
   @override

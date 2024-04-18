@@ -78,7 +78,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final ages = List.generate(81 - 18, (index) => index + 18);
 
     return ListTile(
-      leading: const Icon(Icons.person),
+      leading: const Icon(Icons.cake),
       title: Text('ProfileScreen.Age'.tr()),
       subtitle: Text(profile.age.toString()),
       onTap: () => showModalBottomSheet(

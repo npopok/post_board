@@ -1,12 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:post_board/common/common.dart';
+import 'package:post_board/helpers/helpers.dart';
 
 import 'firebase_options.dart';
 
@@ -19,6 +21,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
+  await FirebaseAuth.instance.signInAnonymously();
 
   Resources.initialize();
 
@@ -68,6 +71,7 @@ class _MainAppState extends State<MainApp> {
       themeMode: ThemeMode.dark,
       theme: getIt<Themes>().lightTheme,
       darkTheme: getIt<Themes>().darkTheme,
+      scaffoldMessengerKey: getIt<MessengerHelper>().messengerKey,
       routerConfig: routes.config(
         navigatorObservers: () => [
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
