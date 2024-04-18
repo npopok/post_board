@@ -9,12 +9,13 @@ part of 'post.dart';
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       author: Author.fromJson(json['author'] as Map<String, dynamic>),
       message: json['message'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      timestamp:
+          const TimestampConverter().fromJson(json['timestamp'] as Timestamp),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
       'author': instance.author.toJson(),
       'message': instance.message,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'timestamp': const TimestampConverter().toJson(instance.timestamp),
     };

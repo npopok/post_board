@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
       key: UniqueKey(),
       routes: const [
         PostsRoute(),
+        SubmitRoute(),
         ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
@@ -24,6 +25,10 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: const Icon(Icons.list),
             label: 'HomeScreen.Posts'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.add_circle_outline),
+            label: 'HomeScreen.Add'.tr(),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person),

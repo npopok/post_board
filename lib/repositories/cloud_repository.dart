@@ -1,20 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:post_board/common/common.dart';
+import 'package:post_board/models/post.dart';
+
 class CloudRepository {
   const CloudRepository();
 
-  Future<void> saveObject(String path, Map<String, dynamic> value) async {
-    final collection = FirebaseFirestore.instance.collection(path);
-    await collection.add(value);
+  Future<void> savePost(Post post) async {
+    final collection = FirebaseFirestore.instance.collection('posts');
+    await collection.add(post.toJson());
   }
 
-  // Future<T?> loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson) async {
-  //   String? userId = FirebaseAuth.instance.currentUser?.uid;
-  //   if (userId == null) return null;
-
-  //   final doc = await FirebaseFirestore.instance.doc('users/$userId').get();
-  //   final data = doc.data()?[key];
-
-  //   return data != null ? fromJson(data) : null;
-  // }
+  Stream<List<Post>> loadPosts() {
+    final collection = FirebaseFirestore.instance.collection('posts');
+    return collection
+        .limit(kMaxPostCount)
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => Post.fromJson(doc.data())).toList());
+  }
 }

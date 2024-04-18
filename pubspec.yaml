@@ -9,11 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase: ^9.0.3
+  firebase_core: ^2.30.0
   firebase_analytics: ^10.10.1
   firebase_crashlytics: ^3.5.1
   firebase_auth: ^4.19.1
-  firebase_core: ^2.29.0
   cloud_firestore: ^4.16.1
   easy_localization: ^3.0.5
   intl: ^0.18.1

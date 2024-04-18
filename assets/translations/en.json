@@ -2,21 +2,22 @@
     "App.Title": "Ad Board",
     
     "HomeScreen.Posts": "Posts",
+    "HomeScreen.Add": "Add",
     "HomeScreen.Profile": "Profile",
 
     "PostsScreen.Title": "Posts",
+    "PostsScreen.Error": "Server error.",
 
-    "PostDetailScreen.Title": "Add Post",
-    "PostDetailScreen.Submit": "Submit",
+    "SubmitScreen.Title": "Add Post",
+    "SubmitScreen.Submit": "Submit",
+    "SubmitScreen.Success": "Post has been added.", 
+    "SubmitScreen.Error": "Error occuried.",
 
     "ProfileScreen.Title": "Profile",
     "ProfileScreen.Name": "Name",
     "ProfileScreen.Gender": "Gender",
     "ProfileScreen.Age": "Age",
     "ProfileScreen.City": "City",
-
-    "PostDetailScreen.Success": "Your post has been added.", 
-    "PostDetailScreen.Error": "Error occuried. Try again later.",
 
     "Gender.unknown": "Unknown",
     "Gender.male": "Male",

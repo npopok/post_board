@@ -13,10 +13,11 @@ class Routes extends _$Routes {
           initial: true,
           children: [
             AutoRoute(page: PostsRoute.page),
+            AutoRoute(page: SubmitRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
         ),
-        AutoRoute(page: PostDetailRoute.page),
+        AutoRoute(page: ResultRoute.page),
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: HelpRoute.page),
       ];

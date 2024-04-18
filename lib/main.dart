@@ -67,7 +67,7 @@ class _MainAppState extends State<MainApp> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateTitle: (_) => 'App.Title'.tr(),
-      //   themeMode: settings.themeMode,
+      // themeMode: settings.themeMode,
       themeMode: ThemeMode.dark,
       theme: getIt<Themes>().lightTheme,
       darkTheme: getIt<Themes>().darkTheme,

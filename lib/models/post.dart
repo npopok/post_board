@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:post_board/helpers/helpers.dart';
 
 import 'author.dart';
 
@@ -10,7 +13,7 @@ class Post with _$Post {
   const factory Post({
     required final Author author,
     required final String message,
-    required final DateTime createdAt,
+    @TimestampConverter() required final DateTime timestamp,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

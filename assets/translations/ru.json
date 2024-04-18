@@ -2,21 +2,22 @@
     "App.Title": "Доска объявлений",
 
     "HomeScreen.Posts": "Объявления",
+    "HomeScreen.Add": "Добавить",  
     "HomeScreen.Profile": "Профиль",
 
     "PostsScreen.Title": "Объявления",
+    "PostsScreen.Error": "Ошибка сервера.",
 
-    "PostDetailScreen.Title": "Добавить объявление",
-    "PostDetailScreen.Submit": "Отправить",
+    "SubmitScreen.Title": "Добавить объявление",
+    "SubmitScreen.Submit": "Отправить",
+    "SubmitScreen.Success": "Объявление добавлено.", 
+    "SubmitScreen.Error": "Произошла ошибка.",
 
     "ProfileScreen.Title": "Профиль",
     "ProfileScreen.Name": "Имя",   
     "ProfileScreen.Gender": "Пол",   
     "ProfileScreen.Age": "Возраст",
     "ProfileScreen.City": "Город",
-
-    "PostDetailScreen.Success": "Ваше объявление добавлено.", 
-    "PostDetailScreen.Error": "Произошла ошибка. Попробуйте снова позднее.",
 
     "Gender.unknown": "Неизвестный",
     "Gender.male": "Мужчина",

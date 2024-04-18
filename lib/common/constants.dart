@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-const kMaxPostLength = 200;
 const kMaxNameLength = 50;
+const kMaxPostLength = 200;
+const kMaxPostCount = 1000;
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);

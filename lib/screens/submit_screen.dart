@@ -6,18 +6,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
-import 'package:post_board/providers/profile_state.dart';
-import 'package:post_board/repositories/repositories.dart';
+import 'package:post_board/providers/providers.dart';
 
 @RoutePage()
-class PostDetailScreen extends ConsumerStatefulWidget {
-  const PostDetailScreen({super.key});
+class SubmitScreen extends ConsumerStatefulWidget {
+  const SubmitScreen({super.key});
 
   @override
-  ConsumerState<PostDetailScreen> createState() => _PostDetailScreenState();
+  ConsumerState<SubmitScreen> createState() => _SubmitScreenState();
 }
 
-class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
+class _SubmitScreenState extends ConsumerState<SubmitScreen> {
   late TextEditingController textController;
 
   @override
@@ -37,15 +36,14 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('PostDetailScreen.Title'.tr()),
+        title: Text('SubmitScreen.Title'.tr()),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(24),
         child: Column(
           children: [
             TextField(
               controller: textController,
-              autofocus: true,
               maxLines: 3,
               maxLength: kMaxPostLength,
               decoration: const InputDecoration(
@@ -54,8 +52,8 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
-              child: Text('PostDetailScreen.Submit'.tr()),
+              onPressed: () => context.pushRoute(ResultRoute(message: textController.text)),
+              child: Text('SubmitScreen.Submit'.tr()),
             ),
           ],
         ),
@@ -64,16 +62,11 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
   }
 
   void _submitPostHandler(Profile profile) {
-    final post = Post(
-      author: Author(name: profile.name, age: profile.age),
-      message: textController.text,
-      createdAt: DateTime.now(), // TODO: Use Firebase server time
-    );
-
     context.maybePop();
-    getIt<CloudRepository>()
-        .saveObject("posts", post.toJson())
-        .then((value) => getIt<MessengerHelper>().showSnackBar('PostDetailScreen.Success'.tr()))
-        .onError((_, __) => getIt<MessengerHelper>().showSnackBar('PostDetailScreen.Error'.tr()));
+    final posts = ref.read(postsStateProvider.notifier);
+    posts
+        .addPost(profile, textController.text)
+        .then((value) => showSnackBar('SubmitScreen.Success'.tr()))
+        .onError((_, __) => showSnackBar('SubmitScreen.Error'.tr()));
   }
 }
