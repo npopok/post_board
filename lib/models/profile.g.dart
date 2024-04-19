@@ -8,11 +8,10 @@ part of 'profile.dart';
 
 _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
     _$ProfileImpl(
-      name: json['name'] as String? ?? '',
-      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']) ??
-          Gender.unknown,
-      age: json['age'] as int? ?? 0,
-      city: json['city'] as String? ?? '',
+      name: json['name'] as String,
+      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      age: json['age'] as int,
+      city: json['city'] as String,
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
@@ -24,7 +23,7 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
     };
 
 const _$GenderEnumMap = {
-  Gender.unknown: 'unknown',
   Gender.male: 'male',
   Gender.female: 'female',
+  Gender.other: 'other',
 };

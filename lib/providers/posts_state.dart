@@ -11,10 +11,15 @@ class PostsState extends _$PostsState {
   @override
   Stream<List<Post>> build() => getIt<CloudRepository>().loadPosts();
 
-  Future<void> addPost(Profile profile, String message) {
+  Future<void> submitPost(Profile profile, Category category, String text) {
     final post = Post(
-      author: Author(name: profile.name, age: profile.age),
-      message: message,
+      author: Author(
+        name: profile.name,
+        age: profile.age,
+        gender: profile.gender,
+      ),
+      category: category,
+      text: text,
       timestamp: DateTime.timestamp(),
     );
     return getIt<CloudRepository>().savePost(post);

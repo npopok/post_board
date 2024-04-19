@@ -21,7 +21,8 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Post {
   Author get author => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  Category get category => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime get timestamp => throw _privateConstructorUsedError;
 
@@ -37,7 +38,8 @@ abstract class $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {Author author,
-      String message,
+      Category category,
+      String text,
       @TimestampConverter() DateTime timestamp});
 
   $AuthorCopyWith<$Res> get author;
@@ -57,7 +59,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @override
   $Res call({
     Object? author = null,
-    Object? message = null,
+    Object? category = null,
+    Object? text = null,
     Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
@@ -65,9 +68,13 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as Author,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String,
       timestamp: null == timestamp
           ? _value.timestamp
@@ -94,7 +101,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {Author author,
-      String message,
+      Category category,
+      String text,
       @TimestampConverter() DateTime timestamp});
 
   @override
@@ -112,7 +120,8 @@ class __$$PostImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? author = null,
-    Object? message = null,
+    Object? category = null,
+    Object? text = null,
     Object? timestamp = null,
   }) {
     return _then(_$PostImpl(
@@ -120,9 +129,13 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as Author,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String,
       timestamp: null == timestamp
           ? _value.timestamp
@@ -137,7 +150,8 @@ class __$$PostImplCopyWithImpl<$Res>
 class _$PostImpl implements _Post {
   const _$PostImpl(
       {required this.author,
-      required this.message,
+      required this.category,
+      required this.text,
       @TimestampConverter() required this.timestamp});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
@@ -146,14 +160,16 @@ class _$PostImpl implements _Post {
   @override
   final Author author;
   @override
-  final String message;
+  final Category category;
+  @override
+  final String text;
   @override
   @TimestampConverter()
   final DateTime timestamp;
 
   @override
   String toString() {
-    return 'Post(author: $author, message: $message, timestamp: $timestamp)';
+    return 'Post(author: $author, category: $category, text: $text, timestamp: $timestamp)';
   }
 
   @override
@@ -162,14 +178,17 @@ class _$PostImpl implements _Post {
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
             (identical(other.author, author) || other.author == author) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.text, text) || other.text == text) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, author, message, timestamp);
+  int get hashCode =>
+      Object.hash(runtimeType, author, category, text, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +207,8 @@ class _$PostImpl implements _Post {
 abstract class _Post implements Post {
   const factory _Post(
       {required final Author author,
-      required final String message,
+      required final Category category,
+      required final String text,
       @TimestampConverter() required final DateTime timestamp}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
@@ -196,7 +216,9 @@ abstract class _Post implements Post {
   @override
   Author get author;
   @override
-  String get message;
+  Category get category;
+  @override
+  String get text;
   @override
   @TimestampConverter()
   DateTime get timestamp;

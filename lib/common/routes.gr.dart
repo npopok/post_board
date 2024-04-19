@@ -39,16 +39,6 @@ abstract class _$Routes extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
-    ResultRoute.name: (routeData) {
-      final args = routeData.argsAs<ResultRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ResultScreen(
-          args.message,
-          key: args.key,
-        ),
-      );
-    },
     SettingsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -118,43 +108,6 @@ class ProfileRoute extends PageRouteInfo<void> {
   static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ResultScreen]
-class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
-  ResultRoute({
-    required String message,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ResultRoute.name,
-          args: ResultRouteArgs(
-            message: message,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ResultRoute';
-
-  static const PageInfo<ResultRouteArgs> page = PageInfo<ResultRouteArgs>(name);
-}
-
-class ResultRouteArgs {
-  const ResultRouteArgs({
-    required this.message,
-    this.key,
-  });
-
-  final String message;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ResultRouteArgs{message: $message, key: $key}';
-  }
 }
 
 /// generated route for

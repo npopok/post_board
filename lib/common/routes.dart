@@ -17,7 +17,6 @@ class Routes extends _$Routes {
             AutoRoute(page: ProfileRoute.page),
           ],
         ),
-        AutoRoute(page: ResultRoute.page),
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: HelpRoute.page),
       ];

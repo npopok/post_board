@@ -8,11 +8,14 @@ import 'author.dart';
 part 'post.freezed.dart';
 part 'post.g.dart';
 
+enum Category { sex, love, services, jobs }
+
 @freezed
 class Post with _$Post {
   const factory Post({
     required final Author author,
-    required final String message,
+    required Category category,
+    required String text,
     @TimestampConverter() required final DateTime timestamp,
   }) = _Post;
 

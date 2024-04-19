@@ -7,6 +7,7 @@ import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
+import 'package:post_board/widgets/widgets.dart';
 
 @RoutePage()
 class SubmitScreen extends ConsumerStatefulWidget {
@@ -17,19 +18,9 @@ class SubmitScreen extends ConsumerStatefulWidget {
 }
 
 class _SubmitScreenState extends ConsumerState<SubmitScreen> {
-  late TextEditingController textController;
-
-  @override
-  void initState() {
-    super.initState();
-    textController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
+  final formKey = GlobalKey<FormState>();
+  late Category category;
+  late String text;
 
   @override
   Widget build(BuildContext context) {
@@ -40,33 +31,67 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            TextField(
-              controller: textController,
-              maxLines: 3,
-              maxLength: kMaxPostLength,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DropdownField<Category>(
+                values: Category.values,
+                initialValue: null,
+                hintText: 'SubmitScreen.CategoryHint'.tr(),
+                errorText: 'SubmitScreen.CategoryEmpty'.tr(),
+                textBuilder: (value) => value.toString().tr(),
+                onSaved: (value) => category = value!,
               ),
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () => context.pushRoute(ResultRoute(message: textController.text)),
-              child: Text('SubmitScreen.Submit'.tr()),
-            ),
-          ],
+              const SizedBox(height: 24),
+              TextFormField(
+                maxLines: 3,
+                maxLength: kMaxPostLength,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: 'SubmitScreen.TextHint'.tr(),
+                ),
+                validator: _validateText,
+                onSaved: (value) => text = value!,
+              ),
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 48),
+                child: ElevatedButton(
+                  onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
+                  child: Text('SubmitScreen.SubmitButton'.tr()),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  String? _validateText(String? value) {
+    if (value?.isEmpty == true) {
+      return 'SubmitScreen.TextEmpty'.tr();
+    } else if (value!.length < kMinPostLength) {
+      return 'SubmitScreen.TextShort'.tr();
+    }
+    return null;
+  }
+
   void _submitPostHandler(Profile profile) {
-    context.maybePop();
-    final posts = ref.read(postsStateProvider.notifier);
-    posts
-        .addPost(profile, textController.text)
-        .then((value) => showSnackBar('SubmitScreen.Success'.tr()))
-        .onError((_, __) => showSnackBar('SubmitScreen.Error'.tr()));
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      ref
+          .read(postsStateProvider.notifier)
+          .submitPost(profile, category, text)
+          .then((value) => showSnackBar('SubmitScreen.Success'.tr()))
+          .onError((_, __) => showSnackBar('SubmitScreen.Error'.tr()));
+
+      formKey.currentState!.reset();
+      FocusManager.instance.primaryFocus?.unfocus();
+      context.navigateTo(const PostsRoute());
+    }
   }
 }

@@ -106,8 +106,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => ValueListDialog(
-          items: ['Москва', 'Новосибирск'],
-          values: ['Москва', 'Новосибирск'],
+          items: const ['Москва', 'Новосибирск'],
+          values: const ['Москва', 'Новосибирск'],
           initialValue: profile.city,
         ),
       ).then((value) => value == null ? 0 : _updateCity(value)),

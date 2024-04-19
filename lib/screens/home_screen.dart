@@ -23,12 +23,12 @@ class HomeScreen extends StatelessWidget {
         onTap: tabsRouter.setActiveIndex,
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.list),
+            icon: const Icon(Icons.search),
             label: 'HomeScreen.Posts'.tr(),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.add_circle_outline),
-            label: 'HomeScreen.Add'.tr(),
+            label: 'HomeScreen.Create'.tr(),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person),

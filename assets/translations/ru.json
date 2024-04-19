@@ -2,14 +2,19 @@
     "App.Title": "Доска объявлений",
 
     "HomeScreen.Posts": "Объявления",
-    "HomeScreen.Add": "Добавить",  
+    "HomeScreen.Create": "Создать",  
     "HomeScreen.Profile": "Профиль",
 
     "PostsScreen.Title": "Объявления",
     "PostsScreen.Error": "Ошибка сервера.",
 
-    "SubmitScreen.Title": "Добавить объявление",
-    "SubmitScreen.Submit": "Отправить",
+    "SubmitScreen.Title": "Создать объявление",
+    "SubmitScreen.CategoryHint": "Раздел",
+    "SubmitScreen.CategoryEmpty": "Выберите раздел",    
+    "SubmitScreen.TextHint": "Текст объявления",
+    "SubmitScreen.TextEmpty": "Введите текст",
+    "SubmitScreen.TextShort": "Слишком короткий текст",    
+    "SubmitScreen.SubmitButton": "Отправить",
     "SubmitScreen.Success": "Объявление добавлено.", 
     "SubmitScreen.Error": "Произошла ошибка.",
 
@@ -19,10 +24,23 @@
     "ProfileScreen.Age": "Возраст",
     "ProfileScreen.City": "Город",
 
-    "Gender.unknown": "Неизвестный",
     "Gender.male": "Мужчина",
     "Gender.female": "Женщина",
+    "Gender.other": "Другой",
 
     "Button.OK": "ОК",
-    "Button.Cancel": "Отмена"
+    "Button.Cancel": "Отмена",
+
+    "Elapsed.Now": "сейчас",
+    "Elapsed.Minutues": "{} мин назад",
+    "Elapsed.Hours": "{} ч назад",
+    "Elapsed.Days": "{} д назад",
+    "Elapsed.Weeks": "{} нед назад",
+    "Elapsed.Months": "{} мес назад",
+    "Elapsed.Years": "давно",
+
+    "Category.sex": "Секс",
+    "Category.love": "Любовь",
+    "Category.services": "Услуги",
+    "Category.jobs": "Работа"  
 }

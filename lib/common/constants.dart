@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kMaxNameLength = 50;
+const kMinPostLength = 10;
 const kMaxPostLength = 200;
 const kMaxPostCount = 1000;
 

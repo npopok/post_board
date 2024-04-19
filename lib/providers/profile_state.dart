@@ -38,6 +38,6 @@ class ProfileState extends _$ProfileState {
   Profile loadData() {
     final repository = getIt.get<LocalRepository>();
     final data = repository.loadObject<Profile>('profile', Profile.fromJson);
-    return data ?? const Profile();
+    return data ?? Profile.empty();
   }
 }

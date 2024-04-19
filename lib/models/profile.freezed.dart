@@ -128,25 +128,21 @@ class __$$ProfileImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProfileImpl implements _Profile {
   const _$ProfileImpl(
-      {this.name = '',
-      this.gender = Gender.unknown,
-      this.age = 0,
-      this.city = ''});
+      {required this.name,
+      required this.gender,
+      required this.age,
+      required this.city});
 
   factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileImplFromJson(json);
 
   @override
-  @JsonKey()
   final String name;
   @override
-  @JsonKey()
   final Gender gender;
   @override
-  @JsonKey()
   final int age;
   @override
-  @JsonKey()
   final String city;
 
   @override
@@ -185,10 +181,10 @@ class _$ProfileImpl implements _Profile {
 
 abstract class _Profile implements Profile {
   const factory _Profile(
-      {final String name,
-      final Gender gender,
-      final int age,
-      final String city}) = _$ProfileImpl;
+      {required final String name,
+      required final Gender gender,
+      required final int age,
+      required final String city}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 

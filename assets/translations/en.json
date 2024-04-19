@@ -2,14 +2,19 @@
     "App.Title": "Ad Board",
     
     "HomeScreen.Posts": "Posts",
-    "HomeScreen.Add": "Add",
+    "HomeScreen.Create": "Create",
     "HomeScreen.Profile": "Profile",
 
     "PostsScreen.Title": "Posts",
     "PostsScreen.Error": "Server error.",
 
-    "SubmitScreen.Title": "Add Post",
-    "SubmitScreen.Submit": "Submit",
+    "SubmitScreen.Title": "Create Post",
+    "SubmitScreen.CategoryHint": "Category",
+    "SubmitScreen.CategoryEmpty": "Select category",       
+    "SubmitScreen.TextHint": "Post text",
+    "SubmitScreen.TextEmpty": "Enter text",
+    "SubmitScreen.TextShort": "Too short text",    
+    "SubmitScreen.SubmitButton": "Submit",
     "SubmitScreen.Success": "Post has been added.", 
     "SubmitScreen.Error": "Error occuried.",
 
@@ -19,10 +24,23 @@
     "ProfileScreen.Age": "Age",
     "ProfileScreen.City": "City",
 
-    "Gender.unknown": "Unknown",
     "Gender.male": "Male",
     "Gender.female": "Female",
+    "Gender.other": "Other",
 
     "Button.OK": "OK",
-    "Button.Cancel": "Cancel"
+    "Button.Cancel": "Cancel",
+
+    "Elapsed.Now": "now",
+    "Elapsed.Minutues": "{} min ago",
+    "Elapsed.Hours": "{} hr ago",
+    "Elapsed.Days": "{} d ago",
+    "Elapsed.Weeks": "{} w ago",
+    "Elapsed.Months": "{} mon ago",
+    "Elapsed.Years": "long ago",
+
+    "Category.sex": "Sex",
+    "Category.love": "Love",
+    "Category.services": "Services",
+    "Category.jobs": "Jobs"         
 }
