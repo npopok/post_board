@@ -64,4 +64,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'indentix-post-board.appspot.com',
     iosBundleId: 'com.indentix.postboard',
   );
+
 }

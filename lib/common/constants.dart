@@ -4,6 +4,11 @@ const kMaxNameLength = 50;
 const kMinPostLength = 10;
 const kMaxPostLength = 200;
 const kMaxPostCount = 1000;
+const kMinContactLength = 5;
+const kMaxContactLength = 50;
+
+const kProfileLocalKey = 'profile';
+const kPostsCloudKey = 'posts';
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);

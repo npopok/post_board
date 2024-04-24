@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:post_board/helpers/date_helper.dart';
 import 'package:post_board/models/models.dart';
 
+import 'contact_field.dart';
+
 class PostDetails extends StatelessWidget {
   final Post post;
 
@@ -11,9 +13,23 @@ class PostDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('${post.author}, ${post.author.age}'),
-      subtitle: Text(post.text),
-      trailing: Text(post.timestamp.formatTimeSinceNow()),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('${post.author}, ${post.age}'),
+          Text(
+            post.timestamp.formatTimeSinceNow(),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
+      ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(post.text),
+          ContactField(contact: post.contact),
+        ],
+      ),
     );
   }
 }

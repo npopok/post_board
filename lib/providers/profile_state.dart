@@ -11,6 +11,9 @@ class ProfileState extends _$ProfileState {
   @override
   Profile build() => loadData();
 
+  void saveData() => getIt<LocalRepository>().saveProfile(state);
+  Profile loadData() => getIt<LocalRepository>().loadProfile();
+
   set name(String value) {
     state = state.copyWith(name: value);
     saveData();
@@ -29,15 +32,5 @@ class ProfileState extends _$ProfileState {
   set city(String value) {
     state = state.copyWith(city: value);
     saveData();
-  }
-
-  void saveData() {
-    getIt.get<LocalRepository>().saveObject('profile', state.toJson());
-  }
-
-  Profile loadData() {
-    final repository = getIt.get<LocalRepository>();
-    final data = repository.loadObject<Profile>('profile', Profile.fromJson);
-    return data ?? Profile.empty();
   }
 }

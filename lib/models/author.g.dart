@@ -11,6 +11,7 @@ _$AuthorImpl _$$AuthorImplFromJson(Map<String, dynamic> json) => _$AuthorImpl(
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: json['age'] as int,
       city: json['city'] as String,
+      contact: json['contact'] as String,
     );
 
 Map<String, dynamic> _$$AuthorImplToJson(_$AuthorImpl instance) =>
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$AuthorImplToJson(_$AuthorImpl instance) =>
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
       'city': instance.city,
+      'contact': instance.contact,
     };
 
 const _$GenderEnumMap = {

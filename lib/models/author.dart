@@ -12,6 +12,7 @@ class Author with _$Author {
     required final Gender gender,
     required final int age,
     required String city,
+    required String contact,
   }) = _Author;
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);

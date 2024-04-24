@@ -24,6 +24,7 @@ mixin _$Author {
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  String get contact => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
       _$AuthorCopyWithImpl<$Res, Author>;
   @useResult
-  $Res call({String name, Gender gender, int age, String city});
+  $Res call({String name, Gender gender, int age, String city, String contact});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$AuthorCopyWithImpl<$Res, $Val extends Author>
     Object? gender = null,
     Object? age = null,
     Object? city = null,
+    Object? contact = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -73,6 +75,10 @@ class _$AuthorCopyWithImpl<$Res, $Val extends Author>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -84,7 +90,7 @@ abstract class _$$AuthorImplCopyWith<$Res> implements $AuthorCopyWith<$Res> {
       __$$AuthorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Gender gender, int age, String city});
+  $Res call({String name, Gender gender, int age, String city, String contact});
 }
 
 /// @nodoc
@@ -102,6 +108,7 @@ class __$$AuthorImplCopyWithImpl<$Res>
     Object? gender = null,
     Object? age = null,
     Object? city = null,
+    Object? contact = null,
   }) {
     return _then(_$AuthorImpl(
       name: null == name
@@ -120,6 +127,10 @@ class __$$AuthorImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -131,7 +142,8 @@ class _$AuthorImpl implements _Author {
       {required this.name,
       required this.gender,
       required this.age,
-      required this.city});
+      required this.city,
+      required this.contact});
 
   factory _$AuthorImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthorImplFromJson(json);
@@ -144,10 +156,12 @@ class _$AuthorImpl implements _Author {
   final int age;
   @override
   final String city;
+  @override
+  final String contact;
 
   @override
   String toString() {
-    return 'Author(name: $name, gender: $gender, age: $age, city: $city)';
+    return 'Author(name: $name, gender: $gender, age: $age, city: $city, contact: $contact)';
   }
 
   @override
@@ -158,12 +172,14 @@ class _$AuthorImpl implements _Author {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.contact, contact) || other.contact == contact));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, gender, age, city);
+  int get hashCode =>
+      Object.hash(runtimeType, name, gender, age, city, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +200,8 @@ abstract class _Author implements Author {
       {required final String name,
       required final Gender gender,
       required final int age,
-      required final String city}) = _$AuthorImpl;
+      required final String city,
+      required final String contact}) = _$AuthorImpl;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$AuthorImpl.fromJson;
 
@@ -196,6 +213,8 @@ abstract class _Author implements Author {
   int get age;
   @override
   String get city;
+  @override
+  String get contact;
   @override
   @JsonKey(ignore: true)
   _$$AuthorImplCopyWith<_$AuthorImpl> get copyWith =>

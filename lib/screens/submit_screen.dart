@@ -22,6 +22,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
   final formKey = GlobalKey<FormState>();
   late Category category;
   late String text;
+  late String contact;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,23 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: 'SubmitScreen.TextHint'.tr(),
+                  counterText: '',
                 ),
                 validator: _validateText,
                 onSaved: (value) => text = value!,
               ),
-              const SizedBox(height: 32),
-              OutlinedButton(
+              const SizedBox(height: 24),
+              TextFormField(
+                maxLength: kMaxContactLength,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: 'SubmitScreen.ContactHint'.tr(),
+                  counterText: '',
+                ),
+                onSaved: (value) => contact = value!,
+              ),
+              const SizedBox(height: 48),
+              FilledButton(
                 onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
                 child: Text('SubmitScreen.SubmitButton'.tr()),
               ),
@@ -84,7 +96,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       FocusManager.instance.primaryFocus?.unfocus();
 
       try {
-        getIt<CloudRepository>().savePost(Post.create(profile, category, text));
+        getIt<CloudRepository>().savePost(Post.create(profile, category, text, contact));
         ref.invalidate(postsStateProvider);
 
         showSnackBar('SubmitScreen.Success'.tr());

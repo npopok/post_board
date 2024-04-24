@@ -7,12 +7,12 @@ class CloudRepository {
   const CloudRepository();
 
   Future<void> savePost(Post post) async {
-    final collection = FirebaseFirestore.instance.collection('posts');
+    final collection = FirebaseFirestore.instance.collection(kPostsCloudKey);
     await collection.add(post.toJson());
   }
 
   Future<List<Post>> loadPosts(Category category) async {
-    final collection = FirebaseFirestore.instance.collection('posts');
+    final collection = FirebaseFirestore.instance.collection(kPostsCloudKey);
     final snapshot = await collection
         .where('category', isEqualTo: category.name)
         .orderBy('timestamp', descending: true)
