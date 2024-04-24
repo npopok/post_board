@@ -7,6 +7,7 @@ import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
+import 'package:post_board/repositories/repositories.dart';
 import 'package:post_board/widgets/widgets.dart';
 
 @RoutePage()
@@ -34,7 +35,6 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         child: Form(
           key: formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DropdownField<Category>(
                 values: Category.values,
@@ -57,12 +57,9 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
                 onSaved: (value) => text = value!,
               ),
               const SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 48),
-                child: ElevatedButton(
-                  onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
-                  child: Text('SubmitScreen.SubmitButton'.tr()),
-                ),
+              OutlinedButton(
+                onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
+                child: Text('SubmitScreen.SubmitButton'.tr()),
               ),
             ],
           ),
@@ -80,18 +77,21 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
     return null;
   }
 
-  void _submitPostHandler(Profile profile) {
+  void _submitPostHandler(Profile profile) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      ref
-          .read(postsStateProvider.notifier)
-          .submitPost(profile, category, text)
-          .then((value) => showSnackBar('SubmitScreen.Success'.tr()))
-          .onError((_, __) => showSnackBar('SubmitScreen.Error'.tr()));
-
       formKey.currentState!.reset();
       FocusManager.instance.primaryFocus?.unfocus();
-      context.navigateTo(const PostsRoute());
+
+      try {
+        getIt<CloudRepository>().savePost(Post.create(profile, category, text));
+        ref.invalidate(postsStateProvider);
+
+        showSnackBar('SubmitScreen.Success'.tr());
+        if (mounted) context.navigateTo(const PostsRoute());
+      } catch (_) {
+        showSnackBar('SubmitScreen.Error'.tr());
+      }
     }
   }
 }

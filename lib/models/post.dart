@@ -4,11 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:post_board/helpers/helpers.dart';
 
 import 'author.dart';
+import 'profile.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';
 
-enum Category { sex, love, services, jobs }
+enum Category { sex, love, services, jobs, other }
 
 @freezed
 class Post with _$Post {
@@ -20,4 +21,16 @@ class Post with _$Post {
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
+
+  factory Post.create(Profile profile, Category category, String text) => Post(
+        author: Author(
+          name: profile.name,
+          gender: profile.gender,
+          age: profile.age,
+          city: profile.city,
+        ),
+        category: category,
+        text: text,
+        timestamp: DateTime.timestamp(),
+      );
 }

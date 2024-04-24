@@ -11,12 +11,13 @@ class CloudRepository {
     await collection.add(post.toJson());
   }
 
-  Stream<List<Post>> loadPosts() {
+  Future<List<Post>> loadPosts(Category category) async {
     final collection = FirebaseFirestore.instance.collection('posts');
-    return collection
-        .limit(kMaxPostCount)
+    final snapshot = await collection
+        .where('category', isEqualTo: category.name)
         .orderBy('timestamp', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) => Post.fromJson(doc.data())).toList());
+        .limit(kMaxPostCount)
+        .get();
+    return snapshot.docs.map((doc) => Post.fromJson(doc.data())).toList();
   }
 }

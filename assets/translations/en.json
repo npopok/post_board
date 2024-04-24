@@ -1,21 +1,22 @@
 {
     "App.Title": "Ad Board",
     
-    "HomeScreen.Posts": "Posts",
+    "HomeScreen.Posts": "Search",
     "HomeScreen.Create": "Create",
     "HomeScreen.Profile": "Profile",
 
     "PostsScreen.Title": "Posts",
+    "PostsScreen.Empty": "No posts.",
     "PostsScreen.Error": "Server error.",
 
-    "SubmitScreen.Title": "Create Post",
+    "SubmitScreen.Title": "New Post",
     "SubmitScreen.CategoryHint": "Category",
     "SubmitScreen.CategoryEmpty": "Select category",       
     "SubmitScreen.TextHint": "Post text",
     "SubmitScreen.TextEmpty": "Enter text",
     "SubmitScreen.TextShort": "Too short text",    
     "SubmitScreen.SubmitButton": "Submit",
-    "SubmitScreen.Success": "Post has been added.", 
+    "SubmitScreen.Success": "Post has been published.", 
     "SubmitScreen.Error": "Error occuried.",
 
     "ProfileScreen.Title": "Profile",
@@ -42,5 +43,6 @@
     "Category.sex": "Sex",
     "Category.love": "Love",
     "Category.services": "Services",
-    "Category.jobs": "Jobs"         
+    "Category.jobs": "Jobs",
+    "Category.other": "Other"
 }

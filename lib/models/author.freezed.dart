@@ -21,8 +21,9 @@ Author _$AuthorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Author {
   String get name => throw _privateConstructorUsedError;
-  int get age => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
+  int get age => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
       _$AuthorCopyWithImpl<$Res, Author>;
   @useResult
-  $Res call({String name, int age, Gender gender});
+  $Res call({String name, Gender gender, int age, String city});
 }
 
 /// @nodoc
@@ -51,22 +52,27 @@ class _$AuthorCopyWithImpl<$Res, $Val extends Author>
   @override
   $Res call({
     Object? name = null,
-    Object? age = null,
     Object? gender = null,
+    Object? age = null,
+    Object? city = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -78,7 +84,7 @@ abstract class _$$AuthorImplCopyWith<$Res> implements $AuthorCopyWith<$Res> {
       __$$AuthorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int age, Gender gender});
+  $Res call({String name, Gender gender, int age, String city});
 }
 
 /// @nodoc
@@ -93,22 +99,27 @@ class __$$AuthorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? age = null,
     Object? gender = null,
+    Object? age = null,
+    Object? city = null,
   }) {
     return _then(_$AuthorImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -117,7 +128,10 @@ class __$$AuthorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthorImpl implements _Author {
   const _$AuthorImpl(
-      {required this.name, required this.age, required this.gender});
+      {required this.name,
+      required this.gender,
+      required this.age,
+      required this.city});
 
   factory _$AuthorImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthorImplFromJson(json);
@@ -125,13 +139,15 @@ class _$AuthorImpl implements _Author {
   @override
   final String name;
   @override
+  final Gender gender;
+  @override
   final int age;
   @override
-  final Gender gender;
+  final String city;
 
   @override
   String toString() {
-    return 'Author(name: $name, age: $age, gender: $gender)';
+    return 'Author(name: $name, gender: $gender, age: $age, city: $city)';
   }
 
   @override
@@ -140,13 +156,14 @@ class _$AuthorImpl implements _Author {
         (other.runtimeType == runtimeType &&
             other is _$AuthorImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.gender, gender) || other.gender == gender));
+            (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, age, gender);
+  int get hashCode => Object.hash(runtimeType, name, gender, age, city);
 
   @JsonKey(ignore: true)
   @override
@@ -165,17 +182,20 @@ class _$AuthorImpl implements _Author {
 abstract class _Author implements Author {
   const factory _Author(
       {required final String name,
+      required final Gender gender,
       required final int age,
-      required final Gender gender}) = _$AuthorImpl;
+      required final String city}) = _$AuthorImpl;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$AuthorImpl.fromJson;
 
   @override
   String get name;
   @override
+  Gender get gender;
+  @override
   int get age;
   @override
-  Gender get gender;
+  String get city;
   @override
   @JsonKey(ignore: true)
   _$$AuthorImplCopyWith<_$AuthorImpl> get copyWith =>

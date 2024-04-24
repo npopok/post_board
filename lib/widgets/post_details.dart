@@ -11,7 +11,7 @@ class PostDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('${post.author.name}, ${post.author.age}'),
+      title: Text('${post.author}, ${post.author.age}'),
       subtitle: Text(post.text),
       trailing: Text(post.timestamp.formatTimeSinceNow()),
     );

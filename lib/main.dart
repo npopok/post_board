@@ -10,7 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
 
-import 'firebase_options.dart';
+import 'firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

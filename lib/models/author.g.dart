@@ -8,15 +8,17 @@ part of 'author.dart';
 
 _$AuthorImpl _$$AuthorImplFromJson(Map<String, dynamic> json) => _$AuthorImpl(
       name: json['name'] as String,
-      age: json['age'] as int,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      age: json['age'] as int,
+      city: json['city'] as String,
     );
 
 Map<String, dynamic> _$$AuthorImplToJson(_$AuthorImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'age': instance.age,
       'gender': _$GenderEnumMap[instance.gender]!,
+      'age': instance.age,
+      'city': instance.city,
     };
 
 const _$GenderEnumMap = {

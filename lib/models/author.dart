@@ -9,8 +9,9 @@ part 'author.g.dart';
 class Author with _$Author {
   const factory Author({
     required final String name,
-    required final int age,
     required final Gender gender,
+    required final int age,
+    required String city,
   }) = _Author;
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);

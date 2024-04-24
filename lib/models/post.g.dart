@@ -27,4 +27,5 @@ const _$CategoryEnumMap = {
   Category.love: 'love',
   Category.services: 'services',
   Category.jobs: 'jobs',
+  Category.other: 'other',
 };

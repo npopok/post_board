@@ -9,19 +9,9 @@ part 'posts_state.g.dart';
 @riverpod
 class PostsState extends _$PostsState {
   @override
-  Stream<List<Post>> build() => getIt<CloudRepository>().loadPosts();
+  Future<List<Post>> build(Category category) async => loadData(category);
 
-  Future<void> submitPost(Profile profile, Category category, String text) {
-    final post = Post(
-      author: Author(
-        name: profile.name,
-        age: profile.age,
-        gender: profile.gender,
-      ),
-      category: category,
-      text: text,
-      timestamp: DateTime.timestamp(),
-    );
-    return getIt<CloudRepository>().savePost(post);
+  Future<List<Post>> loadData(Category category) {
+    return getIt<CloudRepository>().loadPosts(category);
   }
 }

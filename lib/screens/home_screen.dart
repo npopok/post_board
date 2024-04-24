@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.search),
-            label: 'HomeScreen.Posts'.tr(),
+            label: 'HomeScreen.Search'.tr(),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.add_circle_outline),

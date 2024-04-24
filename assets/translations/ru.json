@@ -1,21 +1,22 @@
 {
     "App.Title": "Доска объявлений",
 
-    "HomeScreen.Posts": "Объявления",
+    "HomeScreen.Search": "Поиск",
     "HomeScreen.Create": "Создать",  
     "HomeScreen.Profile": "Профиль",
 
     "PostsScreen.Title": "Объявления",
+    "PostsScreen.Empty": "Нет объявлений.",   
     "PostsScreen.Error": "Ошибка сервера.",
 
-    "SubmitScreen.Title": "Создать объявление",
+    "SubmitScreen.Title": "Новое объявление",
     "SubmitScreen.CategoryHint": "Раздел",
     "SubmitScreen.CategoryEmpty": "Выберите раздел",    
     "SubmitScreen.TextHint": "Текст объявления",
     "SubmitScreen.TextEmpty": "Введите текст",
     "SubmitScreen.TextShort": "Слишком короткий текст",    
-    "SubmitScreen.SubmitButton": "Отправить",
-    "SubmitScreen.Success": "Объявление добавлено.", 
+    "SubmitScreen.SubmitButton": "Разместить",
+    "SubmitScreen.Success": "Объявление размещено.", 
     "SubmitScreen.Error": "Произошла ошибка.",
 
     "ProfileScreen.Title": "Профиль",
@@ -42,5 +43,6 @@
     "Category.sex": "Секс",
     "Category.love": "Любовь",
     "Category.services": "Услуги",
-    "Category.jobs": "Работа"  
+    "Category.jobs": "Работа",
+    "Category.other": "Разное"   
 }
