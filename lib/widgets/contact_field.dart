@@ -8,14 +8,9 @@ class ContactField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Text(
-        contact,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Colors.blue,
-            ),
-      ),
-      onTap: _contactTapHandler,
+    return FilledButton(
+      onPressed: _contactTapHandler,
+      child: Text(contact),
     );
   }
 
@@ -25,7 +20,7 @@ class ContactField extends StatelessWidget {
   }
 
   bool isValidPhone(String phone) {
-    RegExp phoneRegExp = RegExp(r'^[0-9 -]+$');
+    RegExp phoneRegExp = RegExp(r'^\+?[0-9 -]+$');
     return phoneRegExp.hasMatch(phone);
   }
 
@@ -43,16 +38,23 @@ class ContactField extends StatelessWidget {
         throw 'Cannot launch URL';
       }
     } else if (isValidPhone(contact)) {
-      final url = Uri(scheme: 'whatsapp', path: 'send?phone=$contact');
+      //  final url = Uri(scheme: 'whatsapp', path: 'send?phone=$contact');
+      final url = Uri.parse('https://wa.me/$contact');
       if (await canLaunchUrl(url)) {
-        launchUrl(url);
+        launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        );
       } else {
         throw 'Cannot launch URL';
       }
     } else if (isValidTelegram(contact)) {
       final url = Uri(scheme: 'tg', path: 'msg?to=$contact');
       if (await canLaunchUrl(url)) {
-        launchUrl(url);
+        launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        );
       } else {
         throw 'Cannot launch URL';
       }

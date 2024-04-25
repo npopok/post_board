@@ -69,9 +69,10 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
       onRefresh: () => ref.refresh(postsStateProvider(selectedCategory).future),
       child: posts.when(
         data: (items) => items.isNotEmpty
-            ? ListView.builder(
+            ? ListView.separated(
                 itemCount: items.length,
                 itemBuilder: (context, index) => PostDetails(post: items[index]),
+                separatorBuilder: (_, __) => const Divider(),
               )
             : Center(child: Text('PostsScreen.Empty'.tr())),
         error: (e, st) => Center(child: Text('PostsScreen.Error'.tr())),

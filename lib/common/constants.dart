@@ -10,6 +10,8 @@ const kMaxContactLength = 50;
 const kProfileLocalKey = 'profile';
 const kPostsCloudKey = 'posts';
 
+const kPostsCacheDuration = Duration(minutes: 15);
+
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);
 const kDialogTitlePadding = EdgeInsets.only(top: 12);

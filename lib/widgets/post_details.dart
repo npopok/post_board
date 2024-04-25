@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:post_board/helpers/date_helper.dart';
 import 'package:post_board/models/models.dart';
@@ -27,9 +28,13 @@ class PostDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(post.text),
-          ContactField(contact: post.contact),
+          // Align(
+          //   alignment: Alignment.centerRight,
+          //   child: ContactField(contact: post.contact),
+          // ),
         ],
       ),
+      onTap: () => null,
     );
   }
 }

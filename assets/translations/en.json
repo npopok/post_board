@@ -1,7 +1,7 @@
 {
-    "App.Title": "Ad Board",
+    "App.Title": "Post Board",
     
-    "HomeScreen.Posts": "Search",
+    "HomeScreen.Search": "Search",
     "HomeScreen.Create": "Create",
     "HomeScreen.Profile": "Profile",
 
