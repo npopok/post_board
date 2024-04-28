@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 const kMaxNameLength = 50;
 const kMinPostLength = 10;
 const kMaxPostLength = 200;
-const kMaxPostCount = 1000;
-const kMinContactLength = 5;
+const kMaxPostCount = 200;
 const kMaxContactLength = 50;
 
 const kProfileLocalKey = 'profile';

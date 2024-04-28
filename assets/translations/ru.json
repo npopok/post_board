@@ -9,6 +9,14 @@
     "PostsScreen.Empty": "Нет объявлений.",   
     "PostsScreen.Error": "Ошибка сервера.",
 
+    "PostDetails.WriteMessage": "Написать сообщение",
+    "PostDetails.WriteEmail": "Написать письмо",
+    "PostDetails.WriteWhatsApp": "Написать в Whatsapp",
+    "PostDetails.WriteTelegram": "Написать в Telegram",
+    "PostDetails.CopyContact": "Скопировать контакт",
+    "PostDetails.CopyText": "Скопировать текст",
+    "PostDetails.ActionFailed": "Действие невозможно",
+
     "SubmitScreen.Title": "Новое объявление",
     "SubmitScreen.CategoryHint": "Раздел",
     "SubmitScreen.CategoryEmpty": "Выберите раздел",    

@@ -9,6 +9,14 @@
     "PostsScreen.Empty": "No posts.",
     "PostsScreen.Error": "Server error.",
 
+    "PostDetails.WriteChat": "Write message",
+    "PostDetails.WriteEmail": "Write email",
+    "PostDetails.WriteWhatsApp": "Write in Whatsapp",
+    "PostDetails.WriteTelegram": "Write in Telegtam",
+    "PostDetails.CopyContact": "Copy contact",
+    "PostDetails.CopyText": "Copy text",
+    "PostDetails.ActionFailed": "Action failed",
+
     "SubmitScreen.Title": "New Post",
     "SubmitScreen.CategoryHint": "Category",
     "SubmitScreen.CategoryEmpty": "Select category",       

@@ -47,10 +47,8 @@
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>mailto</string>	
-		<string>tel</string>
-		<string>whatsapp</string>
-		<string>tg</string>			
+		<string>https</string>
+		<string>mailto</string>
 	</array>
 </dict>
 </plist>
