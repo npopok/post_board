@@ -10,15 +10,17 @@ class LaunchHelper {
     }
   }
 
-  static Future<bool> openEmail(String contact) async {
-    return openUrl('mailto:$contact');
+  static Future<bool> openEmail(String address) async {
+    return openUrl('mailto:$address');
   }
 
-  static Future<bool> openWhatsApp(String contact) async {
-    return openUrl('https://wa.me/$contact');
+  static Future<bool> openWhatsApp(String phone) async {
+    phone = phone.replaceFirst(RegExp(r'^8'), '+7');
+    return openUrl('https://wa.me/$phone');
   }
 
-  static Future<bool> openTelegram(String contact) async {
-    return openUrl('https://t.me/${contact.substring(1)}');
+  static Future<bool> openTelegram(String name) async {
+    name = name.replaceFirst(RegExp('^@'), '');
+    return openUrl('https://t.me/$name');
   }
 }

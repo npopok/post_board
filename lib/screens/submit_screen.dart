@@ -96,7 +96,8 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       FocusManager.instance.primaryFocus?.unfocus();
 
       try {
-        getIt<CloudRepository>().savePost(Post.create(profile, category, text, contact));
+        final post = Post.create(profile, category, text, contact);
+        await getIt<CloudRepository>().savePost(post);
         ref.invalidate(postsStateProvider(category));
 
         showSnackBar('SubmitScreen.Success'.tr());

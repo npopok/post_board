@@ -23,7 +23,9 @@ void main() async {
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
-// await Supabase.instance.client.auth.signInAnonymously();
+  if (Supabase.instance.client.auth.currentUser == null) {
+    await Supabase.instance.client.auth.signInAnonymously();
+  }
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   PlatformDispatcher.instance.onError = (error, stack) {
