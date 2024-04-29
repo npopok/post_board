@@ -18,14 +18,14 @@
     "PostDetails.ActionFailed": "Действие невозможно",
 
     "SubmitScreen.Title": "Новое объявление",
-    "SubmitScreen.CategoryHint": "Раздел",
-    "SubmitScreen.CategoryEmpty": "Выберите раздел",    
+    "SubmitScreen.CategoryHint": "Категория",
+    "SubmitScreen.CategoryEmpty": "Выберите категорию",    
     "SubmitScreen.TextHint": "Текст объявления",
-    "SubmitScreen.TextEmpty": "Введите текст",
+    "SubmitScreen.TextEmpty": "Введите текст объявления",
     "SubmitScreen.TextShort": "Слишком короткий текст",    
     "SubmitScreen.ContactHint": "Контактные данные",
     "SubmitScreen.ContactEmpty": "Введите контактные данные", 
-    "SubmitScreen.SubmitButton": "Разместить объявление",
+    "SubmitScreen.SubmitButton": "ОТПРАВИТЬ",
     "SubmitScreen.Success": "Объявление размещено", 
     "SubmitScreen.Error": "Произошла ошибка",
 

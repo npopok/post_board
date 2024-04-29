@@ -4,15 +4,14 @@ const supabaseUrl = 'https://zqbppqfqagxfoqlclkxg.supabase.co';
 const supabaseKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYnBwcWZxYWd4Zm9xbGNsa3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQyMjUwOTIsImV4cCI6MjAyOTgwMTA5Mn0.H7Oyi29HRKAGClZmLQYE9o8dKUwXRjwr3bbgrH4s3Yg';
 
-const kMaxNameLength = 50;
-const kMinPostLength = 10;
-const kMaxPostLength = 200;
-const kMaxPostCount = 200;
-const kMaxContactLength = 50;
+const kNameMaxLength = 50;
+const kPostMinLength = 10;
+const kPostMaxLength = 200;
+const kPostMaxCount = 200;
+const kContactMaxLength = 50;
 
 const kProfileLocalKey = 'profile';
 const kPostsCloudTable = 'posts';
-
 const kPostsCacheDuration = Duration(minutes: 15);
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);

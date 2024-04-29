@@ -14,8 +14,8 @@ class CloudRepository {
         .from(kPostsCloudTable)
         .select()
         .eq('category', category.name)
-        .order('createdAt')
-        .limit(kMaxPostCount);
+        .order('created_at')
+        .limit(kPostMaxCount);
 
     return data.map((e) => Post.fromJson(e)).toList();
   }

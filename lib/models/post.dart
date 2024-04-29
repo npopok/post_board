@@ -7,13 +7,11 @@ part 'post.g.dart';
 
 enum Category { sex, love, services, jobs, other }
 
-enum Source { user, service }
-
 @freezed
 class Post with _$Post {
   const factory Post({
-    required final DateTime createdAt,
-    required final Source source,
+    @JsonKey(name: 'created_by', includeToJson: false) final String? createdBy,
+    @JsonKey(name: 'created_at', includeToJson: false) final DateTime? createdAt,
     required final String author,
     required final Gender gender,
     required final int age,
@@ -32,8 +30,6 @@ class Post with _$Post {
     String contact,
   ) =>
       Post(
-        createdAt: DateTime.timestamp(),
-        source: Source.user,
         author: profile.name,
         gender: profile.gender,
         age: profile.age,

@@ -48,7 +48,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (context) => InputDialog(
           initialValue: profile.name,
-          maxLength: kMaxNameLength,
+          maxLength: kNameMaxLength,
         ),
       ).then((value) => value == null ? 0 : _updateName(value)),
     );

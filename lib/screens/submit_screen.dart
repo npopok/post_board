@@ -35,58 +35,58 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         padding: const EdgeInsets.all(24),
         child: Form(
           key: formKey,
-          child: Column(
-            children: [
-              DropdownField<Category>(
-                values: Category.values,
-                initialValue: null,
-                hintText: 'SubmitScreen.CategoryHint'.tr(),
-                errorText: 'SubmitScreen.CategoryEmpty'.tr(),
-                textBuilder: (value) => value.toString().tr(),
-                onSaved: (value) => category = value!,
-              ),
-              const SizedBox(height: 24),
-              TextFormField(
-                maxLines: 3,
-                maxLength: kMaxPostLength,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'SubmitScreen.TextHint'.tr(),
-                  counterText: '',
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                DropdownField<Category>(
+                  values: Category.values,
+                  initialValue: null,
+                  hintText: 'SubmitScreen.CategoryHint'.tr(),
+                  errorText: 'SubmitScreen.CategoryEmpty'.tr(),
+                  textBuilder: (value) => value.toString().tr(),
+                  onSaved: (value) => category = value!,
                 ),
-                validator: _validateText,
-                onSaved: (value) => text = value!,
-              ),
-              const SizedBox(height: 24),
-              TextFormField(
-                maxLength: kMaxContactLength,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'SubmitScreen.ContactHint'.tr(),
-                  counterText: '',
+                const SizedBox(height: 24),
+                TextFormField(
+                  maxLines: 3,
+                  maxLength: kPostMaxLength,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: 'SubmitScreen.TextHint'.tr(),
+                    counterText: '',
+                  ),
+                  validator: TextLengthValidator(
+                    emptyMessage: 'SubmitScreen.TextEmpty'.tr(),
+                    minLength: kPostMinLength,
+                    minMessage: 'SubmitScreen.TextShort'.tr(),
+                  ).validate,
+                  onSaved: (value) => text = value!,
                 ),
-                onSaved: (value) => contact = value!,
-              ),
-              const SizedBox(height: 48),
-              FilledButton(
-                onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
-                child: Text('SubmitScreen.SubmitButton'.tr()),
-              ),
-            ],
+                const SizedBox(height: 24),
+                TextFormField(
+                  maxLength: kContactMaxLength,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: 'SubmitScreen.ContactHint'.tr(),
+                    counterText: '',
+                  ),
+                  validator: TextLengthValidator(
+                    emptyMessage: 'SubmitScreen.ContactEmpty'.tr(),
+                  ).validate,
+                  onSaved: (value) => contact = value!,
+                ),
+                const SizedBox(height: 48),
+                FilledButton(
+                  onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
+                  child: Text('SubmitScreen.SubmitButton'.tr()),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  String? _validateText(String? value) {
-    if (value?.isEmpty == true) {
-      return 'SubmitScreen.TextEmpty'.tr();
-    } else if (value!.length < kMinPostLength) {
-      return 'SubmitScreen.TextShort'.tr();
-    }
-    return null;
   }
 
   void _submitPostHandler(Profile profile) async {

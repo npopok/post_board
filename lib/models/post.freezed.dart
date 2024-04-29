@@ -20,8 +20,10 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  Source get source => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_by', includeToJson: false)
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at', includeToJson: false)
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
@@ -41,8 +43,8 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {DateTime createdAt,
-      Source source,
+      {@JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
+      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
       String author,
       Gender gender,
       int age,
@@ -65,8 +67,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = null,
-    Object? source = null,
+    Object? createdBy = freezed,
+    Object? createdAt = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -76,14 +78,14 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? contact = null,
   }) {
     return _then(_value.copyWith(
-      createdAt: null == createdAt
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as Source,
+              as DateTime?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -124,8 +126,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {DateTime createdAt,
-      Source source,
+      {@JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
+      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
       String author,
       Gender gender,
       int age,
@@ -145,8 +147,8 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = null,
-    Object? source = null,
+    Object? createdBy = freezed,
+    Object? createdAt = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -156,14 +158,14 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? contact = null,
   }) {
     return _then(_$PostImpl(
-      createdAt: null == createdAt
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as Source,
+              as DateTime?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -200,8 +202,8 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {required this.createdAt,
-      required this.source,
+      {@JsonKey(name: 'created_by', includeToJson: false) this.createdBy,
+      @JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
       required this.author,
       required this.gender,
       required this.age,
@@ -214,9 +216,11 @@ class _$PostImpl implements _Post {
       _$$PostImplFromJson(json);
 
   @override
-  final DateTime createdAt;
+  @JsonKey(name: 'created_by', includeToJson: false)
+  final String? createdBy;
   @override
-  final Source source;
+  @JsonKey(name: 'created_at', includeToJson: false)
+  final DateTime? createdAt;
   @override
   final String author;
   @override
@@ -234,7 +238,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(createdAt: $createdAt, source: $source, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
+    return 'Post(createdBy: $createdBy, createdAt: $createdAt, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -242,9 +246,10 @@ class _$PostImpl implements _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.source, source) || other.source == source) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
@@ -257,7 +262,7 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, createdAt, source, author,
+  int get hashCode => Object.hash(runtimeType, createdBy, createdAt, author,
       gender, age, city, category, text, contact);
 
   @JsonKey(ignore: true)
@@ -276,8 +281,10 @@ class _$PostImpl implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {required final DateTime createdAt,
-      required final Source source,
+      {@JsonKey(name: 'created_by', includeToJson: false)
+      final String? createdBy,
+      @JsonKey(name: 'created_at', includeToJson: false)
+      final DateTime? createdAt,
       required final String author,
       required final Gender gender,
       required final int age,
@@ -289,9 +296,11 @@ abstract class _Post implements Post {
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
   @override
-  DateTime get createdAt;
+  @JsonKey(name: 'created_by', includeToJson: false)
+  String? get createdBy;
   @override
-  Source get source;
+  @JsonKey(name: 'created_at', includeToJson: false)
+  DateTime? get createdAt;
   @override
   String get author;
   @override

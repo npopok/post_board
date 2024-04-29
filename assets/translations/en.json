@@ -25,7 +25,7 @@
     "SubmitScreen.TextShort": "Too short text",
     "SubmitScreen.ContactHint": "Contact details",
     "SubmitScreen.ContactEmpty": "Enter contact details", 
-    "SubmitScreen.SubmitButton": "Submit Post",
+    "SubmitScreen.SubmitButton": "SUBMIT",
     "SubmitScreen.Success": "Post has been published", 
     "SubmitScreen.Error": "Error occuried",
 
