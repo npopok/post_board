@@ -28,7 +28,7 @@ class PostDetails extends StatelessWidget {
         children: [
           Text('${post.author}, ${post.age}'),
           Text(
-            post.timestamp.formatTimeSinceNow(),
+            post.createdAt.formatTimeSinceNow(),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],

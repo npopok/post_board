@@ -7,6 +7,7 @@ part of 'post.dart';
 // **************************************************************************
 
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
+      createdAt: DateTime.parse(json['createdAt'] as String),
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: json['age'] as int,
@@ -14,12 +15,11 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: json['contact'] as String,
-      timestamp:
-          const TimestampConverter().fromJson(json['timestamp'] as Timestamp),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
+      'createdAt': instance.createdAt.toIso8601String(),
       'author': instance.author,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
@@ -27,7 +27,6 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': instance.contact,
-      'timestamp': const TimestampConverter().toJson(instance.timestamp),
     };
 
 const _$GenderEnumMap = {

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -6,11 +5,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
 
-import 'firebase/firebase_options.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,15 +21,23 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
-  await FirebaseAuth.instance.signInAnonymously();
 
-  Resources.initialize();
+  await Supabase.initialize(
+    url: 'https://zqbppqfqagxfoqlclkxg.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB'
+        'hYmFzZSIsInJlZiI6InpxYnBwcWZxYWd4Zm9xbGNsa3hnIiwicm9'
+        'sZSI6ImFub24iLCJpYXQiOjE3MTQyMjUwOTIsImV4cCI6MjAyOTg'
+        'wMTA5Mn0.H7Oyi29HRKAGClZmLQYE9o8dKUwXRjwr3bbgrH4s3Yg',
+  );
+  await Supabase.instance.client.auth.signInAnonymously();
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
+  Resources.initialize();
 
   runApp(
     EasyLocalization(

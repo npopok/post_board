@@ -7,7 +7,7 @@ const kMaxPostCount = 200;
 const kMaxContactLength = 50;
 
 const kProfileLocalKey = 'profile';
-const kPostsCloudKey = 'posts';
+const kPostsDbTable = 'posts';
 
 const kPostsCacheDuration = Duration(minutes: 15);
 

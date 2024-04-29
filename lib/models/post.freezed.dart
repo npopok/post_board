@@ -20,6 +20,7 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
+  DateTime get createdAt => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
@@ -27,8 +28,6 @@ mixin _$Post {
   Category get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   String get contact => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  DateTime get timestamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,14 +40,14 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {String author,
+      {DateTime createdAt,
+      String author,
       Gender gender,
       int age,
       String city,
       Category category,
       String text,
-      String contact,
-      @TimestampConverter() DateTime timestamp});
+      String contact});
 }
 
 /// @nodoc
@@ -64,6 +63,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? createdAt = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -71,9 +71,12 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
-    Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -102,10 +105,6 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ) as $Val);
   }
 }
@@ -118,14 +117,14 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String author,
+      {DateTime createdAt,
+      String author,
       Gender gender,
       int age,
       String city,
       Category category,
       String text,
-      String contact,
-      @TimestampConverter() DateTime timestamp});
+      String contact});
 }
 
 /// @nodoc
@@ -138,6 +137,7 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? createdAt = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -145,9 +145,12 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
-    Object? timestamp = null,
   }) {
     return _then(_$PostImpl(
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -176,10 +179,6 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
@@ -188,18 +187,20 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {required this.author,
+      {required this.createdAt,
+      required this.author,
       required this.gender,
       required this.age,
       required this.city,
       required this.category,
       required this.text,
-      required this.contact,
-      @TimestampConverter() required this.timestamp});
+      required this.contact});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
+  @override
+  final DateTime createdAt;
   @override
   final String author;
   @override
@@ -214,13 +215,10 @@ class _$PostImpl implements _Post {
   final String text;
   @override
   final String contact;
-  @override
-  @TimestampConverter()
-  final DateTime timestamp;
 
   @override
   String toString() {
-    return 'Post(author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact, timestamp: $timestamp)';
+    return 'Post(createdAt: $createdAt, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -228,6 +226,8 @@ class _$PostImpl implements _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
@@ -235,15 +235,13 @@ class _$PostImpl implements _Post {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.contact, contact) || other.contact == contact) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
+            (identical(other.contact, contact) || other.contact == contact));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, author, gender, age, city,
-      category, text, contact, timestamp);
+  int get hashCode => Object.hash(runtimeType, createdAt, author, gender, age,
+      city, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -261,17 +259,19 @@ class _$PostImpl implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {required final String author,
+      {required final DateTime createdAt,
+      required final String author,
       required final Gender gender,
       required final int age,
       required final String city,
       required final Category category,
       required final String text,
-      required final String contact,
-      @TimestampConverter() required final DateTime timestamp}) = _$PostImpl;
+      required final String contact}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
+  @override
+  DateTime get createdAt;
   @override
   String get author;
   @override
@@ -286,9 +286,6 @@ abstract class _Post implements Post {
   String get text;
   @override
   String get contact;
-  @override
-  @TimestampConverter()
-  DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

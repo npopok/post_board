@@ -1,23 +1,22 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/post.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CloudRepository {
-  const CloudRepository();
+  final supabase = Supabase.instance.client;
 
   Future<void> savePost(Post post) async {
-    final collection = FirebaseFirestore.instance.collection(kPostsCloudKey);
-    await collection.add(post.toJson());
+    await supabase.from(kPostsDbTable).insert(post.toJson());
   }
 
   Future<List<Post>> loadPosts(Category category) async {
-    final collection = FirebaseFirestore.instance.collection(kPostsCloudKey);
-    final snapshot = await collection
-        .where('category', isEqualTo: category.name)
-        .orderBy('timestamp', descending: true)
-        .limit(kMaxPostCount)
-        .get();
-    return snapshot.docs.map((doc) => Post.fromJson(doc.data())).toList();
+    final data = await supabase
+        .from(kPostsDbTable)
+        .select()
+        .eq('category', category.name)
+        .order('createdAt')
+        .limit(kMaxPostCount);
+
+    return data.map((e) => Post.fromJson(e)).toList();
   }
 }
