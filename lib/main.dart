@@ -22,13 +22,7 @@ void main() async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
-  await Supabase.initialize(
-    url: 'https://zqbppqfqagxfoqlclkxg.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB'
-        'hYmFzZSIsInJlZiI6InpxYnBwcWZxYWd4Zm9xbGNsa3hnIiwicm9'
-        'sZSI6ImFub24iLCJpYXQiOjE3MTQyMjUwOTIsImV4cCI6MjAyOTg'
-        'wMTA5Mn0.H7Oyi29HRKAGClZmLQYE9o8dKUwXRjwr3bbgrH4s3Yg',
-  );
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
   await Supabase.instance.client.auth.signInAnonymously();
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;

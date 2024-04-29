@@ -21,6 +21,7 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Post {
   DateTime get createdAt => throw _privateConstructorUsedError;
+  Source get source => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {DateTime createdAt,
+      Source source,
       String author,
       Gender gender,
       int age,
@@ -64,6 +66,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @override
   $Res call({
     Object? createdAt = null,
+    Object? source = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -77,6 +80,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      source: null == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as Source,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -118,6 +125,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {DateTime createdAt,
+      Source source,
       String author,
       Gender gender,
       int age,
@@ -138,6 +146,7 @@ class __$$PostImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createdAt = null,
+    Object? source = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -151,6 +160,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      source: null == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as Source,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -188,6 +201,7 @@ class __$$PostImplCopyWithImpl<$Res>
 class _$PostImpl implements _Post {
   const _$PostImpl(
       {required this.createdAt,
+      required this.source,
       required this.author,
       required this.gender,
       required this.age,
@@ -201,6 +215,8 @@ class _$PostImpl implements _Post {
 
   @override
   final DateTime createdAt;
+  @override
+  final Source source;
   @override
   final String author;
   @override
@@ -218,7 +234,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(createdAt: $createdAt, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
+    return 'Post(createdAt: $createdAt, source: $source, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -228,6 +244,7 @@ class _$PostImpl implements _Post {
             other is _$PostImpl &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.source, source) || other.source == source) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
@@ -240,8 +257,8 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, createdAt, author, gender, age,
-      city, category, text, contact);
+  int get hashCode => Object.hash(runtimeType, createdAt, source, author,
+      gender, age, city, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -260,6 +277,7 @@ class _$PostImpl implements _Post {
 abstract class _Post implements Post {
   const factory _Post(
       {required final DateTime createdAt,
+      required final Source source,
       required final String author,
       required final Gender gender,
       required final int age,
@@ -272,6 +290,8 @@ abstract class _Post implements Post {
 
   @override
   DateTime get createdAt;
+  @override
+  Source get source;
   @override
   String get author;
   @override

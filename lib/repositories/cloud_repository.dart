@@ -6,12 +6,12 @@ class CloudRepository {
   final supabase = Supabase.instance.client;
 
   Future<void> savePost(Post post) async {
-    await supabase.from(kPostsDbTable).insert(post.toJson());
+    await supabase.from(kPostsCloudTable).insert(post.toJson());
   }
 
   Future<List<Post>> loadPosts(Category category) async {
     final data = await supabase
-        .from(kPostsDbTable)
+        .from(kPostsCloudTable)
         .select()
         .eq('category', category.name)
         .order('createdAt')
