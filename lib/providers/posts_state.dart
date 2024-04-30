@@ -10,10 +10,10 @@ part 'posts_state.g.dart';
 @riverpod
 class PostsState extends _$PostsState {
   @override
-  Future<List<Post>> build(Category category) async => loadData(category);
+  Future<List<Post>> build(Filter filter) async => loadData(filter);
 
-  Future<List<Post>> loadData(Category category) async {
+  Future<List<Post>> loadData(Filter filter) async {
     ref.cacheFor(kPostsCacheDuration);
-    return getIt<CloudRepository>().loadPosts(category);
+    return getIt<CloudRepository>().loadPosts(filter);
   }
 }

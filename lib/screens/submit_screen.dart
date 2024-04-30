@@ -98,7 +98,9 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       try {
         final post = Post.create(profile, category, text, contact);
         await getIt<CloudRepository>().savePost(post);
-        ref.invalidate(postsStateProvider(category));
+
+        final filter = ref.read(filterStateProvider);
+        ref.invalidate(postsStateProvider(filter.copyWith(category: category)));
 
         showSnackBar('SubmitScreen.Success'.tr());
         if (mounted) context.navigateTo(const PostsRoute());

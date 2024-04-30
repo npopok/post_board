@@ -27,7 +27,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         centerTitle: true,
         title: Text('ProfileScreen.Title'.tr()),
       ),
-      body: ListView(
+      body: Column(
         children: [
           _buildNameTile(context, profile),
           _buildGenderTile(context, profile),
@@ -50,7 +50,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           initialValue: profile.name,
           maxLength: kNameMaxLength,
         ),
-      ).then((value) => value == null ? 0 : _updateName(value)),
+      ).then((value) => value != null ? _updateName(value) : 0),
     );
   }
 
@@ -70,7 +70,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           values: Gender.values,
           initialValue: profile.gender,
         ),
-      ).then((value) => value == null ? 0 : _updateGender(value)),
+      ).then((value) => value != null ? _updateGender(value) : 0),
     );
   }
 
@@ -93,7 +93,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           initialValue: profile.age,
           alignment: Alignment.center,
         ),
-      ).then((value) => value == null ? 0 : _updateAge(value)),
+      ).then((value) => value != null ? _updateAge(value) : 0),
     );
   }
 
@@ -110,7 +110,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           values: const ['Москва', 'Новосибирск'],
           initialValue: profile.city,
         ),
-      ).then((value) => value == null ? 0 : _updateCity(value)),
+      ).then((value) => value != null ? _updateCity(value) : 0),
     );
   }
 

@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:post_board/common/common.dart';
+import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 import 'package:post_board/widgets/widgets.dart';
@@ -16,19 +18,18 @@ class PostsScreen extends ConsumerStatefulWidget {
 }
 
 class _PostsScreenState extends ConsumerState<PostsScreen> {
-  Category selectedCategory = Category.sex;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text('PostsScreen.Title'.tr()),
+        actions: [
+          IconButton(
+            onPressed: () => context.navigateTo(const FilterRoute()),
+            icon: const Icon(Icons.filter_list),
+          ),
+        ],
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -36,13 +37,15 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
           const SizedBox(height: 8),
           _buildFilterBar(),
           const SizedBox(height: 8),
-          Expanded(child: _buildPostList(ref)),
+          Expanded(child: _buildPostList()),
         ],
       ),
     );
   }
 
   Widget _buildFilterBar() {
+    final filter = ref.watch(filterStateProvider);
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
@@ -54,8 +57,8 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
             (index) => ChoiceChip(
               showCheckmark: false,
               label: Text(Category.values[index].toString().tr()),
-              selected: selectedCategory == Category.values[index],
-              onSelected: (value) => setState(() => selectedCategory = Category.values[index]),
+              selected: filter.category == Category.values[index],
+              onSelected: (_) => _updateCategory(Category.values[index]),
             ),
           ),
         ),
@@ -63,10 +66,12 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
     );
   }
 
-  Widget _buildPostList(WidgetRef ref) {
-    final posts = ref.watch(postsStateProvider(selectedCategory));
+  Widget _buildPostList() {
+    final filter = ref.watch(filterStateProvider);
+    final posts = ref.watch(postsStateProvider(filter));
+
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(postsStateProvider(selectedCategory).future),
+      onRefresh: () => ref.refresh(postsStateProvider(filter).future),
       child: posts.when(
         data: (items) => items.isNotEmpty
             ? ListView.builder(
@@ -78,5 +83,10 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );
+  }
+
+  void _updateCategory(Category value) {
+    ref.read(filterStateProvider.notifier).category = value;
+    AnalyticsHelper.logEvent(AnalyticsEvent.filterUpdate, {'filter_category': value});
   }
 }

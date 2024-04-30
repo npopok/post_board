@@ -6,7 +6,7 @@ part of 'posts_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsStateHash() => r'48a8b6ebde2b1e10d874ab520d8717a7e655a109';
+String _$postsStateHash() => r'413dacb4f0851a7bf568787fc4e769253c24f684';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 
 abstract class _$PostsState
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
-  late final Category category;
+  late final Filter filter;
 
   FutureOr<List<Post>> build(
-    Category category,
+    Filter filter,
   );
 }
 
@@ -49,10 +49,10 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
 
   /// See also [PostsState].
   PostsStateProvider call(
-    Category category,
+    Filter filter,
   ) {
     return PostsStateProvider(
-      category,
+      filter,
     );
   }
 
@@ -61,7 +61,7 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
     covariant PostsStateProvider provider,
   ) {
     return call(
-      provider.category,
+      provider.filter,
     );
   }
 
@@ -85,9 +85,9 @@ class PostsStateProvider
     extends AutoDisposeAsyncNotifierProviderImpl<PostsState, List<Post>> {
   /// See also [PostsState].
   PostsStateProvider(
-    Category category,
+    Filter filter,
   ) : this._internal(
-          () => PostsState()..category = category,
+          () => PostsState()..filter = filter,
           from: postsStateProvider,
           name: r'postsStateProvider',
           debugGetCreateSourceHash:
@@ -97,7 +97,7 @@ class PostsStateProvider
           dependencies: PostsStateFamily._dependencies,
           allTransitiveDependencies:
               PostsStateFamily._allTransitiveDependencies,
-          category: category,
+          filter: filter,
         );
 
   PostsStateProvider._internal(
@@ -107,17 +107,17 @@ class PostsStateProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.category,
+    required this.filter,
   }) : super.internal();
 
-  final Category category;
+  final Filter filter;
 
   @override
   FutureOr<List<Post>> runNotifierBuild(
     covariant PostsState notifier,
   ) {
     return notifier.build(
-      category,
+      filter,
     );
   }
 
@@ -126,13 +126,13 @@ class PostsStateProvider
     return ProviderOverride(
       origin: this,
       override: PostsStateProvider._internal(
-        () => create()..category = category,
+        () => create()..filter = filter,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        category: category,
+        filter: filter,
       ),
     );
   }
@@ -145,21 +145,21 @@ class PostsStateProvider
 
   @override
   bool operator ==(Object other) {
-    return other is PostsStateProvider && other.category == category;
+    return other is PostsStateProvider && other.filter == filter;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, category.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin PostsStateRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
-  /// The parameter `category` of this provider.
-  Category get category;
+  /// The parameter `filter` of this provider.
+  Filter get filter;
 }
 
 class _PostsStateProviderElement
@@ -168,7 +168,7 @@ class _PostsStateProviderElement
   _PostsStateProviderElement(super.provider);
 
   @override
-  Category get category => (origin as PostsStateProvider).category;
+  Filter get filter => (origin as PostsStateProvider).filter;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

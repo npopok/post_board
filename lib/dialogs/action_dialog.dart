@@ -24,16 +24,17 @@ class ActionDialog<T> extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     final entries = actions.entries.toList();
 
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: actions.length,
-      itemBuilder: (context, index) => ListTile(
-        contentPadding: kValueTilePadding,
-        title: Text(
-          entries[index].value,
-          style: Theme.of(context).textTheme.bodyLarge,
+    return Column(
+      children: List.generate(
+        actions.length,
+        (index) => ListTile(
+          contentPadding: kValueTilePadding,
+          title: Text(
+            entries[index].value,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          onTap: () => context.maybePop(entries[index].key),
         ),
-        onTap: () => context.maybePop(entries[index].key),
       ),
     );
   }

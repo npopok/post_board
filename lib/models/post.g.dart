@@ -34,7 +34,7 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
 const _$GenderEnumMap = {
   Gender.male: 'male',
   Gender.female: 'female',
-  Gender.other: 'other',
+  Gender.couple: 'couple',
 };
 
 const _$CategoryEnumMap = {

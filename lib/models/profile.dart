@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'types.dart';
+
 part 'profile.freezed.dart';
 part 'profile.g.dart';
-
-enum Gender { male, female, other }
 
 @freezed
 class Profile with _$Profile {
@@ -18,7 +18,7 @@ class Profile with _$Profile {
 
   factory Profile.empty() => const Profile(
         name: '',
-        gender: Gender.other,
+        gender: Gender.male,
         age: 0,
         city: '',
       );

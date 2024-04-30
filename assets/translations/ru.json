@@ -8,6 +8,11 @@
     "PostsScreen.Title": "Объявления",
     "PostsScreen.Empty": "Нет объявлений.",   
     "PostsScreen.Error": "Ошибка сервера.",
+    
+    "FilterScreen.Title": "Фильтр",
+    "FilterScreen.Gender": "Пол",   
+    "FilterScreen.Age": "Возраст", 
+    "FilterScreen.Range": "От {} до {} лет",
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",
@@ -37,7 +42,13 @@
 
     "Gender.male": "Мужчина",
     "Gender.female": "Женщина",
-    "Gender.other": "Другой",
+    "Gender.couple": "Пара",
+
+    "Category.sex": "Секс",
+    "Category.love": "Любовь",
+    "Category.services": "Услуги",
+    "Category.jobs": "Работа",
+    "Category.other": "Разное",
 
     "Button.OK": "ОК",
     "Button.Cancel": "Отмена",
@@ -48,11 +59,5 @@
     "Elapsed.Days": "{} д назад",
     "Elapsed.Weeks": "{} нед назад",
     "Elapsed.Months": "{} мес назад",
-    "Elapsed.Years": "давно",
-
-    "Category.sex": "Секс",
-    "Category.love": "Любовь",
-    "Category.services": "Услуги",
-    "Category.jobs": "Работа",
-    "Category.other": "Разное"   
+    "Elapsed.Years": "давно"
 }

@@ -1,11 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'types.dart';
 import 'profile.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';
-
-enum Category { sex, love, services, jobs, other }
 
 @freezed
 class Post with _$Post {

@@ -10,13 +10,13 @@ class LocalRepository {
 
   const LocalRepository(this.prefs);
 
-  void saveObject<T>(String key, Object value) {
-    prefs.setString(key, jsonEncode(value));
+  void saveFilter(Filter filter) {
+    saveObject<Filter>(kFilterLocalKey, filter.toJson());
   }
 
-  T? loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson) {
-    final data = prefs.getString(key);
-    return data != null ? fromJson(jsonDecode(data)) : null;
+  Filter loadFilter() {
+    final data = loadObject<Filter>(kFilterLocalKey, Filter.fromJson);
+    return data ?? Filter.empty();
   }
 
   void saveProfile(Profile profile) {
@@ -26,5 +26,14 @@ class LocalRepository {
   Profile loadProfile() {
     final data = loadObject<Profile>(kProfileLocalKey, Profile.fromJson);
     return data ?? Profile.empty();
+  }
+
+  void saveObject<T>(String key, Object value) {
+    prefs.setString(key, jsonEncode(value));
+  }
+
+  T? loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson) {
+    final data = prefs.getString(key);
+    return data != null ? fromJson(jsonDecode(data)) : null;
   }
 }

@@ -6,13 +6,16 @@ const supabaseKey =
 
 const kNameMaxLength = 50;
 const kPostMinLength = 10;
-const kPostMaxLength = 200;
+const kPostMaxLength = 500;
 const kPostMaxCount = 200;
 const kContactMaxLength = 50;
+const kAgeMinValue = 18;
+const kAgeMaxValue = 80;
 
+const kFilterLocalKey = 'filter';
 const kProfileLocalKey = 'profile';
 const kPostsCloudTable = 'posts';
-const kPostsCacheDuration = Duration(minutes: 15);
+const kPostsCacheDuration = Duration(minutes: 5);
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);

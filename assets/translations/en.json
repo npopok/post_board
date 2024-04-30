@@ -9,6 +9,11 @@
     "PostsScreen.Empty": "No posts.",
     "PostsScreen.Error": "Server error.",
 
+    "FilterScreen.Title": "Filter",
+    "FilterScreen.Gender": "Gender",
+    "FilterScreen.Age": "Age",   
+    "FilterScreen.Range": "From {} to {} years",
+
     "PostDetails.WriteChat": "Write message",
     "PostDetails.WriteEmail": "Write email",
     "PostDetails.WriteWhatsApp": "Write in Whatsapp",
@@ -37,7 +42,13 @@
 
     "Gender.male": "Male",
     "Gender.female": "Female",
-    "Gender.other": "Other",
+    "Gender.couple": "Couple",
+    
+    "Category.sex": "Sex",
+    "Category.love": "Love",
+    "Category.services": "Services",
+    "Category.jobs": "Jobs",
+    "Category.other": "Other",
 
     "Button.OK": "OK",
     "Button.Cancel": "Cancel",
@@ -48,11 +59,5 @@
     "Elapsed.Days": "{} d ago",
     "Elapsed.Weeks": "{} w ago",
     "Elapsed.Months": "{} mon ago",
-    "Elapsed.Years": "long ago",
-
-    "Category.sex": "Sex",
-    "Category.love": "Love",
-    "Category.services": "Services",
-    "Category.jobs": "Jobs",
-    "Category.other": "Other"
+    "Elapsed.Years": "long ago"
 }

@@ -25,5 +25,5 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
 const _$GenderEnumMap = {
   Gender.male: 'male',
   Gender.female: 'female',
-  Gender.other: 'other',
+  Gender.couple: 'couple',
 };
