@@ -70,19 +70,36 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
     final filter = ref.watch(filterStateProvider);
     final posts = ref.watch(postsStateProvider(filter));
 
-    return RefreshIndicator(
-      onRefresh: () => ref.refresh(postsStateProvider(filter).future),
-      child: posts.when(
-        data: (items) => items.isNotEmpty
-            ? ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) => PostDetails(post: items[index]),
-              )
-            : Center(child: Text('PostsScreen.Empty'.tr())),
-        error: (_, __) => Center(child: Text('PostsScreen.Error'.tr())),
-        loading: () => const Center(child: CircularProgressIndicator()),
+    return LayoutBuilder(
+      builder: (context, constraints) => RefreshIndicator(
+        onRefresh: () => ref.refresh(postsStateProvider(filter).future),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: constraints.maxWidth,
+              minHeight: constraints.maxHeight,
+            ),
+            child: posts.when(
+              data: (posts) => _buildListView(posts),
+              error: (_, __) => Center(child: Text('PostsScreen.Error'.tr())),
+              loading: () => const Center(child: CircularProgressIndicator()),
+            ),
+          ),
+        ),
       ),
     );
+  }
+
+  Widget _buildListView(List<Post> posts) {
+    return posts.isNotEmpty
+        ? ListView.builder(
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemCount: posts.length,
+            itemBuilder: (context, index) => PostDetails(post: posts[index]),
+          )
+        : Center(child: Text('PostsScreen.Empty'.tr()));
   }
 
   void _updateCategory(Category value) {
