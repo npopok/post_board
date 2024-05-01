@@ -27,7 +27,7 @@ class ValueListDialog<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
-      contentPadding: kValueContentPadding,
+      contentPadding: kDefaultContentPadding,
       contentBuilder: _buildContent,
       actions: [
         if (clearButton)

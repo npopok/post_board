@@ -7,10 +7,12 @@ import 'package:post_board/common/common.dart';
 import 'generic_dialog.dart';
 
 class InputDialog extends StatefulWidget {
+  final String? title;
   final String? initialValue;
   final int? maxLength;
 
   const InputDialog({
+    this.title,
     this.initialValue,
     this.maxLength,
     super.key,
@@ -42,11 +44,13 @@ class _InputDialogState extends State<InputDialog> {
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: GenericDialog(
+        title: widget.title,
         contentPadding: kInputContentPadding,
         contentBuilder: (_) => TextField(
           controller: textController,
           maxLength: widget.maxLength,
-          autofocus: true,
+          //    autofocus: true,
+          decoration: const InputDecoration(counterText: ''),
         ),
         actions: [
           DialogActionButton(

@@ -4,4 +4,5 @@ export 'input_dialog.dart';
 export 'prompt_dialog.dart';
 export 'radio_list_dialog.dart';
 export 'range_dialog.dart';
+export 'slider_dialog.dart';
 export 'value_list_dialog.dart';

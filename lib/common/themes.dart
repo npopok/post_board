@@ -10,6 +10,10 @@ class Themes {
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
+      // sliderTheme: const SliderThemeData(
+      //   valueIndicatorShape: DropSliderValueIndicatorShape(),
+      //   rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
+      // ),
       // appBarTheme: AppBarTheme(
       //   elevation: 0,
       //   backgroundColor: Colors.transparent,

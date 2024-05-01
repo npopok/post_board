@@ -51,7 +51,7 @@
     "Category.other": "Other",
 
     "Button.OK": "OK",
-    "Button.Cancel": "Cancel",
+    "Button.Cancel": "CANCEL",
 
     "Elapsed.Now": "now",
     "Elapsed.Minutues": "{} min ago",

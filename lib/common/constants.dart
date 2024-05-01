@@ -22,7 +22,7 @@ const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);
 const kDialogTitlePadding = EdgeInsets.only(top: 12);
 
 const kDefaultContentPadding = EdgeInsets.symmetric(vertical: 8);
-const kInputContentPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 8);
+const kInputContentPadding = EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 24);
 const kPromptContentPadding = EdgeInsets.symmetric(vertical: 24);
-const kValueContentPadding = EdgeInsets.only(bottom: 8);
+const kSliderContentPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
 const kValueTilePadding = EdgeInsets.symmetric(horizontal: 24);

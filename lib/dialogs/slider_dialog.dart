@@ -7,12 +7,12 @@ import 'package:post_board/models/models.dart';
 
 import 'generic_dialog.dart';
 
-class RangeDialog extends StatefulWidget {
+class SliderDialog extends StatefulWidget {
   final String? title;
   final NumericRange range;
-  final NumericRange initialValue;
+  final int initialValue;
 
-  const RangeDialog({
+  const SliderDialog({
     this.title,
     required this.range,
     required this.initialValue,
@@ -20,16 +20,16 @@ class RangeDialog extends StatefulWidget {
   });
 
   @override
-  State<RangeDialog> createState() => _RangeDialogState();
+  State<SliderDialog> createState() => _SliderDialogState();
 }
 
-class _RangeDialogState extends State<RangeDialog> {
-  late NumericRange selectedValues;
+class _SliderDialogState extends State<SliderDialog> {
+  late int selectedValue;
 
   @override
   void initState() {
     super.initState();
-    selectedValues = widget.initialValue;
+    selectedValue = widget.initialValue;
   }
 
   @override
@@ -45,31 +45,20 @@ class _RangeDialogState extends State<RangeDialog> {
         ),
         DialogActionButton(
           title: 'Button.OK'.tr(),
-          onPressed: () => context.maybePop(selectedValues),
+          onPressed: () => context.maybePop(selectedValue),
         ),
       ],
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    return RangeSlider(
+    return Slider(
       min: widget.range.min.toDouble(),
       max: widget.range.max.toDouble(),
       divisions: widget.range.max - widget.range.min,
-      values: RangeValues(
-        selectedValues.min.toDouble(),
-        selectedValues.max.toDouble(),
-      ),
-      labels: RangeLabels(
-        selectedValues.min.toString(),
-        selectedValues.max.toString(),
-      ),
-      onChanged: (values) => setState(
-        () => selectedValues = (
-          min: values.start.round(),
-          max: values.end.round(),
-        ),
-      ),
+      value: selectedValue.toDouble(),
+      label: selectedValue.toString(),
+      onChanged: (value) => setState(() => selectedValue = value.round()),
     );
   }
 }

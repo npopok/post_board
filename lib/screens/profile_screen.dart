@@ -47,6 +47,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => InputDialog(
+          title: 'ProfileScreen.Name'.tr(),
           initialValue: profile.name,
           maxLength: kNameMaxLength,
         ),
@@ -75,8 +76,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Widget _buildAgeTile(BuildContext context, Profile profile) {
-    final ages = List.generate(81 - 18, (index) => index + 18);
-
     return ListTile(
       leading: const Icon(Icons.cake),
       title: Text('ProfileScreen.Age'.tr()),
@@ -84,14 +83,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => ValueListDialog(
-          items: List.generate(
-            ages.length,
-            (index) => ages[index].toString(),
-          ),
-          values: ages,
+        builder: (context) => SliderDialog(
+          title: 'ProfileScreen.Age'.tr(),
+          range: (min: kAgeMinValue, max: kAgeMaxValue),
           initialValue: profile.age,
-          alignment: Alignment.center,
         ),
       ).then((value) => value != null ? _updateAge(value) : 0),
     );

@@ -70,6 +70,7 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => RangeDialog(
+          title: 'FilterScreen.Age'.tr(),
           range: (min: kAgeMinValue, max: kAgeMaxValue),
           initialValue: filter.age,
         ),
