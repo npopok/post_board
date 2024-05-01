@@ -10,6 +10,28 @@ class Themes {
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.black87,
+        border: InputBorder.none,
+        //errorStyle: const TextStyle(height: 0),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          //   borderSide: const BorderSide(color: Colors.transparent),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+      ),
       // sliderTheme: const SliderThemeData(
       //   valueIndicatorShape: DropSliderValueIndicatorShape(),
       //   rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),

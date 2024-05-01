@@ -20,7 +20,7 @@
     "PostDetails.WriteTelegram": "Write in Telegtam",
     "PostDetails.CopyContact": "Copy contact",
     "PostDetails.CopyText": "Copy text",
-    "PostDetails.ActionFailed": "Action failed",
+    "PostDetails.ActionFailed": "Action failed.",
 
     "SubmitScreen.Title": "New Post",
     "SubmitScreen.CategoryHint": "Category",
@@ -31,8 +31,9 @@
     "SubmitScreen.ContactHint": "Contact details",
     "SubmitScreen.ContactEmpty": "Enter contact details", 
     "SubmitScreen.SubmitButton": "SUBMIT",
-    "SubmitScreen.Success": "Post has been published", 
-    "SubmitScreen.Error": "Error occuried",
+    "SubmitScreen.SubmitSuccess": "Your post has been published.", 
+    "SubmitScreen.ServerError": "Error occuried. Try again later.",
+    "SubmitScreen.QuotaError": "You can only create one posr per day.",
 
     "ProfileScreen.Title": "Profile",
     "ProfileScreen.Name": "Name",
