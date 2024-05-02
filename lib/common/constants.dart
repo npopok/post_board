@@ -12,14 +12,17 @@ const kContactMaxLength = 30;
 const kAgeMinValue = 18;
 const kAgeMaxValue = 80;
 
-const kFilterLocalKey = 'filter';
 const kProfileLocalKey = 'profile';
+const kFiltersLocalKey = 'filters';
+const kSettingsLocalKey = 'settings';
+
 const kPostsCloudTable = 'posts';
 const kPostsQuotaExceeded = 'posts-quota-exceeded';
 const kPostsCacheDuration = Duration(minutes: 5);
 
 const kTextFormPadding = EdgeInsets.all(24);
 const kTextFormSpacer = SizedBox(height: 16);
+const kTextFormDoubleSpacer = SizedBox(height: 32);
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);

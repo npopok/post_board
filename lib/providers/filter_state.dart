@@ -9,10 +9,10 @@ part 'filter_state.g.dart';
 @riverpod
 class FilterState extends _$FilterState {
   @override
-  Filter build() => loadData();
+  Filters build() => loadData();
 
-  void saveData() => getIt<LocalRepository>().saveFilter(state);
-  Filter loadData() => getIt<LocalRepository>().loadFilter();
+  void saveData() => getIt<LocalRepository>().saveFilters(state);
+  Filters loadData() => getIt<LocalRepository>().loadFilters();
 
   set category(Category value) {
     state = state.copyWith(category: value);

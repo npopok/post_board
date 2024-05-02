@@ -15,10 +15,10 @@ abstract class _$Routes extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    FilterRoute.name: (routeData) {
+    FiltersRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const FilterScreen(),
+        child: const FiltersScreen(),
       );
     },
     HelpRoute.name: (routeData) {
@@ -61,15 +61,15 @@ abstract class _$Routes extends RootStackRouter {
 }
 
 /// generated route for
-/// [FilterScreen]
-class FilterRoute extends PageRouteInfo<void> {
-  const FilterRoute({List<PageRouteInfo>? children})
+/// [FiltersScreen]
+class FiltersRoute extends PageRouteInfo<void> {
+  const FiltersRoute({List<PageRouteInfo>? children})
       : super(
-          FilterRoute.name,
+          FiltersRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'FilterRoute';
+  static const String name = 'FiltersRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -6,14 +6,16 @@ enum AnalyticsEvent {
   //
   // Event Name | Parameters
   //
-  filterUpdate, // filter_category | filter_gender | filter_age
   profileUpdate, // profile_name | profile_gender | profile_age | profile_city
+  filtersUpdate, // filters_category | filters_gender | filters_age
+  settingsUpdate, // settings_theme_mode
 }
 
 class AnalyticsHelper {
   static Map<AnalyticsEvent, String> eventNames = {
-    AnalyticsEvent.filterUpdate: 'filter_update',
     AnalyticsEvent.profileUpdate: 'profile_update',
+    AnalyticsEvent.filtersUpdate: 'filters_update',
+    AnalyticsEvent.settingsUpdate: 'settings_update',
   };
 
   static logEvent(AnalyticsEvent event, [Map<String, Object?> parameters = const {}]) {

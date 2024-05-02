@@ -9,10 +9,10 @@
     "PostsScreen.Empty": "No posts.",
     "PostsScreen.Error": "Server error.",
 
-    "FilterScreen.Title": "Filter",
-    "FilterScreen.Gender": "Gender",
-    "FilterScreen.Age": "Age",   
-    "FilterScreen.Range": "From {} to {} years",
+    "FiltersScreen.Title": "Filters",
+    "FiltersScreen.Gender": "Gender",
+    "FiltersScreen.Age": "Age",   
+    "FiltersScreen.Range": "From {} to {} years",
 
     "PostDetails.WriteChat": "Write message",
     "PostDetails.WriteEmail": "Write email",
@@ -40,6 +40,13 @@
     "ProfileScreen.Gender": "Gender",
     "ProfileScreen.Age": "Age",
     "ProfileScreen.City": "City",
+
+    "SettingsScreen.Title": "Settings",
+    "SettingsScreen.ThemeMode": "Theme Mode",
+
+    "ThemeMode.light": "Light",
+    "ThemeMode.dark": "Dark",
+    "ThemeMode.system": "System",
 
     "Gender.male": "Male",
     "Gender.female": "Female",

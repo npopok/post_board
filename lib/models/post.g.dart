@@ -13,7 +13,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
           : DateTime.parse(json['created_at'] as String),
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      age: json['age'] as int,
+      age: (json['age'] as num).toInt(),
       city: json['city'] as String,
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,

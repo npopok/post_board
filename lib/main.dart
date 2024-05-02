@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:post_board/providers/providers.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:post_board/common/common.dart';
@@ -65,14 +66,15 @@ class _MainAppState extends State<MainApp> {
   }
 
   Widget _buildApp(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsStateProvider);
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateTitle: (_) => 'App.Title'.tr(),
-      //themeMode: settings.themeMode,
-      themeMode: ThemeMode.dark,
+      themeMode: settings.themeMode,
       theme: getIt<Themes>().lightTheme,
       darkTheme: getIt<Themes>().darkTheme,
       scaffoldMessengerKey: getIt<MessengerHelper>().messengerKey,

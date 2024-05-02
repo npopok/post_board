@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'filter.dart';
+part of 'filters.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,33 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Filter _$FilterFromJson(Map<String, dynamic> json) {
-  return _Filter.fromJson(json);
+Filters _$FiltersFromJson(Map<String, dynamic> json) {
+  return _Filters.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Filter {
+mixin _$Filters {
   Category get category => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   ({int max, int min}) get age => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FilterCopyWith<Filter> get copyWith => throw _privateConstructorUsedError;
+  $FiltersCopyWith<Filters> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FilterCopyWith<$Res> {
-  factory $FilterCopyWith(Filter value, $Res Function(Filter) then) =
-      _$FilterCopyWithImpl<$Res, Filter>;
+abstract class $FiltersCopyWith<$Res> {
+  factory $FiltersCopyWith(Filters value, $Res Function(Filters) then) =
+      _$FiltersCopyWithImpl<$Res, Filters>;
   @useResult
   $Res call({Category category, Gender gender, ({int max, int min}) age});
 }
 
 /// @nodoc
-class _$FilterCopyWithImpl<$Res, $Val extends Filter>
-    implements $FilterCopyWith<$Res> {
-  _$FilterCopyWithImpl(this._value, this._then);
+class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
+    implements $FiltersCopyWith<$Res> {
+  _$FiltersCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -72,21 +72,21 @@ class _$FilterCopyWithImpl<$Res, $Val extends Filter>
 }
 
 /// @nodoc
-abstract class _$$FilterImplCopyWith<$Res> implements $FilterCopyWith<$Res> {
-  factory _$$FilterImplCopyWith(
-          _$FilterImpl value, $Res Function(_$FilterImpl) then) =
-      __$$FilterImplCopyWithImpl<$Res>;
+abstract class _$$FiltersImplCopyWith<$Res> implements $FiltersCopyWith<$Res> {
+  factory _$$FiltersImplCopyWith(
+          _$FiltersImpl value, $Res Function(_$FiltersImpl) then) =
+      __$$FiltersImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Category category, Gender gender, ({int max, int min}) age});
 }
 
 /// @nodoc
-class __$$FilterImplCopyWithImpl<$Res>
-    extends _$FilterCopyWithImpl<$Res, _$FilterImpl>
-    implements _$$FilterImplCopyWith<$Res> {
-  __$$FilterImplCopyWithImpl(
-      _$FilterImpl _value, $Res Function(_$FilterImpl) _then)
+class __$$FiltersImplCopyWithImpl<$Res>
+    extends _$FiltersCopyWithImpl<$Res, _$FiltersImpl>
+    implements _$$FiltersImplCopyWith<$Res> {
+  __$$FiltersImplCopyWithImpl(
+      _$FiltersImpl _value, $Res Function(_$FiltersImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$FilterImplCopyWithImpl<$Res>
     Object? gender = null,
     Object? age = null,
   }) {
-    return _then(_$FilterImpl(
+    return _then(_$FiltersImpl(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -115,12 +115,12 @@ class __$$FilterImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FilterImpl implements _Filter {
-  const _$FilterImpl(
+class _$FiltersImpl implements _Filters {
+  const _$FiltersImpl(
       {required this.category, required this.gender, required this.age});
 
-  factory _$FilterImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FilterImplFromJson(json);
+  factory _$FiltersImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FiltersImplFromJson(json);
 
   @override
   final Category category;
@@ -131,14 +131,14 @@ class _$FilterImpl implements _Filter {
 
   @override
   String toString() {
-    return 'Filter(category: $category, gender: $gender, age: $age)';
+    return 'Filters(category: $category, gender: $gender, age: $age)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterImpl &&
+            other is _$FiltersImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -152,24 +152,24 @@ class _$FilterImpl implements _Filter {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterImplCopyWith<_$FilterImpl> get copyWith =>
-      __$$FilterImplCopyWithImpl<_$FilterImpl>(this, _$identity);
+  _$$FiltersImplCopyWith<_$FiltersImpl> get copyWith =>
+      __$$FiltersImplCopyWithImpl<_$FiltersImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FilterImplToJson(
+    return _$$FiltersImplToJson(
       this,
     );
   }
 }
 
-abstract class _Filter implements Filter {
-  const factory _Filter(
+abstract class _Filters implements Filters {
+  const factory _Filters(
       {required final Category category,
       required final Gender gender,
-      required final ({int max, int min}) age}) = _$FilterImpl;
+      required final ({int max, int min}) age}) = _$FiltersImpl;
 
-  factory _Filter.fromJson(Map<String, dynamic> json) = _$FilterImpl.fromJson;
+  factory _Filters.fromJson(Map<String, dynamic> json) = _$FiltersImpl.fromJson;
 
   @override
   Category get category;
@@ -179,6 +179,6 @@ abstract class _Filter implements Filter {
   ({int max, int min}) get age;
   @override
   @JsonKey(ignore: true)
-  _$$FilterImplCopyWith<_$FilterImpl> get copyWith =>
+  _$$FiltersImplCopyWith<_$FiltersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

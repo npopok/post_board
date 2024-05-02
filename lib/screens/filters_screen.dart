@@ -10,14 +10,14 @@ import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 
 @RoutePage()
-class FilterScreen extends ConsumerStatefulWidget {
-  const FilterScreen({super.key});
+class FiltersScreen extends ConsumerStatefulWidget {
+  const FiltersScreen({super.key});
 
   @override
-  ConsumerState<FilterScreen> createState() => _FilterScreenState();
+  ConsumerState<FiltersScreen> createState() => _FiltersScreenState();
 }
 
-class _FilterScreenState extends ConsumerState<FilterScreen> {
+class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
     final filter = ref.watch(filterStateProvider);
@@ -25,7 +25,7 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('FilterScreen.Title'.tr()),
+        title: Text('FiltersScreen.Title'.tr()),
       ),
       body: Column(
         children: [
@@ -36,10 +36,10 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
     );
   }
 
-  Widget _buildGenderTile(BuildContext context, Filter filter) {
+  Widget _buildGenderTile(BuildContext context, Filters filter) {
     return ListTile(
       leading: const Icon(Icons.wc),
-      title: Text('FilterScreen.Gender'.tr()),
+      title: Text('FiltersScreen.Gender'.tr()),
       subtitle: Text('${filter.gender}'.tr()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -56,12 +56,12 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
     );
   }
 
-  Widget _buildAgeTile(BuildContext context, Filter filter) {
+  Widget _buildAgeTile(BuildContext context, Filters filter) {
     return ListTile(
       leading: const Icon(Icons.cake),
-      title: Text('FilterScreen.Age'.tr()),
+      title: Text('FiltersScreen.Age'.tr()),
       subtitle: Text(
-        'FilterScreen.Range'.tr(args: [
+        'FiltersScreen.Range'.tr(args: [
           filter.age.min.toString(),
           filter.age.max.toString(),
         ]),
@@ -70,7 +70,7 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => RangeDialog(
-          title: 'FilterScreen.Age'.tr(),
+          title: 'FiltersScreen.Age'.tr(),
           range: (min: kAgeMinValue, max: kAgeMaxValue),
           initialValue: filter.age,
         ),
@@ -80,11 +80,11 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
 
   void _updateGender(Gender value) {
     ref.read(filterStateProvider.notifier).gender = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filterUpdate, {'filter_gender': value});
+    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_gender': value});
   }
 
   void _updateAge(NumericRange value) {
     ref.read(filterStateProvider.notifier).age = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filterUpdate, {'filter_age': value.toString()});
+    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_age': value.toString()});
   }
 }

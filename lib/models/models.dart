@@ -1,5 +1,6 @@
 export 'contact.dart';
-export 'filter.dart';
+export 'filters.dart';
 export 'post.dart';
 export 'profile.dart';
 export 'types.dart';
+export 'settings.dart';

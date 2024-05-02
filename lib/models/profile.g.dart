@@ -10,7 +10,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
     _$ProfileImpl(
       name: json['name'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      age: json['age'] as int,
+      age: (json['age'] as num).toInt(),
       city: json['city'] as String,
     );
 

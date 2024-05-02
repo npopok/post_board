@@ -26,6 +26,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('ProfileScreen.Title'.tr()),
+        actions: [
+          IconButton(
+            onPressed: () => context.pushRoute(const SettingsRoute()),
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: Column(
         children: [

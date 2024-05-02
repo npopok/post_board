@@ -21,6 +21,7 @@ class SubmitScreen extends ConsumerStatefulWidget {
 
 class _SubmitScreenState extends ConsumerState<SubmitScreen> {
   final formKey = GlobalKey<FormState>();
+  final errorText = ValueNotifier<String>('');
   late Category category;
   late String text;
   late String contact;
@@ -37,17 +38,11 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         child: Form(
           key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildTextFields(context),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: FilledButton(
-                  onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
-                  child: Text('SubmitScreen.SubmitButton'.tr()),
-                ),
-              ),
+              _buildSubmitButton(),
             ],
           ),
         ),
@@ -73,7 +68,6 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           maxLength: kPostMaxLength,
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             hintText: 'SubmitScreen.TextHint'.tr(),
             counterText: '',
           ),
@@ -88,7 +82,6 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         TextFormField(
           maxLength: kContactMaxLength,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             hintText: 'SubmitScreen.ContactHint'.tr(),
             counterText: '',
           ),
@@ -97,15 +90,35 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => contact = value!,
         ),
+        kTextFormDoubleSpacer,
+        ValueListenableBuilder(
+          valueListenable: errorText,
+          builder: (_, value, __) => Text(
+            value,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+        ),
       ],
     );
   }
 
+  Widget _buildSubmitButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: FilledButton(
+        onPressed: () => _submitPostHandler(ref.read(profileStateProvider)),
+        child: Text('SubmitScreen.SubmitButton'.tr()),
+      ),
+    );
+  }
+
   void _submitPostHandler(Profile profile) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    errorText.value = '';
+
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       formKey.currentState!.reset();
-      FocusManager.instance.primaryFocus?.unfocus();
 
       try {
         final post = Post.create(profile, category, text, contact);
@@ -118,9 +131,9 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         if (mounted) context.navigateTo(const PostsRoute());
       } catch (e) {
         if (e is PostgrestException && e.message == kPostsQuotaExceeded) {
-          showSnackBar('SubmitScreen.QuotaError'.tr());
+          errorText.value = 'SubmitScreen.QuotaError'.tr();
         } else {
-          showSnackBar('SubmitScreen.ServerError'.tr());
+          errorText.value = 'SubmitScreen.ServerError'.tr();
         }
       }
     }

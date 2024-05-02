@@ -10,30 +10,36 @@ class LocalRepository {
 
   const LocalRepository(this.prefs);
 
-  void saveFilter(Filter filter) {
-    saveObject<Filter>(kFilterLocalKey, filter.toJson());
-  }
-
-  Filter loadFilter() {
-    final data = loadObject<Filter>(kFilterLocalKey, Filter.fromJson);
-    return data ?? Filter.empty();
-  }
-
-  void saveProfile(Profile profile) {
-    saveObject<Profile>(kProfileLocalKey, profile.toJson());
+  void saveProfile(Profile value) {
+    return saveObject<Profile>(kProfileLocalKey, value.toJson());
   }
 
   Profile loadProfile() {
-    final data = loadObject<Profile>(kProfileLocalKey, Profile.fromJson);
-    return data ?? Profile.empty();
+    return loadObject<Profile>(kProfileLocalKey, Profile.fromJson, Profile.empty());
+  }
+
+  void saveFilters(Filters value) {
+    saveObject<Filters>(kFiltersLocalKey, value.toJson());
+  }
+
+  Filters loadFilters() {
+    return loadObject<Filters>(kFiltersLocalKey, Filters.fromJson, Filters.empty());
+  }
+
+  void saveSettings(Settings value) {
+    return saveObject<Settings>(kSettingsLocalKey, value.toJson());
+  }
+
+  Settings loadSettings() {
+    return loadObject<Settings>(kSettingsLocalKey, Settings.fromJson, Settings.empty());
   }
 
   void saveObject<T>(String key, Object value) {
     prefs.setString(key, jsonEncode(value));
   }
 
-  T? loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson) {
+  T loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson, T defaultValue) {
     final data = prefs.getString(key);
-    return data != null ? fromJson(jsonDecode(data)) : null;
+    return data != null ? fromJson(jsonDecode(data)) : defaultValue;
   }
 }

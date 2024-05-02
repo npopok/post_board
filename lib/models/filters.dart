@@ -3,20 +3,20 @@ import 'package:post_board/common/common.dart';
 
 import 'types.dart';
 
-part 'filter.freezed.dart';
-part 'filter.g.dart';
+part 'filters.freezed.dart';
+part 'filters.g.dart';
 
 @freezed
-class Filter with _$Filter {
-  const factory Filter({
+class Filters with _$Filters {
+  const factory Filters({
     required final Category category,
     required final Gender gender,
     required final NumericRange age,
-  }) = _Filter;
+  }) = _Filters;
 
-  factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);
+  factory Filters.fromJson(Map<String, dynamic> json) => _$FiltersFromJson(json);
 
-  factory Filter.empty() => const Filter(
+  factory Filters.empty() => const Filters(
         category: Category.sex,
         gender: Gender.male,
         age: (min: kAgeMinValue, max: kAgeMaxValue),

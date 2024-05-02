@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'filter.dart';
+part of 'filters.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FilterImpl _$$FilterImplFromJson(Map<String, dynamic> json) => _$FilterImpl(
+_$FiltersImpl _$$FiltersImplFromJson(Map<String, dynamic> json) =>
+    _$FiltersImpl(
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: _$recordConvert(
         json['age'],
         ($jsonValue) => (
-          max: $jsonValue['max'] as int,
-          min: $jsonValue['min'] as int,
+          max: ($jsonValue['max'] as num).toInt(),
+          min: ($jsonValue['min'] as num).toInt(),
         ),
       ),
     );
 
-Map<String, dynamic> _$$FilterImplToJson(_$FilterImpl instance) =>
+Map<String, dynamic> _$$FiltersImplToJson(_$FiltersImpl instance) =>
     <String, dynamic>{
       'category': _$CategoryEnumMap[instance.category]!,
       'gender': _$GenderEnumMap[instance.gender]!,
-      'age': {
+      'age': <String, dynamic>{
         'max': instance.age.max,
         'min': instance.age.min,
       },

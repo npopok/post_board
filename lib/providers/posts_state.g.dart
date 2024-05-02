@@ -6,7 +6,7 @@ part of 'posts_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsStateHash() => r'413dacb4f0851a7bf568787fc4e769253c24f684';
+String _$postsStateHash() => r'cb1287523ba66424412e76619ffcff8ae55ce97d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 
 abstract class _$PostsState
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
-  late final Filter filter;
+  late final Filters filter;
 
   FutureOr<List<Post>> build(
-    Filter filter,
+    Filters filter,
   );
 }
 
@@ -49,7 +49,7 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
 
   /// See also [PostsState].
   PostsStateProvider call(
-    Filter filter,
+    Filters filter,
   ) {
     return PostsStateProvider(
       filter,
@@ -85,7 +85,7 @@ class PostsStateProvider
     extends AutoDisposeAsyncNotifierProviderImpl<PostsState, List<Post>> {
   /// See also [PostsState].
   PostsStateProvider(
-    Filter filter,
+    Filters filter,
   ) : this._internal(
           () => PostsState()..filter = filter,
           from: postsStateProvider,
@@ -110,7 +110,7 @@ class PostsStateProvider
     required this.filter,
   }) : super.internal();
 
-  final Filter filter;
+  final Filters filter;
 
   @override
   FutureOr<List<Post>> runNotifierBuild(
@@ -159,7 +159,7 @@ class PostsStateProvider
 
 mixin PostsStateRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
   /// The parameter `filter` of this provider.
-  Filter get filter;
+  Filters get filter;
 }
 
 class _PostsStateProviderElement
@@ -168,7 +168,7 @@ class _PostsStateProviderElement
   _PostsStateProviderElement(super.provider);
 
   @override
-  Filter get filter => (origin as PostsStateProvider).filter;
+  Filters get filter => (origin as PostsStateProvider).filter;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

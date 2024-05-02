@@ -1,5 +1,5 @@
 {
-    "App.Title": "Анонимные свидания",
+    "App.Title": "Анонимные знакомства",
 
     "HomeScreen.Search": "Поиск",
     "HomeScreen.Create": "Создать",  
@@ -9,10 +9,10 @@
     "PostsScreen.Empty": "Нет объявлений.",   
     "PostsScreen.Error": "Ошибка сервера.",
     
-    "FilterScreen.Title": "Фильтр",
-    "FilterScreen.Gender": "Пол",   
-    "FilterScreen.Age": "Возраст", 
-    "FilterScreen.Range": "От {} до {} лет",
+    "FiltersScreen.Title": "Фильтры",
+    "FiltersScreen.Gender": "Пол",   
+    "FiltersScreen.Age": "Возраст", 
+    "FiltersScreen.Range": "От {} до {} лет",
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",
@@ -41,6 +41,13 @@
     "ProfileScreen.Age": "Возраст",
     "ProfileScreen.City": "Город",
 
+    "SettingsScreen.Title": "Настройки",
+    "SettingsScreen.ThemeMode": "Режим темы",
+
+    "ThemeMode.light": "Светлый",
+    "ThemeMode.dark": "Темный",
+    "ThemeMode.system": "Системный",
+    
     "Gender.male": "Мужчина",
     "Gender.female": "Женщина",
     "Gender.couple": "Пара",

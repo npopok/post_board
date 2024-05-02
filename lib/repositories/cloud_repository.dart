@@ -10,7 +10,7 @@ class CloudRepository {
     await supabase.from(kPostsCloudTable).insert(post.toJson());
   }
 
-  Future<List<Post>> loadPosts(Filter filter) async {
+  Future<List<Post>> loadPosts(Filters filter) async {
     final data = await supabase
         .from(kPostsCloudTable)
         .select()

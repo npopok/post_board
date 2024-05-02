@@ -26,7 +26,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
         title: Text('PostsScreen.Title'.tr()),
         actions: [
           IconButton(
-            onPressed: () => context.navigateTo(const FilterRoute()),
+            onPressed: () => context.navigateTo(const FiltersRoute()),
             icon: const Icon(Icons.filter_list),
           ),
         ],
@@ -104,6 +104,6 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
 
   void _updateCategory(Category value) {
     ref.read(filterStateProvider.notifier).category = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filterUpdate, {'filter_category': value});
+    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_category': value});
   }
 }
