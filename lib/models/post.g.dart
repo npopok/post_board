@@ -7,14 +7,14 @@ part of 'post.dart';
 // **************************************************************************
 
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
-      createdBy: json['created_by'] as String?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
+      createdBy: json['created_by'] as String?,
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: (json['age'] as num).toInt(),
-      city: json['city'] as String,
+      cityId: (json['city_id'] as num).toInt(),
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: json['contact'] as String,
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'author': instance.author,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
-      'city': instance.city,
+      'city_id': instance.cityId,
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': instance.contact,

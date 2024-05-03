@@ -13,12 +13,15 @@ const kAgeMinValue = 18;
 const kAgeMaxValue = 80;
 
 const kProfileLocalKey = 'profile';
+const kCitiesLocalKey = 'cities';
 const kFiltersLocalKey = 'filters';
 const kSettingsLocalKey = 'settings';
 
-const kPostsCloudTable = 'posts';
+const kPostsRemoteTable = 'posts';
 const kPostsQuotaExceeded = 'posts-quota-exceeded';
 const kPostsCacheDuration = Duration(minutes: 5);
+const kCitiesRemoteTable = 'cities';
+const kCitiesCacheDuration = Duration(days: 1000);
 
 const kTextFormPadding = EdgeInsets.all(24);
 const kTextFormSpacer = SizedBox(height: 16);

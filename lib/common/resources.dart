@@ -17,7 +17,7 @@ class Resources {
       dependsOn: [SharedPreferences],
     );
     getIt.registerSingleton<MessengerHelper>(MessengerHelper());
-    getIt.registerSingleton<CloudRepository>(CloudRepository());
+    getIt.registerSingleton<RemoteRepository>(RemoteRepository());
     getIt.registerSingleton<Themes>(const Themes());
     getIt.allReady();
   }

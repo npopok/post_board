@@ -6,7 +6,7 @@ part of 'posts_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsStateHash() => r'cb1287523ba66424412e76619ffcff8ae55ce97d';
+String _$postsStateHash() => r'069f8dd935c61be5129c7c59020d4f57bb945dba';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 
 abstract class _$PostsState
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
-  late final Filters filter;
+  late final Filters filters;
 
   FutureOr<List<Post>> build(
-    Filters filter,
+    Filters filters,
   );
 }
 
@@ -49,10 +49,10 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
 
   /// See also [PostsState].
   PostsStateProvider call(
-    Filters filter,
+    Filters filters,
   ) {
     return PostsStateProvider(
-      filter,
+      filters,
     );
   }
 
@@ -61,7 +61,7 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
     covariant PostsStateProvider provider,
   ) {
     return call(
-      provider.filter,
+      provider.filters,
     );
   }
 
@@ -85,9 +85,9 @@ class PostsStateProvider
     extends AutoDisposeAsyncNotifierProviderImpl<PostsState, List<Post>> {
   /// See also [PostsState].
   PostsStateProvider(
-    Filters filter,
+    Filters filters,
   ) : this._internal(
-          () => PostsState()..filter = filter,
+          () => PostsState()..filters = filters,
           from: postsStateProvider,
           name: r'postsStateProvider',
           debugGetCreateSourceHash:
@@ -97,7 +97,7 @@ class PostsStateProvider
           dependencies: PostsStateFamily._dependencies,
           allTransitiveDependencies:
               PostsStateFamily._allTransitiveDependencies,
-          filter: filter,
+          filters: filters,
         );
 
   PostsStateProvider._internal(
@@ -107,17 +107,17 @@ class PostsStateProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.filter,
+    required this.filters,
   }) : super.internal();
 
-  final Filters filter;
+  final Filters filters;
 
   @override
   FutureOr<List<Post>> runNotifierBuild(
     covariant PostsState notifier,
   ) {
     return notifier.build(
-      filter,
+      filters,
     );
   }
 
@@ -126,13 +126,13 @@ class PostsStateProvider
     return ProviderOverride(
       origin: this,
       override: PostsStateProvider._internal(
-        () => create()..filter = filter,
+        () => create()..filters = filters,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        filter: filter,
+        filters: filters,
       ),
     );
   }
@@ -145,21 +145,21 @@ class PostsStateProvider
 
   @override
   bool operator ==(Object other) {
-    return other is PostsStateProvider && other.filter == filter;
+    return other is PostsStateProvider && other.filters == filters;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, filter.hashCode);
+    hash = _SystemHash.combine(hash, filters.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin PostsStateRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
-  /// The parameter `filter` of this provider.
-  Filters get filter;
+  /// The parameter `filters` of this provider.
+  Filters get filters;
 }
 
 class _PostsStateProviderElement
@@ -168,7 +168,7 @@ class _PostsStateProviderElement
   _PostsStateProviderElement(super.provider);
 
   @override
-  Filters get filter => (origin as PostsStateProvider).filter;
+  Filters get filters => (origin as PostsStateProvider).filters;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

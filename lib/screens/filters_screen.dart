@@ -20,7 +20,7 @@ class FiltersScreen extends ConsumerStatefulWidget {
 class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
-    final filter = ref.watch(filterStateProvider);
+    final filters = ref.watch(filtersStateProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,8 +29,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
       ),
       body: Column(
         children: [
-          _buildGenderTile(context, filter),
-          _buildAgeTile(context, filter),
+          _buildGenderTile(context, filters),
+          _buildAgeTile(context, filters),
         ],
       ),
     );
@@ -79,12 +79,12 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   }
 
   void _updateGender(Gender value) {
-    ref.read(filterStateProvider.notifier).gender = value;
+    ref.read(filtersStateProvider.notifier).gender = value;
     AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_gender': value});
   }
 
   void _updateAge(NumericRange value) {
-    ref.read(filterStateProvider.notifier).age = value;
+    ref.read(filtersStateProvider.notifier).age = value;
     AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_age': value.toString()});
   }
 }

@@ -20,14 +20,15 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
-  @JsonKey(name: 'created_by', includeToJson: false)
-  String? get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at', includeToJson: false)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_by', includeToJson: false)
+  String? get createdBy => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+  @JsonKey(name: 'city_id')
+  int get cityId => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   String get contact => throw _privateConstructorUsedError;
@@ -43,12 +44,12 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
-      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      {@JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
       String author,
       Gender gender,
       int age,
-      String city,
+      @JsonKey(name: 'city_id') int cityId,
       Category category,
       String text,
       String contact});
@@ -67,25 +68,25 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdBy = freezed,
     Object? createdAt = freezed,
+    Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
-    Object? city = null,
+    Object? cityId = null,
     Object? category = null,
     Object? text = null,
     Object? contact = null,
   }) {
     return _then(_value.copyWith(
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -98,10 +99,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as int,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -126,12 +127,12 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
-      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      {@JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
       String author,
       Gender gender,
       int age,
-      String city,
+      @JsonKey(name: 'city_id') int cityId,
       Category category,
       String text,
       String contact});
@@ -147,25 +148,25 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdBy = freezed,
     Object? createdAt = freezed,
+    Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
-    Object? city = null,
+    Object? cityId = null,
     Object? category = null,
     Object? text = null,
     Object? contact = null,
   }) {
     return _then(_$PostImpl(
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -178,10 +179,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as int,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -202,12 +203,12 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {@JsonKey(name: 'created_by', includeToJson: false) this.createdBy,
-      @JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
+      {@JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
+      @JsonKey(name: 'created_by', includeToJson: false) this.createdBy,
       required this.author,
       required this.gender,
       required this.age,
-      required this.city,
+      @JsonKey(name: 'city_id') required this.cityId,
       required this.category,
       required this.text,
       required this.contact});
@@ -216,11 +217,11 @@ class _$PostImpl implements _Post {
       _$$PostImplFromJson(json);
 
   @override
-  @JsonKey(name: 'created_by', includeToJson: false)
-  final String? createdBy;
-  @override
   @JsonKey(name: 'created_at', includeToJson: false)
   final DateTime? createdAt;
+  @override
+  @JsonKey(name: 'created_by', includeToJson: false)
+  final String? createdBy;
   @override
   final String author;
   @override
@@ -228,7 +229,8 @@ class _$PostImpl implements _Post {
   @override
   final int age;
   @override
-  final String city;
+  @JsonKey(name: 'city_id')
+  final int cityId;
   @override
   final Category category;
   @override
@@ -238,7 +240,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(createdBy: $createdBy, createdAt: $createdAt, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
+    return 'Post(createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, cityId: $cityId, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -246,14 +248,14 @@ class _$PostImpl implements _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.city, city) || other.city == city) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
@@ -262,8 +264,8 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, createdBy, createdAt, author,
-      gender, age, city, category, text, contact);
+  int get hashCode => Object.hash(runtimeType, createdAt, createdBy, author,
+      gender, age, cityId, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -281,14 +283,14 @@ class _$PostImpl implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {@JsonKey(name: 'created_by', includeToJson: false)
-      final String? createdBy,
-      @JsonKey(name: 'created_at', includeToJson: false)
+      {@JsonKey(name: 'created_at', includeToJson: false)
       final DateTime? createdAt,
+      @JsonKey(name: 'created_by', includeToJson: false)
+      final String? createdBy,
       required final String author,
       required final Gender gender,
       required final int age,
-      required final String city,
+      @JsonKey(name: 'city_id') required final int cityId,
       required final Category category,
       required final String text,
       required final String contact}) = _$PostImpl;
@@ -296,11 +298,11 @@ abstract class _Post implements Post {
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
   @override
-  @JsonKey(name: 'created_by', includeToJson: false)
-  String? get createdBy;
-  @override
   @JsonKey(name: 'created_at', includeToJson: false)
   DateTime? get createdAt;
+  @override
+  @JsonKey(name: 'created_by', includeToJson: false)
+  String? get createdBy;
   @override
   String get author;
   @override
@@ -308,7 +310,8 @@ abstract class _Post implements Post {
   @override
   int get age;
   @override
-  String get city;
+  @JsonKey(name: 'city_id')
+  int get cityId;
   @override
   Category get category;
   @override

@@ -9,12 +9,12 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const factory Post({
-    @JsonKey(name: 'created_by', includeToJson: false) final String? createdBy,
     @JsonKey(name: 'created_at', includeToJson: false) final DateTime? createdAt,
+    @JsonKey(name: 'created_by', includeToJson: false) final String? createdBy,
     required final String author,
     required final Gender gender,
     required final int age,
-    required final String city,
+    @JsonKey(name: 'city_id') required final int cityId,
     required Category category,
     required String text,
     required String contact,
@@ -32,7 +32,7 @@ class Post with _$Post {
         author: profile.name,
         gender: profile.gender,
         age: profile.age,
-        city: profile.city,
+        cityId: profile.city.id,
         category: category,
         text: text,
         contact: contact,

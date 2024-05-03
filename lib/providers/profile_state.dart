@@ -29,7 +29,7 @@ class ProfileState extends _$ProfileState {
     saveData();
   }
 
-  set city(String value) {
+  set city(City value) {
     state = state.copyWith(city: value);
     saveData();
   }

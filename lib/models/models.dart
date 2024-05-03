@@ -1,3 +1,4 @@
+export 'city.dart';
 export 'contact.dart';
 export 'filters.dart';
 export 'post.dart';

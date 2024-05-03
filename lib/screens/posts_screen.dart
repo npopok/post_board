@@ -35,7 +35,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
-          _buildFilterBar(),
+          _buildCategoryBar(),
           const SizedBox(height: 8),
           Expanded(child: _buildPostList()),
         ],
@@ -43,8 +43,8 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
     );
   }
 
-  Widget _buildFilterBar() {
-    final filter = ref.watch(filterStateProvider);
+  Widget _buildCategoryBar() {
+    final filter = ref.watch(filtersStateProvider);
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -67,12 +67,12 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
   }
 
   Widget _buildPostList() {
-    final filter = ref.watch(filterStateProvider);
-    final posts = ref.watch(postsStateProvider(filter));
+    final filters = ref.watch(filtersStateProvider);
+    final posts = ref.watch(postsStateProvider(filters));
 
     return LayoutBuilder(
       builder: (context, constraints) => RefreshIndicator(
-        onRefresh: () => ref.refresh(postsStateProvider(filter).future),
+        onRefresh: () => ref.refresh(postsStateProvider(filters).future),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: ConstrainedBox(
@@ -103,7 +103,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
   }
 
   void _updateCategory(Category value) {
-    ref.read(filterStateProvider.notifier).category = value;
+    ref.read(filtersStateProvider.notifier).category = value;
     AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_category': value});
   }
 }

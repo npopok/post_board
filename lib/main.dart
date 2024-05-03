@@ -5,11 +5,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:post_board/providers/providers.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
+import 'package:post_board/providers/providers.dart';
 
 import 'firebase_options.dart';
 
@@ -40,7 +40,8 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ru')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
+      startLocale: const Locale('ru'),
+      fallbackLocale: const Locale('ru'),
       child: const MainApp(),
     ),
   );

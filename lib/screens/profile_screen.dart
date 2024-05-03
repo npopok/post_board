@@ -7,7 +7,7 @@ import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
-import 'package:post_board/providers/profile_state.dart';
+import 'package:post_board/providers/providers.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -99,17 +99,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Widget _buildCityTile(BuildContext context, Profile profile) {
+    final cities = ref.watch(citiesStateProvider);
+
     return ListTile(
       leading: const Icon(Icons.place),
       title: Text('ProfileScreen.City'.tr()),
-      subtitle: Text(profile.city),
+      subtitle: Text(profile.city.name),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => ValueListDialog(
-          items: const ['Москва', 'Новосибирск'],
-          values: const ['Москва', 'Новосибирск'],
-          initialValue: profile.city,
+        builder: (context) => cities.when(
+          data: (data) => ValueListDialog(
+            items: data.map((e) => e.name).toList(),
+            values: data,
+            initialValue: profile.city,
+          ),
+          error: (e, _) => Text(e.toString()), // TODO
+          loading: () => const CircularProgressIndicator(),
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
     );
@@ -130,8 +136,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_age': value});
   }
 
-  void _updateCity(String value) {
+  void _updateCity(City value) {
     ref.read(profileStateProvider.notifier).city = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_city': value});
+    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_city': value.name});
   }
 }
