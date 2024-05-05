@@ -23,7 +23,10 @@ void main() async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
-  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
+  await Supabase.initialize(
+    url: const String.fromEnvironment('SUPABASE_URL'),
+    anonKey: const String.fromEnvironment('SUPABASE_KEY'),
+  );
   if (Supabase.instance.client.auth.currentUser == null) {
     await Supabase.instance.client.auth.signInAnonymously();
   }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-const supabaseUrl = 'https://zqbppqfqagxfoqlclkxg.supabase.co';
-const supabaseKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYnBwcWZxYWd4Zm9xbGNsa3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQyMjUwOTIsImV4cCI6MjAyOTgwMTA5Mn0.H7Oyi29HRKAGClZmLQYE9o8dKUwXRjwr3bbgrH4s3Yg';
-
 const kNameMaxLength = 30;
 const kPostMinLength = 10;
 const kPostMaxLength = 500;
