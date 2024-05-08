@@ -12,24 +12,25 @@ class Themes {
       brightness: brightness,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.black87,
+        fillColor: Colors.black,
+        isDense: true,
         border: InputBorder.none,
-        //errorStyle: const TextStyle(height: 0),
+        errorStyle: const TextStyle(height: 0),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          //   borderSide: const BorderSide(color: Colors.transparent),
+          borderSide: const BorderSide(color: Colors.transparent),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.transparent),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.transparent),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.transparent),
         ),
       ),
       // sliderTheme: const SliderThemeData(

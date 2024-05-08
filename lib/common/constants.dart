@@ -17,11 +17,11 @@ const kPostsRemoteTable = 'posts';
 const kPostsQuotaExceeded = 'posts-quota-exceeded';
 const kPostsCacheDuration = Duration(minutes: 5);
 const kCitiesRemoteTable = 'cities';
-const kCitiesCacheDuration = Duration(days: 1000);
+const kCitiesCacheDuration = Duration(days: 10000);
 
 const kTextFormPadding = EdgeInsets.all(24);
-const kTextFormSpacer = SizedBox(height: 16);
-const kTextFormDoubleSpacer = SizedBox(height: 32);
+const kTextFormSpacer = SizedBox(height: 20);
+const kTextFormDoubleSpacer = SizedBox(height: 40);
 
 const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
 const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);

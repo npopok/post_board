@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:post_board/dialogs/dialogs.dart';
+
 class DropdownField<T> extends StatefulWidget {
   final List<T> values;
   final T? initialValue;
@@ -23,32 +25,47 @@ class DropdownField<T> extends StatefulWidget {
 }
 
 class _DropdownFieldState<T> extends State<DropdownField<T>> {
+  late T? selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<T>(
-      value: widget.values.contains(widget.initialValue) ? widget.initialValue : null,
-      isExpanded: true,
+    final text = selectedValue != null ? widget.textBuilder(selectedValue as T) : '';
+    return TextFormField(
+      key: Key(text),
+      initialValue: text,
+      readOnly: true,
       decoration: InputDecoration(
         hintText: widget.hintText,
         border: const OutlineInputBorder(),
+        suffixIcon: const Icon(Icons.arrow_drop_down, size: 24),
       ),
-      items: List<DropdownMenuItem<T>>.generate(
-        widget.values.length,
-        (index) => DropdownMenuItem<T>(
-          value: widget.values[index],
-          child: Text(widget.textBuilder(widget.values[index])),
-        ),
-      ),
-      selectedItemBuilder: (context) => List<Widget>.generate(
-        widget.values.length,
-        (index) => Text(
-          widget.textBuilder(widget.values[index]),
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      onChanged: (value) {},
-      onSaved: (value) => widget.onSaved(value),
-      validator: (value) => value == null ? widget.errorText : null,
+      onTap: () => _selectValue(context),
+      validator: (_) => selectedValue == null ? widget.errorText : null,
     );
+  }
+
+  void _selectValue(BuildContext context) async {
+    final value = await showModalBottomSheet<T>(
+      isScrollControlled: true,
+      context: context,
+      builder: (_) => ValueListDialog<T>(
+        items: List<String>.generate(
+          widget.values.length,
+          (index) => widget.textBuilder(widget.values[index]),
+        ),
+        values: widget.values,
+        initialValue: widget.initialValue,
+      ),
+    );
+    if (value != null) {
+      setState(() => selectedValue = value);
+      widget.onSaved(value);
+    }
   }
 }
