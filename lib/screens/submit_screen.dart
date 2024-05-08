@@ -60,6 +60,9 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           hintText: 'SubmitScreen.CategoryHint'.tr(),
           errorText: 'SubmitScreen.CategoryEmpty'.tr(),
           textBuilder: (value) => value.toString().tr(),
+          validator: ValueExistsValidator(
+            emptyMessage: 'SubmitScreen.CategoryEmpty'.tr(),
+          ).validate,
           onSaved: (value) => category = value!,
         ),
         kTextFormSpacer,

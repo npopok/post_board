@@ -20,3 +20,13 @@ class TextLengthValidator {
     return null;
   }
 }
+
+class ValueExistsValidator<T> {
+  final String? emptyMessage;
+
+  const ValueExistsValidator({this.emptyMessage});
+
+  String? validate(T? value) {
+    return value == null ? emptyMessage : null;
+  }
+}

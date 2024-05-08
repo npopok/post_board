@@ -2,70 +2,52 @@ import 'package:flutter/material.dart';
 
 import 'package:post_board/dialogs/dialogs.dart';
 
-class DropdownField<T> extends StatefulWidget {
+class DropdownField<T> extends FormField<T> {
   final List<T> values;
-  final T? initialValue;
   final String hintText;
   final String errorText;
   final String Function(T) textBuilder;
-  final Function(T?) onSaved;
 
-  const DropdownField({
+  DropdownField({
+    required super.initialValue,
     required this.values,
-    required this.initialValue,
     required this.hintText,
     required this.errorText,
     required this.textBuilder,
-    required this.onSaved,
+    required super.validator,
+    required super.onSaved,
     super.key,
-  });
-
-  @override
-  State<DropdownField<T>> createState() => _DropdownFieldState<T>();
-}
-
-class _DropdownFieldState<T> extends State<DropdownField<T>> {
-  late T? selectedValue;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedValue = widget.initialValue;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final text = selectedValue != null ? widget.textBuilder(selectedValue as T) : '';
-    return TextFormField(
-      key: Key(text),
-      initialValue: text,
-      readOnly: true,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        border: const OutlineInputBorder(),
-        suffixIcon: const Icon(Icons.arrow_drop_down, size: 24),
-      ),
-      onTap: () => _selectValue(context),
-      validator: (_) => selectedValue == null ? widget.errorText : null,
-    );
-  }
-
-  void _selectValue(BuildContext context) async {
-    final value = await showModalBottomSheet<T>(
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => ValueListDialog<T>(
-        items: List<String>.generate(
-          widget.values.length,
-          (index) => widget.textBuilder(widget.values[index]),
-        ),
-        values: widget.values,
-        initialValue: widget.initialValue,
-      ),
-    );
-    if (value != null) {
-      setState(() => selectedValue = value);
-      widget.onSaved(value);
-    }
-  }
+  }) : super(
+          builder: (FormFieldState<T> state) {
+            final text = state.value != null ? textBuilder(state.value as T) : '';
+            return TextFormField(
+              key: Key(text),
+              initialValue: text,
+              readOnly: true,
+              decoration: InputDecoration(
+                hintText: hintText,
+                border: const OutlineInputBorder(),
+                suffixIcon: const Icon(Icons.arrow_drop_down, size: 24),
+              ),
+              onTap: () async {
+                final value = await showModalBottomSheet<T>(
+                  isScrollControlled: true,
+                  context: state.context,
+                  builder: (_) => ValueListDialog<T>(
+                    items: List<String>.generate(
+                      values.length,
+                      (index) => textBuilder(values[index]),
+                    ),
+                    values: values,
+                    initialValue: initialValue,
+                  ),
+                );
+                if (value != null) {
+                  state.didChange(value);
+                }
+              },
+              validator: (_) => state.value == null ? errorText : null,
+            );
+          },
+        );
 }
