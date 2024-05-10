@@ -37,7 +37,7 @@ void main() async {
     return true;
   };
 
-  Resources.initialize();
+  await Depedencies.initialize();
 
   runApp(
     EasyLocalization(

@@ -1,4 +1,4 @@
 export 'constants.dart';
-export 'resources.dart';
+export 'depedencies.dart';
 export 'routes.dart';
 export 'themes.dart';

@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:post_board/models/models.dart';
 import 'package:post_board/repositories/repositories.dart';
-import 'package:post_board/common/resources.dart';
+import 'package:post_board/common/depedencies.dart';
 
 part 'filters_state.g.dart';
 

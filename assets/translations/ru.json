@@ -67,5 +67,8 @@
     "Elapsed.Days": "{} д назад",
     "Elapsed.Weeks": "{} нед назад",
     "Elapsed.Months": "{} мес назад",
-    "Elapsed.Years": "давно"
+    "Elapsed.Years": "давно",
+    
+    "LocationException.GenericError": "Произошла ошибка при попытке определения местоположения.",
+    "LocationException.AccessError": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению."
 }

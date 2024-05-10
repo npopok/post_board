@@ -7,18 +7,26 @@ import 'package:post_board/helpers/helpers.dart';
 
 final getIt = GetIt.I;
 
-class Resources {
-  static void initialize() {
+class Depedencies {
+  static Future<void> initialize() async {
     getIt.registerSingletonAsync<SharedPreferences>(
       () => SharedPreferences.getInstance(),
     );
     getIt.registerSingletonWithDependencies<LocalRepository>(
-      () => LocalRepository(getIt.get<SharedPreferences>()),
+      () => LocalRepository(prefs: getIt.get<SharedPreferences>()),
       dependsOn: [SharedPreferences],
     );
-    getIt.registerSingleton<MessengerHelper>(MessengerHelper());
     getIt.registerSingleton<RemoteRepository>(RemoteRepository());
+    getIt.registerSingletonWithDependencies<CachedRepository>(
+      () => CachedRepository(
+        local: getIt.get<LocalRepository>(),
+        remote: getIt.get<RemoteRepository>(),
+      ),
+      dependsOn: [LocalRepository],
+    );
+    getIt.registerSingleton<MessengerHelper>(MessengerHelper());
     getIt.registerSingleton<Themes>(const Themes());
-    getIt.allReady();
+
+    return getIt.allReady();
   }
 }

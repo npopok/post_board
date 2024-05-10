@@ -1,4 +1,4 @@
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class LocationException implements Exception {
@@ -11,17 +11,26 @@ class LocationException implements Exception {
 }
 
 class LocationHelper {
-  static Future<LocationData?> getLocation() async {
+  static Future<(double, double)> getCurrentPosition() async {
     try {
-      final location = Location();
-      if (!await location.serviceEnabled() && await location.requestService()) {
+      final enabled = await Geolocator.isLocationServiceEnabled();
+      if (!enabled) {
         throw LocationException('LocationException.AccessError'.tr());
       }
-      if ((await location.hasPermission()) == PermissionStatus.denied &&
-          await location.requestPermission() != PermissionStatus.granted) {
+
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          throw LocationException('LocationException.AccessError'.tr());
+        }
+      }
+      if (permission == LocationPermission.deniedForever) {
         throw LocationException('LocationException.AccessError'.tr());
       }
-      return await location.getLocation();
+
+      final position = await Geolocator.getCurrentPosition();
+      return (position.latitude, position.longitude);
     } catch (e) {
       throw LocationException('LocationException.GenericError'.tr());
     }

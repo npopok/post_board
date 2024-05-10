@@ -8,7 +8,7 @@ import 'package:post_board/models/models.dart';
 class LocalRepository {
   final SharedPreferences prefs;
 
-  const LocalRepository(this.prefs);
+  const LocalRepository({required this.prefs});
 
   void saveProfile(Profile value) {
     return saveObject<Profile>(kProfileLocalKey, value);

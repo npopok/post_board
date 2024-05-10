@@ -67,5 +67,8 @@
     "Elapsed.Days": "{} d ago",
     "Elapsed.Weeks": "{} w ago",
     "Elapsed.Months": "{} mon ago",
-    "Elapsed.Years": "long ago"
+    "Elapsed.Years": "long ago",
+
+    "LocationException.GenericError": "Error occurred while trying to determine the location.",
+    "LocationException.AccessError": "To determine your city, allow access to location in the settings."
 }
