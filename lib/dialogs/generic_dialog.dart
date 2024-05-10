@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
@@ -28,7 +30,7 @@ class GenericDialog extends StatelessWidget {
           if (title != null)
             Padding(
               padding: kDialogTitlePadding,
-              child: Text(title!, style: Theme.of(context).textTheme.titleMedium),
+              child: Text(title!, style: Theme.of(context).textTheme.titleLarge),
             ),
           Padding(
             padding: contentPadding,
@@ -62,6 +64,23 @@ class DialogActionButton extends StatelessWidget {
     required this.onPressed,
     super.key,
   });
+
+  factory DialogActionButton.clear(BuildContext context, Object Function() returnValue) =>
+      DialogActionButton(
+        title: 'Button.Clear'.tr(),
+        onPressed: () => context.maybePop(returnValue()),
+      );
+
+  factory DialogActionButton.okay(BuildContext context, Object Function() returnValue) =>
+      DialogActionButton(
+        title: 'Button.OK'.tr(),
+        onPressed: () => context.maybePop(returnValue()),
+      );
+
+  factory DialogActionButton.cancel(BuildContext context) => DialogActionButton(
+        title: 'Button.Cancel'.tr(),
+        onPressed: () => context.maybePop(),
+      );
 
   @override
   Widget build(BuildContext context) {

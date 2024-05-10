@@ -8,9 +8,11 @@ import 'package:post_board/repositories/repositories.dart';
 
 class LocationPicker extends ConsumerStatefulWidget {
   final City city;
+  final Function(City) onSaved;
 
   const LocationPicker({
     required this.city,
+    required this.onSaved,
     super.key,
   });
 
@@ -19,22 +21,25 @@ class LocationPicker extends ConsumerStatefulWidget {
 }
 
 class _LocationPickerState extends ConsumerState<LocationPicker> {
+  late City selectedCity;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCity = widget.city;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          initialValue: widget.city.name,
-        ),
-        FutureBuilder(
-          future: getCurrentCity(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) return Text(snapshot.error.toString());
-            if (snapshot.hasData) return Text(snapshot.data!.name.toString());
-            return const CircularProgressIndicator();
-          },
-        ),
-      ],
+    return FutureBuilder(
+      future: getCurrentCity(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          selectedCity = snapshot.data!;
+          widget.onSaved(selectedCity);
+        }
+        return _buildContent(context, snapshot);
+      },
     );
   }
 
@@ -45,5 +50,18 @@ class _LocationPickerState extends ConsumerState<LocationPicker> {
       (c1, c2) => c1.distanceFrom(pos.$1, pos.$2) < c2.distanceFrom(pos.$1, pos.$2) ? c1 : c2,
     );
     return city;
+  }
+
+  Widget _buildContent(BuildContext context, AsyncSnapshot<City> snapshot) {
+    return Column(
+      children: [
+        TextFormField(
+          key: Key(selectedCity.name),
+          initialValue: selectedCity.name,
+        ),
+        if (snapshot.hasError) Text(snapshot.error.toString()),
+        if (!snapshot.hasData) const CircularProgressIndicator(),
+      ],
+    );
   }
 }

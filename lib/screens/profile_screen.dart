@@ -5,11 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
-import 'package:post_board/dialogs/generic_dialog.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
-import 'package:post_board/widgets/location_picker.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -108,10 +106,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (_) => GenericDialog(
+        builder: (_) => LocationDialog(
           title: 'Ваш город', // TODO
-          contentPadding: kInputContentPadding,
-          contentBuilder: (_) => LocationPicker(city: profile.city),
+          resultText:
+              'Местоположение определено автоматически. Если вы находитесь в другом месте, выберите ваш город вручную.',
+          initialValue: profile.city,
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
     );
