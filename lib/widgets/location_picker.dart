@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+import 'package:post_board/models/models.dart';
+import 'package:post_board/helpers/helpers.dart';
+
+class LocationPicker extends StatefulWidget {
+  final City city;
+
+  const LocationPicker({
+    required this.city,
+    super.key,
+  });
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<LocationPicker> createState() => _LocationPickerState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _LocationPickerState extends State<LocationPicker> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        TextFormField(
+          initialValue: widget.city.name,
+        ),
+        FutureBuilder(
+          future: LocationHelper.getLocation(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) return Text(snapshot.error.toString());
+            if (snapshot.hasData) return Text(snapshot.data!.latitude.toString());
+            return const CircularProgressIndicator();
+          },
+        ),
+      ],
+    );
   }
 }

@@ -5,9 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/dialogs/generic_dialog.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
+import 'package:post_board/widgets/location_picker.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -99,8 +101,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Widget _buildCityTile(BuildContext context, Profile profile) {
-    final cities = ref.watch(citiesStateProvider);
-
     return ListTile(
       leading: const Icon(Icons.place),
       title: Text('ProfileScreen.City'.tr()),
@@ -108,14 +108,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => cities.when(
-          data: (data) => ValueListDialog(
-            items: data.map((e) => e.name).toList(),
-            values: data,
-            initialValue: profile.city,
-          ),
-          error: (e, _) => Text(e.toString()), // TODO
-          loading: () => const CircularProgressIndicator(),
+        builder: (_) => GenericDialog(
+          title: 'Ваш город', // TODO
+          contentPadding: kInputContentPadding,
+          contentBuilder: (_) => LocationPicker(city: profile.city),
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
     );
