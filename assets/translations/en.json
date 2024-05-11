@@ -36,10 +36,15 @@
     "SubmitScreen.QuotaError": "You can only create one posr per day.",
 
     "ProfileScreen.Title": "Profile",
-    "ProfileScreen.Name": "Name",
-    "ProfileScreen.Gender": "Gender",
-    "ProfileScreen.Age": "Age",
-    "ProfileScreen.City": "City",
+    "ProfileScreen.NameList": "Name",
+    "ProfileScreen.NameDialog": "Your Name",   
+    "ProfileScreen.GenderList": "Gender",
+    "ProfileScreen.GenderDialog": "Your Gender",   
+    "ProfileScreen.AgeList": "Age",
+    "ProfileScreen.AgeDialog": "Your Age",   
+    "ProfileScreen.CityList": "City",
+    "ProfileScreen.CityDialog": "Your City",
+    "ProfileScreen.SuccessText": "The location is determined automatically. If you are located elsewhere, please select your city manually.",
 
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.ThemeMode": "Theme Mode",
@@ -69,6 +74,7 @@
     "Elapsed.Months": "{} mon ago",
     "Elapsed.Years": "long ago",
 
-    "LocationException.GenericError": "Error occurred while trying to determine the location.",
-    "LocationException.AccessError": "To determine your city, allow access to location in the settings."
+    "LocationException.ServiceDisabled": "To determine your city, allow access to location in the settings.",
+    "LocationException.PermissionDenied": "To determine your city, allow access to location in the settings.",
+    "LocationException.OtherError": "Error occurred while trying to determine the location. Try again later."
 }

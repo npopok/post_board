@@ -36,11 +36,16 @@
     "SubmitScreen.QuotaError": "Можно создать только одно объявление в сутки.",
 
     "ProfileScreen.Title": "Профиль",
-    "ProfileScreen.Name": "Имя",   
-    "ProfileScreen.Gender": "Пол",   
-    "ProfileScreen.Age": "Возраст",
-    "ProfileScreen.City": "Город",
-
+    "ProfileScreen.NameList": "Имя",
+    "ProfileScreen.NameDialog": "Ваше имя",      
+    "ProfileScreen.GenderList": "Пол",
+    "ProfileScreen.GenderDialog": "Ваш пол",        
+    "ProfileScreen.AgeList": "Возраст",
+    "ProfileScreen.AgeDialog": "Ваш возраст",
+    "ProfileScreen.CityList": "Город",
+    "ProfileScreen.CityDialog": "Ваш город",
+    "ProfileScreen.SuccessText": "Местоположение определено автоматически. Если вы находитесь в другом месте, выберите ваш город вручную.",
+   
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
 
@@ -69,6 +74,7 @@
     "Elapsed.Months": "{} мес назад",
     "Elapsed.Years": "давно",
     
-    "LocationException.GenericError": "Произошла ошибка при попытке определения местоположения.",
-    "LocationException.AccessError": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению."
+    "LocationException.ServiceDisabled": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
+    "LocationException.PermissionDenied": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
+    "LocationException.OtherError": "Произошла ошибка при попытке определения местоположения. Попробуйте позже."
 }

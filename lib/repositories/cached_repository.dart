@@ -14,7 +14,8 @@ class CachedRepository {
 
   Future<List<City>> loadCities() async {
     var data = local.loadCities();
-    if (data.isEmpty) {
+    //if (data.isEmpty) { // TODO
+    if (true) {
       data = await remote.loadCities();
       local.saveCities(data);
     }

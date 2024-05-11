@@ -11,9 +11,13 @@ class City with _$City {
   const factory City({
     required final int id,
     required final String name,
+    required final String region,
     required final double latitude,
     required final double longitude,
   }) = _City;
+
+  @override
+  String toString() => '$name, $region';
 
   double distanceFrom(double latitude, double longitude) {
     return Geolocator.distanceBetween(latitude, longitude, this.latitude, this.longitude);
@@ -24,6 +28,7 @@ class City with _$City {
   factory City.empty() => const City(
         id: 0,
         name: '',
+        region: '',
         latitude: 0,
         longitude: 0,
       );

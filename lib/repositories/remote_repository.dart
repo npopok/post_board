@@ -24,10 +24,13 @@ class RemoteRepository {
   }
 
   Future<List<City>> loadCities() async {
-    final data = await supabase.from(kCitiesRemoteTable).select().order(
+    var data = await supabase.from(kCitiesRemoteTable).select('*, regions(name)').order(
           'name',
           ascending: true,
         );
+    for (final city in data) {
+      city['region'] = city['regions']['name'];
+    }
     return data.map((e) => City.fromJson(e)).toList();
   }
 }

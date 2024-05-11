@@ -22,6 +22,7 @@ City _$CityFromJson(Map<String, dynamic> json) {
 mixin _$City {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get region => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
 
@@ -35,7 +36,8 @@ abstract class $CityCopyWith<$Res> {
   factory $CityCopyWith(City value, $Res Function(City) then) =
       _$CityCopyWithImpl<$Res, City>;
   @useResult
-  $Res call({int id, String name, double latitude, double longitude});
+  $Res call(
+      {int id, String name, String region, double latitude, double longitude});
 }
 
 /// @nodoc
@@ -53,6 +55,7 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? region = null,
     Object? latitude = null,
     Object? longitude = null,
   }) {
@@ -64,6 +67,10 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -84,7 +91,8 @@ abstract class _$$CityImplCopyWith<$Res> implements $CityCopyWith<$Res> {
       __$$CityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, double latitude, double longitude});
+  $Res call(
+      {int id, String name, String region, double latitude, double longitude});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$CityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? region = null,
     Object? latitude = null,
     Object? longitude = null,
   }) {
@@ -110,6 +119,10 @@ class __$$CityImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -129,6 +142,7 @@ class _$CityImpl extends _City {
   const _$CityImpl(
       {required this.id,
       required this.name,
+      required this.region,
       required this.latitude,
       required this.longitude})
       : super._();
@@ -141,14 +155,11 @@ class _$CityImpl extends _City {
   @override
   final String name;
   @override
+  final String region;
+  @override
   final double latitude;
   @override
   final double longitude;
-
-  @override
-  String toString() {
-    return 'City(id: $id, name: $name, latitude: $latitude, longitude: $longitude)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -157,6 +168,7 @@ class _$CityImpl extends _City {
             other is _$CityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.region, region) || other.region == region) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -165,7 +177,8 @@ class _$CityImpl extends _City {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latitude, longitude);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, region, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -185,6 +198,7 @@ abstract class _City extends City {
   const factory _City(
       {required final int id,
       required final String name,
+      required final String region,
       required final double latitude,
       required final double longitude}) = _$CityImpl;
   const _City._() : super._();
@@ -195,6 +209,8 @@ abstract class _City extends City {
   int get id;
   @override
   String get name;
+  @override
+  String get region;
   @override
   double get latitude;
   @override

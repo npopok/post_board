@@ -12,7 +12,7 @@ class Themes {
       brightness: brightness,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.black,
+        fillColor: brightness == Brightness.light ? Colors.white : Colors.black,
         isDense: true,
         border: InputBorder.none,
         errorStyle: const TextStyle(height: 0),

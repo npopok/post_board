@@ -8,6 +8,7 @@ import 'generic_dialog.dart';
 class ValueListDialog<T> extends StatelessWidget {
   static const contentFraction = 0.75;
 
+  final String? title;
   final List<String> items;
   final List<T> values;
   final T? initialValue;
@@ -15,6 +16,7 @@ class ValueListDialog<T> extends StatelessWidget {
   final bool clearButton;
 
   const ValueListDialog({
+    this.title,
     required this.items,
     required this.values,
     this.initialValue,
@@ -26,6 +28,7 @@ class ValueListDialog<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
+      title: title,
       contentPadding: kDefaultContentPadding,
       contentBuilder: _buildContent,
       actions: [

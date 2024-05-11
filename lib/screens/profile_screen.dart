@@ -47,13 +47,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildNameTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.person),
-      title: Text('ProfileScreen.Name'.tr()),
+      title: Text('ProfileScreen.NameList'.tr()),
       subtitle: Text(profile.name),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) => InputDialog(
-          title: 'ProfileScreen.Name'.tr(),
+          title: 'ProfileScreen.NameDialog'.tr(),
           initialValue: profile.name,
           maxLength: kNameMaxLength,
         ),
@@ -64,12 +64,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildGenderTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.wc),
-      title: Text('ProfileScreen.Gender'.tr()),
+      title: Text('ProfileScreen.GenderList'.tr()),
       subtitle: Text('${profile.gender}'.tr()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) => ValueListDialog(
+          title: 'ProfileScreen.GenderDialog'.tr(),
           items: List.generate(
             Gender.values.length,
             (index) => '${Gender.values[index]}'.tr(),
@@ -84,13 +85,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildAgeTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.cake),
-      title: Text('ProfileScreen.Age'.tr()),
+      title: Text('ProfileScreen.AgeList'.tr()),
       subtitle: Text(profile.age.toString()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) => SliderDialog(
-          title: 'ProfileScreen.Age'.tr(),
+          title: 'ProfileScreen.AgeDialog'.tr(),
           range: (min: kAgeMinValue, max: kAgeMaxValue),
           initialValue: profile.age,
         ),
@@ -101,15 +102,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildCityTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.place),
-      title: Text('ProfileScreen.City'.tr()),
+      title: Text('ProfileScreen.CityList'.tr()),
       subtitle: Text(profile.city.name),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (_) => LocationDialog(
-          title: 'Ваш город', // TODO
-          resultText:
-              'Местоположение определено автоматически. Если вы находитесь в другом месте, выберите ваш город вручную.',
+          title: 'ProfileScreen.CityDialog'.tr(),
+          successText: 'ProfileScreen.SuccessText'.tr(),
           initialValue: profile.city,
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
