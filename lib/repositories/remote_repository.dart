@@ -17,6 +17,7 @@ class RemoteRepository {
     final data = await supabase
         .from(kPostsRemoteTable)
         .select()
+        .eq('city_id', filters.city.id)
         .eq('category', filters.category.name)
         .eq('gender', filters.gender.name)
         .gte('age', filters.age.min)

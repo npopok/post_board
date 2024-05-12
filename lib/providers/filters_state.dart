@@ -13,6 +13,11 @@ class FiltersState extends _$FiltersState {
   void saveData() => localRepository.saveFilters(state);
   Filters loadData() => localRepository.loadFilters();
 
+  set city(City value) {
+    state = state.copyWith(city: value);
+    saveData();
+  }
+
   set category(Category value) {
     state = state.copyWith(category: value);
     saveData();

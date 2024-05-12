@@ -20,7 +20,7 @@ class Profile with _$Profile {
   factory Profile.empty() => Profile(
         name: '',
         gender: Gender.male,
-        age: 0,
+        age: 18,
         city: City.empty(),
       );
 }

@@ -20,6 +20,7 @@ Filters _$FiltersFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Filters {
+  City get city => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   ({int max, int min}) get age => throw _privateConstructorUsedError;
@@ -34,7 +35,10 @@ abstract class $FiltersCopyWith<$Res> {
   factory $FiltersCopyWith(Filters value, $Res Function(Filters) then) =
       _$FiltersCopyWithImpl<$Res, Filters>;
   @useResult
-  $Res call({Category category, Gender gender, ({int max, int min}) age});
+  $Res call(
+      {City city, Category category, Gender gender, ({int max, int min}) age});
+
+  $CityCopyWith<$Res> get city;
 }
 
 /// @nodoc
@@ -50,11 +54,16 @@ class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? city = null,
     Object? category = null,
     Object? gender = null,
     Object? age = null,
   }) {
     return _then(_value.copyWith(
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -69,6 +78,14 @@ class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
               as ({int max, int min}),
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<$Res> get city {
+    return $CityCopyWith<$Res>(_value.city, (value) {
+      return _then(_value.copyWith(city: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -78,7 +95,11 @@ abstract class _$$FiltersImplCopyWith<$Res> implements $FiltersCopyWith<$Res> {
       __$$FiltersImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Category category, Gender gender, ({int max, int min}) age});
+  $Res call(
+      {City city, Category category, Gender gender, ({int max, int min}) age});
+
+  @override
+  $CityCopyWith<$Res> get city;
 }
 
 /// @nodoc
@@ -92,11 +113,16 @@ class __$$FiltersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? city = null,
     Object? category = null,
     Object? gender = null,
     Object? age = null,
   }) {
     return _then(_$FiltersImpl(
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -117,11 +143,16 @@ class __$$FiltersImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FiltersImpl implements _Filters {
   const _$FiltersImpl(
-      {required this.category, required this.gender, required this.age});
+      {required this.city,
+      required this.category,
+      required this.gender,
+      required this.age});
 
   factory _$FiltersImpl.fromJson(Map<String, dynamic> json) =>
       _$$FiltersImplFromJson(json);
 
+  @override
+  final City city;
   @override
   final Category category;
   @override
@@ -131,7 +162,7 @@ class _$FiltersImpl implements _Filters {
 
   @override
   String toString() {
-    return 'Filters(category: $category, gender: $gender, age: $age)';
+    return 'Filters(city: $city, category: $category, gender: $gender, age: $age)';
   }
 
   @override
@@ -139,6 +170,7 @@ class _$FiltersImpl implements _Filters {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FiltersImpl &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -147,7 +179,7 @@ class _$FiltersImpl implements _Filters {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, category, gender, age);
+  int get hashCode => Object.hash(runtimeType, city, category, gender, age);
 
   @JsonKey(ignore: true)
   @override
@@ -165,12 +197,15 @@ class _$FiltersImpl implements _Filters {
 
 abstract class _Filters implements Filters {
   const factory _Filters(
-      {required final Category category,
+      {required final City city,
+      required final Category category,
       required final Gender gender,
       required final ({int max, int min}) age}) = _$FiltersImpl;
 
   factory _Filters.fromJson(Map<String, dynamic> json) = _$FiltersImpl.fromJson;
 
+  @override
+  City get city;
   @override
   Category get category;
   @override
