@@ -14,35 +14,51 @@ class LocalRepository {
   const LocalRepository({required this.prefs});
 
   void saveProfile(Profile value) {
-    return saveObject<Profile>(kProfileLocalKey, value);
+    return saveObject<Profile>(RepositorySettings.profileLocalKey, value);
   }
 
   Profile loadProfile() {
-    return loadObject<Profile>(kProfileLocalKey, Profile.fromJson, Profile.empty());
+    return loadObject<Profile>(
+      RepositorySettings.profileLocalKey,
+      Profile.fromJson,
+      Profile.empty(),
+    );
   }
 
   void saveCities(List<City> value) {
-    saveObjects<City>(kCitiesLocalKey, value);
+    saveObjects<City>(RepositorySettings.citiesLocalKey, value);
   }
 
   List<City> loadCities() {
-    return loadObjects<City>(kCitiesLocalKey, City.fromJson, []);
+    return loadObjects<City>(
+      RepositorySettings.citiesLocalKey,
+      City.fromJson,
+      const [],
+    );
   }
 
   void saveFilters(Filters value) {
-    saveObject<Filters>(kFiltersLocalKey, value);
+    saveObject<Filters>(RepositorySettings.filtersLocalKey, value);
   }
 
   Filters loadFilters() {
-    return loadObject<Filters>(kFiltersLocalKey, Filters.fromJson, Filters.empty());
+    return loadObject<Filters>(
+      RepositorySettings.filtersLocalKey,
+      Filters.fromJson,
+      Filters.empty(),
+    );
   }
 
   void saveSettings(Settings value) {
-    return saveObject<Settings>(kSettingsLocalKey, value);
+    return saveObject<Settings>(RepositorySettings.settingsLocalKey, value);
   }
 
   Settings loadSettings() {
-    return loadObject<Settings>(kSettingsLocalKey, Settings.fromJson, Settings.empty());
+    return loadObject<Settings>(
+      RepositorySettings.settingsLocalKey,
+      Settings.fromJson,
+      Settings.empty(),
+    );
   }
 
   void saveObject<T>(String key, T value) {

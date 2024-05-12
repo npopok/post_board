@@ -43,7 +43,7 @@ class _InputDialogState extends State<InputDialog> {
       ),
       child: GenericDialog(
         title: widget.title,
-        contentPadding: kInputContentPadding,
+        contentPadding: DialogPaddings.inputContent,
         contentBuilder: (_) => TextField(
           controller: textController,
           maxLength: widget.maxLength,

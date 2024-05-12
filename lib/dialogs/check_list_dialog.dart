@@ -34,7 +34,7 @@ class _CheckListDialogState extends State<CheckListDialog> {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: widget.title,
-      contentPadding: kDefaultContentPadding,
+      contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
       actions: [DialogActionButton.save(context, () => checks)],
     );

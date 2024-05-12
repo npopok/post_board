@@ -29,7 +29,7 @@ class ValueListDialog<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: title,
-      contentPadding: kDefaultContentPadding,
+      contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
       actions: [
         if (clearButton) DialogActionButton.clear(context, () => ''),
@@ -45,7 +45,7 @@ class ValueListDialog<T> extends StatelessWidget {
           children: List.generate(
             items.length,
             (index) => ListTile(
-              contentPadding: kValueTilePadding,
+              contentPadding: DialogPaddings.valueTile,
               title: Align(
                 alignment: alignment,
                 child: Text(

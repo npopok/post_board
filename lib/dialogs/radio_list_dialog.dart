@@ -23,7 +23,7 @@ class RadioListDialog<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: title,
-      contentPadding: kDefaultContentPadding,
+      contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
     );
   }

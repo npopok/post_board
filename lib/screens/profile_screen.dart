@@ -55,7 +55,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         builder: (context) => InputDialog(
           title: 'ProfileScreen.NameDialog'.tr(),
           initialValue: profile.name,
-          maxLength: kNameMaxLength,
+          maxLength: FieldSettings.nameMaxLength,
         ),
       ).then((value) => value != null ? _updateName(value) : 0),
     );
@@ -92,7 +92,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (context) => SliderDialog(
           title: 'ProfileScreen.AgeDialog'.tr(),
-          range: (min: kAgeMinValue, max: kAgeMaxValue),
+          range: (
+            min: FieldSettings.ageMinValue,
+            max: FieldSettings.ageMaxValue,
+          ),
           initialValue: profile.age,
         ),
       ).then((value) => value != null ? _updateAge(value) : 0),

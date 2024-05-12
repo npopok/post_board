@@ -23,13 +23,13 @@ class GenericDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Platform.isIOS ? kiOSDialogPadding : kAndroidDialogPadding,
+      padding: Platform.isIOS ? DialogPaddings.iOSDialog : DialogPaddings.androidDialog,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (title != null)
             Padding(
-              padding: kDialogTitlePadding,
+              padding: DialogPaddings.dialogTitle,
               child: Text(title!, style: Theme.of(context).textTheme.titleLarge),
             ),
           Padding(

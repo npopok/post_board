@@ -34,7 +34,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         title: Text('SubmitScreen.Title'.tr()),
       ),
       body: Padding(
-        padding: kTextFormPadding,
+        padding: FormSettings.textPadding,
         child: Form(
           key: formKey,
           child: Column(
@@ -65,10 +65,10 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => category = value!,
         ),
-        kTextFormSpacer,
+        FormSettings.textSpacer,
         TextFormField(
           maxLines: 5,
-          maxLength: kPostMaxLength,
+          maxLength: FieldSettings.postMaxLength,
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
             hintText: 'SubmitScreen.TextHint'.tr(),
@@ -76,14 +76,14 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ),
           validator: TextLengthValidator(
             emptyMessage: 'SubmitScreen.TextEmpty'.tr(),
-            minLength: kPostMinLength,
+            minLength: FieldSettings.postMinLength,
             minMessage: 'SubmitScreen.TextShort'.tr(),
           ).validate,
           onSaved: (value) => text = value!,
         ),
-        kTextFormSpacer,
+        FormSettings.textSpacer,
         TextFormField(
-          maxLength: kContactMaxLength,
+          maxLength: FieldSettings.contactMaxLength,
           decoration: InputDecoration(
             hintText: 'SubmitScreen.ContactHint'.tr(),
             counterText: '',
@@ -93,7 +93,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => contact = value!,
         ),
-        kTextFormDoubleSpacer,
+        FormSettings.textDoubleSpacer,
         ValueListenableBuilder(
           valueListenable: errorText,
           builder: (_, value, __) => Text(
@@ -133,7 +133,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         showSnackBar('SubmitScreen.SubmitSuccess'.tr());
         if (mounted) context.navigateTo(const PostsRoute());
       } catch (e) {
-        if (e is PostgrestException && e.message == kPostsQuotaExceeded) {
+        if (e is PostgrestException && e.message == RepositorySettings.postsQuotaExceeded) {
           errorText.value = 'SubmitScreen.QuotaError'.tr();
         } else {
           errorText.value = 'SubmitScreen.ServerError'.tr();

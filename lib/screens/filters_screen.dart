@@ -71,7 +71,10 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         context: context,
         builder: (context) => RangeDialog(
           title: 'FiltersScreen.Age'.tr(),
-          range: (min: kAgeMinValue, max: kAgeMaxValue),
+          range: (
+            min: FieldSettings.ageMinValue,
+            max: FieldSettings.ageMaxValue,
+          ),
           initialValue: filter.age,
         ),
       ).then((value) => value != null ? _updateAge(value) : 0),

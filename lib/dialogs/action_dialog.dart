@@ -16,7 +16,7 @@ class ActionDialog<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
-      contentPadding: kDefaultContentPadding,
+      contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
     );
   }
@@ -28,7 +28,7 @@ class ActionDialog<T> extends StatelessWidget {
       children: List.generate(
         actions.length,
         (index) => ListTile(
-          contentPadding: kValueTilePadding,
+          contentPadding: DialogPaddings.valueTile,
           title: Text(
             entries[index].value,
             style: Theme.of(context).textTheme.bodyLarge,

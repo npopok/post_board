@@ -34,7 +34,7 @@ class _SliderDialogState extends State<SliderDialog> {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: widget.title,
-      contentPadding: kSliderContentPadding,
+      contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
       actions: [DialogActionButton.save(context, () => selectedValue)],
     );

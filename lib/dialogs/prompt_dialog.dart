@@ -18,7 +18,7 @@ class PromptDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: title,
-      contentPadding: kPromptContentPadding,
+      contentPadding: DialogPaddings.promptContent,
       contentBuilder: (_) => Text(
         text,
         style: Theme.of(context).textTheme.bodyLarge,

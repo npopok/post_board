@@ -34,7 +34,7 @@ class _RangeDialogState extends State<RangeDialog> {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: widget.title,
-      contentPadding: kSliderContentPadding,
+      contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
       actions: [DialogActionButton.save(context, () => selectedValues)],
     );

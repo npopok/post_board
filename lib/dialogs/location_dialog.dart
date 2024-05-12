@@ -58,7 +58,7 @@ class _LocationDialogState extends State<LocationDialog> {
       ),
       child: GenericDialog(
         title: widget.title,
-        contentPadding: kLocationContentPadding,
+        contentPadding: DialogPaddings.locationContent,
         contentBuilder: (context) => FutureBuilder(
             future: cachedRepository.loadCities(),
             builder: (context, snapshot) {

@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
 
-const kNameMaxLength = 30;
-const kPostMinLength = 10;
-const kPostMaxLength = 500;
-const kPostMaxCount = 200;
-const kContactMaxLength = 30;
-const kAgeMinValue = 18;
-const kAgeMaxValue = 80;
+class FieldSettings {
+  static const nameMaxLength = 30;
+  static const postMinLength = 10;
+  static const postMaxLength = 500;
+  static const contactMaxLength = 30;
+  static const ageMinValue = 18;
+  static const ageMaxValue = 80;
+}
 
-const kProfileLocalKey = 'profile';
-const kCitiesLocalKey = 'cities';
-const kFiltersLocalKey = 'filters';
-const kSettingsLocalKey = 'settings';
+class RepositorySettings {
+  static const profileLocalKey = 'profile';
+  static const citiesLocalKey = 'cities';
+  static const filtersLocalKey = 'filters';
+  static const settingsLocalKey = 'settings';
 
-const kPostsRemoteTable = 'posts';
-const kPostsQuotaExceeded = 'posts-quota-exceeded';
-const kPostsCacheDuration = Duration(minutes: 5);
-const kCitiesRemoteTable = 'cities';
-const kCitiesCacheDuration = Duration(days: 10000);
+  static const postsRemoteTable = 'posts';
+  static const postsQuotaExceeded = 'posts-quota-exceeded';
+  static const postsCacheDuration = Duration(minutes: 5);
+  static const postMaxCount = 200;
+  static const citiesRemoteTable = 'cities';
+  static const citiesCacheDuration = Duration(days: 10000);
+}
 
-const kTextFormPadding = EdgeInsets.all(24);
-const kTextFormSpacer = SizedBox(height: 20);
-const kTextFormDoubleSpacer = SizedBox(height: 40);
+class FormSettings {
+  static const textPadding = EdgeInsets.all(24);
+  static const textSpacer = SizedBox(height: 20);
+  static const textDoubleSpacer = SizedBox(height: 40);
+}
 
-const kiOSDialogPadding = EdgeInsets.only(top: 8, bottom: 32);
-const kAndroidDialogPadding = EdgeInsets.only(top: 8, bottom: 8);
-const kDialogTitlePadding = EdgeInsets.only(top: 12);
-
-const kDefaultContentPadding = EdgeInsets.symmetric(vertical: 8);
-const kInputContentPadding = EdgeInsets.all(24);
-const kPromptContentPadding = EdgeInsets.symmetric(vertical: 24);
-const kSliderContentPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
-const kValueTilePadding = EdgeInsets.symmetric(horizontal: 24);
-const kLocationContentPadding = EdgeInsets.all(24);
+class DialogPaddings {
+  static const iOSDialog = EdgeInsets.only(top: 8, bottom: 32);
+  static const androidDialog = EdgeInsets.only(top: 8, bottom: 8);
+  static const dialogTitle = EdgeInsets.only(top: 12);
+  static const defaultContent = EdgeInsets.symmetric(vertical: 8);
+  static const inputContent = EdgeInsets.all(24);
+  static const promptContent = EdgeInsets.symmetric(vertical: 24);
+  static const sliderContent = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
+  static const locationContent = EdgeInsets.all(24);
+  static const valueTile = EdgeInsets.symmetric(horizontal: 24);
+}
