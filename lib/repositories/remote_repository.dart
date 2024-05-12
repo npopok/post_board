@@ -1,7 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
+
+final remoteRepository = GetIt.I<RemoteRepository>();
 
 class RemoteRepository {
   final supabase = Supabase.instance.client;

@@ -14,6 +14,6 @@ class PostsState extends _$PostsState {
 
   Future<List<Post>> loadData(Filters filters) async {
     ref.cacheFor(kPostsCacheDuration);
-    return getIt<RemoteRepository>().loadPosts(filters);
+    return remoteRepository.loadPosts(filters);
   }
 }

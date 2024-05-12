@@ -125,7 +125,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
 
       try {
         final post = Post.create(profile, category, text, contact);
-        await getIt<RemoteRepository>().savePost(post);
+        await remoteRepository.savePost(post);
 
         final filter = ref.read(filtersStateProvider);
         ref.invalidate(postsStateProvider(filter.copyWith(category: category)));

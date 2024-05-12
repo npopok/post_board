@@ -2,7 +2,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:post_board/models/models.dart';
 import 'package:post_board/repositories/repositories.dart';
-import 'package:post_board/common/depedencies.dart';
 
 part 'filters_state.g.dart';
 
@@ -11,8 +10,8 @@ class FiltersState extends _$FiltersState {
   @override
   Filters build() => loadData();
 
-  void saveData() => getIt<LocalRepository>().saveFilters(state);
-  Filters loadData() => getIt<LocalRepository>().loadFilters();
+  void saveData() => localRepository.saveFilters(state);
+  Filters loadData() => localRepository.loadFilters();
 
   set category(Category value) {
     state = state.copyWith(category: value);

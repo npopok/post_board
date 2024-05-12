@@ -60,7 +60,7 @@ class _LocationDialogState extends State<LocationDialog> {
         title: widget.title,
         contentPadding: kLocationContentPadding,
         contentBuilder: (context) => FutureBuilder(
-            future: getIt<CachedRepository>().loadCities(),
+            future: cachedRepository.loadCities(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 cities = snapshot.data!;
@@ -162,7 +162,7 @@ class _LocationDialogState extends State<LocationDialog> {
   Future<City> _getCurrentCity() async {
     final pos = await LocationHelper.getCurrentPosition();
     try {
-      cities = await getIt<CachedRepository>().loadCities();
+      cities = await cachedRepository.loadCities();
       final city = cities.reduce(
         (c1, c2) => c1.distanceFrom(pos.$1, pos.$2) < c2.distanceFrom(pos.$1, pos.$2) ? c1 : c2,
       );
@@ -201,7 +201,7 @@ class LocationSearchResults extends StatelessWidget {
         children: results
             .map((e) => ListTile(
                   dense: true,
-                  visualDensity: VisualDensity(vertical: -2),
+                  visualDensity: const VisualDensity(vertical: -2),
                   title: Text(e.toString(), overflow: TextOverflow.ellipsis),
                   onTap: () => onSaved(e),
                 ))

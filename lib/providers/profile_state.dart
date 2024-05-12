@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/repositories/repositories.dart';
 
@@ -11,8 +10,8 @@ class ProfileState extends _$ProfileState {
   @override
   Profile build() => loadData();
 
-  void saveData() => getIt<LocalRepository>().saveProfile(state);
-  Profile loadData() => getIt<LocalRepository>().loadProfile();
+  void saveData() => localRepository.saveProfile(state);
+  Profile loadData() => localRepository.loadProfile();
 
   set name(String value) {
     state = state.copyWith(name: value);
