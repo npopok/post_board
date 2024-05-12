@@ -19,7 +19,7 @@ enum LocationDialogStatus {
 
 class LocationDialog extends StatefulWidget {
   static const searchLimit = 4;
-  static const textAreaHeight = 240.0;
+  static const textAreaHeight = 200.0;
 
   final String title;
   final City initialValue;
@@ -201,6 +201,7 @@ class LocationSearchResults extends StatelessWidget {
         children: results
             .map((e) => ListTile(
                   dense: true,
+                  visualDensity: VisualDensity(vertical: -2),
                   title: Text(e.toString(), overflow: TextOverflow.ellipsis),
                   onTap: () => onSaved(e),
                 ))
