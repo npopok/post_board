@@ -109,8 +109,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (_) => LocationDialog(
           title: 'ProfileScreen.CityDialog'.tr(),
-          successText: 'ProfileScreen.SuccessText'.tr(),
           initialValue: profile.city,
+          minLength: 3,
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
     );

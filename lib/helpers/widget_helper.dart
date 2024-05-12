@@ -15,3 +15,16 @@ class MessengerHelper {
     );
   }
 }
+
+extension BuildContextExtension on BuildContext {
+  Text textCentered(String text) => Text(
+        text,
+        textAlign: TextAlign.center,
+      );
+
+  Text textError(String text) => Text(
+        text,
+        style: TextStyle(color: Theme.of(this).colorScheme.error),
+        textAlign: TextAlign.center,
+      );
+}

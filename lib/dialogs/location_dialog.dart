@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
@@ -7,15 +8,27 @@ import 'package:post_board/repositories/repositories.dart';
 
 import 'generic_dialog.dart';
 
+enum LocationDialogStatus {
+  initial,
+  searchStart,
+  searchResults,
+  locationStart,
+  locationSuccess,
+  locationError,
+}
+
 class LocationDialog extends StatefulWidget {
+  static const searchLimit = 4;
+  static const textAreaHeight = 240.0;
+
   final String title;
-  final String successText;
   final City initialValue;
+  final int minLength;
 
   const LocationDialog({
     required this.title,
-    required this.successText,
     required this.initialValue,
+    required this.minLength,
     super.key,
   });
 
@@ -24,12 +37,17 @@ class LocationDialog extends StatefulWidget {
 }
 
 class _LocationDialogState extends State<LocationDialog> {
+  late ValueNotifier<LocationDialogStatus> currentStatus;
+  late List<City> cities;
   late City selectedValue;
+  String enteredText = '';
+  String errorText = '';
 
   @override
   void initState() {
     super.initState();
     selectedValue = widget.initialValue;
+    currentStatus = ValueNotifier(LocationDialogStatus.initial);
   }
 
   @override
@@ -40,14 +58,19 @@ class _LocationDialogState extends State<LocationDialog> {
       ),
       child: GenericDialog(
         title: widget.title,
-        contentPadding: kInputContentPadding,
-        contentBuilder: (_) => FutureBuilder(
-          future: getCurrentCity(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) selectedValue = snapshot.data!;
-            return _buildContent(context, snapshot);
-          },
-        ),
+        contentPadding: kLocationContentPadding,
+        contentBuilder: (context) => FutureBuilder(
+            future: getIt<CachedRepository>().loadCities(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                cities = snapshot.data!;
+                return _buildContent(context);
+              }
+              if (snapshot.hasError) {
+                return context.textError('LocationDialog.ErrorText'.tr());
+              }
+              return const CircularProgressIndicator();
+            }),
         actions: [
           DialogActionButton.cancel(context),
           DialogActionButton.okay(context, () => selectedValue),
@@ -56,10 +79,90 @@ class _LocationDialogState extends State<LocationDialog> {
     );
   }
 
-  Future<City> getCurrentCity() async {
+  Widget _buildContent(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: currentStatus,
+      builder: (_, value, __) => Column(
+        children: [
+          TextFormField(
+            key: Key(selectedValue.toString()),
+            initialValue: selectedValue.toString(),
+            readOnly: selectedValue.isNotEmpty,
+            autofocus: true,
+            onTap: _inputTapHandler,
+            onChanged: _inputChangedHandler,
+          ),
+          SizedBox(
+            height: LocationDialog.textAreaHeight,
+            child: Center(child: _buildTextArea(context)),
+          ),
+          FilledButton(
+            onPressed: _determineCityHandler,
+            child: Text('Button.Determine'.tr()),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextArea(BuildContext context) {
+    Widget area = switch (currentStatus.value) {
+      LocationDialogStatus.initial => context.textCentered('LocationDialog.SearchText'.tr()),
+      LocationDialogStatus.searchStart => context.textCentered('LocationDialog.SearchText'.tr()),
+      LocationDialogStatus.searchResults => LocationSearchResults(
+          cities: cities,
+          text: enteredText,
+          searchLimit: LocationDialog.searchLimit,
+          emptyText: 'LocationDialog.EmptyText'.tr(),
+          onSaved: (value) {
+            selectedValue = value;
+            currentStatus.value = LocationDialogStatus.initial;
+          },
+        ),
+      LocationDialogStatus.locationStart => const CircularProgressIndicator(),
+      LocationDialogStatus.locationSuccess =>
+        context.textCentered('LocationDialog.SuccessText'.tr()),
+      LocationDialogStatus.locationError => context.textError(errorText),
+    };
+    if (area is Text) {
+      return Padding(padding: const EdgeInsets.all(8), child: area);
+    }
+    if (area is LocationSearchResults) {
+      return Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: area);
+    }
+    return area;
+  }
+
+  void _inputTapHandler() {
+    selectedValue = City.empty();
+    currentStatus.value = LocationDialogStatus.searchStart;
+  }
+
+  void _inputChangedHandler(String value) {
+    enteredText = value;
+    if (value.length < widget.minLength) {
+      currentStatus.value = LocationDialogStatus.searchStart;
+    } else {
+      currentStatus.value = LocationDialogStatus.initial;
+      currentStatus.value = LocationDialogStatus.searchResults;
+    }
+  }
+
+  void _determineCityHandler() async {
+    try {
+      currentStatus.value = LocationDialogStatus.locationStart;
+      selectedValue = await _getCurrentCity();
+      currentStatus.value = LocationDialogStatus.locationSuccess;
+    } catch (e) {
+      errorText = e.toString();
+      currentStatus.value = LocationDialogStatus.locationError;
+    }
+  }
+
+  Future<City> _getCurrentCity() async {
     final pos = await LocationHelper.getCurrentPosition();
     try {
-      final cities = await getIt<CachedRepository>().loadCities();
+      cities = await getIt<CachedRepository>().loadCities();
       final city = cities.reduce(
         (c1, c2) => c1.distanceFrom(pos.$1, pos.$2) < c2.distanceFrom(pos.$1, pos.$2) ? c1 : c2,
       );
@@ -68,47 +171,43 @@ class _LocationDialogState extends State<LocationDialog> {
       throw const LocationException(LocationError.otherError);
     }
   }
+}
 
-  Widget _buildContent(BuildContext context, AsyncSnapshot<City> snapshot) {
-    return Column(
-      children: [
-        TextFormField(
-          key: Key(selectedValue.toString()),
-          initialValue: selectedValue.toString(),
-          readOnly: !snapshot.hasData,
-          onTap: () => setState(() => selectedValue = City.empty()),
-        ),
-        SizedBox(
-          height: 200,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: _buildTextArea(
-                context,
-                snapshot.error,
-                snapshot.data,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+class LocationSearchResults extends StatelessWidget {
+  final List<City> cities;
+  final String text;
+  final int searchLimit;
+  final String emptyText;
+  final void Function(City) onSaved;
 
-  Widget _buildTextArea(BuildContext context, Object? error, City? data) {
-    if (error != null) {
-      return Text(
-        error.toString(),
-        style: TextStyle(color: Theme.of(context).colorScheme.error),
-        textAlign: TextAlign.center,
-      );
-    } else if (data != null) {
-      return Text(
-        widget.successText,
-        textAlign: TextAlign.center,
+  const LocationSearchResults({
+    required this.cities,
+    required this.text,
+    required this.searchLimit,
+    required this.emptyText,
+    required this.onSaved,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final matches =
+        cities.where((e) => e.name.toLowerCase().startsWith(text.toLowerCase())).toList();
+    matches.sort((a, b) => a.compareTo(b));
+
+    final results = matches.take(searchLimit).toList();
+    if (results.isNotEmpty) {
+      return Column(
+        children: results
+            .map((e) => ListTile(
+                  dense: true,
+                  title: Text(e.toString(), overflow: TextOverflow.ellipsis),
+                  onTap: () => onSaved(e),
+                ))
+            .toList(),
       );
     } else {
-      return const CircularProgressIndicator();
+      return Text(emptyText);
     }
   }
 }

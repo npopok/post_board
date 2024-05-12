@@ -33,7 +33,7 @@
     "SubmitScreen.SubmitButton": "SUBMIT",
     "SubmitScreen.SubmitSuccess": "Your post has been published.", 
     "SubmitScreen.ServerError": "Error occuried. Try again later.",
-    "SubmitScreen.QuotaError": "You can only create one posr per day.",
+    "SubmitScreen.QuotaError": "You can only create one post per day.",
 
     "ProfileScreen.Title": "Profile",
     "ProfileScreen.NameList": "Name",
@@ -44,10 +44,14 @@
     "ProfileScreen.AgeDialog": "Your Age",   
     "ProfileScreen.CityList": "City",
     "ProfileScreen.CityDialog": "Your City",
-    "ProfileScreen.SuccessText": "The location is determined automatically. If you are located elsewhere, please select your city manually.",
 
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.ThemeMode": "Theme Mode",
+
+    "LocationDialog.SuccessText": "The location is determined automatically. If you are located elsewhere, please select your city manually.",
+    "LocationDialog.SearchText": "Enter the city name or click the Determine button automatically determine it.",
+    "LocationDialog.EmptyText": "City not found.",
+    "LocationDialog.ErrorText": "Error occuried. Try again later.",
 
     "ThemeMode.light": "Light",
     "ThemeMode.dark": "Dark",
@@ -65,6 +69,7 @@
 
     "Button.OK": "OK",
     "Button.Cancel": "CANCEL",
+    "Button.Determine": "DETERMINE",
 
     "Elapsed.Now": "now",
     "Elapsed.Minutues": "{} min ago",
@@ -76,5 +81,5 @@
 
     "LocationException.ServiceDisabled": "To determine your city, allow access to location in the settings.",
     "LocationException.PermissionDenied": "To determine your city, allow access to location in the settings.",
-    "LocationException.OtherError": "Error occurred while trying to determine the location. Try again later."
+    "LocationException.OtherError": "Error occurred while trying to determine the location."
 }

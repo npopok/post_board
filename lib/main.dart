@@ -23,6 +23,12 @@ void main() async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   await Supabase.initialize(
     url: const String.fromEnvironment('SUPABASE_URL'),
     anonKey: const String.fromEnvironment('SUPABASE_KEY'),
@@ -30,12 +36,6 @@ void main() async {
   if (Supabase.instance.client.auth.currentUser == null) {
     await Supabase.instance.client.auth.signInAnonymously();
   }
-
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
 
   await Depedencies.initialize();
 

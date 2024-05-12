@@ -18,23 +18,24 @@ class LocationException implements Exception {
 
 class LocationHelper {
   static Future<(double, double)> getCurrentPosition() async {
-    try {
-      final enabled = await Geolocator.isLocationServiceEnabled();
-      if (!enabled) {
-        throw const LocationException(LocationError.serviceDisabled);
-      }
+    final enabled = await Geolocator.isLocationServiceEnabled();
+    if (!enabled) {
+      throw const LocationException(LocationError.serviceDisabled);
+    }
 
-      var permission = await Geolocator.checkPermission();
+    var permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          throw const LocationException(LocationError.permissionDenied);
-        }
-      }
-      if (permission == LocationPermission.deniedForever) {
         throw const LocationException(LocationError.permissionDenied);
       }
+    }
 
+    if (permission == LocationPermission.deniedForever) {
+      throw const LocationException(LocationError.permissionDenied);
+    }
+
+    try {
       final position = await Geolocator.getCurrentPosition();
       return (position.latitude, position.longitude);
     } catch (e) {

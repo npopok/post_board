@@ -17,7 +17,13 @@ class City with _$City {
   }) = _City;
 
   @override
-  String toString() => '$name, $region';
+  String toString() => isEmpty ? '' : '$name, $region';
+
+  int compareTo(City other) =>
+      name == other.name ? region.compareTo(other.region) : name.compareTo(other.name);
+
+  bool get isEmpty => id == 0;
+  bool get isNotEmpty => !isEmpty;
 
   double distanceFrom(double latitude, double longitude) {
     return Geolocator.distanceBetween(latitude, longitude, this.latitude, this.longitude);
