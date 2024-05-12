@@ -36,10 +36,7 @@ class _RangeDialogState extends State<RangeDialog> {
       title: widget.title,
       contentPadding: kSliderContentPadding,
       contentBuilder: _buildContent,
-      actions: [
-        DialogActionButton.cancel(context),
-        DialogActionButton.okay(context, () => selectedValues),
-      ],
+      actions: [DialogActionButton.save(context, () => selectedValues)],
     );
   }
 

@@ -67,8 +67,7 @@
     "Category.jobs": "Jobs",
     "Category.other": "Other",
 
-    "Button.OK": "OK",
-    "Button.Cancel": "CANCEL",
+    "Button.Save": "SAVE",
     "Button.Determine": "DETERMINE",
 
     "Elapsed.Now": "now",

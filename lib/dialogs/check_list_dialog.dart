@@ -36,10 +36,7 @@ class _CheckListDialogState extends State<CheckListDialog> {
       title: widget.title,
       contentPadding: kDefaultContentPadding,
       contentBuilder: _buildContent,
-      actions: [
-        DialogActionButton.cancel(context),
-        DialogActionButton.okay(context, () => checks),
-      ],
+      actions: [DialogActionButton.save(context, () => checks)],
     );
   }
 

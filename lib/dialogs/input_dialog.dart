@@ -47,13 +47,9 @@ class _InputDialogState extends State<InputDialog> {
         contentBuilder: (_) => TextField(
           controller: textController,
           maxLength: widget.maxLength,
-          //    autofocus: true,
           decoration: const InputDecoration(counterText: ''),
         ),
-        actions: [
-          DialogActionButton.cancel(context),
-          DialogActionButton.okay(context, () => textController.text),
-        ],
+        actions: [DialogActionButton.save(context, () => textController.text)],
       ),
     );
   }

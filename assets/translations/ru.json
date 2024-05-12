@@ -67,8 +67,7 @@
     "Category.jobs": "Работа",
     "Category.other": "Разное",
 
-    "Button.OK": "ОК",
-    "Button.Cancel": "ОТМЕНА",
+    "Button.Save": "СОХРАНИТЬ",
     "Button.Determine": "ОПРЕДЕЛИТЬ",
 
     "Elapsed.Now": "сейчас",

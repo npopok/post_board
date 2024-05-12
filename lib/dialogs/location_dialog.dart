@@ -72,8 +72,10 @@ class _LocationDialogState extends State<LocationDialog> {
               return const CircularProgressIndicator();
             }),
         actions: [
-          DialogActionButton.cancel(context),
-          DialogActionButton.okay(context, () => selectedValue),
+          DialogActionButton.save(
+            context,
+            () => selectedValue.isNotEmpty ? selectedValue : widget.initialValue,
+          )
         ],
       ),
     );

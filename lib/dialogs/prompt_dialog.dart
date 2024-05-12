@@ -23,10 +23,7 @@ class PromptDialog extends StatelessWidget {
         text,
         style: Theme.of(context).textTheme.bodyLarge,
       ),
-      actions: [
-        DialogActionButton.cancel(context),
-        DialogActionButton.okay(context, () => true),
-      ],
+      actions: [DialogActionButton.save(context, () => true)],
     );
   }
 }

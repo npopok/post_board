@@ -36,10 +36,7 @@ class _SliderDialogState extends State<SliderDialog> {
       title: widget.title,
       contentPadding: kSliderContentPadding,
       contentBuilder: _buildContent,
-      actions: [
-        DialogActionButton.cancel(context),
-        DialogActionButton.okay(context, () => selectedValue),
-      ],
+      actions: [DialogActionButton.save(context, () => selectedValue)],
     );
   }
 
