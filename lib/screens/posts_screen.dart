@@ -81,25 +81,14 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
               minHeight: constraints.maxHeight,
             ),
             child: posts.when(
-              data: (posts) => _buildListView(posts),
-              error: (_, __) => Center(child: Text('PostsScreen.Error'.tr())),
+              data: (posts) => PostsListView(posts: posts),
+              error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
               loading: () => const Center(child: CircularProgressIndicator()),
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget _buildListView(List<Post> posts) {
-    return posts.isNotEmpty
-        ? ListView.builder(
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemCount: posts.length,
-            itemBuilder: (context, index) => PostDetails(post: posts[index]),
-          )
-        : Center(child: Text('PostsScreen.Empty'.tr()));
   }
 
   void _updateCategory(Category value) {

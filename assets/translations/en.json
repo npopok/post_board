@@ -6,8 +6,10 @@
     "HomeScreen.Profile": "Profile",
 
     "PostsScreen.Title": "Posts",
-    "PostsScreen.Empty": "No posts.",
     "PostsScreen.Error": "Server error.",
+
+    "PostsPlaceholder.EmptyTitle": "No posts.",
+    "PostsPlaceholder.EmptyText": "Try change the filters.",
 
     "FiltersScreen.Title": "Filters",
     "FiltersScreen.Gender": "Gender",

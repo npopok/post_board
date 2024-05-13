@@ -34,7 +34,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         title: Text('SubmitScreen.Title'.tr()),
       ),
       body: Padding(
-        padding: FormSettings.textPadding,
+        padding: FormSettings.contentPadding,
         child: Form(
           key: formKey,
           child: Column(
@@ -65,7 +65,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => category = value!,
         ),
-        FormSettings.textSpacer,
+        FormSettings.inputSpacer,
         TextFormField(
           maxLines: 5,
           maxLength: FieldSettings.postMaxLength,
@@ -81,7 +81,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => text = value!,
         ),
-        FormSettings.textSpacer,
+        FormSettings.inputSpacer,
         TextFormField(
           maxLength: FieldSettings.contactMaxLength,
           decoration: InputDecoration(
@@ -93,13 +93,10 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => contact = value!,
         ),
-        FormSettings.textDoubleSpacer,
+        FormSettings.inputDoubleSpacer,
         ValueListenableBuilder(
           valueListenable: errorText,
-          builder: (_, value, __) => Text(
-            value,
-            style: TextStyle(color: Theme.of(context).colorScheme.error),
-          ),
+          builder: (_, value, __) => context.textError(value),
         ),
       ],
     );

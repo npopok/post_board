@@ -6,9 +6,11 @@
     "HomeScreen.Profile": "Профиль",
 
     "PostsScreen.Title": "Объявления",
-    "PostsScreen.Empty": "Нет объявлений.",   
     "PostsScreen.Error": "Ошибка сервера.",
     
+    "PostsPlaceholder.EmptyTitle": "Нет объявлений.",
+    "PostsPlaceholder.EmptyText": "Попробуйте изменить фильтры.",
+
     "FiltersScreen.Title": "Фильтры",
     "FiltersScreen.Gender": "Пол",   
     "FiltersScreen.Age": "Возраст", 

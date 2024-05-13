@@ -15,10 +15,10 @@ enum PostAction {
   copyText,
 }
 
-class PostDetails extends StatelessWidget {
+class PostListItem extends StatelessWidget {
   final Post post;
 
-  const PostDetails({required this.post, super.key});
+  const PostListItem({required this.post, super.key});
 
   @override
   Widget build(BuildContext context) {

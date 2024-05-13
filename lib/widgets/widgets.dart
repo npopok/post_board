@@ -1,2 +1,3 @@
 export 'dropdown_field.dart';
-export 'post_details.dart';
+export 'posts_list_view.dart';
+export 'posts_list_item.dart';
