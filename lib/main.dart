@@ -16,28 +16,12 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await initializeFirebase();
+  await initializeSupabase();
+  await Depedencies.initialize();
+
   EasyLocalization.logger.enableBuildModes = [];
   await EasyLocalization.ensureInitialized();
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
-
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
-
-  await Supabase.initialize(
-    url: const String.fromEnvironment('SUPABASE_URL'),
-    anonKey: const String.fromEnvironment('SUPABASE_KEY'),
-  );
-  if (Supabase.instance.client.auth.currentUser == null) {
-    await Supabase.instance.client.auth.signInAnonymously();
-  }
-
-  await Depedencies.initialize();
 
   runApp(
     EasyLocalization(
@@ -48,6 +32,28 @@ void main() async {
       child: const MainApp(),
     ),
   );
+}
+
+Future<void> initializeSupabase() async {
+  await Supabase.initialize(
+    url: const String.fromEnvironment('SUPABASE_URL'),
+    anonKey: const String.fromEnvironment('SUPABASE_KEY'),
+  );
+  if (Supabase.instance.client.auth.currentUser == null) {
+    await Supabase.instance.client.auth.signInAnonymously();
+  }
+}
+
+Future<void> initializeFirebase() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
+
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 }
 
 class MainApp extends StatefulWidget {
