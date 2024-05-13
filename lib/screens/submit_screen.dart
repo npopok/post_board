@@ -93,7 +93,8 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ).validate,
           onSaved: (value) => contact = value!,
         ),
-        FormSettings.inputDoubleSpacer,
+        FormSettings.inputSpacer,
+        FormSettings.inputSpacer,
         ValueListenableBuilder(
           valueListenable: errorText,
           builder: (_, value, __) => context.textError(value),

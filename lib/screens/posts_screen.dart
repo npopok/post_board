@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/helpers/helpers.dart';
-import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 import 'package:post_board/widgets/widgets.dart';
 
@@ -34,34 +33,11 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 8),
-          _buildCategoryBar(),
-          const SizedBox(height: 8),
+          FormSettings.defaultSpacer,
+          const CategoryFilter(),
+          FormSettings.defaultSpacer,
           Expanded(child: _buildPostList()),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCategoryBar() {
-    final filter = ref.watch(filtersStateProvider);
-
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Wrap(
-          spacing: 12,
-          children: List.generate(
-            Category.values.length,
-            (index) => ChoiceChip(
-              showCheckmark: false,
-              label: Text(Category.values[index].toString().tr()),
-              selected: filter.category == Category.values[index],
-              onSelected: (_) => _updateCategory(Category.values[index]),
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -89,10 +65,5 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
         ),
       ),
     );
-  }
-
-  void _updateCategory(Category value) {
-    ref.read(filtersStateProvider.notifier).category = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_category': value});
   }
 }

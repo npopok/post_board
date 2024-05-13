@@ -25,9 +25,9 @@ class RepositorySettings {
 
 class FormSettings {
   static const contentPadding = EdgeInsets.all(24);
-  static const inputSpacer = SizedBox(height: 20);
-  static const inputDoubleSpacer = SizedBox(height: 40);
+  static const defaultSpacer = SizedBox(height: 8);
   static const textSpacer = SizedBox(height: 12);
+  static const inputSpacer = SizedBox(height: 20);
 }
 
 class DialogPaddings {
