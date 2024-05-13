@@ -12,6 +12,7 @@ enum LocationDialogStatus {
   initial,
   searchStart,
   searchResults,
+  searchSelected,
   locationStart,
   locationSuccess,
   locationError,
@@ -118,9 +119,10 @@ class _LocationDialogState extends State<LocationDialog> {
           emptyText: 'LocationDialog.EmptyText'.tr(),
           onSaved: (value) {
             selectedValue = value;
-            currentStatus.value = LocationDialogStatus.initial;
+            currentStatus.value = LocationDialogStatus.searchSelected;
           },
         ),
+      LocationDialogStatus.searchSelected => Container(),
       LocationDialogStatus.locationStart => const CircularProgressIndicator(),
       LocationDialogStatus.locationSuccess =>
         context.textCentered('LocationDialog.SuccessText'.tr()),
