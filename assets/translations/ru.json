@@ -50,7 +50,7 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
     
-    "LocationDialog.SuccessText": "Местоположение определено автоматически. Если вы находитесь в другом месте, выберите ваш город вручную.",
+    "LocationDialog.SuccessText": "После сохранения будут показываться объявления для выбранного города.",
     "LocationDialog.SearchText": "Введите название города или нажмите кнопку Определить для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",
     "LocationDialog.ErrorText": "Произошла ошибка. Попробуйте позже.",

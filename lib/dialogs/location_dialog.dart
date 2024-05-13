@@ -122,7 +122,8 @@ class _LocationDialogState extends State<LocationDialog> {
             currentStatus.value = LocationDialogStatus.searchSelected;
           },
         ),
-      LocationDialogStatus.searchSelected => Container(),
+      LocationDialogStatus.searchSelected =>
+        context.textCentered('LocationDialog.SuccessText'.tr()),
       LocationDialogStatus.locationStart => const CircularProgressIndicator(),
       LocationDialogStatus.locationSuccess =>
         context.textCentered('LocationDialog.SuccessText'.tr()),

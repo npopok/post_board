@@ -50,7 +50,7 @@
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.ThemeMode": "Theme Mode",
 
-    "LocationDialog.SuccessText": "The location is determined automatically. If you are located elsewhere, please select your city manually.",
+    "LocationDialog.SuccessText": "Once saved the posts will be displayed for the selected city.",
     "LocationDialog.SearchText": "Enter the city name or click the Determine button automatically determine it.",
     "LocationDialog.EmptyText": "City not found.",
     "LocationDialog.ErrorText": "Error occuried. Try again later.",
