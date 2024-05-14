@@ -30,15 +30,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FormSettings.defaultSpacer,
-          const CategoryFilter(),
-          FormSettings.defaultSpacer,
-          Expanded(child: _buildPostList()),
-        ],
-      ),
+      body: _buildPostList(),
     );
   }
 
@@ -49,19 +41,10 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
     return LayoutBuilder(
       builder: (context, constraints) => RefreshIndicator(
         onRefresh: () => ref.refresh(postsStateProvider(filters).future),
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: constraints.maxWidth,
-              minHeight: constraints.maxHeight,
-            ),
-            child: posts.when(
-              data: (posts) => PostsListView(posts: posts),
-              error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
-              loading: () => const Center(child: CircularProgressIndicator()),
-            ),
-          ),
+        child: posts.when(
+          data: (posts) => PostsListView(posts: posts),
+          error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
+          loading: () => const Center(child: CircularProgressIndicator()),
         ),
       ),
     );

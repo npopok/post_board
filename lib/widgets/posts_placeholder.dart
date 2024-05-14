@@ -8,16 +8,18 @@ class PostsPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'PostsPlaceholder.EmptyTitle'.tr(),
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        FormSettings.textSpacer,
-        Text('PostsPlaceholder.EmptyText'.tr()),
-      ],
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'PostsPlaceholder.EmptyTitle'.tr(),
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          FormSettings.textSpacer,
+          Text('PostsPlaceholder.EmptyText'.tr()),
+        ],
+      ),
     );
   }
 }
