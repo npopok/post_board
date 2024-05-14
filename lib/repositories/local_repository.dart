@@ -14,7 +14,7 @@ class LocalRepository {
   const LocalRepository({required this.prefs});
 
   void saveProfile(Profile value) {
-    return saveObject<Profile>(RepositorySettings.profileLocalKey, value);
+    saveObject<Profile>(RepositorySettings.profileLocalKey, value);
   }
 
   Profile loadProfile() {
@@ -50,7 +50,7 @@ class LocalRepository {
   }
 
   void saveSettings(Settings value) {
-    return saveObject<Settings>(RepositorySettings.settingsLocalKey, value);
+    saveObject<Settings>(RepositorySettings.settingsLocalKey, value);
   }
 
   Settings loadSettings() {
@@ -59,6 +59,14 @@ class LocalRepository {
       Settings.fromJson,
       Settings.empty(),
     );
+  }
+
+  void saveOnboarding(String value) {
+    prefs.setString(RepositorySettings.onboardingLocalKey, value);
+  }
+
+  String? loadOnboarding() {
+    return prefs.getString(RepositorySettings.onboardingLocalKey);
   }
 
   void saveObject<T>(String key, T value) {

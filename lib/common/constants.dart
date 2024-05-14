@@ -14,6 +14,7 @@ class RepositorySettings {
   static const citiesLocalKey = 'cities';
   static const filtersLocalKey = 'filters';
   static const settingsLocalKey = 'settings';
+  static const onboardingLocalKey = 'onboarding';
 
   static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';

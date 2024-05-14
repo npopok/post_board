@@ -18,7 +18,10 @@ enum PostAction {
 class PostListItem extends StatelessWidget {
   final Post post;
 
-  const PostListItem({required this.post, super.key});
+  const PostListItem({
+    required this.post,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

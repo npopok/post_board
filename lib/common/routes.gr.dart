@@ -21,6 +21,12 @@ abstract class _$Routes extends RootStackRouter {
         child: const FiltersScreen(),
       );
     },
+    FinishRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FinishScreen(),
+      );
+    },
     HelpRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -45,6 +51,36 @@ abstract class _$Routes extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    SelectAgeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectAgeScreen(),
+      );
+    },
+    SelectCityRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectCityScreen(),
+      );
+    },
+    SelectFiltersRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectFiltersScreen(),
+      );
+    },
+    SelectGenderRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectGenderScreen(),
+      );
+    },
+    SelectNameRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectNameScreen(),
+      );
+    },
     SettingsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -55,6 +91,12 @@ abstract class _$Routes extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SubmitScreen(),
+      );
+    },
+    WelcomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WelcomeScreen(),
       );
     },
   };
@@ -70,6 +112,20 @@ class FiltersRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FiltersRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FinishScreen]
+class FinishRoute extends PageRouteInfo<void> {
+  const FinishRoute({List<PageRouteInfo>? children})
+      : super(
+          FinishRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FinishRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -131,6 +187,76 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectAgeScreen]
+class SelectAgeRoute extends PageRouteInfo<void> {
+  const SelectAgeRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectAgeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectAgeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SelectCityScreen]
+class SelectCityRoute extends PageRouteInfo<void> {
+  const SelectCityRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectCityRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectCityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SelectFiltersScreen]
+class SelectFiltersRoute extends PageRouteInfo<void> {
+  const SelectFiltersRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectFiltersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectFiltersRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SelectGenderScreen]
+class SelectGenderRoute extends PageRouteInfo<void> {
+  const SelectGenderRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectGenderRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectGenderRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SelectNameScreen]
+class SelectNameRoute extends PageRouteInfo<void> {
+  const SelectNameRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectNameRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectNameRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SettingsScreen]
 class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute({List<PageRouteInfo>? children})
@@ -154,6 +280,20 @@ class SubmitRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SubmitRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WelcomeScreen]
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute({List<PageRouteInfo>? children})
+      : super(
+          WelcomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WelcomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
