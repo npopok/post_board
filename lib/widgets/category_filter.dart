@@ -6,8 +6,11 @@ import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 import 'package:post_board/helpers/helpers.dart';
 
-class CategoryFilter extends ConsumerWidget {
+class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
   const CategoryFilter({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +19,7 @@ class CategoryFilter extends ConsumerWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Wrap(
           spacing: 12,
           children: List.generate(

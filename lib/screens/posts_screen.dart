@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/widgets/widgets.dart';
+import 'package:post_board/providers/providers.dart';
+import 'package:post_board/helpers/helpers.dart';
 
 @RoutePage()
 class PostsScreen extends ConsumerWidget {
@@ -16,6 +18,7 @@ class PostsScreen extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('PostsScreen.Title'.tr()),
+        bottom: const CategoryFilter(),
         actions: [
           IconButton(
             onPressed: () => context.navigateTo(const FiltersRoute()),
@@ -23,7 +26,21 @@ class PostsScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: const PostsListView(),
+      body: _buildPostsList(context, ref),
+    );
+  }
+
+  Widget _buildPostsList(BuildContext context, WidgetRef ref) {
+    final filters = ref.watch(filtersStateProvider);
+    final posts = ref.watch(postsStateProvider(filters));
+
+    return RefreshIndicator(
+      onRefresh: () => ref.refresh(postsStateProvider(filters).future),
+      child: posts.when(
+        data: (posts) => PostsListView(posts: posts),
+        error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
+        loading: () => const Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }
