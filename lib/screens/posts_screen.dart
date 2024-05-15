@@ -4,21 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
-import 'package:post_board/helpers/helpers.dart';
-import 'package:post_board/providers/providers.dart';
 import 'package:post_board/widgets/widgets.dart';
 
 @RoutePage()
-class PostsScreen extends ConsumerStatefulWidget {
+class PostsScreen extends ConsumerWidget {
   const PostsScreen({super.key});
 
   @override
-  ConsumerState<PostsScreen> createState() => _PostsScreenState();
-}
-
-class _PostsScreenState extends ConsumerState<PostsScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -30,23 +23,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
           ),
         ],
       ),
-      body: _buildPostList(),
-    );
-  }
-
-  Widget _buildPostList() {
-    final filters = ref.watch(filtersStateProvider);
-    final posts = ref.watch(postsStateProvider(filters));
-
-    return LayoutBuilder(
-      builder: (context, constraints) => RefreshIndicator(
-        onRefresh: () => ref.refresh(postsStateProvider(filters).future),
-        child: posts.when(
-          data: (posts) => PostsListView(posts: posts),
-          error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
-          loading: () => const Center(child: CircularProgressIndicator()),
-        ),
-      ),
+      body: const PostsListView(),
     );
   }
 }
