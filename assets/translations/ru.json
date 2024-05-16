@@ -50,8 +50,8 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
     
-    "LocationDialog.SuccessText": "После сохранения будут показываться объявления для выбранного города.",
-    "LocationDialog.SearchText": "Введите название города или нажмите кнопку Определить для автоматического определения.",
+    "LocationDialog.SuccessText": "Будут показываться объявления для выбранного города.",
+    "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",
     "LocationDialog.ErrorText": "Произошла ошибка. Попробуйте позже.",
 
@@ -69,10 +69,9 @@
     "Category.jobs": "Работа",
     "Category.other": "Разное",
 
-    "Button.Next": "ДАЛЬШЕ",
+    "Button.Next": "ДАЛЕЕ",
     "Button.Start": "НАЧАТЬ",   
     "Button.Save": "СОХРАНИТЬ",
-    "Button.Determine": "ОПРЕДЕЛИТЬ",
 
     "Elapsed.Now": "сейчас",
     "Elapsed.Minutues": "{} мин назад",

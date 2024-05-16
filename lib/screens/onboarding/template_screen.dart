@@ -1,27 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/repositories/repositories.dart';
 
 class ScreenInfo {
   final String title;
-  final Widget content;
+  final ({int step, int count}) progress;
   final PageRouteInfo nextScreen;
-  final bool isFinal;
+
+  bool get isFinal => progress.step == progress.count;
+  bool get isComplete => progress.step >= progress.count - 1;
 
   const ScreenInfo({
     required this.title,
-    required this.content,
+    required this.progress,
     required this.nextScreen,
-    required this.isFinal,
   });
 }
 
-abstract class TemplateScreen extends StatelessWidget {
+abstract class TemplateScreen extends ConsumerStatefulWidget {
   const TemplateScreen({super.key});
 
   ScreenInfo get screenInfo;
+  Widget buildContent(BuildContext context, WidgetRef ref);
+
+  @override
+  ConsumerState<TemplateScreen> createState() => _TemplateScreenState();
+}
+
+class _TemplateScreenState extends ConsumerState<TemplateScreen> {
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,27 +41,46 @@ abstract class TemplateScreen extends StatelessWidget {
       body: Column(
         children: [
           Text(
-            screenInfo.title,
+            widget.screenInfo.title,
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           Expanded(
-            child: Center(child: screenInfo.content),
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Center(
+                child: Form(
+                  key: formKey,
+                  child: widget.buildContent(context, ref),
+                ),
+              ),
+            ),
           ),
+          const SizedBox(height: 20),
           FilledButton(
-            onPressed: () {
-              localRepository.saveOnboarding(screenInfo.nextScreen.routeName);
-              screenInfo.isFinal
-                  ? context.router.replaceAll([screenInfo.nextScreen])
-                  : context.navigateTo(screenInfo.nextScreen);
-            },
+            onPressed: () => showNextScreen(context),
             child: Text(
-              screenInfo.isFinal ? 'Button.Start'.tr() : 'Button.Next'.tr(),
+              widget.screenInfo.isFinal ? 'Button.Start'.tr() : 'Button.Next'.tr(),
             ),
           ),
           const SizedBox(height: 80),
         ],
       ),
     );
+  }
+
+  void showNextScreen(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+
+      localRepository.saveOnboarding(widget.screenInfo.isComplete);
+
+      if (widget.screenInfo.isFinal) {
+        context.router.replaceAll([widget.screenInfo.nextScreen]);
+        AnalyticsHelper.logEvent(AnalyticsEvent.onboardingComplete);
+      } else {
+        context.navigateTo(widget.screenInfo.nextScreen);
+      }
+    }
   }
 }

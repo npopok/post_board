@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
+import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/providers/providers.dart';
 
 import 'template_screen.dart';
 
@@ -11,9 +14,20 @@ class SelectCityScreen extends TemplateScreen {
 
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
-        title: 'City!',
-        content: Text('CITY text goes here...'),
+        title: 'Где вы находитесь?',
+        progress: (step: 5, count: 7),
         nextScreen: SelectFiltersRoute(),
-        isFinal: false,
       );
+
+  @override
+  Widget buildContent(BuildContext context, WidgetRef ref) {
+    return LocationDialog(
+        initialValue: ref.watch(profileStateProvider).city,
+        contentPadding: EdgeInsets.zero,
+        saveButton: false,
+        onSelected: (value) {
+          ref.read(profileStateProvider.notifier).city = value;
+          ref.read(filtersStateProvider.notifier).city = value;
+        });
+  }
 }

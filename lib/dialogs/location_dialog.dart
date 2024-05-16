@@ -19,18 +19,23 @@ enum LocationDialogStatus {
 }
 
 class LocationDialog extends StatefulWidget {
+  static const minLength = 3;
   static const searchLimit = 4;
-  static const textAreaHeight = 200.0;
+  static const textAreaHeight = 180.0;
 
-  final String title;
+  final String? title;
   final City initialValue;
-  final int minLength;
+  final EdgeInsets? contentPadding;
+  final bool saveButton;
+  final Function(City)? onSelected;
 
   const LocationDialog({
-    required this.title,
+    this.title,
     required this.initialValue,
-    required this.minLength,
     super.key,
+    this.contentPadding,
+    this.saveButton = true,
+    this.onSelected,
   });
 
   @override
@@ -59,7 +64,7 @@ class _LocationDialogState extends State<LocationDialog> {
       ),
       child: GenericDialog(
         title: widget.title,
-        contentPadding: DialogPaddings.locationContent,
+        contentPadding: widget.contentPadding ?? DialogPaddings.locationContent,
         contentBuilder: (context) => FutureBuilder(
             future: cachedRepository.loadCities(),
             builder: (context, snapshot) {
@@ -73,10 +78,11 @@ class _LocationDialogState extends State<LocationDialog> {
               return const CircularProgressIndicator();
             }),
         actions: [
-          DialogActionButton.save(
-            context,
-            () => selectedValue.isNotEmpty ? selectedValue : widget.initialValue,
-          )
+          if (widget.saveButton == true)
+            DialogActionButton.save(
+              context,
+              () => selectedValue.isNotEmpty ? selectedValue : widget.initialValue,
+            )
         ],
       ),
     );
@@ -94,14 +100,16 @@ class _LocationDialogState extends State<LocationDialog> {
             autofocus: true,
             onTap: _inputTapHandler,
             onChanged: _inputChangedHandler,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: _determineCityHandler,
+                icon: const Icon(Icons.near_me),
+              ),
+            ),
           ),
           SizedBox(
             height: LocationDialog.textAreaHeight,
             child: Center(child: _buildTextArea(context)),
-          ),
-          FilledButton(
-            onPressed: _determineCityHandler,
-            child: Text('Button.Determine'.tr()),
           ),
         ],
       ),
@@ -119,6 +127,7 @@ class _LocationDialogState extends State<LocationDialog> {
           emptyText: 'LocationDialog.EmptyText'.tr(),
           onSaved: (value) {
             selectedValue = value;
+            widget.onSelected?.call(selectedValue);
             currentStatus.value = LocationDialogStatus.searchSelected;
           },
         ),
@@ -133,7 +142,7 @@ class _LocationDialogState extends State<LocationDialog> {
       return Padding(padding: const EdgeInsets.all(8), child: area);
     }
     if (area is LocationSearchResults) {
-      return Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: area);
+      return Padding(padding: const EdgeInsets.only(top: 12), child: area);
     }
     return area;
   }
@@ -145,7 +154,7 @@ class _LocationDialogState extends State<LocationDialog> {
 
   void _inputChangedHandler(String value) {
     enteredText = value;
-    if (value.length < widget.minLength) {
+    if (value.length < LocationDialog.minLength) {
       currentStatus.value = LocationDialogStatus.searchStart;
     } else {
       currentStatus.value = LocationDialogStatus.initial;
@@ -157,6 +166,7 @@ class _LocationDialogState extends State<LocationDialog> {
     try {
       currentStatus.value = LocationDialogStatus.locationStart;
       selectedValue = await _getCurrentCity();
+      widget.onSelected?.call(selectedValue);
       currentStatus.value = LocationDialogStatus.locationSuccess;
     } catch (e) {
       errorText = e.toString();

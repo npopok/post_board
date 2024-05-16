@@ -16,16 +16,11 @@ class OnboardingRoute extends CustomRoute {
 class HomeRouteGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    String? step = localRepository.loadOnboarding();
-    if (step == HomeRoute.name || step == FinishRoute.name) {
-      resolver.next(true);
-    } else if (step == null) {
-      router.push(const WelcomeRoute());
-    } else {
-      final routes = router.routeCollection.routes;
-      final route = routes.firstWhere((e) => e.name == step);
-      router.pushNamed(route.path);
-    }
+    return switch (localRepository.loadOnboarding()) {
+      null => router.push(const WelcomeRoute()),
+      false => router.push(const SelectNameRoute()),
+      true => resolver.next(true),
+    };
   }
 }
 
@@ -33,22 +28,25 @@ class HomeRouteGuard extends AutoRouteGuard {
 class Routes extends _$Routes {
   @override
   List<AutoRoute> get routes => [
-        OnboardingRoute(page: WelcomeRoute.page),
-        OnboardingRoute(page: SelectNameRoute.page),
+        OnboardingRoute(
+          page: WelcomeRoute.page,
+          initial: true,
+        ),
         OnboardingRoute(page: SelectGenderRoute.page),
+        OnboardingRoute(page: SelectNameRoute.page),
         OnboardingRoute(page: SelectAgeRoute.page),
         OnboardingRoute(page: SelectCityRoute.page),
         OnboardingRoute(page: SelectFiltersRoute.page),
         OnboardingRoute(page: FinishRoute.page),
         AutoRoute(
           page: HomeRoute.page,
-          initial: true,
+          //initial: true, // TODO
           children: [
             AutoRoute(page: PostsRoute.page),
             AutoRoute(page: SubmitRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
-          guards: [HomeRouteGuard()],
+          //guards: [HomeRouteGuard()], // TODO
         ),
         AutoRoute(page: FiltersRoute.page),
         AutoRoute(page: SettingsRoute.page),

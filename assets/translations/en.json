@@ -51,7 +51,7 @@
     "SettingsScreen.ThemeMode": "Theme Mode",
 
     "LocationDialog.SuccessText": "Once saved the posts will be displayed for the selected city.",
-    "LocationDialog.SearchText": "Enter the city name or click the Determine button automatically determine it.",
+    "LocationDialog.SearchText": "Enter the city name or click on the icon to automatically determine it.",
     "LocationDialog.EmptyText": "City not found.",
     "LocationDialog.ErrorText": "Error occuried. Try again later.",
 
@@ -72,7 +72,6 @@
     "Button.Next": "NEXT",
     "Button.Start": "START",   
     "Button.Save": "SAVE",
-    "Button.Determine": "DETERMINE",
 
     "Elapsed.Now": "now",
     "Elapsed.Minutues": "{} min ago",

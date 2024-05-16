@@ -6,6 +6,7 @@ enum AnalyticsEvent {
   //
   // Event Name | Parameters
   //
+  onboardingComplete,
   profileUpdate, // profile_name | profile_gender | profile_age | profile_city
   filtersUpdate, // filters_category | filters_gender | filters_age
   settingsUpdate, // settings_theme_mode
@@ -13,6 +14,7 @@ enum AnalyticsEvent {
 
 class AnalyticsHelper {
   static Map<AnalyticsEvent, String> eventNames = {
+    AnalyticsEvent.onboardingComplete: 'onboarding_complete',
     AnalyticsEvent.profileUpdate: 'profile_update',
     AnalyticsEvent.filtersUpdate: 'filters_update',
     AnalyticsEvent.settingsUpdate: 'settings_update',
