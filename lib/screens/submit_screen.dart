@@ -120,6 +120,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       formKey.currentState!.reset();
+      logEvent(AnalyticsEvent.postsSubmit);
 
       try {
         final post = Post.create(profile, category, text, contact);

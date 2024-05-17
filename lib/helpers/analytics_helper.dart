@@ -8,6 +8,7 @@ final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
 enum AnalyticsEvent {
   onboardingComplete,
   postsRefresh,
+  postsSubmit,
   profileUpdate,
   filtersUpdate,
   settingsUpdate,
