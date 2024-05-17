@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/helpers/analytics_helper.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
@@ -120,22 +121,22 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   void _updateName(String value) {
     ref.read(profileStateProvider.notifier).name = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_name': value});
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileName: value});
   }
 
   void _updateGender(Gender value) {
     ref.read(profileStateProvider.notifier).gender = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_gender': value});
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileGender: value});
   }
 
   void _updateAge(int value) {
     ref.read(profileStateProvider.notifier).age = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_age': value});
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.filtersAge: value});
   }
 
   void _updateCity(City value) {
     ref.read(profileStateProvider.notifier).city = value;
     ref.read(filtersStateProvider.notifier).city = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.profileUpdate, {'profile_city': value.name});
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileCity: value.name});
   }
 }

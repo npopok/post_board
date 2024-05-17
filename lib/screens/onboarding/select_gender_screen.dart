@@ -16,8 +16,8 @@ class SelectGenderScreen extends TemplateScreen {
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
         title: 'Кто вы?',
-        progress: (step: 2, count: 7),
-        nextScreen: SelectNameRoute(),
+        progress: (step: 3, count: 7),
+        nextScreen: SelectAgeRoute(),
       );
 
   @override

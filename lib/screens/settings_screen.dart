@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/helpers/analytics_helper.dart';
 
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
@@ -56,8 +57,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   void _updateThemeMode(ThemeMode value) {
     ref.read(settingsStateProvider.notifier).themeMode = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.settingsUpdate, {
-      'settings_theme_mode': value,
-    });
+    logEvent(AnalyticsEvent.settingsUpdate, {AnalyticsParameter.settingsThemeMode: value});
   }
 }

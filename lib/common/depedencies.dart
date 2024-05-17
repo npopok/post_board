@@ -24,6 +24,7 @@ class Depedencies {
       ),
       dependsOn: [LocalRepository],
     );
+    getIt.registerSingleton<AnalyticsHelper>(AnalyticsHelper());
     getIt.registerSingleton<MessengerHelper>(MessengerHelper());
     getIt.registerSingleton<Themes>(const Themes());
 

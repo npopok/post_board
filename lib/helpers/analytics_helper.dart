@@ -1,49 +1,60 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
+final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
+
 enum AnalyticsEvent {
-  //
-  // Event Name | Parameters
-  //
   onboardingComplete,
-  profileUpdate, // profile_name | profile_gender | profile_age | profile_city
-  filtersUpdate, // filters_category | filters_gender | filters_age
-  settingsUpdate, // settings_theme_mode
+  postsRefresh,
+  profileUpdate,
+  filtersUpdate,
+  settingsUpdate,
+}
+
+enum AnalyticsParameter {
+  profileName,
+  profileGender,
+  profileAge,
+  profileCity,
+  filtersCategory,
+  filtersGender,
+  filtersAge,
+  settingsThemeMode,
 }
 
 class AnalyticsHelper {
-  static Map<AnalyticsEvent, String> eventNames = {
-    AnalyticsEvent.onboardingComplete: 'onboarding_complete',
-    AnalyticsEvent.profileUpdate: 'profile_update',
-    AnalyticsEvent.filtersUpdate: 'filters_update',
-    AnalyticsEvent.settingsUpdate: 'settings_update',
-  };
-
-  static logEvent(AnalyticsEvent event, [Map<String, Object?> parameters = const {}]) {
-    parameters.forEach((key, value) {
+  void logEvent(AnalyticsEvent event, [Map<AnalyticsParameter, Object?> data = const {}]) {
+    data.forEach((key, value) {
       if (value is DateTime) {
         DateTime date = value;
-        parameters.update(key, (value) => DateFormat('yyyy-MM-dd').format(date));
+        data.update(key, (value) => DateFormat('yyyy-MM-dd').format(date));
       }
       if (value is TimeOfDay) {
         TimeOfDay time = value;
-        parameters.update(key, (value) => '${time.hour}:${time.minute}');
+        data.update(key, (value) => '${time.hour}:${time.minute}');
       }
       if (value is Color) {
-        parameters.update(key, (value) => value.toString().toUpperCase());
+        data.update(key, (value) => value.toString().toUpperCase());
       }
       if (value is Enum) {
-        parameters.update(key, (value) => (value as Enum).name);
+        data.update(key, (value) => (value as Enum).name);
       }
       if (value == null) {
-        parameters.update(key, (value) => 'null');
+        data.update(key, (value) => 'null');
       }
     });
-    FirebaseAnalytics.instance.logEvent(
-      name: eventNames[event]!,
-      parameters: parameters,
-    );
-    debugPrint('logEvent: event=$event parameters=$parameters');
+
+    final name = _camelToSnake(event.toString());
+    final params = data.map((key, value) => MapEntry(_camelToSnake(key.toString()), value));
+
+    FirebaseAnalytics.instance.logEvent(name: name, parameters: params);
+    debugPrint('logEvent: event=$name parameters=$params');
+  }
+
+  String _camelToSnake(String str) {
+    final regex = RegExp(r'(?<=[a-z])(?=[A-Z])');
+    return str.split(regex).join('_').toLowerCase();
   }
 }

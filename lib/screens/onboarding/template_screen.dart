@@ -77,7 +77,7 @@ class _TemplateScreenState extends ConsumerState<TemplateScreen> {
 
       if (widget.screenInfo.isFinal) {
         context.router.replaceAll([widget.screenInfo.nextScreen]);
-        AnalyticsHelper.logEvent(AnalyticsEvent.onboardingComplete);
+        logEvent(AnalyticsEvent.onboardingComplete);
       } else {
         context.navigateTo(widget.screenInfo.nextScreen);
       }

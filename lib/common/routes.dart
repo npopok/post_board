@@ -28,10 +28,7 @@ class HomeRouteGuard extends AutoRouteGuard {
 class Routes extends _$Routes {
   @override
   List<AutoRoute> get routes => [
-        OnboardingRoute(
-          page: WelcomeRoute.page,
-          initial: true,
-        ),
+        OnboardingRoute(page: WelcomeRoute.page),
         OnboardingRoute(page: SelectGenderRoute.page),
         OnboardingRoute(page: SelectNameRoute.page),
         OnboardingRoute(page: SelectAgeRoute.page),
@@ -40,13 +37,13 @@ class Routes extends _$Routes {
         OnboardingRoute(page: FinishRoute.page),
         AutoRoute(
           page: HomeRoute.page,
-          //initial: true, // TODO
+          initial: true,
           children: [
             AutoRoute(page: PostsRoute.page),
             AutoRoute(page: SubmitRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
-          //guards: [HomeRouteGuard()], // TODO
+          guards: [HomeRouteGuard()],
         ),
         AutoRoute(page: FiltersRoute.page),
         AutoRoute(page: SettingsRoute.page),

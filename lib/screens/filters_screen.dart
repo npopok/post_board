@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/common/common.dart';
 
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/helpers/analytics_helper.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
@@ -83,11 +84,11 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
 
   void _updateGender(Gender value) {
     ref.read(filtersStateProvider.notifier).gender = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_gender': value});
+    logEvent(AnalyticsEvent.filtersUpdate, {AnalyticsParameter.filtersGender: value});
   }
 
   void _updateAge(NumericRange value) {
     ref.read(filtersStateProvider.notifier).age = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_age': value.toString()});
+    logEvent(AnalyticsEvent.filtersUpdate, {AnalyticsParameter.filtersAge: value.toString()});
   }
 }

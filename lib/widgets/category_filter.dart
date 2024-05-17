@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:post_board/helpers/analytics_helper.dart';
 
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
@@ -38,6 +39,6 @@ class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
 
   void _updateCategory(Category value, WidgetRef ref) {
     ref.read(filtersStateProvider.notifier).category = value;
-    AnalyticsHelper.logEvent(AnalyticsEvent.filtersUpdate, {'filters_category': value});
+    logEvent(AnalyticsEvent.filtersUpdate, {AnalyticsParameter.filtersCategory: value});
   }
 }

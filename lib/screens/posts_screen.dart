@@ -35,7 +35,10 @@ class PostsScreen extends ConsumerWidget {
     final posts = ref.watch(postsStateProvider(filters));
 
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(postsStateProvider(filters).future),
+      onRefresh: () {
+        logEvent(AnalyticsEvent.postsRefresh);
+        return ref.refresh(postsStateProvider(filters).future);
+      },
       child: posts.when(
         data: (posts) => PostsListView(posts: posts),
         error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
