@@ -32,7 +32,7 @@ class ValueListDialog<T> extends StatelessWidget {
       contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
       actions: [
-        if (clearButton) DialogActionButton.clear(context, () => ''),
+        if (clearButton) DialogActionButton.clear(context),
       ],
     );
   }

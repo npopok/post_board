@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class FieldSettings {
   static const nameMaxLength = 30;
+  static const ageMinValue = 18;
+  static const ageMaxValue = 80;
   static const postMinLength = 10;
   static const postMaxLength = 500;
   static const contactMaxLength = 30;
-  static const ageMinValue = 18;
-  static const ageMaxValue = 80;
 }
 
 class RepositorySettings {
+  static const onboardingLocalKey = 'onboarding';
   static const profileLocalKey = 'profile';
   static const citiesLocalKey = 'cities';
   static const filtersLocalKey = 'filters';
   static const settingsLocalKey = 'settings';
-  static const onboardingLocalKey = 'onboarding';
 
   static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';

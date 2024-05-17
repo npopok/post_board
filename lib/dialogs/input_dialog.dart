@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
+import 'package:post_board/helpers/helpers.dart';
 
 import 'generic_dialog.dart';
 
@@ -21,18 +22,13 @@ class InputDialog extends StatefulWidget {
 }
 
 class _InputDialogState extends State<InputDialog> {
-  late TextEditingController textController;
+  final formKey = GlobalKey<FormState>();
+  late String currentValue;
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: widget.initialValue);
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
+    currentValue = widget.initialValue ?? '';
   }
 
   @override
@@ -44,12 +40,21 @@ class _InputDialogState extends State<InputDialog> {
       child: GenericDialog(
         title: widget.title,
         contentPadding: DialogPaddings.inputContent,
-        contentBuilder: (_) => TextField(
-          controller: textController,
-          maxLength: widget.maxLength,
-          decoration: const InputDecoration(counterText: ''),
+        contentBuilder: (_) => Form(
+          key: formKey,
+          child: TextFormField(
+            initialValue: currentValue,
+            maxLength: widget.maxLength,
+            decoration: const InputDecoration(counterText: ''),
+            validator: const TextLengthValidator(
+              emptyMessage: 'TODO: remove after redesign inputs', // TODO
+            ).validate,
+            onSaved: (value) => currentValue = value!,
+          ),
         ),
-        actions: [DialogActionButton.save(context, () => textController.text)],
+        actions: [
+          DialogActionButton.save(context, () => currentValue, formKey),
+        ],
       ),
     );
   }

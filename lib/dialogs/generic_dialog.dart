@@ -65,16 +65,25 @@ class DialogActionButton extends StatelessWidget {
     super.key,
   });
 
-  factory DialogActionButton.save(BuildContext context, Object Function() returnValue) =>
+  factory DialogActionButton.save(
+    BuildContext context,
+    Object Function() returnValue, [
+    GlobalKey<FormState>? formKey,
+  ]) =>
       DialogActionButton(
         title: 'Button.Save'.tr(),
-        onPressed: () => context.maybePop(returnValue()),
+        onPressed: () {
+          if (formKey != null) {
+            if (!formKey.currentState!.validate()) return;
+            formKey.currentState!.save();
+          }
+          context.maybePop(returnValue());
+        },
       );
 
-  factory DialogActionButton.clear(BuildContext context, Object Function() returnValue) =>
-      DialogActionButton(
+  factory DialogActionButton.clear(BuildContext context) => DialogActionButton(
         title: 'Button.Clear'.tr(),
-        onPressed: () => context.maybePop(returnValue()),
+        onPressed: () => context.maybePop(),
       );
 
   @override
