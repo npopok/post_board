@@ -5,11 +5,25 @@ import 'package:post_board/common/common.dart';
 
 import 'generic_dialog.dart';
 
+class ActionItem<T> {
+  final T value;
+  final String text;
+  final Widget icon;
+
+  const ActionItem({
+    required this.value,
+    required this.text,
+    required this.icon,
+  });
+}
+
 class ActionDialog<T> extends StatelessWidget {
-  final Map<T, String> actions;
+  final int itemCount;
+  final ActionItem Function(int) itemBuilder;
 
   const ActionDialog({
-    required this.actions,
+    required this.itemCount,
+    required this.itemBuilder,
     super.key,
   });
 
@@ -22,20 +36,24 @@ class ActionDialog<T> extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    final entries = actions.entries.toList();
-
     return Column(
       children: List.generate(
-        actions.length,
-        (index) => ListTile(
-          contentPadding: DialogPaddings.valueTile,
-          title: Text(
-            entries[index].value,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          onTap: () => context.maybePop(entries[index].key),
-        ),
+        itemCount,
+        (index) => _buildListTile(context, index),
       ),
+    );
+  }
+
+  Widget _buildListTile(BuildContext context, int index) {
+    final action = itemBuilder(index);
+    return ListTile(
+      contentPadding: DialogPaddings.valueTile,
+      leading: action.icon,
+      title: Text(
+        action.text,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+      onTap: () => context.maybePop(action.value),
     );
   }
 }

@@ -32,9 +32,9 @@ class FormSettings {
 }
 
 class DialogPaddings {
-  static const iOSDialog = EdgeInsets.only(top: 8, bottom: 32);
-  static const androidDialog = EdgeInsets.only(top: 8, bottom: 8);
-  static const dialogTitle = EdgeInsets.only(top: 12);
+  static const iOSDialog = EdgeInsets.only(top: 4, bottom: 32);
+  static const androidDialog = EdgeInsets.only(top: 4, bottom: 8);
+  static const dialogTitle = EdgeInsets.only(top: 16);
   static const defaultContent = EdgeInsets.symmetric(vertical: 8);
   static const inputContent = EdgeInsets.all(24);
   static const promptContent = EdgeInsets.symmetric(vertical: 24);

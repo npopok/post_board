@@ -44,12 +44,18 @@ class PostListItem extends StatelessWidget {
   void _showContactMenu(BuildContext context, Post post) {
     final contact = Contact.parse(post.contact);
     final actions = _getPostActions(contact.type);
+    final entries = actions.entries.toList();
 
     showModalBottomSheet<PostAction>(
       isScrollControlled: true,
       context: context,
       builder: (context) => ActionDialog(
-        actions: actions,
+        itemCount: actions.length,
+        itemBuilder: (index) => ActionItem(
+          value: entries[index].key,
+          text: entries[index].value,
+          icon: _popupMenuIcon(entries[index].key),
+        ),
       ),
     ).then(
       (value) async {
@@ -58,6 +64,16 @@ class PostListItem extends StatelessWidget {
         }
       },
     );
+  }
+
+  Widget _popupMenuIcon(PostAction action) {
+    return switch (action) {
+      PostAction.writeEmail => const Icon(Icons.email_outlined),
+      PostAction.writeWhatsApp => const ImageIcon(AssetImage('assets/icons/whatsapp.png')),
+      PostAction.writeTelegram => const ImageIcon(AssetImage('assets/icons/telegram.png')),
+      PostAction.copyContact => const Icon(Icons.contact_page_outlined),
+      PostAction.copyText => const Icon(Icons.copy_outlined),
+    };
   }
 
   Map<PostAction, String> _getPostActions(ContactType type) {
