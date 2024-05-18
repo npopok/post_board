@@ -48,7 +48,7 @@ class AnalyticsHelper {
     });
 
     final name = _camelToSnake(event.toString());
-    final params = data.map((key, value) => MapEntry(_camelToSnake(key.toString()), value));
+    final params = data.map((key, value) => MapEntry(_camelToSnake(key.name), value));
 
     FirebaseAnalytics.instance.logEvent(name: name, parameters: params);
     debugPrint('logEvent: event=$name parameters=$params');
