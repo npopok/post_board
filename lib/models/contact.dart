@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:post_board/common/common.dart';
 
+import 'types.dart';
+
 part 'contact.freezed.dart';
 part 'contact.g.dart';
-
-enum ContactType { unknown, email, whatsapp, telegram }
 
 @freezed
 class Contact with _$Contact {

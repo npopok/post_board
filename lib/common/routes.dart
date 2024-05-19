@@ -18,7 +18,7 @@ class HomeRouteGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     return switch (localRepository.loadOnboarding()) {
       null => router.push(const WelcomeRoute()),
-      false => router.push(const SelectNameRoute()),
+      false => router.push(const SelectGenderRoute()),
       true => resolver.next(true),
     };
   }
@@ -30,10 +30,7 @@ class Routes extends _$Routes {
   List<AutoRoute> get routes => [
         OnboardingRoute(page: WelcomeRoute.page),
         OnboardingRoute(page: SelectGenderRoute.page),
-        OnboardingRoute(page: SelectNameRoute.page),
-        OnboardingRoute(page: SelectAgeRoute.page),
         OnboardingRoute(page: SelectCityRoute.page),
-        OnboardingRoute(page: SelectFiltersRoute.page),
         OnboardingRoute(page: FinishRoute.page),
         AutoRoute(
           page: HomeRoute.page,

@@ -13,7 +13,7 @@ class FinishScreen extends TemplateScreen {
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
         title: 'Все готово',
-        progress: (step: 7, count: 7),
+        progress: (step: 4, count: 4),
         nextScreen: HomeRoute(),
       );
 

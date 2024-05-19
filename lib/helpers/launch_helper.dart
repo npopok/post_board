@@ -15,7 +15,7 @@ class LaunchHelper {
     return openUrl('mailto:$address');
   }
 
-  static Future<bool> openWhatsApp(String phone) async {
+  static Future<bool> openWhatsapp(String phone) async {
     phone = phone.replaceFirst(
       RegExp('^${RegionalSettings.countryCodeAlt}'),
       RegionalSettings.countryCode,

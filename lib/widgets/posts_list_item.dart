@@ -10,7 +10,7 @@ import 'package:post_board/widgets/widgets.dart';
 enum PostAction {
   //writeChat,
   writeEmail,
-  writeWhatsApp,
+  writeWhatsapp,
   writeTelegram,
   copyContact,
   copyText,
@@ -70,7 +70,7 @@ class PostListItem extends StatelessWidget {
   Widget _popupMenuIcon(ContactType type, PostAction action) {
     return switch (action) {
       PostAction.writeEmail => ContactIcon(type: type),
-      PostAction.writeWhatsApp => ContactIcon(type: type),
+      PostAction.writeWhatsapp => ContactIcon(type: type),
       PostAction.writeTelegram => ContactIcon(type: type),
       PostAction.copyContact => const Icon(Icons.contact_page_outlined),
       PostAction.copyText => const Icon(Icons.copy_outlined),
@@ -82,7 +82,7 @@ class PostListItem extends StatelessWidget {
     if (type == ContactType.email) {
       actions[PostAction.writeEmail] = 'PostDetails.WriteEmail'.tr();
     } else if (type == ContactType.whatsapp) {
-      actions[PostAction.writeWhatsApp] = 'PostDetails.WriteWhatsApp'.tr();
+      actions[PostAction.writeWhatsapp] = 'PostDetails.WriteWhatsapp'.tr();
     } else if (type == ContactType.telegram) {
       actions[PostAction.writeTelegram] = 'PostDetails.WriteTelegram'.tr();
     }
@@ -96,8 +96,8 @@ class PostListItem extends StatelessWidget {
     switch (action) {
       case PostAction.writeEmail:
         return LaunchHelper.openEmail(contact.details);
-      case PostAction.writeWhatsApp:
-        return LaunchHelper.openWhatsApp(contact.details);
+      case PostAction.writeWhatsapp:
+        return LaunchHelper.openWhatsapp(contact.details);
       case PostAction.writeTelegram:
         return LaunchHelper.openTelegram(contact.details);
       case PostAction.copyContact:

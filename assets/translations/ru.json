@@ -19,7 +19,7 @@
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",
-    "PostDetails.WriteWhatsApp": "Написать в Whatsapp",
+    "PostDetails.WriteWhatsapp": "Написать в Whatsapp",
     "PostDetails.WriteTelegram": "Написать в Telegram",
     "PostDetails.CopyContact": "Скопировать контакт",
     "PostDetails.CopyText": "Скопировать текст",

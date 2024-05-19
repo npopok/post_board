@@ -13,8 +13,8 @@ class WelcomeScreen extends TemplateScreen {
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
         title: 'Добро пожаловать!',
-        progress: (step: 1, count: 7),
-        nextScreen: SelectNameRoute(),
+        progress: (step: 1, count: 4),
+        nextScreen: SelectGenderRoute(),
       );
 
   @override

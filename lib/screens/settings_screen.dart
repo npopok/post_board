@@ -43,12 +43,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => ValueListDialog(
-          items: List<String>.generate(
-            ThemeMode.values.length,
-            (index) => '${ThemeMode.values[index]}'.tr(),
-          ),
+        builder: (context) => ValueListDialog<ThemeMode>(
           values: ThemeMode.values,
+          textBuilder: (value) => value.toString().tr(),
           initialValue: settings.themeMode,
         ),
       ).then((value) => value == null ? 0 : _updateThemeMode(value)),

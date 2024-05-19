@@ -14,20 +14,18 @@ class SelectCityScreen extends TemplateScreen {
 
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
-        title: 'Где вы находитесь?',
-        progress: (step: 5, count: 7),
-        nextScreen: SelectFiltersRoute(),
+        title: 'Где вы ищете?',
+        progress: (step: 3, count: 4),
+        nextScreen: FinishRoute(),
       );
 
   @override
   Widget buildContent(BuildContext context, WidgetRef ref) {
     return LocationDialog(
-        initialValue: ref.watch(profileStateProvider).city,
-        contentPadding: EdgeInsets.zero,
-        saveButton: false,
-        onSelected: (value) {
-          ref.read(profileStateProvider.notifier).city = value;
-          ref.read(filtersStateProvider.notifier).city = value;
-        });
+      initialValue: ref.watch(profileStateProvider).city,
+      contentPadding: EdgeInsets.zero,
+      saveButton: false,
+      onSelected: (value) => ref.read(filtersStateProvider.notifier).city = value,
+    );
   }
 }

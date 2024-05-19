@@ -9,16 +9,16 @@ class ValueListDialog<T> extends StatelessWidget {
   static const contentFraction = 0.75;
 
   final String? title;
-  final List<String> items;
   final List<T> values;
+  final String Function(T) textBuilder;
   final T? initialValue;
   final AlignmentGeometry alignment;
   final bool clearButton;
 
   const ValueListDialog({
     this.title,
-    required this.items,
     required this.values,
+    required this.textBuilder,
     this.initialValue,
     this.alignment = Alignment.centerLeft,
     this.clearButton = false,
@@ -42,22 +42,21 @@ class ValueListDialog<T> extends StatelessWidget {
       maxHeight: MediaQuery.of(context).size.height * contentFraction,
       child: SingleChildScrollView(
         child: Column(
-          children: List.generate(
-            items.length,
-            (index) => ListTile(
-              contentPadding: DialogPaddings.valueTile,
-              title: Align(
-                alignment: alignment,
-                child: Text(
-                  items[index],
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ),
-              leading: alignment == Alignment.center ? const Icon(null) : null,
-              trailing: Icon(values[index] == initialValue ? Icons.check : null),
-              onTap: () => context.maybePop(values[index]),
-            ),
-          ),
+          children: values
+              .map((value) => ListTile(
+                    contentPadding: DialogPaddings.valueTile,
+                    title: Align(
+                      alignment: alignment,
+                      child: Text(
+                        textBuilder(value),
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ),
+                    leading: alignment == Alignment.center ? const Icon(null) : null,
+                    trailing: Icon(value == initialValue ? Icons.check : null),
+                    onTap: () => context.maybePop(value),
+                  ))
+              .toList(),
         ),
       ),
     );

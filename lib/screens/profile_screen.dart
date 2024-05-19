@@ -50,7 +50,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return ListTile(
       leading: const Icon(Icons.person),
       title: Text('ProfileScreen.NameTile'.tr()),
-      subtitle: Text(profile.name),
+      subtitle: Text(
+        profile.name.isNotEmpty ? profile.name : 'ProfileScreen.Empty'.tr(),
+      ),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -68,17 +70,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return ListTile(
       leading: const Icon(Icons.wc),
       title: Text('ProfileScreen.GenderTile'.tr()),
-      subtitle: Text('${profile.gender}'.tr()),
+      subtitle: Text(
+        profile.gender != Gender.unknown
+            ? profile.gender.toString().tr()
+            : 'ProfileScreen.Empty'.tr(),
+      ),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => ValueListDialog(
+        builder: (context) => ValueListDialog<Gender>(
           title: 'ProfileScreen.GenderDialog'.tr(),
-          items: List.generate(
-            Gender.values.length,
-            (index) => '${Gender.values[index]}'.tr(),
-          ),
-          values: Gender.values,
+          values: Gender.values.exclude(Gender.unknown),
+          textBuilder: (value) => value.toString().tr(),
           initialValue: profile.gender,
         ),
       ).then((value) => value != null ? _updateGender(value) : 0),
@@ -89,7 +92,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return ListTile(
       leading: const Icon(Icons.cake),
       title: Text('ProfileScreen.AgeTile'.tr()),
-      subtitle: Text(profile.age.toString()),
+      subtitle: Text(
+        profile.age > 0 ? profile.age.toString() : 'ProfileScreen.Empty'.tr(),
+      ),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -109,7 +114,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return ListTile(
       leading: const Icon(Icons.place),
       title: Text('ProfileScreen.CityTile'.tr()),
-      subtitle: Text(profile.city.name),
+      subtitle: Text(
+        profile.city.isNotEmpty ? profile.city.name : 'ProfileScreen.Empty'.tr(),
+      ),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,

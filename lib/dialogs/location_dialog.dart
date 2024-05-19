@@ -97,7 +97,6 @@ class _LocationDialogState extends State<LocationDialog> {
             key: Key(selectedValue.toString()),
             initialValue: selectedValue.toString(),
             readOnly: selectedValue.isNotEmpty,
-            autofocus: true,
             onTap: _inputTapHandler,
             onChanged: _inputChangedHandler,
             decoration: InputDecoration(
@@ -206,8 +205,11 @@ class LocationSearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final matches =
-        cities.where((e) => e.name.toLowerCase().startsWith(text.toLowerCase())).toList();
+    final matches = cities
+        .where((e) => e.name.toLowerCase().startsWith(
+              text.trim().toLowerCase(),
+            ))
+        .toList();
     matches.sort((a, b) => a.compareTo(b));
 
     final results = matches.take(searchLimit).toList();

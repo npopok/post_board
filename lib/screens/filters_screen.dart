@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/common/common.dart';
 
 import 'package:post_board/dialogs/dialogs.dart';
-import 'package:post_board/helpers/analytics_helper.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
@@ -38,6 +37,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   }
 
   Widget _buildGenderTile(BuildContext context, Filters filter) {
+    final values = Gender.values.exclude(Gender.unknown);
+
     return ListTile(
       leading: const Icon(Icons.wc),
       title: Text('FiltersScreen.Gender'.tr()),
@@ -45,12 +46,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) => ValueListDialog(
-          items: List.generate(
-            Gender.values.length,
-            (index) => '${Gender.values[index]}'.tr(),
-          ),
-          values: Gender.values,
+        builder: (context) => ValueListDialog<Gender>(
+          values: values,
+          textBuilder: (value) => value.toString().tr(),
           initialValue: filter.gender,
         ),
       ).then((value) => value == null ? 0 : _updateGender(value)),

@@ -33,11 +33,8 @@ class DropdownField<T> extends FormField<T> {
                   isScrollControlled: true,
                   context: state.context,
                   builder: (_) => ValueListDialog<T>(
-                    items: List<String>.generate(
-                      values.length,
-                      (index) => textBuilder(values[index]),
-                    ),
                     values: values,
+                    textBuilder: textBuilder,
                     initialValue: initialValue,
                   ),
                 );

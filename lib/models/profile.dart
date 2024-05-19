@@ -21,8 +21,8 @@ class Profile with _$Profile {
 
   factory Profile.empty() => Profile(
         name: '',
-        gender: Gender.male,
-        age: 18,
+        gender: Gender.unknown,
+        age: 0,
         city: City.empty(),
         contact: Contact.empty(),
       );

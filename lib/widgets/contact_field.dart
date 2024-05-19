@@ -4,6 +4,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/widgets/widgets.dart';
 
@@ -114,22 +115,15 @@ class _ContactFieldState extends State<ContactField> {
   }
 
   void _selectContactType(BuildContext contect) async {
-    var values = ContactType.values.toList();
-    values.removeWhere((e) => e == ContactType.unknown);
-
     final value = await showModalBottomSheet<ContactType>(
       isScrollControlled: true,
       context: context,
       builder: (_) => ValueListDialog<ContactType>(
-        items: List<String>.generate(
-          values.length,
-          (index) => values[index].toString().tr(),
-        ),
-        values: values,
+        values: ContactType.values.exclude(ContactType.unknown),
+        textBuilder: (value) => value.toString().tr(),
         initialValue: selectedValue.type,
       ),
     );
-
     if (value != null) {
       FocusManager.instance.primaryFocus?.unfocus();
       setState(() => _resetContactDetails(value));

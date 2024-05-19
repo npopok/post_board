@@ -21,7 +21,7 @@ class Filters with _$Filters {
   factory Filters.empty() => Filters(
         city: City.empty(),
         category: Category.sex,
-        gender: Gender.male,
+        gender: Gender.unknown,
         age: (min: FieldConstraints.ageMinValue, max: FieldConstraints.ageMaxValue),
       );
 }
