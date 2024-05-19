@@ -21,7 +21,7 @@ class PostsListView extends ConsumerWidget {
                 itemCount: posts.length,
                 itemBuilder: (context, index) => PostListItem(post: posts[index]),
               )
-            : const SliverFillRemaining(child: PostsPlaceholder()),
+            : const SliverFillRemaining(child: PostsPlaceholder(showError: false)),
       ],
     );
   }

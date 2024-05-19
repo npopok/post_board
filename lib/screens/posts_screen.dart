@@ -41,7 +41,7 @@ class PostsScreen extends ConsumerWidget {
       },
       child: posts.when(
         data: (posts) => PostsListView(posts: posts),
-        error: (_, __) => Center(child: context.textError('PostsScreen.Error'.tr())),
+        error: (_, __) => const Center(child: PostsPlaceholder(showError: true)),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );
