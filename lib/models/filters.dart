@@ -22,6 +22,6 @@ class Filters with _$Filters {
         city: City.empty(),
         category: Category.sex,
         gender: Gender.male,
-        age: (min: FieldSettings.ageMinValue, max: FieldSettings.ageMaxValue),
+        age: (min: FieldConstraints.ageMinValue, max: FieldConstraints.ageMaxValue),
       );
 }

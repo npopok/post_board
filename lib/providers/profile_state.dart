@@ -32,4 +32,9 @@ class ProfileState extends _$ProfileState {
     state = state.copyWith(city: value);
     saveData();
   }
+
+  set contact(Contact value) {
+    state = state.copyWith(contact: value);
+    saveData();
+  }
 }

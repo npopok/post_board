@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
+import 'package:post_board/widgets/widgets.dart';
 
 enum PostAction {
   //writeChat,
@@ -54,7 +55,7 @@ class PostListItem extends StatelessWidget {
         itemBuilder: (index) => ActionItem(
           value: entries[index].key,
           text: entries[index].value,
-          icon: _popupMenuIcon(entries[index].key),
+          icon: _popupMenuIcon(contact.type, entries[index].key),
         ),
       ),
     ).then(
@@ -66,11 +67,11 @@ class PostListItem extends StatelessWidget {
     );
   }
 
-  Widget _popupMenuIcon(PostAction action) {
+  Widget _popupMenuIcon(ContactType type, PostAction action) {
     return switch (action) {
-      PostAction.writeEmail => const Icon(Icons.email_outlined),
-      PostAction.writeWhatsApp => const ImageIcon(AssetImage('assets/icons/whatsapp.png')),
-      PostAction.writeTelegram => const ImageIcon(AssetImage('assets/icons/telegram.png')),
+      PostAction.writeEmail => ContactIcon(type: type),
+      PostAction.writeWhatsApp => ContactIcon(type: type),
+      PostAction.writeTelegram => ContactIcon(type: type),
       PostAction.copyContact => const Icon(Icons.contact_page_outlined),
       PostAction.copyText => const Icon(Icons.copy_outlined),
     };
@@ -80,7 +81,7 @@ class PostListItem extends StatelessWidget {
     final Map<PostAction, String> actions = {};
     if (type == ContactType.email) {
       actions[PostAction.writeEmail] = 'PostDetails.WriteEmail'.tr();
-    } else if (type == ContactType.phone) {
+    } else if (type == ContactType.whatsapp) {
       actions[PostAction.writeWhatsApp] = 'PostDetails.WriteWhatsApp'.tr();
     } else if (type == ContactType.telegram) {
       actions[PostAction.writeTelegram] = 'PostDetails.WriteTelegram'.tr();

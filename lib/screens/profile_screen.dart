@@ -40,6 +40,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           _buildGenderTile(context, profile),
           _buildAgeTile(context, profile),
           _buildCityTile(context, profile),
+          _buildContactTile(context, profile),
         ],
       ),
     );
@@ -48,7 +49,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildNameTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.person),
-      title: Text('ProfileScreen.NameList'.tr()),
+      title: Text('ProfileScreen.NameTile'.tr()),
       subtitle: Text(profile.name),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -56,7 +57,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         builder: (context) => InputDialog(
           title: 'ProfileScreen.NameDialog'.tr(),
           initialValue: profile.name,
-          maxLength: FieldSettings.nameMaxLength,
+          maxLength: FieldConstraints.nameMaxLength,
+          errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign
         ),
       ).then((value) => value != null ? _updateName(value) : 0),
     );
@@ -65,7 +67,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildGenderTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.wc),
-      title: Text('ProfileScreen.GenderList'.tr()),
+      title: Text('ProfileScreen.GenderTile'.tr()),
       subtitle: Text('${profile.gender}'.tr()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -86,7 +88,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildAgeTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.cake),
-      title: Text('ProfileScreen.AgeList'.tr()),
+      title: Text('ProfileScreen.AgeTile'.tr()),
       subtitle: Text(profile.age.toString()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -94,8 +96,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         builder: (context) => SliderDialog(
           title: 'ProfileScreen.AgeDialog'.tr(),
           range: (
-            min: FieldSettings.ageMinValue,
-            max: FieldSettings.ageMaxValue,
+            min: FieldConstraints.ageMinValue,
+            max: FieldConstraints.ageMaxValue,
           ),
           initialValue: profile.age,
         ),
@@ -106,7 +108,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget _buildCityTile(BuildContext context, Profile profile) {
     return ListTile(
       leading: const Icon(Icons.place),
-      title: Text('ProfileScreen.CityList'.tr()),
+      title: Text('ProfileScreen.CityTile'.tr()),
       subtitle: Text(profile.city.name),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
@@ -116,6 +118,26 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           initialValue: profile.city,
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
+    );
+  }
+
+  Widget _buildContactTile(BuildContext context, Profile profile) {
+    return ListTile(
+      leading: const Icon(Icons.alternate_email),
+      title: Text('ProfileScreen.ContactTile'.tr()),
+      subtitle: Text(
+        profile.contact.isNotEmpty ? profile.contact.toString() : 'ProfileScreen.Empty'.tr(),
+      ),
+      onTap: () => showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (_) => ContactDialog(
+          title: 'ProfileScreen.ContactDialog'.tr(),
+          initialValue: profile.contact,
+          hintText: 'ProfileScreen.ContactHint'.tr(),
+          errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign
+        ),
+      ).then((value) => value != null ? _updateContact(value) : 0),
     );
   }
 
@@ -138,5 +160,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     ref.read(profileStateProvider.notifier).city = value;
     ref.read(filtersStateProvider.notifier).city = value;
     logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileCity: value.name});
+  }
+
+  void _updateContact(Contact value) {
+    ref.read(profileStateProvider.notifier).contact = value;
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileContact: value.details});
   }
 }

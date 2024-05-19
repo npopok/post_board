@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
-class FieldSettings {
+class FieldConstraints {
   static const nameMaxLength = 30;
   static const ageMinValue = 18;
   static const ageMaxValue = 80;
   static const postMinLength = 10;
   static const postMaxLength = 500;
   static const contactMaxLength = 30;
+}
+
+class RegionalSettings {
+  static const countryCode = '+7';
+  static const countryCodeAlt = '8';
 }
 
 class RepositorySettings {
@@ -24,7 +29,7 @@ class RepositorySettings {
   static const citiesCacheDuration = Duration(days: 10000);
 }
 
-class FormSettings {
+class FormLayout {
   static const contentPadding = EdgeInsets.all(24);
   static const defaultSpacer = SizedBox(height: 8);
   static const textSpacer = SizedBox(height: 12);

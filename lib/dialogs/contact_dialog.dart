@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
-import 'package:post_board/helpers/helpers.dart';
+import 'package:post_board/models/models.dart';
+import 'package:post_board/widgets/widgets.dart';
 
 import 'generic_dialog.dart';
 
-class InputDialog extends StatefulWidget {
+class ContactDialog extends StatefulWidget {
   final String? title;
-  final String? initialValue;
-  final int? maxLength;
+  final Contact initialValue;
+  final String? hintText;
   final String? errorText;
 
-  const InputDialog({
+  const ContactDialog({
     this.title,
-    this.initialValue,
-    this.maxLength,
+    required this.initialValue,
+    this.hintText,
     this.errorText,
     super.key,
   });
 
   @override
-  State<InputDialog> createState() => _InputDialogState();
+  State<ContactDialog> createState() => _ContactDialogState();
 }
 
-class _InputDialogState extends State<InputDialog> {
+class _ContactDialogState extends State<ContactDialog> {
   final formKey = GlobalKey<FormState>();
-  late String selectedValue;
+  late Contact selectedValue;
 
   @override
   void initState() {
     super.initState();
-    selectedValue = widget.initialValue ?? '';
+    selectedValue = widget.initialValue;
   }
 
   @override
@@ -44,13 +45,10 @@ class _InputDialogState extends State<InputDialog> {
         contentPadding: DialogPaddings.inputContent,
         contentBuilder: (_) => Form(
           key: formKey,
-          child: TextFormField(
+          child: ContactField(
             initialValue: selectedValue,
-            maxLength: widget.maxLength,
-            decoration: const InputDecoration(counterText: ''),
-            validator: TextLengthValidator(
-              emptyMessage: widget.errorText,
-            ).validate,
+            hintText: widget.hintText,
+            errorText: widget.errorText,
             onSaved: (value) => selectedValue = value!,
           ),
         ),

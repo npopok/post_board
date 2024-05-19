@@ -1,4 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
+import 'package:post_board/common/common.dart';
 
 class LaunchHelper {
   static Future<bool> openUrl(String url) async {
@@ -15,7 +16,10 @@ class LaunchHelper {
   }
 
   static Future<bool> openWhatsApp(String phone) async {
-    phone = phone.replaceFirst(RegExp(r'^8'), '+7');
+    phone = phone.replaceFirst(
+      RegExp('^${RegionalSettings.countryCodeAlt}'),
+      RegionalSettings.countryCode,
+    );
     return openUrl('https://wa.me/$phone');
   }
 

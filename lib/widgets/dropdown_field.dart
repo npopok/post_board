@@ -14,7 +14,6 @@ class DropdownField<T> extends FormField<T> {
     required this.hintText,
     required this.errorText,
     required this.textBuilder,
-    required super.validator,
     required super.onSaved,
     super.key,
   }) : super(

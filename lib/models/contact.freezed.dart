@@ -104,8 +104,8 @@ class __$$ContactImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ContactImpl implements _Contact {
-  const _$ContactImpl({required this.type, required this.details});
+class _$ContactImpl extends _Contact {
+  const _$ContactImpl({required this.type, required this.details}) : super._();
 
   factory _$ContactImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContactImplFromJson(json);
@@ -114,11 +114,6 @@ class _$ContactImpl implements _Contact {
   final ContactType type;
   @override
   final String details;
-
-  @override
-  String toString() {
-    return 'Contact(type: $type, details: $details)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -147,10 +142,11 @@ class _$ContactImpl implements _Contact {
   }
 }
 
-abstract class _Contact implements Contact {
+abstract class _Contact extends Contact {
   const factory _Contact(
       {required final ContactType type,
       required final String details}) = _$ContactImpl;
+  const _Contact._() : super._();
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$ContactImpl.fromJson;
 

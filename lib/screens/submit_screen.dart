@@ -34,7 +34,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         title: Text('SubmitScreen.Title'.tr()),
       ),
       body: Padding(
-        padding: FormSettings.contentPadding,
+        padding: FormLayout.contentPadding,
         child: Form(
           key: formKey,
           child: Column(
@@ -60,15 +60,12 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           hintText: 'SubmitScreen.CategoryHint'.tr(),
           errorText: 'SubmitScreen.CategoryEmpty'.tr(),
           textBuilder: (value) => value.toString().tr(),
-          validator: ValueExistsValidator(
-            emptyMessage: 'SubmitScreen.CategoryEmpty'.tr(),
-          ).validate,
           onSaved: (value) => category = value!,
         ),
-        FormSettings.inputSpacer,
+        FormLayout.inputSpacer,
         TextFormField(
           maxLines: 5,
-          maxLength: FieldSettings.postMaxLength,
+          maxLength: FieldConstraints.postMaxLength,
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
             hintText: 'SubmitScreen.TextHint'.tr(),
@@ -76,25 +73,13 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           ),
           validator: TextLengthValidator(
             emptyMessage: 'SubmitScreen.TextEmpty'.tr(),
-            minLength: FieldSettings.postMinLength,
+            minLength: FieldConstraints.postMinLength,
             minMessage: 'SubmitScreen.TextShort'.tr(),
           ).validate,
           onSaved: (value) => text = value!,
         ),
-        FormSettings.inputSpacer,
-        TextFormField(
-          maxLength: FieldSettings.contactMaxLength,
-          decoration: InputDecoration(
-            hintText: 'SubmitScreen.ContactHint'.tr(),
-            counterText: '',
-          ),
-          validator: TextLengthValidator(
-            emptyMessage: 'SubmitScreen.ContactEmpty'.tr(),
-          ).validate,
-          onSaved: (value) => contact = value!,
-        ),
-        FormSettings.inputSpacer,
-        FormSettings.inputSpacer,
+        FormLayout.inputSpacer,
+        FormLayout.inputSpacer,
         ValueListenableBuilder(
           valueListenable: errorText,
           builder: (_, value, __) => context.textError(value),

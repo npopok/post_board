@@ -23,7 +23,7 @@ class SelectNameScreen extends TemplateScreen {
   Widget buildContent(BuildContext context, WidgetRef ref) {
     return TextFormField(
       initialValue: ref.read(profileStateProvider).name,
-      maxLength: FieldSettings.nameMaxLength,
+      maxLength: FieldConstraints.nameMaxLength,
       decoration: const InputDecoration(
         hintText: 'Ваше имя',
         counterText: '',

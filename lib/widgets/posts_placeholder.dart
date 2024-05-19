@@ -15,7 +15,7 @@ class PostsPlaceholder extends StatelessWidget {
           'PostsPlaceholder.EmptyTitle'.tr(),
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        FormSettings.textSpacer,
+        FormLayout.textSpacer,
         Text('PostsPlaceholder.EmptyText'.tr()),
       ],
     );

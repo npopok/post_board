@@ -21,6 +21,6 @@ Map<String, dynamic> _$$ContactImplToJson(_$ContactImpl instance) =>
 const _$ContactTypeEnumMap = {
   ContactType.unknown: 'unknown',
   ContactType.email: 'email',
-  ContactType.phone: 'phone',
+  ContactType.whatsapp: 'whatsapp',
   ContactType.telegram: 'telegram',
 };

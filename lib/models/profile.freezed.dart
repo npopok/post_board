@@ -24,6 +24,7 @@ mixin _$Profile {
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   City get city => throw _privateConstructorUsedError;
+  Contact get contact => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +36,10 @@ abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
-  $Res call({String name, Gender gender, int age, City city});
+  $Res call({String name, Gender gender, int age, City city, Contact contact});
 
   $CityCopyWith<$Res> get city;
+  $ContactCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? gender = null,
     Object? age = null,
     Object? city = null,
+    Object? contact = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -75,6 +78,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as City,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as Contact,
     ) as $Val);
   }
 
@@ -83,6 +90,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   $CityCopyWith<$Res> get city {
     return $CityCopyWith<$Res>(_value.city, (value) {
       return _then(_value.copyWith(city: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactCopyWith<$Res> get contact {
+    return $ContactCopyWith<$Res>(_value.contact, (value) {
+      return _then(_value.copyWith(contact: value) as $Val);
     });
   }
 }
@@ -94,10 +109,12 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       __$$ProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Gender gender, int age, City city});
+  $Res call({String name, Gender gender, int age, City city, Contact contact});
 
   @override
   $CityCopyWith<$Res> get city;
+  @override
+  $ContactCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -115,6 +132,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? gender = null,
     Object? age = null,
     Object? city = null,
+    Object? contact = null,
   }) {
     return _then(_$ProfileImpl(
       name: null == name
@@ -133,6 +151,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as City,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as Contact,
     ));
   }
 }
@@ -144,7 +166,8 @@ class _$ProfileImpl implements _Profile {
       {required this.name,
       required this.gender,
       required this.age,
-      required this.city});
+      required this.city,
+      required this.contact});
 
   factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileImplFromJson(json);
@@ -157,10 +180,12 @@ class _$ProfileImpl implements _Profile {
   final int age;
   @override
   final City city;
+  @override
+  final Contact contact;
 
   @override
   String toString() {
-    return 'Profile(name: $name, gender: $gender, age: $age, city: $city)';
+    return 'Profile(name: $name, gender: $gender, age: $age, city: $city, contact: $contact)';
   }
 
   @override
@@ -171,12 +196,14 @@ class _$ProfileImpl implements _Profile {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.contact, contact) || other.contact == contact));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, gender, age, city);
+  int get hashCode =>
+      Object.hash(runtimeType, name, gender, age, city, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +224,8 @@ abstract class _Profile implements Profile {
       {required final String name,
       required final Gender gender,
       required final int age,
-      required final City city}) = _$ProfileImpl;
+      required final City city,
+      required final Contact contact}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
@@ -209,6 +237,8 @@ abstract class _Profile implements Profile {
   int get age;
   @override
   City get city;
+  @override
+  Contact get contact;
   @override
   @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>

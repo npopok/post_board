@@ -19,6 +19,7 @@ enum AnalyticsParameter {
   profileGender,
   profileAge,
   profileCity,
+  profileContact,
   filtersCategory,
   filtersGender,
   filtersAge,

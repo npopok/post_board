@@ -29,9 +29,9 @@ class SelectAgeScreen extends TemplateScreen {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Slider(
-          min: FieldSettings.ageMinValue.toDouble(),
-          max: FieldSettings.ageMaxValue.toDouble(),
-          divisions: FieldSettings.ageMaxValue - FieldSettings.ageMinValue,
+          min: FieldConstraints.ageMinValue.toDouble(),
+          max: FieldConstraints.ageMaxValue.toDouble(),
+          divisions: FieldConstraints.ageMaxValue - FieldConstraints.ageMinValue,
           value: profile.age.toDouble(),
           label: profile.age.toString(),
           onChanged: (value) => ref.read(profileStateProvider.notifier).age = value.round(),
