@@ -41,12 +41,14 @@ class _SliderDialogState extends State<SliderDialog> {
   }
 
   Widget _buildContent(BuildContext context) {
+    final value = selectedValue.clamp(widget.range.min, widget.range.max);
+
     return Slider(
       min: widget.range.min.toDouble(),
       max: widget.range.max.toDouble(),
       divisions: widget.range.max - widget.range.min,
-      value: selectedValue.toDouble(),
-      label: selectedValue.toString(),
+      value: value.toDouble(),
+      label: value.toString(),
       onChanged: (value) => setState(() => selectedValue = value.round()),
     );
   }

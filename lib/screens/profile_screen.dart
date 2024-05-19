@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
-import 'package:post_board/helpers/analytics_helper.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
