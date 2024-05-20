@@ -5,9 +5,9 @@
     "HomeScreen.Create": "Create",
     "HomeScreen.Profile": "Profile",
     "HomeScreen.Post": "Post",
+    "HomeScreen.Warning": "To create a post, you should fill out your profile.",
 
     "PostsScreen.Title": "Posts",
-
     "PostsPlaceholder.EmptyTitle": "No posts.",
     "PostsPlaceholder.EmptyText": "Try change the filters.",
     "PostsPlaceholder.ErrorTitle": "Server error.",
@@ -45,7 +45,7 @@
     "ProfileScreen.AgeDialog": "Your Age",   
     "ProfileScreen.CityTile": "City",
     "ProfileScreen.CityDialog": "Your City",
-    "ProfileScreen.CitySuccess": "New posts will be published in this city.", 
+    "ProfileScreen.CitySuccess": "Your posts will be published in this city.", 
     "ProfileScreen.ContactTile": "Contact",
     "ProfileScreen.ContactDialog": "Your Contact",
     "ProfileScreen.ContactHint": "Select type",
@@ -74,7 +74,8 @@
     "ContactType.email": "Email",
     "ContactType.phone": "Phone",
     "ContactType.telegram": "Telegram",
-
+    
+    "Button.OK": "OK",
     "Button.Next": "NEXT",
     "Button.Start": "START",   
     "Button.Save": "SAVE",

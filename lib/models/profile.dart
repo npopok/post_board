@@ -9,6 +9,8 @@ part 'profile.g.dart';
 
 @freezed
 class Profile with _$Profile {
+  const Profile._();
+
   const factory Profile({
     required final String name,
     required final Gender gender,
@@ -16,6 +18,13 @@ class Profile with _$Profile {
     required final City city,
     required final Contact contact,
   }) = _Profile;
+
+  bool get isComplete =>
+      name.isNotEmpty &&
+      gender != Gender.unknown &&
+      age > 0 &&
+      city.isNotEmpty &&
+      contact.isNotEmpty;
 
   factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);
 

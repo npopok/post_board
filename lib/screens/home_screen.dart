@@ -33,7 +33,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         currentIndex: tabsRouter.activeIndex,
         onTap: (index) async {
           if (index == 1) {
-            await _showSubmitDialog(context);
+            if (ref.read(profileStateProvider).isComplete) {
+              await _showSubmitDialog(context);
+            } else {
+              await _showProfileWarning(context, tabsRouter);
+            }
           } else {
             tabsRouter.setActiveIndex(index);
           }
@@ -54,6 +58,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> _showProfileWarning(BuildContext context, TabsRouter tabsRouter) async {
+    final result = await showModalBottomSheet<bool>(
+      context: context,
+      builder: (_) => PromptDialog(text: 'HomeScreen.Warning'.tr()),
+    );
+    if (result == true) {
+      tabsRouter.setActiveIndex(2);
+    }
   }
 
   Future<void> _showSubmitDialog(BuildContext context) async {

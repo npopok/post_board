@@ -129,7 +129,7 @@ class _LocationDialogState extends State<LocationDialog> {
       LocationDialogStatus.locationError => context.textError(errorText),
     };
     if (area is Text) {
-      return Padding(padding: const EdgeInsets.all(8), child: area);
+      return Padding(padding: DialogPaddings.locationText, child: area);
     }
     if (area is LocationSearchResults) {
       return Padding(padding: const EdgeInsets.only(top: 12), child: area);

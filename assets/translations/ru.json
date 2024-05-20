@@ -5,9 +5,9 @@
     "HomeScreen.Create": "Создать",  
     "HomeScreen.Profile": "Профиль",
     "HomeScreen.Post": "Объявление",
+    "HomeScreen.Warning": "Для создания объявления необходмо заполнить свой профиль.",
 
     "PostsScreen.Title": "Объявления",
-    
     "PostsPlaceholder.EmptyTitle": "Нет объявлений.",
     "PostsPlaceholder.EmptyText": "Попробуйте изменить фильтры.",
     "PostsPlaceholder.ErrorTitle": "Ошибка сервера.",
@@ -45,7 +45,7 @@
     "ProfileScreen.AgeDialog": "Ваш возраст",
     "ProfileScreen.CityTile": "Город",
     "ProfileScreen.CityDialog": "Ваш город",
-    "ProfileScreen.CitySuccess": "Новые объявления будут публиковаться в данном городе.",    
+    "ProfileScreen.CitySuccess": "Ваши объявления будут публиковаться в данном городе.",    
     "ProfileScreen.ContactTile": "Контакт",
     "ProfileScreen.ContactDialog": "Ваш контакт",
     "ProfileScreen.ContactHint": "Выберите тип",
@@ -75,6 +75,7 @@
     "ContactType.phone": "Телефон",
     "ContactType.telegram": "Телеграмм",
 
+    "Button.OK": "ОК",
     "Button.Next": "ДАЛЕЕ",
     "Button.Start": "НАЧАТЬ",   
     "Button.Save": "СОХРАНИТЬ",

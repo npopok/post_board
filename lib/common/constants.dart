@@ -42,9 +42,10 @@ class DialogPaddings {
   static const dialogTitle = EdgeInsets.only(top: 16);
   static const defaultContent = EdgeInsets.symmetric(vertical: 8);
   static const inputContent = EdgeInsets.all(24);
-  static const promptContent = EdgeInsets.symmetric(vertical: 24);
+  static const promptContent = EdgeInsets.symmetric(horizontal: 40, vertical: 24);
   static const sliderContent = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
   static const locationContent = EdgeInsets.all(24);
+  static const locationText = EdgeInsets.all(16);
   static const valueTile = EdgeInsets.symmetric(horizontal: 24);
 }
 
