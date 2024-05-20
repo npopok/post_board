@@ -68,7 +68,7 @@ class _ContactFieldState extends State<ContactField> {
           decoration: InputDecoration(
             counterText: '',
             hintText: readOnly ? widget.hintText : null,
-            suffixIcon: IconButton(
+            prefixIcon: IconButton(
               onPressed: () => _selectContactType(context),
               icon: ContactIcon(type: selectedValue.type),
             ),
