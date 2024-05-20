@@ -20,11 +20,12 @@ enum LocationDialogStatus {
 
 class LocationDialog extends StatefulWidget {
   static const minLength = 3;
-  static const searchLimit = 4;
-  static const textAreaHeight = 180.0;
+  static const searchLimit = 3;
+  static const textAreaHeight = 140.0;
 
   final String? title;
   final City initialValue;
+  final String successText;
   final EdgeInsets? contentPadding;
   final bool saveButton;
   final Function(City)? onSelected;
@@ -32,10 +33,11 @@ class LocationDialog extends StatefulWidget {
   const LocationDialog({
     this.title,
     required this.initialValue,
-    super.key,
+    required this.successText,
     this.contentPadding,
     this.saveButton = true,
     this.onSelected,
+    super.key,
   });
 
   @override
@@ -130,11 +132,9 @@ class _LocationDialogState extends State<LocationDialog> {
             currentStatus.value = LocationDialogStatus.searchSelected;
           },
         ),
-      LocationDialogStatus.searchSelected =>
-        context.textCentered('LocationDialog.SuccessText'.tr()),
+      LocationDialogStatus.searchSelected => context.textCentered(widget.successText),
       LocationDialogStatus.locationStart => const CircularProgressIndicator(),
-      LocationDialogStatus.locationSuccess =>
-        context.textCentered('LocationDialog.SuccessText'.tr()),
+      LocationDialogStatus.locationSuccess => context.textCentered(widget.successText),
       LocationDialogStatus.locationError => context.textError(errorText),
     };
     if (area is Text) {

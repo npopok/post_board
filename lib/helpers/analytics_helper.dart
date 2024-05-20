@@ -23,6 +23,7 @@ enum AnalyticsParameter {
   filtersCategory,
   filtersGender,
   filtersAge,
+  filtersCity,
   settingsThemeMode,
 }
 

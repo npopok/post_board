@@ -13,9 +13,14 @@
     "PostsPlaceholder.ErrorText": "Try again later.",
 
     "FiltersScreen.Title": "Filters",
-    "FiltersScreen.Gender": "Gender",
-    "FiltersScreen.Age": "Age",   
-    "FiltersScreen.Range": "From {} to {} years",
+    "FiltersScreen.GenderTile": "Gender",
+    "FiltersScreen.GenderDialog": "Gender",      
+    "FiltersScreen.AgeTile": "Age", 
+    "FiltersScreen.AgeText": "From {} to {} years",
+    "FiltersScreen.AgeDialog": "Age",    
+    "FiltersScreen.CityTile": "City",
+    "FiltersScreen.CityDialog": "City",
+    "FiltersScreen.CitySuccess": "Posts will be displayed for the selected city.",
 
     "PostDetails.WriteChat": "Write message",
     "PostDetails.WriteEmail": "Write email",
@@ -46,6 +51,7 @@
     "ProfileScreen.AgeDialog": "Your Age",   
     "ProfileScreen.CityTile": "City",
     "ProfileScreen.CityDialog": "Your City",
+    "ProfileScreen.CitySuccess": "New posts will be published in this city.", 
     "ProfileScreen.ContactTile": "Contact",
     "ProfileScreen.ContactDialog": "Your Contact",
     "ProfileScreen.ContactHint": "Select type",
@@ -53,7 +59,6 @@
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.ThemeMode": "Theme Mode",
 
-    "LocationDialog.SuccessText": "Once saved the posts will be displayed for the selected city.",
     "LocationDialog.SearchText": "Enter the city name or click on the icon to automatically determine it.",
     "LocationDialog.EmptyText": "City not found.",
     "LocationDialog.ErrorText": "Error occuried. Try again later.",

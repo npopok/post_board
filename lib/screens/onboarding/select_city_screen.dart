@@ -23,6 +23,7 @@ class SelectCityScreen extends TemplateScreen {
   Widget buildContent(BuildContext context, WidgetRef ref) {
     return LocationDialog(
       initialValue: ref.watch(profileStateProvider).city,
+      successText: '',
       contentPadding: EdgeInsets.zero,
       saveButton: false,
       onSelected: (value) => ref.read(filtersStateProvider.notifier).city = value,

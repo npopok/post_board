@@ -13,9 +13,14 @@
     "PostsPlaceholder.ErrorText": "Попробуйте повторить позже.",
 
     "FiltersScreen.Title": "Фильтры",
-    "FiltersScreen.Gender": "Пол",   
-    "FiltersScreen.Age": "Возраст", 
-    "FiltersScreen.Range": "От {} до {} лет",
+    "FiltersScreen.GenderTile": "Пол",
+    "FiltersScreen.GenderDialog": "Пол",      
+    "FiltersScreen.AgeTile": "Возраст", 
+    "FiltersScreen.AgeText": "От {} до {} лет",
+    "FiltersScreen.AgeDialog": "Возраст",    
+    "FiltersScreen.CityTile": "Город",
+    "FiltersScreen.CityDialog": "Город",
+    "FiltersScreen.CitySuccess": "Будут показываться объявления из данного города.",
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",
@@ -46,6 +51,7 @@
     "ProfileScreen.AgeDialog": "Ваш возраст",
     "ProfileScreen.CityTile": "Город",
     "ProfileScreen.CityDialog": "Ваш город",
+    "ProfileScreen.CitySuccess": "Новые объявления будут публиковаться в данном городе.",    
     "ProfileScreen.ContactTile": "Контакт",
     "ProfileScreen.ContactDialog": "Ваш контакт",
     "ProfileScreen.ContactHint": "Выберите тип",
@@ -53,7 +59,6 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
     
-    "LocationDialog.SuccessText": "Будут показываться объявления для выбранного города.",
     "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",
     "LocationDialog.ErrorText": "Произошла ошибка. Попробуйте позже.",

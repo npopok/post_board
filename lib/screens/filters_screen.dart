@@ -31,6 +31,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         children: [
           _buildGenderTile(context, filters),
           _buildAgeTile(context, filters),
+          _buildCityTile(context, filters),
         ],
       ),
     );
@@ -41,12 +42,13 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
 
     return ListTile(
       leading: const Icon(Icons.wc),
-      title: Text('FiltersScreen.Gender'.tr()),
+      title: Text('FiltersScreen.GenderTile'.tr()),
       subtitle: Text('${filter.gender}'.tr()),
       onTap: () => showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) => ValueListDialog<Gender>(
+          title: 'FiltersScreen.GenderDialog'.tr(),
           values: values,
           textBuilder: (value) => value.toString().tr(),
           initialValue: filter.gender,
@@ -58,9 +60,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   Widget _buildAgeTile(BuildContext context, Filters filter) {
     return ListTile(
       leading: const Icon(Icons.cake),
-      title: Text('FiltersScreen.Age'.tr()),
+      title: Text('FiltersScreen.AgeTile'.tr()),
       subtitle: Text(
-        'FiltersScreen.Range'.tr(args: [
+        'FiltersScreen.AgeText'.tr(args: [
           filter.age.min.toString(),
           filter.age.max.toString(),
         ]),
@@ -69,7 +71,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => RangeDialog(
-          title: 'FiltersScreen.Age'.tr(),
+          title: 'FiltersScreen.AgeDialog'.tr(),
           range: (
             min: FieldConstraints.ageMinValue,
             max: FieldConstraints.ageMaxValue,
@@ -77,6 +79,23 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
           initialValue: filter.age,
         ),
       ).then((value) => value != null ? _updateAge(value) : 0),
+    );
+  }
+
+  Widget _buildCityTile(BuildContext context, Filters filters) {
+    return ListTile(
+      leading: const Icon(Icons.place),
+      title: Text('FiltersScreen.CityTile'.tr()),
+      subtitle: Text(filters.city.name),
+      onTap: () => showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (_) => LocationDialog(
+          title: 'FiltersScreen.CityDialog'.tr(),
+          initialValue: filters.city,
+          successText: 'FiltersScreen.CitySuccess'.tr(),
+        ),
+      ).then((value) => value != null ? _updateCity(value) : 0),
     );
   }
 
@@ -88,5 +107,10 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   void _updateAge(NumericRange value) {
     ref.read(filtersStateProvider.notifier).age = value;
     logEvent(AnalyticsEvent.filtersUpdate, {AnalyticsParameter.filtersAge: value.toString()});
+  }
+
+  void _updateCity(City value) {
+    ref.read(filtersStateProvider.notifier).city = value;
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.filtersCity: value.name});
   }
 }
