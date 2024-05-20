@@ -5,12 +5,14 @@ import 'generic_dialog.dart';
 
 class CheckListDialog extends StatefulWidget {
   final String title;
+  final String buttonTitle;
   final List<String> items;
   final List<bool> values;
   final bool Function(List<bool>) onValidate;
 
   const CheckListDialog({
     required this.title,
+    required this.buttonTitle,
     required this.items,
     required this.values,
     required this.onValidate,
@@ -36,7 +38,13 @@ class _CheckListDialogState extends State<CheckListDialog> {
       title: widget.title,
       contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
-      actions: [DialogActionButton.save(context, () => checks)],
+      actions: [
+        DialogActionButton.submit(
+          context,
+          widget.buttonTitle,
+          () => checks,
+        )
+      ],
     );
   }
 

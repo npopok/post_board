@@ -7,13 +7,15 @@ import 'package:post_board/widgets/widgets.dart';
 import 'generic_dialog.dart';
 
 class ContactDialog extends StatefulWidget {
-  final String? title;
+  final String title;
+  final String buttonTitle;
   final Contact initialValue;
   final String? hintText;
   final String? errorText;
 
   const ContactDialog({
-    this.title,
+    required this.title,
+    required this.buttonTitle,
     required this.initialValue,
     this.hintText,
     this.errorText,
@@ -53,7 +55,12 @@ class _ContactDialogState extends State<ContactDialog> {
           ),
         ),
         actions: [
-          DialogActionButton.save(context, () => selectedValue, formKey),
+          DialogActionButton.submit(
+            context,
+            widget.buttonTitle,
+            () => selectedValue,
+            formKey,
+          ),
         ],
       ),
     );

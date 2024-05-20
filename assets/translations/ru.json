@@ -4,6 +4,7 @@
     "HomeScreen.Search": "Поиск",
     "HomeScreen.Create": "Создать",  
     "HomeScreen.Profile": "Профиль",
+    "HomeScreen.Post": "Объявление",
 
     "PostsScreen.Title": "Объявления",
     
@@ -30,13 +31,6 @@
     "PostDetails.CopyText": "Скопировать текст",
     "PostDetails.ActionFailed": "Действие невозможно.",
 
-    "SubmitScreen.Title": "Новое объявление",
-    "SubmitScreen.CategoryHint": "Раздел",
-    "SubmitScreen.CategoryEmpty": "Выберите категорию",    
-    "SubmitScreen.TextHint": "Текст объявления",
-    "SubmitScreen.TextEmpty": "Введите текст объявления",
-    "SubmitScreen.TextShort": "Слишком короткий текст",    
-    "SubmitScreen.SubmitButton": "ОТПРАВИТЬ",
     "SubmitScreen.SubmitSuccess": "Ваше объявление добавлено.", 
     "SubmitScreen.ServerError": "Произошла ошибка. Попробуйте позже.",
     "SubmitScreen.QuotaError": "Можно создать только одно объявление в сутки.",
@@ -84,6 +78,7 @@
     "Button.Next": "ДАЛЕЕ",
     "Button.Start": "НАЧАТЬ",   
     "Button.Save": "СОХРАНИТЬ",
+    "Button.Submit": "ОТПРАВИТЬ",
 
     "Elapsed.Now": "сейчас",
     "Elapsed.Minutues": "{} мин назад",
@@ -92,7 +87,13 @@
     "Elapsed.Weeks": "{} нед назад",
     "Elapsed.Months": "{} мес назад",
     "Elapsed.Years": "давно",
-    
+
+    "SubmitDialog.CategoryHint": "Раздел",
+    "SubmitDialog.CategoryEmpty": "Выберите категорию",    
+    "SubmitDialog.TextHint": "Текст объявления",
+    "SubmitDialog.TextEmpty": "Введите текст объявления",
+    "SubmitDialog.TextShort": "Слишком короткий текст",   
+
     "LocationException.ServiceDisabled": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
     "LocationException.PermissionDenied": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
     "LocationException.OtherError": "Произошла ошибка при попытке определения местоположения."

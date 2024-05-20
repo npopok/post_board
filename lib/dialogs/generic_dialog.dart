@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
@@ -65,13 +64,14 @@ class DialogActionButton extends StatelessWidget {
     super.key,
   });
 
-  factory DialogActionButton.save(
+  factory DialogActionButton.submit(
     BuildContext context,
+    String title,
     Object Function() returnValue, [
     GlobalKey<FormState>? formKey,
   ]) =>
       DialogActionButton(
-        title: 'Button.Save'.tr(),
+        title: title,
         onPressed: () {
           if (formKey != null) {
             if (!formKey.currentState!.validate()) return;
@@ -79,11 +79,6 @@ class DialogActionButton extends StatelessWidget {
           }
           context.maybePop(returnValue());
         },
-      );
-
-  factory DialogActionButton.clear(BuildContext context) => DialogActionButton(
-        title: 'Button.Clear'.tr(),
-        onPressed: () => context.maybePop(),
       );
 
   @override

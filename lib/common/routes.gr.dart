@@ -69,12 +69,6 @@ abstract class _$Routes extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
-    SubmitRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SubmitScreen(),
-      );
-    },
     WelcomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -206,20 +200,6 @@ class SettingsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SubmitScreen]
-class SubmitRoute extends PageRouteInfo<void> {
-  const SubmitRoute({List<PageRouteInfo>? children})
-      : super(
-          SubmitRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SubmitRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

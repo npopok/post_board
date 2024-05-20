@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'types.dart';
-import 'profile.dart';
+import 'package:post_board/models/models.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';

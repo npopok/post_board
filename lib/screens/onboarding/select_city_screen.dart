@@ -25,7 +25,6 @@ class SelectCityScreen extends TemplateScreen {
       initialValue: ref.watch(profileStateProvider).city,
       successText: '',
       contentPadding: EdgeInsets.zero,
-      saveButton: false,
       onSelected: (value) => ref.read(filtersStateProvider.notifier).city = value,
     );
   }

@@ -37,7 +37,6 @@ class Routes extends _$Routes {
           initial: true,
           children: [
             AutoRoute(page: PostsRoute.page),
-            AutoRoute(page: SubmitRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
           guards: [HomeRouteGuard()],

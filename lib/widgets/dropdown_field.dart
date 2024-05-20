@@ -7,14 +7,16 @@ class DropdownField<T> extends FormField<T> {
   final String hintText;
   final String errorText;
   final String Function(T) textBuilder;
+  final Function(T)? onChanged;
 
   DropdownField({
-    required super.initialValue,
+    super.initialValue,
     required this.values,
     required this.hintText,
     required this.errorText,
     required this.textBuilder,
-    required super.onSaved,
+    this.onChanged,
+    super.onSaved,
     super.key,
   }) : super(
           builder: (FormFieldState<T> state) {
@@ -40,6 +42,7 @@ class DropdownField<T> extends FormField<T> {
                 );
                 if (value != null) {
                   state.didChange(value);
+                  onChanged?.call(value);
                 }
               },
               validator: (_) => state.value == null ? errorText : null,

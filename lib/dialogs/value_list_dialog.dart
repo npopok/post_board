@@ -13,7 +13,6 @@ class ValueListDialog<T> extends StatelessWidget {
   final String Function(T) textBuilder;
   final T? initialValue;
   final AlignmentGeometry alignment;
-  final bool clearButton;
 
   const ValueListDialog({
     this.title,
@@ -21,7 +20,6 @@ class ValueListDialog<T> extends StatelessWidget {
     required this.textBuilder,
     this.initialValue,
     this.alignment = Alignment.centerLeft,
-    this.clearButton = false,
     super.key,
   });
 
@@ -31,9 +29,6 @@ class ValueListDialog<T> extends StatelessWidget {
       title: title,
       contentPadding: DialogPaddings.defaultContent,
       contentBuilder: _buildContent,
-      actions: [
-        if (clearButton) DialogActionButton.clear(context),
-      ],
     );
   }
 

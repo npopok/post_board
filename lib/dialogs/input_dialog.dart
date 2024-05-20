@@ -6,13 +6,15 @@ import 'package:post_board/helpers/helpers.dart';
 import 'generic_dialog.dart';
 
 class InputDialog extends StatefulWidget {
-  final String? title;
+  final String title;
+  final String buttonTitle;
   final String? initialValue;
   final int? maxLength;
   final String? errorText;
 
   const InputDialog({
-    this.title,
+    required this.title,
+    required this.buttonTitle,
     this.initialValue,
     this.maxLength,
     this.errorText,
@@ -55,7 +57,12 @@ class _InputDialogState extends State<InputDialog> {
           ),
         ),
         actions: [
-          DialogActionButton.save(context, () => selectedValue, formKey),
+          DialogActionButton.submit(
+            context,
+            widget.buttonTitle,
+            () => selectedValue,
+            formKey,
+          ),
         ],
       ),
     );

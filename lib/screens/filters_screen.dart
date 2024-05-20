@@ -72,6 +72,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         context: context,
         builder: (context) => RangeDialog(
           title: 'FiltersScreen.AgeDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           range: (
             min: FieldConstraints.ageMinValue,
             max: FieldConstraints.ageMaxValue,

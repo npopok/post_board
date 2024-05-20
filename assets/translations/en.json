@@ -4,6 +4,7 @@
     "HomeScreen.Search": "Search",
     "HomeScreen.Create": "Create",
     "HomeScreen.Profile": "Profile",
+    "HomeScreen.Post": "Post",
 
     "PostsScreen.Title": "Posts",
 
@@ -30,16 +31,9 @@
     "PostDetails.CopyText": "Copy text",
     "PostDetails.ActionFailed": "Action failed.",
 
-    "SubmitScreen.Title": "New Post",
-    "SubmitScreen.CategoryHint": "Category",
-    "SubmitScreen.CategoryEmpty": "Select category",       
-    "SubmitScreen.TextHint": "Post text",
-    "SubmitScreen.TextEmpty": "Enter post text",
-    "SubmitScreen.TextShort": "Too short text",
-    "SubmitScreen.SubmitButton": "SUBMIT",
     "SubmitScreen.SubmitSuccess": "Your post has been published.", 
     "SubmitScreen.ServerError": "Error occuried. Try again later.",
-    "SubmitScreen.QuotaError": "You can only create one post per day.",
+    "SubmitScreen.QuotaError": "You can create only one post per day.",
 
     "ProfileScreen.Title": "Profile",
     "ProfileScreen.Empty": "Not specified",
@@ -84,6 +78,7 @@
     "Button.Next": "NEXT",
     "Button.Start": "START",   
     "Button.Save": "SAVE",
+    "Button.Submit": "SUBMIT",
 
     "Elapsed.Now": "now",
     "Elapsed.Minutues": "{} min ago",
@@ -92,6 +87,12 @@
     "Elapsed.Weeks": "{} w ago",
     "Elapsed.Months": "{} mon ago",
     "Elapsed.Years": "long ago",
+
+    "SubmitDialog.CategoryHint": "Category",
+    "SubmitDialog.CategoryEmpty": "Select category",       
+    "SubmitDialog.TextHint": "Post text",
+    "SubmitDialog.TextEmpty": "Enter post text",
+    "SubmitDialog.TextShort": "Too short text",
 
     "LocationException.ServiceDisabled": "To determine your city, allow access to location in the settings.",
     "LocationException.PermissionDenied": "To determine your city, allow access to location in the settings.",

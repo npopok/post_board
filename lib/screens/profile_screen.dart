@@ -57,6 +57,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (context) => InputDialog(
           title: 'ProfileScreen.NameDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           initialValue: profile.name,
           maxLength: FieldConstraints.nameMaxLength,
           errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign
@@ -99,6 +100,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (context) => SliderDialog(
           title: 'ProfileScreen.AgeDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           range: (
             min: FieldConstraints.ageMinValue,
             max: FieldConstraints.ageMaxValue,
@@ -140,6 +142,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (_) => ContactDialog(
           title: 'ProfileScreen.ContactDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           initialValue: profile.contact,
           hintText: 'ProfileScreen.ContactHint'.tr(),
           errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign

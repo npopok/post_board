@@ -6,12 +6,14 @@ import 'package:post_board/models/models.dart';
 import 'generic_dialog.dart';
 
 class RangeDialog extends StatefulWidget {
-  final String? title;
+  final String title;
+  final String buttonTitle;
   final NumericRange range;
   final NumericRange initialValue;
 
   const RangeDialog({
-    this.title,
+    required this.title,
+    required this.buttonTitle,
     required this.range,
     required this.initialValue,
     super.key,
@@ -36,7 +38,13 @@ class _RangeDialogState extends State<RangeDialog> {
       title: widget.title,
       contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
-      actions: [DialogActionButton.save(context, () => selectedValues)],
+      actions: [
+        DialogActionButton.submit(
+          context,
+          widget.buttonTitle,
+          () => selectedValues,
+        ),
+      ],
     );
   }
 

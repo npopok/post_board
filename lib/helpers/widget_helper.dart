@@ -6,11 +6,14 @@ final showSnackBar = GetIt.I<MessengerHelper>().showSnackBar;
 class MessengerHelper {
   final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
-  void showSnackBar(String text) {
+  void showSnackBar(String text, [bool permanent = false]) {
     messengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(text),
-        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.zero,
+        duration: Duration(seconds: permanent ? 1000 : 2),
+        showCloseIcon: permanent,
       ),
     );
   }

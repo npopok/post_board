@@ -6,12 +6,14 @@ import 'package:post_board/models/models.dart';
 import 'generic_dialog.dart';
 
 class SliderDialog extends StatefulWidget {
-  final String? title;
+  final String title;
+  final String buttonTitle;
   final NumericRange range;
   final int initialValue;
 
   const SliderDialog({
-    this.title,
+    required this.title,
+    required this.buttonTitle,
     required this.range,
     required this.initialValue,
     super.key,
@@ -36,7 +38,13 @@ class _SliderDialogState extends State<SliderDialog> {
       title: widget.title,
       contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
-      actions: [DialogActionButton.save(context, () => selectedValue)],
+      actions: [
+        DialogActionButton.submit(
+          context,
+          widget.buttonTitle,
+          () => selectedValue,
+        ),
+      ],
     );
   }
 

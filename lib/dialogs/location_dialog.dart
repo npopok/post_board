@@ -24,18 +24,18 @@ class LocationDialog extends StatefulWidget {
   static const textAreaHeight = 140.0;
 
   final String? title;
+  final String? buttonTitle;
   final City initialValue;
   final String successText;
   final EdgeInsets? contentPadding;
-  final bool saveButton;
   final Function(City)? onSelected;
 
   const LocationDialog({
     this.title,
+    this.buttonTitle,
     required this.initialValue,
     required this.successText,
     this.contentPadding,
-    this.saveButton = true,
     this.onSelected,
     super.key,
   });
@@ -80,9 +80,10 @@ class _LocationDialogState extends State<LocationDialog> {
               return const CircularProgressIndicator();
             }),
         actions: [
-          if (widget.saveButton == true)
-            DialogActionButton.save(
+          if (widget.buttonTitle != null)
+            DialogActionButton.submit(
               context,
+              widget.buttonTitle!,
               () => selectedValue.isNotEmpty ? selectedValue : widget.initialValue,
             )
         ],
@@ -121,17 +122,7 @@ class _LocationDialogState extends State<LocationDialog> {
     Widget area = switch (currentStatus.value) {
       LocationDialogStatus.initial => context.textCentered('LocationDialog.SearchText'.tr()),
       LocationDialogStatus.searchStart => context.textCentered('LocationDialog.SearchText'.tr()),
-      LocationDialogStatus.searchResults => LocationSearchResults(
-          cities: cities,
-          text: enteredText,
-          searchLimit: LocationDialog.searchLimit,
-          emptyText: 'LocationDialog.EmptyText'.tr(),
-          onSaved: (value) {
-            selectedValue = value;
-            widget.onSelected?.call(selectedValue);
-            currentStatus.value = LocationDialogStatus.searchSelected;
-          },
-        ),
+      LocationDialogStatus.searchResults => _buildSearchResults(),
       LocationDialogStatus.searchSelected => context.textCentered(widget.successText),
       LocationDialogStatus.locationStart => const CircularProgressIndicator(),
       LocationDialogStatus.locationSuccess => context.textCentered(widget.successText),
@@ -144,6 +135,20 @@ class _LocationDialogState extends State<LocationDialog> {
       return Padding(padding: const EdgeInsets.only(top: 12), child: area);
     }
     return area;
+  }
+
+  Widget _buildSearchResults() {
+    return LocationSearchResults(
+      cities: cities,
+      text: enteredText,
+      searchLimit: LocationDialog.searchLimit,
+      emptyText: 'LocationDialog.EmptyText'.tr(),
+      onSaved: (value) {
+        selectedValue = value;
+        widget.onSelected?.call(selectedValue);
+        currentStatus.value = LocationDialogStatus.searchSelected;
+      },
+    );
   }
 
   void _inputTapHandler() {
