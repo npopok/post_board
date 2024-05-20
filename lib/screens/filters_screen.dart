@@ -93,6 +93,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         context: context,
         builder: (_) => LocationDialog(
           title: 'FiltersScreen.CityDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           initialValue: filters.city,
           successText: 'FiltersScreen.CitySuccess'.tr(),
         ),

@@ -33,7 +33,11 @@ class Contact with _$Contact {
     if (emailPattern.hasMatch(text)) {
       return Contact(type: ContactType.email, details: text);
     } else if (phonePattern.hasMatch(text)) {
-      return Contact(type: ContactType.whatsapp, details: text);
+      text = text.replaceFirst(
+        RegExp('^${RegionalSettings.countryCodeAlt}'),
+        RegionalSettings.countryCode,
+      );
+      return Contact(type: ContactType.phone, details: text);
     } else if (telegramPattern.hasMatch(text)) {
       return Contact(type: ContactType.telegram, details: text);
     }
@@ -41,10 +45,15 @@ class Contact with _$Contact {
   }
 
   @override
-  String toString() => switch (type) {
-        ContactType.unknown => details,
-        ContactType.email => details,
-        ContactType.whatsapp => '${RegionalSettings.countryCode}$details',
-        ContactType.telegram => '@$details'
-      };
+  String toString() => details;
+}
+
+class ContactConverter implements JsonConverter<Contact, String> {
+  const ContactConverter();
+
+  @override
+  Contact fromJson(String text) => Contact.parse(text);
+
+  @override
+  String toJson(Contact value) => value.toString();
 }

@@ -123,6 +123,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (_) => LocationDialog(
           title: 'ProfileScreen.CityDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
           initialValue: profile.city,
           successText: 'ProfileScreen.CitySuccess'.tr(),
         ),

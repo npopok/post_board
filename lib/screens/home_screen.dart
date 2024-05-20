@@ -76,7 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     try {
       final profile = ref.read(profileStateProvider);
 
-      final post = Post.create(profile, category, text, profile.contact.toString());
+      final post = Post.create(profile, category, text, profile.contact);
       await remoteRepository.savePost(post);
 
       final filter = ref.read(filtersStateProvider);

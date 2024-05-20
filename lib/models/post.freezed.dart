@@ -31,7 +31,8 @@ mixin _$Post {
   int get cityId => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  String get contact => throw _privateConstructorUsedError;
+  @ContactConverter()
+  Contact get contact => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +53,9 @@ abstract class $PostCopyWith<$Res> {
       @JsonKey(name: 'city_id') int cityId,
       Category category,
       String text,
-      String contact});
+      @ContactConverter() Contact contact});
+
+  $ContactCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -114,8 +117,16 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
       contact: null == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Contact,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactCopyWith<$Res> get contact {
+    return $ContactCopyWith<$Res>(_value.contact, (value) {
+      return _then(_value.copyWith(contact: value) as $Val);
+    });
   }
 }
 
@@ -135,7 +146,10 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       @JsonKey(name: 'city_id') int cityId,
       Category category,
       String text,
-      String contact});
+      @ContactConverter() Contact contact});
+
+  @override
+  $ContactCopyWith<$Res> get contact;
 }
 
 /// @nodoc
@@ -194,7 +208,7 @@ class __$$PostImplCopyWithImpl<$Res>
       contact: null == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Contact,
     ));
   }
 }
@@ -211,7 +225,7 @@ class _$PostImpl implements _Post {
       @JsonKey(name: 'city_id') required this.cityId,
       required this.category,
       required this.text,
-      required this.contact});
+      @ContactConverter() required this.contact});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
@@ -236,7 +250,8 @@ class _$PostImpl implements _Post {
   @override
   final String text;
   @override
-  final String contact;
+  @ContactConverter()
+  final Contact contact;
 
   @override
   String toString() {
@@ -293,7 +308,7 @@ abstract class _Post implements Post {
       @JsonKey(name: 'city_id') required final int cityId,
       required final Category category,
       required final String text,
-      required final String contact}) = _$PostImpl;
+      @ContactConverter() required final Contact contact}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -317,7 +332,8 @@ abstract class _Post implements Post {
   @override
   String get text;
   @override
-  String get contact;
+  @ContactConverter()
+  Contact get contact;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

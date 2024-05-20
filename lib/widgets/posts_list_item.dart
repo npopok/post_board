@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:post_board/common/common.dart';
 
 import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
@@ -43,7 +44,7 @@ class PostListItem extends StatelessWidget {
   }
 
   void _showContactMenu(BuildContext context, Post post) {
-    final contact = Contact.parse(post.contact);
+    final contact = post.contact;
     final actions = _getPostActions(contact.type);
     final entries = actions.entries.toList();
 
@@ -70,7 +71,7 @@ class PostListItem extends StatelessWidget {
   Widget _popupMenuIcon(ContactType type, PostAction action) {
     return switch (action) {
       PostAction.writeEmail => ContactIcon(type: type),
-      PostAction.writeWhatsapp => ContactIcon(type: type),
+      PostAction.writeWhatsapp => CommonIcons.whatsapp,
       PostAction.writeTelegram => ContactIcon(type: type),
       PostAction.copyContact => const Icon(Icons.contact_page_outlined),
       PostAction.copyText => const Icon(Icons.copy_outlined),
@@ -81,7 +82,7 @@ class PostListItem extends StatelessWidget {
     final Map<PostAction, String> actions = {};
     if (type == ContactType.email) {
       actions[PostAction.writeEmail] = 'PostDetails.WriteEmail'.tr();
-    } else if (type == ContactType.whatsapp) {
+    } else if (type == ContactType.phone) {
       actions[PostAction.writeWhatsapp] = 'PostDetails.WriteWhatsapp'.tr();
     } else if (type == ContactType.telegram) {
       actions[PostAction.writeTelegram] = 'PostDetails.WriteTelegram'.tr();
@@ -92,7 +93,7 @@ class PostListItem extends StatelessWidget {
   }
 
   Future<bool> _performPostAction(PostAction action, Post post) async {
-    final contact = Contact.parse(post.contact);
+    final contact = post.contact;
     switch (action) {
       case PostAction.writeEmail:
         return LaunchHelper.openEmail(contact.details);
@@ -101,7 +102,7 @@ class PostListItem extends StatelessWidget {
       case PostAction.writeTelegram:
         return LaunchHelper.openTelegram(contact.details);
       case PostAction.copyContact:
-        await Clipboard.setData(ClipboardData(text: post.contact));
+        await Clipboard.setData(ClipboardData(text: contact.details));
         return true;
       case PostAction.copyText:
         await Clipboard.setData(ClipboardData(text: post.text));

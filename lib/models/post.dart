@@ -16,7 +16,7 @@ class Post with _$Post {
     @JsonKey(name: 'city_id') required final int cityId,
     required Category category,
     required String text,
-    required String contact,
+    @ContactConverter() required Contact contact,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
@@ -25,7 +25,7 @@ class Post with _$Post {
     Profile profile,
     Category category,
     String text,
-    String contact,
+    Contact contact,
   ) =>
       Post(
         author: profile.name,

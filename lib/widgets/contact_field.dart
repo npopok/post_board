@@ -75,9 +75,11 @@ class _ContactFieldState extends State<ContactField> {
           ),
           validator: (value) => selectedValue.isNotEmpty ? null : widget.errorText,
           onTap: () => readOnly ? _selectContactType(context) : null,
-          onChanged: (value) => selectedValue = selectedValue.copyWith(
-            details: formatter.getUnmaskedText(),
-          ),
+          onChanged: (value) {
+            selectedValue = selectedValue.copyWith(
+              details: formatter.getMaskedText().replaceAll(' ', ''),
+            );
+          },
         );
       },
       onSaved: (value) => widget.onSaved?.call(selectedValue),
@@ -88,7 +90,7 @@ class _ContactFieldState extends State<ContactField> {
     return switch (selectedValue.type) {
       ContactType.unknown => TextInputType.text,
       ContactType.email => TextInputType.emailAddress,
-      ContactType.whatsapp => TextInputType.phone,
+      ContactType.phone => TextInputType.phone,
       ContactType.telegram => TextInputType.emailAddress,
     };
   }
@@ -101,7 +103,7 @@ class _ContactFieldState extends State<ContactField> {
         filter: {"#": RegExp(r'[0-9a-zA-Z@._-]')},
         type: MaskAutoCompletionType.lazy,
       ),
-      ContactType.whatsapp: MaskTextInputFormatter(
+      ContactType.phone: MaskTextInputFormatter(
         mask: '${RegionalSettings.countryCode} ### ### ####',
         filter: {"#": RegExp(r'[0-9]')},
         type: MaskAutoCompletionType.eager,

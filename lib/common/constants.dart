@@ -47,3 +47,8 @@ class DialogPaddings {
   static const locationContent = EdgeInsets.all(24);
   static const valueTile = EdgeInsets.symmetric(horizontal: 24);
 }
+
+class CommonIcons {
+  static const whatsapp = ImageIcon(AssetImage('assets/icons/whatsapp.png'));
+  static const telegram = ImageIcon(AssetImage('assets/icons/telegram.png'));
+}

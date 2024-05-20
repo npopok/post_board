@@ -71,9 +71,9 @@
     "Category.jobs": "Работа",
     "Category.other": "Разное",
     
-    "ContactType.email": "Email",
-    "ContactType.whatsapp": "Whatsapp",
-    "ContactType.telegram": "Telegram",
+    "ContactType.email": "Почта",
+    "ContactType.phone": "Телефон",
+    "ContactType.telegram": "Телеграмм",
 
     "Button.Next": "ДАЛЕЕ",
     "Button.Start": "НАЧАТЬ",   

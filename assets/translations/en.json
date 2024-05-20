@@ -72,7 +72,7 @@
     "Category.other": "Other",
     
     "ContactType.email": "Email",
-    "ContactType.whatsapp": "Whatsapp",
+    "ContactType.phone": "Phone",
     "ContactType.telegram": "Telegram",
 
     "Button.Next": "NEXT",
