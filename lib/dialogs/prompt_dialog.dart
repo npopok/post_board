@@ -22,7 +22,6 @@ class PromptDialog extends StatelessWidget {
       contentPadding: DialogPaddings.promptContent,
       contentBuilder: (_) => Text(
         text,
-        //  style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.center,
       ),
       actions: [
