@@ -63,6 +63,7 @@ class _ContactFieldState extends State<ContactField> {
           controller: textController,
           readOnly: readOnly,
           maxLength: FieldConstraints.contactMaxLength,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: _getKeyboardType(),
           inputFormatters: [formatter],
           decoration: InputDecoration(

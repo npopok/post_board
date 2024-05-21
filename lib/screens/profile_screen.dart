@@ -60,7 +60,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           buttonTitle: 'Button.Save'.tr(),
           initialValue: profile.name,
           maxLength: FieldConstraints.nameMaxLength,
-          errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign
+          errorText: '',
         ),
       ).then((value) => value != null ? _updateName(value) : 0),
     );
@@ -146,7 +146,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           buttonTitle: 'Button.Save'.tr(),
           initialValue: profile.contact,
           hintText: 'ProfileScreen.ContactHint'.tr(),
-          errorText: 'Поле не может быть пустым', // TODO: Remove after input redesign
+          errorText: '',
         ),
       ).then((value) => value != null ? _updateContact(value) : 0),
     );

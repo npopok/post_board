@@ -62,7 +62,7 @@ class _SubmitDialogState extends State<SubmitDialog> {
           values: Category.values,
           initialValue: category,
           hintText: 'SubmitDialog.CategoryHint'.tr(),
-          errorText: 'SubmitDialog.CategoryEmpty'.tr(),
+          errorText: '',
           textBuilder: (value) => value.toString().tr(),
           onChanged: (value) => setState(() => category = value),
         ),
@@ -71,14 +71,15 @@ class _SubmitDialogState extends State<SubmitDialog> {
           maxLines: 6,
           maxLength: FieldConstraints.postMaxLength,
           textCapitalization: TextCapitalization.sentences,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             hintText: 'SubmitDialog.TextHint'.tr(),
             counterText: '',
           ),
-          validator: TextLengthValidator(
-            emptyMessage: 'SubmitDialog.TextEmpty'.tr(),
+          validator: const TextLengthValidator(
+            emptyMessage: '',
             minLength: FieldConstraints.postMinLength,
-            minMessage: 'SubmitDialog.TextShort'.tr(),
+            minMessage: '',
           ).validate,
           onSaved: (value) => text = value!,
         ),

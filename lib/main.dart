@@ -85,8 +85,8 @@ class _MainAppState extends State<MainApp> {
       locale: context.locale,
       onGenerateTitle: (_) => 'App.Title'.tr(),
       themeMode: settings.themeMode,
-      theme: getIt<Themes>().lightTheme,
-      darkTheme: getIt<Themes>().darkTheme,
+      theme: getIt<Themes>().lightTheme(context),
+      darkTheme: getIt<Themes>().darkTheme(context),
       scaffoldMessengerKey: getIt<MessengerHelper>().messengerKey,
       routerConfig: routes.config(
         navigatorObservers: () => [

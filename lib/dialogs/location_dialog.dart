@@ -100,6 +100,7 @@ class _LocationDialogState extends State<LocationDialog> {
             key: Key(selectedValue.toString()),
             initialValue: selectedValue.toString(),
             readOnly: selectedValue.isNotEmpty,
+            autofocus: true,
             onTap: _inputTapHandler,
             onChanged: _inputChangedHandler,
             decoration: InputDecoration(

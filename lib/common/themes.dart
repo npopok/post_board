@@ -3,35 +3,43 @@ import 'package:flutter/material.dart';
 class Themes {
   const Themes();
 
-  ThemeData get lightTheme => _buildTheme(Brightness.light);
-  ThemeData get darkTheme => _buildTheme(Brightness.dark);
+  ThemeData lightTheme(BuildContext context) {
+    return _buildTheme(Brightness.light, context);
+  }
 
-  ThemeData _buildTheme(Brightness brightness) {
+  ThemeData darkTheme(BuildContext context) {
+    return _buildTheme(Brightness.dark, context);
+  }
+
+  ThemeData _buildTheme(Brightness brightness, BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    bool isLight = brightness == Brightness.light;
+
+    InputBorder inputEnabledBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.transparent),
+    );
+
+    InputBorder errorInputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(
+        color: isLight ? colorScheme.error : colorScheme.errorContainer,
+      ),
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: brightness == Brightness.light ? Colors.white : Colors.black,
+        fillColor: isLight ? Colors.white : Colors.black,
         isDense: true,
         border: InputBorder.none,
         errorStyle: const TextStyle(height: 0),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
+        enabledBorder: inputEnabledBorder,
+        focusedBorder: inputEnabledBorder,
+        errorBorder: errorInputBorder,
+        focusedErrorBorder: errorInputBorder,
       ),
       // sliderTheme: const SliderThemeData(
       //   valueIndicatorShape: DropSliderValueIndicatorShape(),
