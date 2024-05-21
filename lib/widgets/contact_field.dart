@@ -73,7 +73,7 @@ class _ContactFieldState extends State<ContactField> {
               icon: ContactIcon(type: selectedValue.type),
             ),
           ),
-          validator: (value) => selectedValue.isNotEmpty ? null : widget.errorText,
+          validator: (value) => _validateText(value, formatter.isFill()),
           onTap: () => readOnly ? _selectContactType(context) : null,
           onChanged: (value) {
             selectedValue = selectedValue.copyWith(
@@ -84,6 +84,16 @@ class _ContactFieldState extends State<ContactField> {
       },
       onSaved: (value) => widget.onSaved?.call(selectedValue),
     );
+  }
+
+  String? _validateText(String? value, bool isFilled) {
+    if (Contact.parse(value!).type == selectedValue.type) {
+      if (selectedValue.type == ContactType.phone && isFilled ||
+          selectedValue.type != ContactType.phone) {
+        return null;
+      }
+    }
+    return widget.errorText;
   }
 
   TextInputType _getKeyboardType() {
