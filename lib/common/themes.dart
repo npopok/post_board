@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Themes {
   const Themes();
 
-  ThemeData lightTheme(BuildContext context) {
-    return _buildTheme(Brightness.light, context);
-  }
+  ThemeData get lightTheme => _buildTheme(Brightness.light);
+  ThemeData get darkTheme => _buildTheme(Brightness.dark);
 
-  ThemeData darkTheme(BuildContext context) {
-    return _buildTheme(Brightness.dark, context);
-  }
+  ThemeData _buildTheme(Brightness brightness) {
+    final themeData = ThemeData(useMaterial3: true, brightness: brightness);
+    final colorScheme = themeData.colorScheme;
 
-  ThemeData _buildTheme(Brightness brightness, BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
     bool isLight = brightness == Brightness.light;
 
     InputBorder inputEnabledBorder = OutlineInputBorder(
@@ -25,9 +23,7 @@ class Themes {
       borderSide: BorderSide(color: colorScheme.error),
     );
 
-    return ThemeData(
-      useMaterial3: true,
-      brightness: brightness,
+    return themeData.copyWith(
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: isLight ? Colors.white : Colors.black,
@@ -44,24 +40,11 @@ class Themes {
         rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
         showValueIndicator: ShowValueIndicator.never,
       ),
-      // appBarTheme: AppBarTheme(
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      //   systemOverlayStyle: SystemUiOverlayStyle(
-      //     systemNavigationBarColor: Colors.transparent,
-      //     statusBarColor: Colors.transparent,
-      //     statusBarIconBrightness:
-      //         brightness == Brightness.light ? Brightness.dark : Brightness.light,
-      //   ),
-      // ),
-      // tabBarTheme: const TabBarTheme(
-      //   dividerColor: Colors.transparent,
-      // ),
-      // navigationBarTheme: const NavigationBarThemeData(
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      //   indicatorColor: Colors.transparent,
-      // ),
+      appBarTheme: AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: colorScheme.surface,
+        ),
+      ),
     );
   }
 }

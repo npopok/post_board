@@ -18,7 +18,7 @@
     "FiltersScreen.GenderDialog": "Gender",      
     "FiltersScreen.AgeTile": "Age", 
     "FiltersScreen.AgeText": "From {} to {}",
-    "FiltersScreen.AgeDialog": "Age {}-{}",    
+    "FiltersScreen.AgeDialog": "Age from {} to {}",    
     "FiltersScreen.CityTile": "City",
     "FiltersScreen.CityDialog": "City",
     "FiltersScreen.CitySuccess": "Posts will be displayed for the selected city.",

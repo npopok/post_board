@@ -43,12 +43,12 @@ class PostListItem extends StatelessWidget {
     );
   }
 
-  void _showContactMenu(BuildContext context, Post post) {
+  void _showContactMenu(BuildContext context, Post post) async {
     final contact = post.contact;
     final actions = _getPostActions(contact.type);
     final entries = actions.entries.toList();
 
-    showModalBottomSheet<PostAction>(
+    final action = await showModalBottomSheet<PostAction>(
       isScrollControlled: true,
       context: context,
       builder: (context) => ActionDialog(
@@ -59,13 +59,13 @@ class PostListItem extends StatelessWidget {
           icon: _popupMenuIcon(contact.type, entries[index].key),
         ),
       ),
-    ).then(
-      (value) async {
-        if (value != null && !(await _performPostAction(value, post))) {
-          showSnackBar('PostDetails.ActionFailed'.tr());
-        }
-      },
     );
+    if (action != null) {
+      final result = await _performPostAction(action, post);
+      if (!result) {
+        showSnackBar('PostDetails.ActionFailed'.tr());
+      }
+    }
   }
 
   Widget _popupMenuIcon(ContactType type, PostAction action) {

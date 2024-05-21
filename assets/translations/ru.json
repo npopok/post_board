@@ -18,7 +18,7 @@
     "FiltersScreen.GenderDialog": "Пол",      
     "FiltersScreen.AgeTile": "Возраст", 
     "FiltersScreen.AgeText": "От {} до {}",
-    "FiltersScreen.AgeDialog": "Возраст {}-{}",    
+    "FiltersScreen.AgeDialog": "Возраст от {} до {}",    
     "FiltersScreen.CityTile": "Город",
     "FiltersScreen.CityDialog": "Город",
     "FiltersScreen.CitySuccess": "Будут показываться объявления из данного города.",
