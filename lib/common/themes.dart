@@ -22,9 +22,7 @@ class Themes {
 
     InputBorder errorInputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
-        color: isLight ? colorScheme.error : colorScheme.errorContainer,
-      ),
+      borderSide: BorderSide(color: colorScheme.error),
     );
 
     return ThemeData(
