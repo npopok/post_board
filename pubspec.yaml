@@ -27,6 +27,7 @@ dependencies:
   url_launcher: ^6.2.6
   geolocator: ^12.0.0
   mask_text_input_formatter: ^2.9.0
+  format: ^1.5.2
 
 dev_dependencies:
   flutter_test:

@@ -29,7 +29,7 @@ class GenericDialog extends StatelessWidget {
           if (title != null)
             Padding(
               padding: DialogPaddings.dialogTitle,
-              child: Text(title!, style: Theme.of(context).textTheme.titleLarge),
+              child: Text(title!, style: Theme.of(context).textTheme.titleMedium),
             ),
           Padding(
             padding: contentPadding,

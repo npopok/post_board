@@ -27,7 +27,7 @@ class ValueListDialog<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericDialog(
       title: title,
-      contentPadding: DialogPaddings.defaultContent,
+      contentPadding: DialogPaddings.valueContent,
       contentBuilder: _buildContent,
     );
   }

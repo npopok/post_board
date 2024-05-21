@@ -30,7 +30,7 @@ class ActionDialog<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
-      contentPadding: DialogPaddings.defaultContent,
+      contentPadding: DialogPaddings.actionContent,
       contentBuilder: _buildContent,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:format/format.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
@@ -35,7 +36,7 @@ class _SliderDialogState extends State<SliderDialog> {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
-      title: widget.title,
+      title: format(widget.title, selectedValue),
       contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
       actions: [

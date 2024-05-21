@@ -39,10 +39,11 @@ class Themes {
         errorBorder: errorInputBorder,
         focusedErrorBorder: errorInputBorder,
       ),
-      // sliderTheme: const SliderThemeData(
-      //   valueIndicatorShape: DropSliderValueIndicatorShape(),
-      //   rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
-      // ),
+      sliderTheme: const SliderThemeData(
+        valueIndicatorShape: DropSliderValueIndicatorShape(),
+        rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
+        showValueIndicator: ShowValueIndicator.never,
+      ),
       // appBarTheme: AppBarTheme(
       //   elevation: 0,
       //   backgroundColor: Colors.transparent,

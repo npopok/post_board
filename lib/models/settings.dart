@@ -7,10 +7,12 @@ part 'settings.g.dart';
 @freezed
 class Settings with _$Settings {
   const factory Settings({
-    @Default(ThemeMode.system) final ThemeMode themeMode,
+    required final ThemeMode themeMode,
   }) = _Settings;
 
   factory Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
 
-  factory Settings.empty() => const Settings();
+  factory Settings.empty() => const Settings(
+        themeMode: ThemeMode.dark,
+      );
 }

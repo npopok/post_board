@@ -96,13 +96,12 @@ class __$$SettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SettingsImpl implements _Settings {
-  const _$SettingsImpl({this.themeMode = ThemeMode.system});
+  const _$SettingsImpl({required this.themeMode});
 
   factory _$SettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SettingsImplFromJson(json);
 
   @override
-  @JsonKey()
   final ThemeMode themeMode;
 
   @override
@@ -138,7 +137,8 @@ class _$SettingsImpl implements _Settings {
 }
 
 abstract class _Settings implements Settings {
-  const factory _Settings({final ThemeMode themeMode}) = _$SettingsImpl;
+  const factory _Settings({required final ThemeMode themeMode}) =
+      _$SettingsImpl;
 
   factory _Settings.fromJson(Map<String, dynamic> json) =
       _$SettingsImpl.fromJson;

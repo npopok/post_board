@@ -48,8 +48,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) => ValueListDialog<Gender>(
-          title: 'FiltersScreen.GenderDialog'.tr(),
           values: values,
+          title: 'FiltersScreen.GenderDialog'.tr(),
           textBuilder: (value) => value.toString().tr(),
           initialValue: filter.gender,
         ),
