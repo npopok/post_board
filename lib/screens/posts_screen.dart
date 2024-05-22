@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +18,13 @@ class PostsScreen extends ConsumerStatefulWidget {
 
 class _PostsScreenState extends ConsumerState<PostsScreen> {
   late AppLifecycleListener listener;
-  late Timer timer;
-  late bool needsRefresh;
+  late Stopwatch stopwatch;
 
   @override
   void initState() {
     super.initState();
     listener = AppLifecycleListener(onStateChange: _appStateHandler);
+    stopwatch = Stopwatch();
   }
 
   @override
@@ -37,11 +35,13 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
 
   void _appStateHandler(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      needsRefresh = false;
-      timer = Timer(RepositorySettings.postsCacheDuration, () => needsRefresh = true);
+      stopwatch.start();
     } else if (state == AppLifecycleState.resumed) {
-      timer.cancel();
-      if (needsRefresh) ref.invalidate(postsStateProvider);
+      stopwatch.stop();
+      if (stopwatch.elapsed > RepositorySettings.postsCacheDuration) {
+        ref.invalidate(postsStateProvider);
+        stopwatch.reset();
+      }
     }
   }
 
