@@ -14,7 +14,7 @@ class SelectCityScreen extends TemplateScreen {
 
   @override
   ScreenInfo get screenInfo => const ScreenInfo(
-        title: 'Где вы ищете?',
+        title: 'Где искать?',
         progress: (step: 3, count: 4),
         nextScreen: FinishRoute(),
       );

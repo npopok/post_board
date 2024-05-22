@@ -6,6 +6,7 @@ import 'package:post_board/helpers/analytics_helper.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 import 'package:post_board/helpers/helpers.dart';
+import 'package:post_board/widgets/widgets.dart';
 
 class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
   const CategoryFilter({super.key});
@@ -21,17 +22,11 @@ class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Wrap(
-          spacing: 12,
-          children: List.generate(
-            Category.values.length,
-            (index) => ChoiceChip(
-              showCheckmark: false,
-              label: Text(Category.values[index].toString().tr()),
-              selected: filter.category == Category.values[index],
-              onSelected: (_) => _updateCategory(Category.values[index], ref),
-            ),
-          ),
+        child: ChoiceField<Category>(
+          initialValue: filter.category,
+          values: Category.values,
+          textBuilder: (value) => value.toString().tr(),
+          onChanged: (value) => _updateCategory(value, ref),
         ),
       ),
     );

@@ -43,6 +43,7 @@
     "ProfileScreen.GenderDialog": "Ваш пол",        
     "ProfileScreen.AgeTile": "Возраст",
     "ProfileScreen.AgeDialog": "Ваш возраст {}",
+    "ProfileScreen.AgeEmpty": "Ваш возраст",
     "ProfileScreen.CityTile": "Город",
     "ProfileScreen.CityDialog": "Ваш город",
     "ProfileScreen.CitySuccess": "Ваши объявления будут публиковаться в данном городе.",    

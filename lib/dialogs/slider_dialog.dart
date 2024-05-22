@@ -8,12 +8,14 @@ import 'generic_dialog.dart';
 
 class SliderDialog extends StatefulWidget {
   final String title;
+  final String titleEmpty;
   final String buttonTitle;
   final NumericRange range;
   final int initialValue;
 
   const SliderDialog({
     required this.title,
+    required this.titleEmpty,
     required this.buttonTitle,
     required this.range,
     required this.initialValue,
@@ -36,7 +38,7 @@ class _SliderDialogState extends State<SliderDialog> {
   @override
   Widget build(BuildContext context) {
     return GenericDialog(
-      title: format(widget.title, selectedValue),
+      title: _formatTitle(),
       contentPadding: DialogPaddings.sliderContent,
       contentBuilder: _buildContent,
       actions: [
@@ -60,5 +62,13 @@ class _SliderDialogState extends State<SliderDialog> {
       label: value.toString(),
       onChanged: (value) => setState(() => selectedValue = value.round()),
     );
+  }
+
+  String _formatTitle() {
+    if (selectedValue >= widget.range.min && selectedValue <= widget.range.max) {
+      return format(widget.title, selectedValue);
+    } else {
+      return widget.titleEmpty;
+    }
   }
 }

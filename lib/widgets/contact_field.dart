@@ -58,31 +58,29 @@ class _ContactFieldState extends State<ContactField> {
     final formatter = inputFormatters[selectedValue.type]!;
 
     return FormField<Contact>(
-      builder: (FormFieldState<Contact> state) {
-        return TextFormField(
-          controller: textController,
-          readOnly: readOnly,
-          maxLength: FieldConstraints.contactMaxLength,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          keyboardType: _getKeyboardType(),
-          inputFormatters: [formatter],
-          decoration: InputDecoration(
-            counterText: '',
-            hintText: readOnly ? widget.hintText : null,
-            prefixIcon: IconButton(
-              onPressed: () => _selectContactType(context),
-              icon: ContactIcon(type: selectedValue.type),
-            ),
+      builder: (FormFieldState<Contact> state) => TextFormField(
+        controller: textController,
+        readOnly: readOnly,
+        maxLength: FieldConstraints.contactMaxLength,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        keyboardType: _getKeyboardType(),
+        inputFormatters: [formatter],
+        decoration: InputDecoration(
+          counterText: '',
+          hintText: readOnly ? widget.hintText : null,
+          prefixIcon: IconButton(
+            onPressed: () => _selectContactType(context),
+            icon: ContactIcon(type: selectedValue.type),
           ),
-          validator: (value) => _validateText(value, formatter.isFill()),
-          onTap: () => readOnly ? _selectContactType(context) : null,
-          onChanged: (value) {
-            selectedValue = selectedValue.copyWith(
-              details: formatter.getMaskedText().replaceAll(' ', ''),
-            );
-          },
-        );
-      },
+        ),
+        validator: (value) => _validateText(value, formatter.isFill()),
+        onTap: () => readOnly ? _selectContactType(context) : null,
+        onChanged: (value) {
+          selectedValue = selectedValue.copyWith(
+            details: formatter.getMaskedText().replaceAll(' ', ''),
+          );
+        },
+      ),
       onSaved: (value) => widget.onSaved?.call(selectedValue),
     );
   }

@@ -7,6 +7,7 @@ final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
 
 enum AnalyticsEvent {
   onboardingComplete,
+  postsMenu,
   postsRefresh,
   postsSubmit,
   profileUpdate,
@@ -15,6 +16,7 @@ enum AnalyticsEvent {
 }
 
 enum AnalyticsParameter {
+  postAction,
   profileName,
   profileGender,
   profileAge,

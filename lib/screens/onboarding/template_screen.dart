@@ -51,6 +51,7 @@ class _TemplateScreenState extends ConsumerState<TemplateScreen> {
               child: Center(
                 child: Form(
                   key: formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: widget.buildContent(context, ref),
                 ),
               ),

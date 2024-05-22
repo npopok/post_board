@@ -44,14 +44,14 @@ class DialogPaddings {
   static const defaultContent = EdgeInsets.symmetric(vertical: 8);
 
   static const actionContent = EdgeInsets.symmetric(vertical: 4);
-  static const inputContent = EdgeInsets.symmetric(horizontal: 24, vertical: 16);
+  static const inputContent = EdgeInsets.symmetric(horizontal: 24, vertical: 20);
   static const promptContent = EdgeInsets.symmetric(horizontal: 40, vertical: 24);
-  static const sliderContent = EdgeInsets.symmetric(horizontal: 12, vertical: 4);
+  static const sliderContent = EdgeInsets.symmetric(horizontal: 12, vertical: 8);
 
   static const valueContent = EdgeInsets.symmetric(vertical: 4);
   static const valueTile = EdgeInsets.symmetric(horizontal: 24);
 
-  static const locationContent = EdgeInsets.symmetric(horizontal: 24, vertical: 16);
+  static const locationContent = EdgeInsets.symmetric(horizontal: 24, vertical: 20);
   static const locationText = EdgeInsets.all(16);
 }
 

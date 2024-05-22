@@ -100,6 +100,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         context: context,
         builder: (context) => SliderDialog(
           title: 'ProfileScreen.AgeDialog'.tr(),
+          titleEmpty: 'ProfileScreen.AgeEmpty'.tr(),
           buttonTitle: 'Button.Save'.tr(),
           range: (
             min: FieldConstraints.ageMinValue,

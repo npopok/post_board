@@ -1,4 +1,5 @@
 export 'category_filter.dart';
+export 'choice_field.dart';
 export 'contact_icon.dart';
 export 'contact_field.dart';
 export 'dropdown_field.dart';
