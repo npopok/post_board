@@ -25,6 +25,7 @@ class RepositorySettings {
   static const postsQuotaExceeded = 'posts-quota-exceeded';
   static const postsCacheDuration = Duration(minutes: 5);
   static const postMaxCount = 200;
+
   static const citiesRemoteTable = 'cities';
   static const citiesCacheDuration = Duration(days: 10000);
 }

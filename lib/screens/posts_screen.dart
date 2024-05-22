@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +11,42 @@ import 'package:post_board/providers/providers.dart';
 import 'package:post_board/helpers/helpers.dart';
 
 @RoutePage()
-class PostsScreen extends ConsumerWidget {
+class PostsScreen extends ConsumerStatefulWidget {
   const PostsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PostsScreen> createState() => _PostsScreenState();
+}
+
+class _PostsScreenState extends ConsumerState<PostsScreen> {
+  late AppLifecycleListener listener;
+  late Timer timer;
+  late bool needsRefresh;
+
+  @override
+  void initState() {
+    super.initState();
+    listener = AppLifecycleListener(onStateChange: _appStateHandler);
+  }
+
+  @override
+  void dispose() {
+    listener.dispose();
+    super.dispose();
+  }
+
+  void _appStateHandler(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      needsRefresh = false;
+      timer = Timer(RepositorySettings.postsCacheDuration, () => needsRefresh = true);
+    } else if (state == AppLifecycleState.resumed) {
+      timer.cancel();
+      if (needsRefresh) ref.invalidate(postsStateProvider);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -26,11 +59,11 @@ class PostsScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: _buildPostsList(context, ref),
+      body: _buildPostsList(context),
     );
   }
 
-  Widget _buildPostsList(BuildContext context, WidgetRef ref) {
+  Widget _buildPostsList(BuildContext context) {
     final filters = ref.watch(filtersStateProvider);
     final posts = ref.watch(postsStateProvider(filters));
 
