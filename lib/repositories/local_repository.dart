@@ -80,9 +80,9 @@ class LocalRepository {
 
   T loadObject<T>(String key, T Function(Map<String, dynamic>) fromJson, T defaultValue) {
     final data = prefs.getString(key);
-    if (data != null) {
-      return fromJson(jsonDecode(data));
-    } else {
+    try {
+      return fromJson(jsonDecode(data!));
+    } catch (_) {
       return defaultValue;
     }
   }
@@ -90,9 +90,9 @@ class LocalRepository {
   List<T> loadObjects<T>(
       String key, T Function(Map<String, dynamic>) fromJson, List<T> defaultValue) {
     final data = prefs.getStringList(key);
-    if (data != null) {
-      return data.map<T>((e) => fromJson(jsonDecode(e))).toList();
-    } else {
+    try {
+      return data!.map<T>((e) => fromJson(jsonDecode(e))).toList();
+    } catch (_) {
       return defaultValue;
     }
   }
