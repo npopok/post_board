@@ -90,11 +90,8 @@
     "Elapsed.Months": "{} мес назад",
     "Elapsed.Years": "давно",
 
-    "SubmitDialog.CategoryHint": "Раздел",
-    "SubmitDialog.CategoryEmpty": "Выберите категорию",    
-    "SubmitDialog.TextHint": "Текст объявления",
-    "SubmitDialog.TextEmpty": "Введите текст объявления",
-    "SubmitDialog.TextShort": "Слишком короткий текст",   
+    "SubmitDialog.CategoryHint": "Раздел",  
+    "SubmitDialog.TextHint": "Текст",
 
     "LocationException.ServiceDisabled": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
     "LocationException.PermissionDenied": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",

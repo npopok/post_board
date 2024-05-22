@@ -89,11 +89,8 @@
     "Elapsed.Months": "{} mon ago",
     "Elapsed.Years": "long ago",
 
-    "SubmitDialog.CategoryHint": "Category",
-    "SubmitDialog.CategoryEmpty": "Select category",       
+    "SubmitDialog.CategoryHint": "Category",     
     "SubmitDialog.TextHint": "Post text",
-    "SubmitDialog.TextEmpty": "Enter post text",
-    "SubmitDialog.TextShort": "Too short text",
 
     "LocationException.ServiceDisabled": "To determine your city, allow access to location in the settings.",
     "LocationException.PermissionDenied": "To determine your city, allow access to location in the settings.",

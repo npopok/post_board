@@ -8,6 +8,7 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const factory Post({
+    @JsonKey(includeToJson: false) final int? id,
     @JsonKey(name: 'created_at', includeToJson: false) final DateTime? createdAt,
     @JsonKey(name: 'created_by', includeToJson: false) final String? createdBy,
     required final String author,

@@ -20,6 +20,8 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
+  @JsonKey(includeToJson: false)
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at', includeToJson: false)
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_by', includeToJson: false)
@@ -45,7 +47,8 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      {@JsonKey(includeToJson: false) int? id,
+      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
       @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
       String author,
       Gender gender,
@@ -71,6 +74,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = freezed,
     Object? author = null,
@@ -82,6 +86,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? contact = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -138,7 +146,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
+      {@JsonKey(includeToJson: false) int? id,
+      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
       @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
       String author,
       Gender gender,
@@ -162,6 +171,7 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = freezed,
     Object? author = null,
@@ -173,6 +183,10 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? contact = null,
   }) {
     return _then(_$PostImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -217,7 +231,8 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {@JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
+      {@JsonKey(includeToJson: false) this.id,
+      @JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
       @JsonKey(name: 'created_by', includeToJson: false) this.createdBy,
       required this.author,
       required this.gender,
@@ -230,6 +245,9 @@ class _$PostImpl implements _Post {
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
+  @override
+  @JsonKey(includeToJson: false)
+  final int? id;
   @override
   @JsonKey(name: 'created_at', includeToJson: false)
   final DateTime? createdAt;
@@ -255,7 +273,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, cityId: $cityId, category: $category, text: $text, contact: $contact)';
+    return 'Post(id: $id, createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, cityId: $cityId, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -263,6 +281,7 @@ class _$PostImpl implements _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.createdBy, createdBy) ||
@@ -279,7 +298,7 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, createdAt, createdBy, author,
+  int get hashCode => Object.hash(runtimeType, id, createdAt, createdBy, author,
       gender, age, cityId, category, text, contact);
 
   @JsonKey(ignore: true)
@@ -298,7 +317,8 @@ class _$PostImpl implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {@JsonKey(name: 'created_at', includeToJson: false)
+      {@JsonKey(includeToJson: false) final int? id,
+      @JsonKey(name: 'created_at', includeToJson: false)
       final DateTime? createdAt,
       @JsonKey(name: 'created_by', includeToJson: false)
       final String? createdBy,
@@ -312,6 +332,9 @@ abstract class _Post implements Post {
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
+  @override
+  @JsonKey(includeToJson: false)
+  int? get id;
   @override
   @JsonKey(name: 'created_at', includeToJson: false)
   DateTime? get createdAt;
