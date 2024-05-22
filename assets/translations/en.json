@@ -33,7 +33,7 @@
 
     "SubmitScreen.SubmitSuccess": "Your post has been published.", 
     "SubmitScreen.ServerError": "Error occuried. Try again later.",
-    "SubmitScreen.QuotaError": "You can create only one post per day.",
+    "SubmitScreen.QuotaError": "You can create only one post per hour.",
 
     "ProfileScreen.Title": "Profile",
     "ProfileScreen.Empty": "Not specified",

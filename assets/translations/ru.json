@@ -33,7 +33,7 @@
 
     "SubmitScreen.SubmitSuccess": "Ваше объявление добавлено.", 
     "SubmitScreen.ServerError": "Произошла ошибка. Попробуйте позже.",
-    "SubmitScreen.QuotaError": "Можно создать только одно объявление в сутки.",
+    "SubmitScreen.QuotaError": "Можно создать только одно объявление в час.",
 
     "ProfileScreen.Title": "Профиль",
     "ProfileScreen.Empty": "Не указан",
