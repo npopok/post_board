@@ -47,13 +47,3 @@ class Contact with _$Contact {
   @override
   String toString() => details;
 }
-
-class ContactConverter implements JsonConverter<Contact, String> {
-  const ContactConverter();
-
-  @override
-  Contact fromJson(String text) => Contact.parse(text);
-
-  @override
-  String toJson(Contact value) => value.toString();
-}

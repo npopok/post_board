@@ -16,6 +16,13 @@ class CachedRepository {
     required this.remote,
   });
 
+  Future<void> saveProfile(Profile value) async {
+    localRepository.saveProfile(value);
+    if (value.isComplete) {
+      await remoteRepository.saveProfile(value);
+    }
+  }
+
   Future<List<City>> loadCities() async {
     var data = local.loadCities();
     if (data.isEmpty) {

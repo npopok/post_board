@@ -34,7 +34,7 @@ class PostListItem extends StatelessWidget {
         children: [
           Text('${post.author}, ${post.age}'),
           Text(
-            post.createdAt!.formatTimeSinceNow(),
+            post.createdAt.formatTimeSinceNow(),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],

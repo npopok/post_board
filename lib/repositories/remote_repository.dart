@@ -9,14 +9,38 @@ final remoteRepository = GetIt.I<RemoteRepository>();
 class RemoteRepository {
   final supabase = Supabase.instance.client;
 
-  Future<void> savePost(Post post) async {
-    await supabase.from(RepositorySettings.postsRemoteTable).insert(post.toJson());
+  Future<void> saveProfile(Profile value) async {
+    final data = value.toJson();
+
+    data.remove('city');
+    data['city_id'] = value.city.id;
+
+    final rowId = await supabase
+        .from(RepositorySettings.profilesRemoteTable)
+        .select('id')
+        .eq('created_by', supabase.auth.currentUser!.id)
+        .maybeSingle();
+    if (rowId != null) data['id'] = rowId['id'];
+
+    await supabase.from(RepositorySettings.profilesRemoteTable).upsert(data);
+  }
+
+  Future<void> savePost(Post value) async {
+    final data = value.toJson();
+    data.remove('id');
+    data.remove('created_at');
+    data.remove('created_by');
+
+    await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
   }
 
   Future<List<Post>> loadPosts(Filters filters) async {
     final data = await supabase
         .from(RepositorySettings.postsRemoteTable)
-        .select()
+        .select(
+          '*, createdAt:created_at, createdBy:created_by,'
+          'city:cities(*, region:regions(*, country:countries(*)))',
+        )
         .eq('city_id', filters.city.id)
         .eq('category', filters.category.name)
         .eq('gender', filters.gender.name)
@@ -31,12 +55,8 @@ class RemoteRepository {
   Future<List<City>> loadCities() async {
     var data = await supabase
         .from(RepositorySettings.citiesRemoteTable)
-        .select('*, regions(name)')
+        .select('*, region:regions(*, country:countries(*))')
         .order('name', ascending: true);
-
-    for (final city in data) {
-      city['region'] = city['regions']['name'];
-    }
 
     return data.map((e) => City.fromJson(e)).toList();
   }

@@ -20,17 +20,16 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
-  @JsonKey(includeToJson: false)
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at', includeToJson: false)
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_by', includeToJson: false)
+// TODO: Remove these fields in RemoteRep.Save before insert()
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_by')
   String? get createdBy => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
-  @JsonKey(name: 'city_id')
-  int get cityId => throw _privateConstructorUsedError;
+  City get city => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @ContactConverter()
@@ -47,17 +46,18 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {@JsonKey(includeToJson: false) int? id,
-      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
-      @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
+      {int id,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'created_by') String? createdBy,
       String author,
       Gender gender,
       int age,
-      @JsonKey(name: 'city_id') int cityId,
+      City city,
       Category category,
       String text,
       @ContactConverter() Contact contact});
 
+  $CityCopyWith<$Res> get city;
   $ContactCopyWith<$Res> get contact;
 }
 
@@ -74,26 +74,26 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
+    Object? id = null,
+    Object? createdAt = null,
     Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
-    Object? cityId = null,
+    Object? city = null,
     Object? category = null,
     Object? text = null,
     Object? contact = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdAt: freezed == createdAt
+              as int,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -110,10 +110,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as int,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -127,6 +127,14 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<$Res> get city {
+    return $CityCopyWith<$Res>(_value.city, (value) {
+      return _then(_value.copyWith(city: value) as $Val);
+    });
   }
 
   @override
@@ -146,17 +154,19 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(includeToJson: false) int? id,
-      @JsonKey(name: 'created_at', includeToJson: false) DateTime? createdAt,
-      @JsonKey(name: 'created_by', includeToJson: false) String? createdBy,
+      {int id,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'created_by') String? createdBy,
       String author,
       Gender gender,
       int age,
-      @JsonKey(name: 'city_id') int cityId,
+      City city,
       Category category,
       String text,
       @ContactConverter() Contact contact});
 
+  @override
+  $CityCopyWith<$Res> get city;
   @override
   $ContactCopyWith<$Res> get contact;
 }
@@ -171,26 +181,26 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
+    Object? id = null,
+    Object? createdAt = null,
     Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
-    Object? cityId = null,
+    Object? city = null,
     Object? category = null,
     Object? text = null,
     Object? contact = null,
   }) {
     return _then(_$PostImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdAt: freezed == createdAt
+              as int,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -207,10 +217,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as int,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -231,13 +241,13 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl implements _Post {
   const _$PostImpl(
-      {@JsonKey(includeToJson: false) this.id,
-      @JsonKey(name: 'created_at', includeToJson: false) this.createdAt,
-      @JsonKey(name: 'created_by', includeToJson: false) this.createdBy,
+      {required this.id,
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'created_by') required this.createdBy,
       required this.author,
       required this.gender,
       required this.age,
-      @JsonKey(name: 'city_id') required this.cityId,
+      required this.city,
       required this.category,
       required this.text,
       @ContactConverter() required this.contact});
@@ -245,14 +255,14 @@ class _$PostImpl implements _Post {
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
+// TODO: Remove these fields in RemoteRep.Save before insert()
   @override
-  @JsonKey(includeToJson: false)
-  final int? id;
+  final int id;
   @override
-  @JsonKey(name: 'created_at', includeToJson: false)
-  final DateTime? createdAt;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
   @override
-  @JsonKey(name: 'created_by', includeToJson: false)
+  @JsonKey(name: 'created_by')
   final String? createdBy;
   @override
   final String author;
@@ -261,8 +271,7 @@ class _$PostImpl implements _Post {
   @override
   final int age;
   @override
-  @JsonKey(name: 'city_id')
-  final int cityId;
+  final City city;
   @override
   final Category category;
   @override
@@ -273,7 +282,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(id: $id, createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, cityId: $cityId, category: $category, text: $text, contact: $contact)';
+    return 'Post(id: $id, createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -289,7 +298,7 @@ class _$PostImpl implements _Post {
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.cityId, cityId) || other.cityId == cityId) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
@@ -299,7 +308,7 @@ class _$PostImpl implements _Post {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, createdBy, author,
-      gender, age, cityId, category, text, contact);
+      gender, age, city, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -317,29 +326,26 @@ class _$PostImpl implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {@JsonKey(includeToJson: false) final int? id,
-      @JsonKey(name: 'created_at', includeToJson: false)
-      final DateTime? createdAt,
-      @JsonKey(name: 'created_by', includeToJson: false)
-      final String? createdBy,
+      {required final int id,
+      @JsonKey(name: 'created_at') required final DateTime createdAt,
+      @JsonKey(name: 'created_by') required final String? createdBy,
       required final String author,
       required final Gender gender,
       required final int age,
-      @JsonKey(name: 'city_id') required final int cityId,
+      required final City city,
       required final Category category,
       required final String text,
       @ContactConverter() required final Contact contact}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
+  @override // TODO: Remove these fields in RemoteRep.Save before insert()
+  int get id;
   @override
-  @JsonKey(includeToJson: false)
-  int? get id;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
   @override
-  @JsonKey(name: 'created_at', includeToJson: false)
-  DateTime? get createdAt;
-  @override
-  @JsonKey(name: 'created_by', includeToJson: false)
+  @JsonKey(name: 'created_by')
   String? get createdBy;
   @override
   String get author;
@@ -348,8 +354,7 @@ abstract class _Post implements Post {
   @override
   int get age;
   @override
-  @JsonKey(name: 'city_id')
-  int get cityId;
+  City get city;
   @override
   Category get category;
   @override

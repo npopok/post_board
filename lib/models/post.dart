@@ -8,15 +8,15 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const factory Post({
-    @JsonKey(includeToJson: false) final int? id,
-    @JsonKey(name: 'created_at', includeToJson: false) final DateTime? createdAt,
-    @JsonKey(name: 'created_by', includeToJson: false) final String? createdBy,
+    required final int id,
+    required final DateTime createdAt,
+    required final String? createdBy, // TODO: Make it non-nullable after removing post scrapper
     required final String author,
     required final Gender gender,
     required final int age,
-    @JsonKey(name: 'city_id') required final int cityId,
-    required Category category,
-    required String text,
+    required final City city,
+    required final Category category,
+    required final String text,
     @ContactConverter() required Contact contact,
   }) = _Post;
 
@@ -29,10 +29,13 @@ class Post with _$Post {
     Contact contact,
   ) =>
       Post(
+        id: 0,
+        createdAt: DateTime.timestamp(),
+        createdBy: '',
         author: profile.name,
         gender: profile.gender,
         age: profile.age,
-        cityId: profile.city.id,
+        city: profile.city,
         category: category,
         text: text,
         contact: contact,

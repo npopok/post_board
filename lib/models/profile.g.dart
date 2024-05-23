@@ -12,7 +12,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: (json['age'] as num).toInt(),
       city: City.fromJson(json['city'] as Map<String, dynamic>),
-      contact: Contact.fromJson(json['contact'] as Map<String, dynamic>),
+      contact: const ContactConverter().fromJson(json['contact'] as String),
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
@@ -21,7 +21,7 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
       'city': instance.city.toJson(),
-      'contact': instance.contact.toJson(),
+      'contact': const ContactConverter().toJson(instance.contact),
     };
 
 const _$GenderEnumMap = {

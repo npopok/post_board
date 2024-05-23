@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 
+import 'region.dart';
+
 part 'city.freezed.dart';
 part 'city.g.dart';
 
@@ -11,7 +13,7 @@ class City with _$City {
   const factory City({
     required final int id,
     required final String name,
-    required final String region,
+    required final Region region,
     required final double latitude,
     required final double longitude,
   }) = _City;
@@ -31,10 +33,10 @@ class City with _$City {
 
   factory City.fromJson(Map<String, dynamic> json) => _$CityFromJson(json);
 
-  factory City.empty() => const City(
+  factory City.empty() => City(
         id: 0,
         name: '',
-        region: '',
+        region: Region.empty(),
         latitude: 0,
         longitude: 0,
       );

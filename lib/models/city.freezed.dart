@@ -22,7 +22,7 @@ City _$CityFromJson(Map<String, dynamic> json) {
 mixin _$City {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get region => throw _privateConstructorUsedError;
+  Region get region => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
 
@@ -37,7 +37,9 @@ abstract class $CityCopyWith<$Res> {
       _$CityCopyWithImpl<$Res, City>;
   @useResult
   $Res call(
-      {int id, String name, String region, double latitude, double longitude});
+      {int id, String name, Region region, double latitude, double longitude});
+
+  $RegionCopyWith<$Res> get region;
 }
 
 /// @nodoc
@@ -71,7 +73,7 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
       region: null == region
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Region,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -81,6 +83,14 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RegionCopyWith<$Res> get region {
+    return $RegionCopyWith<$Res>(_value.region, (value) {
+      return _then(_value.copyWith(region: value) as $Val);
+    });
   }
 }
 
@@ -92,7 +102,10 @@ abstract class _$$CityImplCopyWith<$Res> implements $CityCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id, String name, String region, double latitude, double longitude});
+      {int id, String name, Region region, double latitude, double longitude});
+
+  @override
+  $RegionCopyWith<$Res> get region;
 }
 
 /// @nodoc
@@ -123,7 +136,7 @@ class __$$CityImplCopyWithImpl<$Res>
       region: null == region
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Region,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -155,7 +168,7 @@ class _$CityImpl extends _City {
   @override
   final String name;
   @override
-  final String region;
+  final Region region;
   @override
   final double latitude;
   @override
@@ -198,7 +211,7 @@ abstract class _City extends City {
   const factory _City(
       {required final int id,
       required final String name,
-      required final String region,
+      required final Region region,
       required final double latitude,
       required final double longitude}) = _$CityImpl;
   const _City._() : super._();
@@ -210,7 +223,7 @@ abstract class _City extends City {
   @override
   String get name;
   @override
-  String get region;
+  Region get region;
   @override
   double get latitude;
   @override

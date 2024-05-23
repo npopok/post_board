@@ -7,15 +7,13 @@ part of 'post.dart';
 // **************************************************************************
 
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
-      id: (json['id'] as num?)?.toInt(),
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      id: (json['id'] as num).toInt(),
+      createdAt: DateTime.parse(json['created_at'] as String),
       createdBy: json['created_by'] as String?,
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: (json['age'] as num).toInt(),
-      cityId: (json['city_id'] as num).toInt(),
+      city: City.fromJson(json['city'] as Map<String, dynamic>),
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: const ContactConverter().fromJson(json['contact'] as String),
@@ -23,10 +21,13 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'created_at': instance.createdAt.toIso8601String(),
+      'created_by': instance.createdBy,
       'author': instance.author,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
-      'city_id': instance.cityId,
+      'city': instance.city.toJson(),
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': const ContactConverter().toJson(instance.contact),

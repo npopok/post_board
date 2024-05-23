@@ -10,7 +10,7 @@ class ProfileState extends _$ProfileState {
   @override
   Profile build() => loadData();
 
-  void saveData() => localRepository.saveProfile(state);
+  void saveData() => cachedRepository.saveProfile(state);
   Profile loadData() => localRepository.loadProfile();
 
   set name(String value) {

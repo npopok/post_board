@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:post_board/models/contact.dart';
 
-import 'city.dart';
-import 'types.dart';
+import 'package:post_board/models/models.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -16,7 +14,7 @@ class Profile with _$Profile {
     required final Gender gender,
     required final int age,
     required final City city,
-    required final Contact contact,
+    @ContactConverter() required final Contact contact,
   }) = _Profile;
 
   bool get isComplete =>

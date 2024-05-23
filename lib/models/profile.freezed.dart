@@ -24,6 +24,7 @@ mixin _$Profile {
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   City get city => throw _privateConstructorUsedError;
+  @ContactConverter()
   Contact get contact => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,12 @@ abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
-  $Res call({String name, Gender gender, int age, City city, Contact contact});
+  $Res call(
+      {String name,
+      Gender gender,
+      int age,
+      City city,
+      @ContactConverter() Contact contact});
 
   $CityCopyWith<$Res> get city;
   $ContactCopyWith<$Res> get contact;
@@ -109,7 +115,12 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       __$$ProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Gender gender, int age, City city, Contact contact});
+  $Res call(
+      {String name,
+      Gender gender,
+      int age,
+      City city,
+      @ContactConverter() Contact contact});
 
   @override
   $CityCopyWith<$Res> get city;
@@ -167,7 +178,7 @@ class _$ProfileImpl extends _Profile {
       required this.gender,
       required this.age,
       required this.city,
-      required this.contact})
+      @ContactConverter() required this.contact})
       : super._();
 
   factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
@@ -182,6 +193,7 @@ class _$ProfileImpl extends _Profile {
   @override
   final City city;
   @override
+  @ContactConverter()
   final Contact contact;
 
   @override
@@ -226,7 +238,7 @@ abstract class _Profile extends Profile {
       required final Gender gender,
       required final int age,
       required final City city,
-      required final Contact contact}) = _$ProfileImpl;
+      @ContactConverter() required final Contact contact}) = _$ProfileImpl;
   const _Profile._() : super._();
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
@@ -240,6 +252,7 @@ abstract class _Profile extends Profile {
   @override
   City get city;
   @override
+  @ContactConverter()
   Contact get contact;
   @override
   @JsonKey(ignore: true)

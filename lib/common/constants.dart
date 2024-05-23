@@ -21,6 +21,8 @@ class RepositorySettings {
   static const filtersLocalKey = 'filters';
   static const settingsLocalKey = 'settings';
 
+  static const profilesRemoteTable = 'profiles';
+
   static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';
   static const postsCacheDuration = Duration(minutes: 5);
