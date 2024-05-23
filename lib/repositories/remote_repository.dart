@@ -27,9 +27,12 @@ class RemoteRepository {
 
   Future<void> savePost(Post value) async {
     final data = value.toJson();
+
     data.remove('id');
     data.remove('created_at');
     data.remove('created_by');
+    data.remove('city');
+    data['city_id'] = value.city.id;
 
     await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
   }
