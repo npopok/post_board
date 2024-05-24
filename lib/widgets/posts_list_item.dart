@@ -28,7 +28,7 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      key: ValueKey(post.id),
+      key: ObjectKey(post),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
