@@ -23,6 +23,7 @@ mixin _$Filters {
   City get city => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
+  @NumericRangeConverter()
   ({int max, int min}) get age => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,10 @@ abstract class $FiltersCopyWith<$Res> {
       _$FiltersCopyWithImpl<$Res, Filters>;
   @useResult
   $Res call(
-      {City city, Category category, Gender gender, ({int max, int min}) age});
+      {City city,
+      Category category,
+      Gender gender,
+      @NumericRangeConverter() ({int max, int min}) age});
 
   $CityCopyWith<$Res> get city;
 }
@@ -96,7 +100,10 @@ abstract class _$$FiltersImplCopyWith<$Res> implements $FiltersCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {City city, Category category, Gender gender, ({int max, int min}) age});
+      {City city,
+      Category category,
+      Gender gender,
+      @NumericRangeConverter() ({int max, int min}) age});
 
   @override
   $CityCopyWith<$Res> get city;
@@ -141,12 +148,13 @@ class __$$FiltersImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FiltersImpl implements _Filters {
+class _$FiltersImpl extends _Filters {
   const _$FiltersImpl(
       {required this.city,
       required this.category,
       required this.gender,
-      required this.age});
+      @NumericRangeConverter() required this.age})
+      : super._();
 
   factory _$FiltersImpl.fromJson(Map<String, dynamic> json) =>
       _$$FiltersImplFromJson(json);
@@ -158,6 +166,7 @@ class _$FiltersImpl implements _Filters {
   @override
   final Gender gender;
   @override
+  @NumericRangeConverter()
   final ({int max, int min}) age;
 
   @override
@@ -195,12 +204,14 @@ class _$FiltersImpl implements _Filters {
   }
 }
 
-abstract class _Filters implements Filters {
+abstract class _Filters extends Filters {
   const factory _Filters(
-      {required final City city,
-      required final Category category,
-      required final Gender gender,
-      required final ({int max, int min}) age}) = _$FiltersImpl;
+          {required final City city,
+          required final Category category,
+          required final Gender gender,
+          @NumericRangeConverter() required final ({int max, int min}) age}) =
+      _$FiltersImpl;
+  const _Filters._() : super._();
 
   factory _Filters.fromJson(Map<String, dynamic> json) = _$FiltersImpl.fromJson;
 
@@ -211,6 +222,7 @@ abstract class _Filters implements Filters {
   @override
   Gender get gender;
   @override
+  @NumericRangeConverter()
   ({int max, int min}) get age;
   @override
   @JsonKey(ignore: true)

@@ -10,7 +10,7 @@ class FiltersState extends _$FiltersState {
   @override
   Filters build() => loadData();
 
-  void saveData() => localRepository.saveFilters(state);
+  void saveData() => cachedRepository.saveFilters(state);
   Filters loadData() => localRepository.loadFilters();
 
   set city(City value) {

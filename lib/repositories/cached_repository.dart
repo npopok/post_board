@@ -23,6 +23,13 @@ class CachedRepository {
     }
   }
 
+  Future<void> saveFilters(Filters value) async {
+    localRepository.saveFilters(value);
+    if (value.isComplete) {
+      await remoteRepository.saveFilters(value);
+    }
+  }
+
   Future<List<City>> loadCities() async {
     var data = local.loadCities();
     if (data.isEmpty) {

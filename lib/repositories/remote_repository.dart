@@ -25,6 +25,22 @@ class RemoteRepository {
     await supabase.from(RepositorySettings.profilesRemoteTable).upsert(data);
   }
 
+  Future<void> saveFilters(Filters value) async {
+    final data = value.toJson();
+
+    data.remove('city');
+    data['city_id'] = value.city.id;
+
+    final rowId = await supabase
+        .from(RepositorySettings.filtersRemoteTable)
+        .select('id')
+        .eq('created_by', supabase.auth.currentUser!.id)
+        .maybeSingle();
+    if (rowId != null) data['id'] = rowId['id'];
+
+    await supabase.from(RepositorySettings.filtersRemoteTable).upsert(data);
+  }
+
   Future<void> savePost(Post value) async {
     final data = value.toJson();
 

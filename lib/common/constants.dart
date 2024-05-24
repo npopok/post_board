@@ -22,6 +22,7 @@ class RepositorySettings {
   static const settingsLocalKey = 'settings';
 
   static const profilesRemoteTable = 'profiles';
+  static const filtersRemoteTable = 'filters';
 
   static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';

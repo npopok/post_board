@@ -20,12 +20,10 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
-// TODO: Remove these fields in RemoteRep.Save before insert()
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_by')
-  String? get createdBy => throw _privateConstructorUsedError;
+  String? get createdBy =>
+      throw _privateConstructorUsedError; // TODO: Make it non-nullable after removing post scrapper
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
@@ -47,8 +45,8 @@ abstract class $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'created_by') String? createdBy,
+      DateTime createdAt,
+      String? createdBy,
       String author,
       Gender gender,
       int age,
@@ -155,8 +153,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'created_by') String? createdBy,
+      DateTime createdAt,
+      String? createdBy,
       String author,
       Gender gender,
       int age,
@@ -242,8 +240,8 @@ class __$$PostImplCopyWithImpl<$Res>
 class _$PostImpl implements _Post {
   const _$PostImpl(
       {required this.id,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'created_by') required this.createdBy,
+      required this.createdAt,
+      required this.createdBy,
       required this.author,
       required this.gender,
       required this.age,
@@ -255,15 +253,13 @@ class _$PostImpl implements _Post {
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
-// TODO: Remove these fields in RemoteRep.Save before insert()
   @override
   final int id;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @override
-  @JsonKey(name: 'created_by')
   final String? createdBy;
+// TODO: Make it non-nullable after removing post scrapper
   @override
   final String author;
   @override
@@ -327,8 +323,8 @@ class _$PostImpl implements _Post {
 abstract class _Post implements Post {
   const factory _Post(
       {required final int id,
-      @JsonKey(name: 'created_at') required final DateTime createdAt,
-      @JsonKey(name: 'created_by') required final String? createdBy,
+      required final DateTime createdAt,
+      required final String? createdBy,
       required final String author,
       required final Gender gender,
       required final int age,
@@ -339,15 +335,13 @@ abstract class _Post implements Post {
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
-  @override // TODO: Remove these fields in RemoteRep.Save before insert()
+  @override
   int get id;
   @override
-  @JsonKey(name: 'created_at')
   DateTime get createdAt;
   @override
-  @JsonKey(name: 'created_by')
   String? get createdBy;
-  @override
+  @override // TODO: Make it non-nullable after removing post scrapper
   String get author;
   @override
   Gender get gender;

@@ -11,13 +11,7 @@ _$FiltersImpl _$$FiltersImplFromJson(Map<String, dynamic> json) =>
       city: City.fromJson(json['city'] as Map<String, dynamic>),
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      age: _$recordConvert(
-        json['age'],
-        ($jsonValue) => (
-          max: ($jsonValue['max'] as num).toInt(),
-          min: ($jsonValue['min'] as num).toInt(),
-        ),
-      ),
+      age: const NumericRangeConverter().fromJson(json['age'] as String),
     );
 
 Map<String, dynamic> _$$FiltersImplToJson(_$FiltersImpl instance) =>
@@ -25,10 +19,7 @@ Map<String, dynamic> _$$FiltersImplToJson(_$FiltersImpl instance) =>
       'city': instance.city.toJson(),
       'category': _$CategoryEnumMap[instance.category]!,
       'gender': _$GenderEnumMap[instance.gender]!,
-      'age': <String, dynamic>{
-        'max': instance.age.max,
-        'min': instance.age.min,
-      },
+      'age': const NumericRangeConverter().toJson(instance.age),
     };
 
 const _$CategoryEnumMap = {
@@ -45,9 +36,3 @@ const _$GenderEnumMap = {
   Gender.female: 'female',
   Gender.couple: 'couple',
 };
-
-$Rec _$recordConvert<$Rec>(
-  Object? value,
-  $Rec Function(Map) convert,
-) =>
-    convert(value as Map<String, dynamic>);
