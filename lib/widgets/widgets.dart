@@ -5,4 +5,4 @@ export 'contact_field.dart';
 export 'dropdown_field.dart';
 export 'posts_list_view.dart';
 export 'posts_list_item.dart';
-export 'posts_placeholder.dart';
+export 'space_placeholder.dart';

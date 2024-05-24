@@ -20,6 +20,24 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final connectivity = ConnectivityHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    connectivity.subscribe(
+      () => context.pushRoute(const OfflineRoute()),
+      () => context.maybePop(),
+    );
+  }
+
+  @override
+  void dispose() {
+    connectivity.unsubscribe();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(

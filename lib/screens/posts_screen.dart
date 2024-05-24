@@ -73,9 +73,19 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
         return ref.refresh(postsStateProvider(filters).future);
       },
       child: posts.when(
-        data: (posts) => PostsListView(posts: posts),
-        error: (_, __) => const Center(child: PostsPlaceholder(showError: true)),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        data: (posts) => PostsListView(
+          posts: posts,
+          emptyText: 'PostsScreen.EmptyText'.tr(),
+        ),
+        error: (_, __) => Center(
+          child: SpacePlaceholder(
+            text: 'PostsScreen.ErrorText'.tr(),
+            showError: true,
+          ),
+        ),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

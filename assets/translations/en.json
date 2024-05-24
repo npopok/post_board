@@ -8,10 +8,8 @@
     "HomeScreen.Warning": "To create a post, you should fill out your profile.",
 
     "PostsScreen.Title": "Posts",
-    "PostsPlaceholder.EmptyTitle": "No posts.",
-    "PostsPlaceholder.EmptyText": "Try change the filters.",
-    "PostsPlaceholder.ErrorTitle": "Server error.",
-    "PostsPlaceholder.ErrorText": "Try again later.",
+    "PostsScreen.EmptyText": "No posts.\nTry change the filters.",
+    "PostsScreen.ErrorText": "Server error.\nTry again later.",
 
     "FiltersScreen.Title": "Filters",
     "FiltersScreen.GenderTile": "Gender",

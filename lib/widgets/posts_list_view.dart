@@ -6,9 +6,11 @@ import 'package:post_board/widgets/widgets.dart';
 
 class PostsListView extends ConsumerWidget {
   final List<Post> posts;
+  final String emptyText;
 
   const PostsListView({
     required this.posts,
+    required this.emptyText,
     super.key,
   });
 
@@ -21,7 +23,12 @@ class PostsListView extends ConsumerWidget {
                 itemCount: posts.length,
                 itemBuilder: (context, index) => PostListItem(post: posts[index]),
               )
-            : const SliverFillRemaining(child: PostsPlaceholder(showError: false)),
+            : SliverFillRemaining(
+                child: SpacePlaceholder(
+                  text: emptyText,
+                  showError: false,
+                ),
+              ),
       ],
     );
   }

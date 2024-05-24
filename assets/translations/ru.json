@@ -8,10 +8,8 @@
     "HomeScreen.Warning": "Для создания объявления необходмо заполнить свой профиль.",
 
     "PostsScreen.Title": "Объявления",
-    "PostsPlaceholder.EmptyTitle": "Нет объявлений.",
-    "PostsPlaceholder.EmptyText": "Попробуйте изменить фильтры.",
-    "PostsPlaceholder.ErrorTitle": "Ошибка сервера.",
-    "PostsPlaceholder.ErrorText": "Попробуйте повторить позже.",
+    "PostsScreen.EmptyText": "Нет объявлений.\nПопробуйте изменить фильтры.",
+    "PostsScreen.ErrorText": "Ошибка сервера.\nПопробуйте повторить позже.",
 
     "FiltersScreen.Title": "Фильтры",
     "FiltersScreen.GenderTile": "Пол",
@@ -54,6 +52,8 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
     
+    "OfflineScreen.ErrorText": "Нет соединения с интернетом.\nПроверьте подключение.",
+
     "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",
     "LocationDialog.ErrorText": "Произошла ошибка. Попробуйте позже.",
