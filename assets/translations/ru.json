@@ -5,7 +5,7 @@
     "HomeScreen.Create": "Создать",  
     "HomeScreen.Profile": "Профиль",
     "HomeScreen.Post": "Объявление",
-    "HomeScreen.Warning": "Для создания объявления необходмо заполнить свой профиль.",
+    "HomeScreen.Warning": "Для создания объявления необходимо заполнить свой профиль.",
 
     "PostsScreen.Title": "Объявления",
     "PostsScreen.EmptyText": "Нет объявлений.\nПопробуйте изменить фильтры.",
