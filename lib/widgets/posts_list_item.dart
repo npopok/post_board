@@ -30,9 +30,23 @@ class PostListItem extends StatelessWidget {
     return ListTile(
       key: ValueKey(post),
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('${post.author}, ${post.age}'),
+          Expanded(
+            child: Row(
+              children: [
+                Flexible(
+                  child: Text(
+                    post.author,
+                    maxLines: 1,
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+                const Text(', '),
+                Text(post.age.toString()),
+              ],
+            ),
+          ),
+          FormLayout.textSpacer,
           Text(
             post.createdAgo.formatTimeAgo(),
             style: Theme.of(context).textTheme.bodySmall,
