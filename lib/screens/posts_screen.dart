@@ -77,11 +77,15 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
           posts: posts,
           emptyText: 'PostsScreen.EmptyText'.tr(),
         ),
-        error: (_, __) => Center(
-          child: SpacePlaceholder(
-            text: 'PostsScreen.ErrorText'.tr(),
-            showError: true,
-          ),
+        error: (_, __) => CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              child: SpacePlaceholder(
+                text: 'PostsScreen.ErrorText'.tr(),
+                showError: true,
+              ),
+            ),
+          ],
         ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
