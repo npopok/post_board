@@ -21,7 +21,7 @@ enum LocationDialogStatus {
 class LocationDialog extends StatefulWidget {
   static const minLength = 3;
   static const searchLimit = 3;
-  static const textAreaHeight = 140.0;
+  static const textAreaHeight = 130.0;
 
   final String? title;
   final String? buttonTitle;
@@ -94,33 +94,35 @@ class _LocationDialogState extends State<LocationDialog> {
   Widget _buildContent(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: currentStatus,
-      builder: (_, value, __) => Column(
-        children: [
-          TextFormField(
-            key: Key(selectedValue.toString()),
-            initialValue: selectedValue.toString(),
-            readOnly: selectedValue.isNotEmpty,
-            autofocus: true,
-            onTap: _inputTapHandler,
-            onChanged: _inputChangedHandler,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: _determineCityHandler,
-                icon: const Icon(Icons.near_me),
+      builder: (_, value, __) {
+        return Column(
+          children: [
+            TextFormField(
+              key: ValueKey(selectedValue),
+              initialValue: selectedValue.toString(),
+              readOnly: selectedValue.isNotEmpty,
+              autofocus: value == LocationDialogStatus.searchStart,
+              onTap: _inputTapHandler,
+              onChanged: _inputChangedHandler,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  onPressed: _determineCityHandler,
+                  icon: const Icon(Icons.near_me),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: LocationDialog.textAreaHeight,
-            child: Center(child: _buildTextArea(context)),
-          ),
-        ],
-      ),
+            SizedBox(
+              height: LocationDialog.textAreaHeight,
+              child: Center(child: _buildTextArea(context, value)),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildTextArea(BuildContext context) {
-    Widget area = switch (currentStatus.value) {
+  Widget _buildTextArea(BuildContext context, LocationDialogStatus status) {
+    Widget area = switch (status) {
       LocationDialogStatus.initial => context.textCentered('LocationDialog.SearchText'.tr()),
       LocationDialogStatus.searchStart => context.textCentered('LocationDialog.SearchText'.tr()),
       LocationDialogStatus.searchResults => _buildSearchResults(),
@@ -133,7 +135,7 @@ class _LocationDialogState extends State<LocationDialog> {
       return Padding(padding: DialogPaddings.locationText, child: area);
     }
     if (area is LocationSearchResults) {
-      return Padding(padding: const EdgeInsets.only(top: 12), child: area);
+      return Padding(padding: const EdgeInsets.only(top: 8), child: area);
     }
     return area;
   }

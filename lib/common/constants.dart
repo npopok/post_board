@@ -55,7 +55,7 @@ class DialogPaddings {
   static const valueContent = EdgeInsets.symmetric(vertical: 4);
   static const valueTile = EdgeInsets.symmetric(horizontal: 24);
 
-  static const locationContent = EdgeInsets.symmetric(horizontal: 24, vertical: 20);
+  static const locationContent = EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 8);
   static const locationText = EdgeInsets.all(16);
 }
 
