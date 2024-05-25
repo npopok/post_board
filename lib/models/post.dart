@@ -10,6 +10,7 @@ class Post with _$Post {
   const factory Post({
     required final int id,
     required final DateTime createdAt,
+    required final Duration createdAgo,
     required final String? createdBy, // TODO: Make it non-nullable after removing post scrapper
     required final String author,
     required final Gender gender,
@@ -31,6 +32,7 @@ class Post with _$Post {
       Post(
         id: 0,
         createdAt: DateTime.timestamp(),
+        createdAgo: Duration.zero,
         createdBy: '',
         author: profile.name,
         gender: profile.gender,

@@ -83,7 +83,7 @@
     "Button.Submit": "ОТПРАВИТЬ",
 
     "Elapsed.Now": "сейчас",
-    "Elapsed.Minutues": "{} мин назад",
+    "Elapsed.Minutes": "{} мин назад",
     "Elapsed.Hours": "{} ч назад",
     "Elapsed.Days": "{} д назад",
     "Elapsed.Weeks": "{} нед назад",

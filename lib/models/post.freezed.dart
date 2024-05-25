@@ -22,6 +22,7 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 mixin _$Post {
   int get id => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  Duration get createdAgo => throw _privateConstructorUsedError;
   String? get createdBy =>
       throw _privateConstructorUsedError; // TODO: Make it non-nullable after removing post scrapper
   String get author => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $PostCopyWith<$Res> {
   $Res call(
       {int id,
       DateTime createdAt,
+      Duration createdAgo,
       String? createdBy,
       String author,
       Gender gender,
@@ -74,6 +76,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   $Res call({
     Object? id = null,
     Object? createdAt = null,
+    Object? createdAgo = null,
     Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
@@ -92,6 +95,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdAgo: null == createdAgo
+          ? _value.createdAgo
+          : createdAgo // ignore: cast_nullable_to_non_nullable
+              as Duration,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -154,6 +161,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   $Res call(
       {int id,
       DateTime createdAt,
+      Duration createdAgo,
       String? createdBy,
       String author,
       Gender gender,
@@ -181,6 +189,7 @@ class __$$PostImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? createdAt = null,
+    Object? createdAgo = null,
     Object? createdBy = freezed,
     Object? author = null,
     Object? gender = null,
@@ -199,6 +208,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdAgo: null == createdAgo
+          ? _value.createdAgo
+          : createdAgo // ignore: cast_nullable_to_non_nullable
+              as Duration,
       createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -241,6 +254,7 @@ class _$PostImpl implements _Post {
   const _$PostImpl(
       {required this.id,
       required this.createdAt,
+      required this.createdAgo,
       required this.createdBy,
       required this.author,
       required this.gender,
@@ -257,6 +271,8 @@ class _$PostImpl implements _Post {
   final int id;
   @override
   final DateTime createdAt;
+  @override
+  final Duration createdAgo;
   @override
   final String? createdBy;
 // TODO: Make it non-nullable after removing post scrapper
@@ -278,7 +294,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(id: $id, createdAt: $createdAt, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
+    return 'Post(id: $id, createdAt: $createdAt, createdAgo: $createdAgo, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -289,6 +305,8 @@ class _$PostImpl implements _Post {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.createdAgo, createdAgo) ||
+                other.createdAgo == createdAgo) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
             (identical(other.author, author) || other.author == author) &&
@@ -303,8 +321,8 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, createdBy, author,
-      gender, age, city, category, text, contact);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, createdAgo,
+      createdBy, author, gender, age, city, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -324,6 +342,7 @@ abstract class _Post implements Post {
   const factory _Post(
       {required final int id,
       required final DateTime createdAt,
+      required final Duration createdAgo,
       required final String? createdBy,
       required final String author,
       required final Gender gender,
@@ -339,6 +358,8 @@ abstract class _Post implements Post {
   int get id;
   @override
   DateTime get createdAt;
+  @override
+  Duration get createdAgo;
   @override
   String? get createdBy;
   @override // TODO: Make it non-nullable after removing post scrapper

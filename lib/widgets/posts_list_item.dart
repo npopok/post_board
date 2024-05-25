@@ -28,13 +28,13 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      key: ObjectKey(post),
+      key: ValueKey(post),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text('${post.author}, ${post.age}'),
           Text(
-            post.createdAt.formatTimeSinceNow(),
+            post.createdAgo.formatTimeAgo(),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],

@@ -80,7 +80,7 @@
     "Button.Submit": "SUBMIT",
 
     "Elapsed.Now": "now",
-    "Elapsed.Minutues": "{} min ago",
+    "Elapsed.Minutes": "{} min ago",
     "Elapsed.Hours": "{} hr ago",
     "Elapsed.Days": "{} d ago",
     "Elapsed.Weeks": "{} w ago",

@@ -22,7 +22,6 @@ class PostsListView extends ConsumerWidget {
             ? SliverList.builder(
                 itemCount: posts.length,
                 itemBuilder: (context, index) => PostListItem(post: posts[index]),
-                addAutomaticKeepAlives: true,
               )
             : SliverFillRemaining(
                 child: SpacePlaceholder(

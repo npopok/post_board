@@ -1,21 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 
 extension DateTimeExtension on DateTime {
-  String formatTimeSinceNow() {
-    final elapsed = DateTime.now().difference(this);
+  int timeSinceNow() {
+    return DateTime.now().difference(this).inMicroseconds;
+  }
+}
 
-    if (elapsed.inMinutes == 0) {
+extension DurationExtension on Duration {
+  String formatTimeAgo() {
+    if (inMinutes == 0) {
       return 'Elapsed.Now'.tr();
-    } else if (elapsed.inHours == 0) {
-      return 'Elapsed.Minutues'.tr(args: [elapsed.inMinutes.toString()]);
-    } else if (elapsed.inDays == 0) {
-      return 'Elapsed.Hours'.tr(args: [elapsed.inHours.toString()]);
-    } else if (elapsed.inDays < 7) {
-      return 'Elapsed.Days'.tr(args: [elapsed.inDays.toString()]);
-    } else if (elapsed.inDays < 30) {
-      return 'Elapsed.Weeks'.tr(args: [(elapsed.inDays / 7).round().toString()]);
-    } else if (elapsed.inDays < 356) {
-      return 'Elapsed.Months'.tr(args: [(elapsed.inDays / 30).round().toString()]);
+    } else if (inHours == 0) {
+      return 'Elapsed.Minutes'.tr(args: [inMinutes.toString()]);
+    } else if (inDays == 0) {
+      return 'Elapsed.Hours'.tr(args: [inHours.toString()]);
+    } else if (inDays < 7) {
+      return 'Elapsed.Days'.tr(args: [inDays.toString()]);
+    } else if (inDays < 30) {
+      return 'Elapsed.Weeks'.tr(args: [(inDays / 7).round().toString()]);
+    } else if (inDays < 356) {
+      return 'Elapsed.Months'.tr(args: [(inDays / 30).round().toString()]);
     } else {
       return 'Elapsed.Years';
     }

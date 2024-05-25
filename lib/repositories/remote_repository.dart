@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
+import 'package:post_board/helpers/helpers.dart';
 
 final remoteRepository = GetIt.I<RemoteRepository>();
 
@@ -46,6 +47,7 @@ class RemoteRepository {
 
     data.remove('id');
     data.remove('createdAt');
+    data.remove('createdAgo');
     data.remove('createdBy');
     data.remove('city');
     data['city_id'] = value.city.id;
@@ -67,6 +69,10 @@ class RemoteRepository {
         .lte('age', filters.age.max)
         .order('created_at')
         .limit(RepositorySettings.postMaxCount);
+
+    for (final row in data) {
+      row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
+    }
 
     return data.map((e) => Post.fromJson(e)).toList();
   }
