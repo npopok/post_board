@@ -62,7 +62,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.search_outlined),
             label: 'HomeScreen.Search'.tr(),
           ),
           BottomNavigationBarItem(
@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             label: 'HomeScreen.Create'.tr(),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
+            icon: const Icon(Icons.person_outline_outlined),
             label: 'HomeScreen.Profile'.tr(),
           ),
         ],
