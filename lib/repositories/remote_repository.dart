@@ -76,6 +76,7 @@ class RemoteRepository {
         .gte('age', filters.age.min)
         .lte('age', filters.age.max)
         .order('created_at')
+        .order('id')
         .limit(RepositorySettings.postMaxCount);
 
     for (final row in data) {
