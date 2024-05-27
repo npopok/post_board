@@ -69,6 +69,7 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
+  final themes = Themes();
   final routes = Routes();
   final connectivity = ConnectivityHelper();
 
@@ -79,19 +80,13 @@ class _MainAppState extends ConsumerState<MainApp> {
     connectivity.subscribe(
       onConnect: () {
         ref.invalidate(postsStateProvider);
-        routes.maybePop();
+        routes.popForced();
       },
       onDisconnect: () {
         if (routes.currentHierarchy().isEmpty) routes.push(const HomeRoute());
         routes.push(const OfflineRoute());
       },
     );
-  }
-
-  @override
-  void dispose() {
-    connectivity.unsubscribe();
-    super.dispose();
   }
 
   @override
@@ -105,8 +100,8 @@ class _MainAppState extends ConsumerState<MainApp> {
       locale: context.locale,
       onGenerateTitle: (_) => 'App.Title'.tr(),
       themeMode: settings.themeMode,
-      theme: getIt<Themes>().lightTheme,
-      darkTheme: getIt<Themes>().darkTheme,
+      theme: themes.lightTheme,
+      darkTheme: themes.darkTheme,
       scaffoldMessengerKey: getIt<MessengerHelper>().messengerKey,
       routerConfig: routes.config(
         navigatorObservers: () => [

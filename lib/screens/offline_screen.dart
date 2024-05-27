@@ -10,11 +10,15 @@ class OfflineScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SpacePlaceholder(
-          text: 'OfflineScreen.ErrorText'.tr(),
-          showError: true,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(automaticallyImplyLeading: false),
+        body: Center(
+          child: SpacePlaceholder(
+            text: 'OfflineScreen.ErrorText'.tr(),
+            showError: true,
+          ),
         ),
       ),
     );

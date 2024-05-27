@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:post_board/common/common.dart';
 import 'package:post_board/repositories/repositories.dart';
 import 'package:post_board/helpers/helpers.dart';
 
@@ -26,7 +25,6 @@ class Depedencies {
     );
     getIt.registerSingleton<AnalyticsHelper>(AnalyticsHelper());
     getIt.registerSingleton<MessengerHelper>(MessengerHelper());
-    getIt.registerSingleton<Themes>(const Themes());
 
     return getIt.allReady();
   }

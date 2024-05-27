@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Themes {
-  const Themes();
+  final Map<Brightness, ThemeData> _themeData = {};
 
-  ThemeData get lightTheme => _buildTheme(Brightness.light);
-  ThemeData get darkTheme => _buildTheme(Brightness.dark);
+  Themes() {
+    _themeData[Brightness.light] = _buildTheme(Brightness.light);
+    _themeData[Brightness.dark] = _buildTheme(Brightness.dark);
+  }
 
-  ThemeData _buildTheme(Brightness brightness) {
+  ThemeData get lightTheme => _themeData[Brightness.light]!;
+  ThemeData get darkTheme => _themeData[Brightness.dark]!;
+
+  static ThemeData _buildTheme(Brightness brightness) {
     final themeData = ThemeData(brightness: brightness);
     final colorScheme = themeData.colorScheme;
 

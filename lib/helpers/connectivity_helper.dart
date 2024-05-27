@@ -13,8 +13,8 @@ class ConnectivityHelper {
     final stream = Connectivity().onConnectivityChanged;
     _subscription = stream.listen((List<ConnectivityResult> result) {
       if (result.contains(ConnectivityResult.none)) {
-        onDisconnect?.call();
         _connected = false;
+        onDisconnect?.call();
       } else {
         if (isDisconnected) {
           _connected = true;

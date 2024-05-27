@@ -5,8 +5,8 @@ import 'package:post_board/screens/screens.dart';
 
 part 'routes.gr.dart';
 
-class OnboardingRoute extends CustomRoute {
-  OnboardingRoute({
+class SlideLeftRoute extends CustomRoute {
+  SlideLeftRoute({
     required super.page,
     super.initial,
     super.transitionsBuilder = TransitionsBuilders.slideLeft,
@@ -19,7 +19,7 @@ class HomeRouteGuard extends AutoRouteGuard {
     return switch (localRepository.loadOnboarding()) {
       null => router.push(const WelcomeRoute()),
       false => router.push(const SelectGenderRoute()),
-      true => resolver.next(true),
+      true => resolver.next(),
     };
   }
 }
@@ -28,10 +28,10 @@ class HomeRouteGuard extends AutoRouteGuard {
 class Routes extends _$Routes {
   @override
   List<AutoRoute> get routes => [
-        OnboardingRoute(page: WelcomeRoute.page),
-        OnboardingRoute(page: SelectGenderRoute.page),
-        OnboardingRoute(page: SelectCityRoute.page),
-        OnboardingRoute(page: FinishRoute.page),
+        SlideLeftRoute(page: WelcomeRoute.page),
+        SlideLeftRoute(page: SelectGenderRoute.page),
+        SlideLeftRoute(page: SelectCityRoute.page),
+        SlideLeftRoute(page: FinishRoute.page),
         AutoRoute(
           page: HomeRoute.page,
           initial: true,
@@ -44,6 +44,9 @@ class Routes extends _$Routes {
         AutoRoute(page: FiltersRoute.page),
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: HelpRoute.page),
-        AutoRoute(page: OfflineRoute.page),
+        CustomRoute(
+          page: OfflineRoute.page,
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
       ];
 }
