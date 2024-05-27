@@ -11,6 +11,8 @@ class RemoteRepository {
   final supabase = Supabase.instance.client;
 
   Future<void> saveProfile(Profile value) async {
+    await _checkUserAuth();
+
     final data = value.toJson();
 
     data.remove('city');
@@ -27,6 +29,8 @@ class RemoteRepository {
   }
 
   Future<void> saveFilters(Filters value) async {
+    await _checkUserAuth();
+
     final data = value.toJson();
 
     data.remove('city');
@@ -43,6 +47,8 @@ class RemoteRepository {
   }
 
   Future<void> savePost(Post value) async {
+    await _checkUserAuth();
+
     final data = value.toJson();
 
     data.remove('id');
@@ -56,6 +62,8 @@ class RemoteRepository {
   }
 
   Future<List<Post>> loadPosts(Filters filters) async {
+    await _checkUserAuth();
+
     final data = await supabase
         .from(RepositorySettings.postsRemoteTable)
         .select(
@@ -78,11 +86,19 @@ class RemoteRepository {
   }
 
   Future<List<City>> loadCities() async {
+    await _checkUserAuth();
+
     var data = await supabase
         .from(RepositorySettings.citiesRemoteTable)
         .select('*, region:regions(*, country:countries(*))')
         .order('name', ascending: true);
 
     return data.map((e) => City.fromJson(e)).toList();
+  }
+
+  Future<void> _checkUserAuth() async {
+    if (Supabase.instance.client.auth.currentUser == null) {
+      await Supabase.instance.client.auth.signInAnonymously();
+    }
   }
 }

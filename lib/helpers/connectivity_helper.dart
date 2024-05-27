@@ -6,15 +6,19 @@ class ConnectivityHelper {
   late StreamSubscription<List<ConnectivityResult>> subscription;
   bool hasDisconnect = false;
 
-  void subscribe(Function() onConnect, Function() onDisconnect) {
-    subscription = Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
+  void subscribe({
+    required Function() onConnect,
+    required Function() onDisconnect,
+  }) {
+    final stream = Connectivity().onConnectivityChanged;
+    subscription = stream.listen((List<ConnectivityResult> result) {
       if (result.contains(ConnectivityResult.none)) {
-        onConnect();
+        onDisconnect();
         hasDisconnect = true;
       } else {
         if (hasDisconnect) {
           hasDisconnect = false;
-          onDisconnect();
+          onConnect();
         }
       }
     });

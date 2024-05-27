@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -14,24 +16,28 @@ import 'package:post_board/providers/providers.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  await initializeFirebase();
-  await initializeSupabase();
-  await Depedencies.initialize();
+    await initializeFirebase();
+    await initializeSupabase();
+    await Depedencies.initialize();
 
-  EasyLocalization.logger.enableBuildModes = [];
-  await EasyLocalization.ensureInitialized();
+    EasyLocalization.logger.enableBuildModes = [];
+    await EasyLocalization.ensureInitialized();
 
-  runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ru')],
-      path: 'assets/translations',
-      startLocale: const Locale('ru'),
-      fallbackLocale: const Locale('ru'),
-      child: const MainApp(),
-    ),
-  );
+    runApp(
+      EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ru')],
+        path: 'assets/translations',
+        startLocale: const Locale('ru'),
+        fallbackLocale: const Locale('ru'),
+        child: const MainApp(),
+      ),
+    );
+  }, (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  });
 }
 
 Future<void> initializeSupabase() async {
@@ -39,9 +45,6 @@ Future<void> initializeSupabase() async {
     url: const String.fromEnvironment('SUPABASE_URL'),
     anonKey: const String.fromEnvironment('SUPABASE_KEY'),
   );
-  if (Supabase.instance.client.auth.currentUser == null) {
-    await Supabase.instance.client.auth.signInAnonymously();
-  }
 }
 
 Future<void> initializeFirebase() async {
@@ -65,6 +68,26 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   final routes = Routes();
+  final connectivity = ConnectivityHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    connectivity.subscribe(
+      onConnect: () => routes.maybePop(),
+      onDisconnect: () {
+        if (routes.currentHierarchy().isEmpty) routes.push(const HomeRoute());
+        routes.push(const OfflineRoute());
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    connectivity.unsubscribe();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
