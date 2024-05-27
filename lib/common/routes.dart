@@ -44,9 +44,6 @@ class Routes extends _$Routes {
         AutoRoute(page: FiltersRoute.page),
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: HelpRoute.page),
-        CustomRoute(
-          page: OfflineRoute.page,
-          transitionsBuilder: TransitionsBuilders.noTransition,
-        ),
+        AutoRoute(page: OfflineRoute.page),
       ];
 }
