@@ -8,10 +8,8 @@ class Themes {
   ThemeData get darkTheme => _buildTheme(Brightness.dark);
 
   ThemeData _buildTheme(Brightness brightness) {
-    final themeData = ThemeData(useMaterial3: true, brightness: brightness);
+    final themeData = ThemeData(brightness: brightness);
     final colorScheme = themeData.colorScheme;
-
-    bool isLight = brightness == Brightness.light;
 
     InputBorder inputEnabledBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
@@ -26,7 +24,7 @@ class Themes {
     return themeData.copyWith(
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: isLight ? Colors.white : Colors.black,
+        fillColor: colorScheme.surfaceContainerHighest,
         isDense: true,
         border: InputBorder.none,
         errorStyle: const TextStyle(height: 0),
@@ -42,6 +40,9 @@ class Themes {
       ),
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness:
+              brightness == Brightness.light ? Brightness.dark : Brightness.light,
           systemNavigationBarColor: colorScheme.surface,
         ),
       ),

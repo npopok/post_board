@@ -3,18 +3,21 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConnectivityHelper {
-  late StreamSubscription<List<ConnectivityResult>> subscription;
-  bool hasDisconnect = false;
+  late final StreamSubscription<List<ConnectivityResult>> _subscription;
+  bool _connected = true;
+
+  bool get isConnected => _connected;
+  bool get isDisconnected => !_connected;
 
   void subscribe({Function()? onConnect, Function()? onDisconnect}) {
     final stream = Connectivity().onConnectivityChanged;
-    subscription = stream.listen((List<ConnectivityResult> result) {
+    _subscription = stream.listen((List<ConnectivityResult> result) {
       if (result.contains(ConnectivityResult.none)) {
         onDisconnect?.call();
-        hasDisconnect = true;
+        _connected = false;
       } else {
-        if (hasDisconnect) {
-          hasDisconnect = false;
+        if (isDisconnected) {
+          _connected = true;
           onConnect?.call();
         }
       }
@@ -22,6 +25,6 @@ class ConnectivityHelper {
   }
 
   void unsubscribe() {
-    subscription.cancel();
+    _subscription.cancel();
   }
 }
