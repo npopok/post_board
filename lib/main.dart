@@ -27,12 +27,14 @@ void main() async {
     await EasyLocalization.ensureInitialized();
 
     runApp(
-      EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('ru')],
-        path: 'assets/translations',
-        startLocale: const Locale('ru'),
-        fallbackLocale: const Locale('ru'),
-        child: const MainApp(),
+      ProviderScope(
+        child: EasyLocalization(
+          supportedLocales: const [Locale('en'), Locale('ru')],
+          path: 'assets/translations',
+          startLocale: const Locale('ru'),
+          fallbackLocale: const Locale('ru'),
+          child: const MainApp(),
+        ),
       ),
     );
   }, (error, stack) {
@@ -59,14 +61,14 @@ Future<void> initializeFirebase() async {
   };
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
-  State<MainApp> createState() => _MainAppState();
+  ConsumerState<MainApp> createState() => _MainAppState();
 }
 
-class _MainAppState extends State<MainApp> {
+class _MainAppState extends ConsumerState<MainApp> {
   final routes = Routes();
   final connectivity = ConnectivityHelper();
 
@@ -75,7 +77,10 @@ class _MainAppState extends State<MainApp> {
     super.initState();
 
     connectivity.subscribe(
-      onConnect: () => routes.maybePop(),
+      onConnect: () {
+        ref.invalidate(postsStateProvider);
+        routes.maybePop();
+      },
       onDisconnect: () {
         if (routes.currentHierarchy().isEmpty) routes.push(const HomeRoute());
         routes.push(const OfflineRoute());
@@ -91,14 +96,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: Consumer(
-        builder: (context, ref, _) => _buildApp(context, ref),
-      ),
-    );
-  }
-
-  Widget _buildApp(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsStateProvider);
 
     return MaterialApp.router(

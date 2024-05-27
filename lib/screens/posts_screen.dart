@@ -18,13 +18,12 @@ class PostsScreen extends ConsumerStatefulWidget {
 
 class _PostsScreenState extends ConsumerState<PostsScreen> {
   late AppLifecycleListener listener;
-  late Stopwatch stopwatch;
+  final stopwatch = Stopwatch();
 
   @override
   void initState() {
     super.initState();
     listener = AppLifecycleListener(onStateChange: _appStateHandler);
-    stopwatch = Stopwatch();
   }
 
   @override
