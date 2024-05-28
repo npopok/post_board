@@ -61,7 +61,7 @@ class RemoteRepository {
     await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
   }
 
-  Future<List<Post>> loadPosts(Filters filters) async {
+  Future<List<Post>> loadPosts(Filters filters, int pageKey) async {
     await _checkUserAuth();
 
     final data = await supabase
@@ -70,6 +70,7 @@ class RemoteRepository {
           '*, createdAt:created_at, createdBy:created_by,'
           'city:cities(*, region:regions(*, country:countries(*)))',
         )
+        .lt('id', pageKey)
         .eq('city_id', filters.city.id)
         .eq('category', filters.category.name)
         .eq('gender', filters.gender.name)
@@ -77,11 +78,13 @@ class RemoteRepository {
         .lte('age', filters.age.max)
         .order('created_at')
         .order('id')
-        .limit(RepositorySettings.postMaxCount);
+        .limit(RepositorySettings.postsPageSize);
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
     }
+
+    print('Load DB: pageKey = $pageKey, category = ${filters.category}');
 
     return data.map((e) => Post.fromJson(e)).toList();
   }

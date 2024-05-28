@@ -6,7 +6,7 @@ part of 'posts_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsStateHash() => r'6bf681d358920efdf8cc18b502e706d51d011177';
+String _$postsStateHash() => r'ab167630f62d47f875106f51b4640cd4b7e6f974';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,9 +32,11 @@ class _SystemHash {
 abstract class _$PostsState
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
   late final Filters filters;
+  late final int pageKey;
 
   FutureOr<List<Post>> build(
     Filters filters,
+    int pageKey,
   );
 }
 
@@ -50,9 +52,11 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
   /// See also [PostsState].
   PostsStateProvider call(
     Filters filters,
+    int pageKey,
   ) {
     return PostsStateProvider(
       filters,
+      pageKey,
     );
   }
 
@@ -62,6 +66,7 @@ class PostsStateFamily extends Family<AsyncValue<List<Post>>> {
   ) {
     return call(
       provider.filters,
+      provider.pageKey,
     );
   }
 
@@ -86,8 +91,11 @@ class PostsStateProvider
   /// See also [PostsState].
   PostsStateProvider(
     Filters filters,
+    int pageKey,
   ) : this._internal(
-          () => PostsState()..filters = filters,
+          () => PostsState()
+            ..filters = filters
+            ..pageKey = pageKey,
           from: postsStateProvider,
           name: r'postsStateProvider',
           debugGetCreateSourceHash:
@@ -98,6 +106,7 @@ class PostsStateProvider
           allTransitiveDependencies:
               PostsStateFamily._allTransitiveDependencies,
           filters: filters,
+          pageKey: pageKey,
         );
 
   PostsStateProvider._internal(
@@ -108,9 +117,11 @@ class PostsStateProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.filters,
+    required this.pageKey,
   }) : super.internal();
 
   final Filters filters;
+  final int pageKey;
 
   @override
   FutureOr<List<Post>> runNotifierBuild(
@@ -118,6 +129,7 @@ class PostsStateProvider
   ) {
     return notifier.build(
       filters,
+      pageKey,
     );
   }
 
@@ -126,13 +138,16 @@ class PostsStateProvider
     return ProviderOverride(
       origin: this,
       override: PostsStateProvider._internal(
-        () => create()..filters = filters,
+        () => create()
+          ..filters = filters
+          ..pageKey = pageKey,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         filters: filters,
+        pageKey: pageKey,
       ),
     );
   }
@@ -145,13 +160,16 @@ class PostsStateProvider
 
   @override
   bool operator ==(Object other) {
-    return other is PostsStateProvider && other.filters == filters;
+    return other is PostsStateProvider &&
+        other.filters == filters &&
+        other.pageKey == pageKey;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, filters.hashCode);
+    hash = _SystemHash.combine(hash, pageKey.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -160,6 +178,9 @@ class PostsStateProvider
 mixin PostsStateRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
   /// The parameter `filters` of this provider.
   Filters get filters;
+
+  /// The parameter `pageKey` of this provider.
+  int get pageKey;
 }
 
 class _PostsStateProviderElement
@@ -169,6 +190,8 @@ class _PostsStateProviderElement
 
   @override
   Filters get filters => (origin as PostsStateProvider).filters;
+  @override
+  int get pageKey => (origin as PostsStateProvider).pageKey;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

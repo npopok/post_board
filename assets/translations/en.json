@@ -10,6 +10,7 @@
     "PostsScreen.Title": "Posts",
     "PostsScreen.EmptyText": "No posts.\nTry change the filters.",
     "PostsScreen.ErrorText": "Server error.\nTry again later.",
+    "PostsScreen.ErrorItem": "Server error.",
 
     "FiltersScreen.Title": "Filters",
     "FiltersScreen.GenderTile": "Gender",

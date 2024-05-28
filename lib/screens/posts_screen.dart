@@ -64,32 +64,37 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
 
   Widget _buildPostsList(BuildContext context) {
     final filters = ref.watch(filtersStateProvider);
-    final posts = ref.watch(postsStateProvider(filters));
+    // final posts = ref.watch(postsStateProvider(filters));
 
     return RefreshIndicator(
       onRefresh: () {
         logEvent(AnalyticsEvent.postsRefresh);
-        return ref.refresh(postsStateProvider(filters).future);
+        return ref.refresh(postsStateProvider(filters, RepositorySettings.postsMaxId).future);
       },
-      child: posts.when(
-        data: (posts) => PostsListView(
-          posts: posts,
-          emptyText: 'PostsScreen.EmptyText'.tr(),
-        ),
-        error: (_, __) => CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              child: SpacePlaceholder(
-                text: 'PostsScreen.ErrorText'.tr(),
-                showError: true,
-              ),
-            ),
-          ],
-        ),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
+      child: PostsListView(
+        emptyText: 'PostsScreen.EmptyText'.tr(),
+        errorText: 'PostsScreen.ErrorText'.tr(),
+        errorItem: 'PostsScreen.ErrorItem'.tr(),
       ),
+      // posts.when(
+      //   data: (posts) => PostsListView(
+      //     posts: posts,
+      //     emptyText: 'PostsScreen.EmptyText'.tr(),
+      //   ),
+      //   error: (_, __) => CustomScrollView(
+      //     slivers: [
+      //       SliverFillRemaining(
+      //         child: SpacePlaceholder(
+      //           text: 'PostsScreen.ErrorText'.tr(),
+      //           showError: true,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      //   loading: () => const Center(
+      //     child: CircularProgressIndicator(),
+      //   ),
+      // ),
     );
   }
 }

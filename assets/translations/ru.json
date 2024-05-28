@@ -10,6 +10,7 @@
     "PostsScreen.Title": "Объявления",
     "PostsScreen.EmptyText": "Нет объявлений.\nПопробуйте изменить фильтры.",
     "PostsScreen.ErrorText": "Ошибка сервера.\nПопробуйте повторить позже.",
+    "PostsScreen.ErrorItem": "Ошибка сервера.",
 
     "FiltersScreen.Title": "Фильтры",
     "FiltersScreen.GenderTile": "Пол",
