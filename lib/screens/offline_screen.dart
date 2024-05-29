@@ -15,10 +15,7 @@ class OfflineScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(automaticallyImplyLeading: false),
         body: Center(
-          child: SpacePlaceholder(
-            text: 'OfflineScreen.ErrorText'.tr(),
-            showError: true,
-          ),
+          child: ErrorPlaceholder(text: 'OfflineScreen.ErrorText'.tr()),
         ),
       ),
     );

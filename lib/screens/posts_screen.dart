@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/common/common.dart';
 import 'package:post_board/widgets/widgets.dart';
 import 'package:post_board/providers/providers.dart';
-import 'package:post_board/helpers/helpers.dart';
 
 @RoutePage()
 class PostsScreen extends ConsumerStatefulWidget {
@@ -58,43 +57,11 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
           ),
         ],
       ),
-      body: _buildPostsList(context),
-    );
-  }
-
-  Widget _buildPostsList(BuildContext context) {
-    final filters = ref.watch(filtersStateProvider);
-    // final posts = ref.watch(postsStateProvider(filters));
-
-    return RefreshIndicator(
-      onRefresh: () {
-        logEvent(AnalyticsEvent.postsRefresh);
-        return ref.refresh(postsStateProvider(filters, RepositorySettings.postsMaxId).future);
-      },
-      child: PostsListView(
+      body: PostsListView(
         emptyText: 'PostsScreen.EmptyText'.tr(),
         errorText: 'PostsScreen.ErrorText'.tr(),
         errorItem: 'PostsScreen.ErrorItem'.tr(),
       ),
-      // posts.when(
-      //   data: (posts) => PostsListView(
-      //     posts: posts,
-      //     emptyText: 'PostsScreen.EmptyText'.tr(),
-      //   ),
-      //   error: (_, __) => CustomScrollView(
-      //     slivers: [
-      //       SliverFillRemaining(
-      //         child: SpacePlaceholder(
-      //           text: 'PostsScreen.ErrorText'.tr(),
-      //           showError: true,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      //   loading: () => const Center(
-      //     child: CircularProgressIndicator(),
-      //   ),
-      // ),
     );
   }
 }

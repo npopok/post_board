@@ -84,6 +84,7 @@ class RemoteRepository {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
     }
 
+    //   await Future.delayed(Duration(seconds: 5)); // TODO
     print('Load DB: pageKey = $pageKey, category = ${filters.category}');
 
     return data.map((e) => Post.fromJson(e)).toList();

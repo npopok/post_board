@@ -16,14 +16,14 @@ class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filter = ref.watch(filtersStateProvider);
+    final filters = ref.watch(filtersStateProvider);
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: ChoiceField<Category>(
-          initialValue: filter.category,
+          initialValue: filters.category,
           values: Category.values,
           textBuilder: (value) => value.toString().tr(),
           onChanged: (value) => _updateCategory(value, ref),

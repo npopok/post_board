@@ -2,6 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'package:post_board/common/common.dart';
 
+class EmptyPlaceholder extends SpacePlaceholder {
+  const EmptyPlaceholder({
+    required super.text,
+    super.showError = false,
+    super.key,
+  });
+}
+
+class ErrorPlaceholder extends SpacePlaceholder {
+  const ErrorPlaceholder({
+    required super.text,
+    super.showError = true,
+    super.key,
+  });
+}
+
 class SpacePlaceholder extends StatelessWidget {
   final String text;
   final bool showError;
