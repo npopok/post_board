@@ -6,6 +6,8 @@ import 'package:post_board/providers/providers.dart';
 import 'package:post_board/widgets/widgets.dart';
 
 class PostsListView extends ConsumerStatefulWidget {
+  static const scrollThreshold = 200;
+
   final String emptyText;
   final String errorText;
   final String errorItem;
@@ -22,20 +24,85 @@ class PostsListView extends ConsumerStatefulWidget {
 }
 
 class _PostsListViewState extends ConsumerState<PostsListView> {
+  final scrollController = ScrollController();
+  bool hasMore = true;
+  bool isLoadingMore = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(_scrollListener);
+    ref.listenManual(postsStateProvider, (_, state) => _resetScrollPosition(state));
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(_scrollListener);
+    scrollController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final filters = ref.watch(filtersStateProvider);
-    final posts = ref.watch(postsStateProvider(filters));
+    final posts = ref.watch(postsStateProvider);
 
-    return InfiniteListView<Post>(
-      loadItems: () => posts,
-      loadNext: () => ref.read(postsStateProvider(filters).notifier).loadNext(),
-      refresh: () => ref.refresh(postsStateProvider(filters).future),
-      itemBuilder: (_, item) => PostListItem(post: item),
-      loadingIndicator: const Center(child: CircularProgressIndicator()),
-      loadMoreIndicator: _buildLoadMoreIndicator(),
-      emptyPlaceholder: EmptyPlaceholder(text: widget.emptyText),
-      errorPlaceholder: ErrorPlaceholder(text: widget.errorText),
+    return RefreshIndicator(
+      onRefresh: () => ref.refresh(postsStateProvider.future),
+      child: posts.when(
+        data: (data) => data.items.isNotEmpty
+            ? _buildListView(data)
+            : _buildPlaceholder(EmptyPlaceholder(text: widget.emptyText)),
+        error: (_, __) => _buildPlaceholder(ErrorPlaceholder(text: widget.errorText)),
+        loading: () => const Center(child: CircularProgressIndicator()),
+      ),
+    );
+  }
+
+  void _scrollListener() async {
+    final maxPos = scrollController.position.maxScrollExtent;
+    final currentPos = scrollController.position.pixels;
+    bool showMore = (maxPos - currentPos) <= PostsListView.scrollThreshold;
+
+    if (hasMore && showMore && !isLoadingMore) {
+      isLoadingMore = true;
+
+      await ref.read(postsStateProvider.notifier).loadNext();
+      final posts = ref.read(postsStateProvider);
+      if (posts.hasValue) hasMore = posts.value!.hasMore;
+
+      print('loadNext(): hasMore = $hasMore');
+      isLoadingMore = false;
+    }
+  }
+
+  void _resetScrollPosition(AsyncValue<Posts> state) {
+    if (state.hasValue && state.requireValue.isFirst) {
+      print('Reset scroll controller');
+      if (scrollController.hasClients) scrollController.jumpTo(0);
+    }
+  }
+
+  Widget _buildListView(Posts posts) {
+    print('_buildListView: data.length = ${posts.items.length}');
+
+    return ListView.builder(
+      controller: scrollController,
+      itemCount: posts.items.length + (posts.hasMore ? 1 : 0),
+      itemBuilder: (_, index) {
+        if (index < posts.items.length) {
+          return PostListItem(post: posts.items[index]);
+        } else {
+          return _buildLoadMoreIndicator();
+        }
+      },
+    );
+  }
+
+  Widget _buildPlaceholder(Widget child) {
+    return CustomScrollView(
+      slivers: [SliverFillRemaining(child: child)],
     );
   }
 

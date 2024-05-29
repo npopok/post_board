@@ -3,7 +3,6 @@ export 'choice_field.dart';
 export 'contact_icon.dart';
 export 'contact_field.dart';
 export 'dropdown_field.dart';
-export 'infinite_list_view.dart';
 export 'posts_list_error.dart';
 export 'posts_list_view.dart';
 export 'posts_list_item.dart';

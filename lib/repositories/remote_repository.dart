@@ -61,8 +61,13 @@ class RemoteRepository {
     await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
   }
 
-  Future<List<Post>> loadPosts(Filters filters, int pageKey) async {
+  Future<Posts> loadPosts(Filters filters, Posts? prev) async {
     await _checkUserAuth();
+
+    const queryLimit = RepositorySettings.postsPageSize + 1;
+    final pageKey = prev?.items.lastOrNull?.id ?? RepositorySettings.postsMaxId;
+
+    final st = Stopwatch()..start();
 
     final data = await supabase
         .from(RepositorySettings.postsRemoteTable)
@@ -78,16 +83,26 @@ class RemoteRepository {
         .lte('age', filters.age.max)
         .order('created_at')
         .order('id')
-        .limit(RepositorySettings.postsPageSize);
+        .limit(queryLimit);
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
     }
 
-    //   await Future.delayed(Duration(seconds: 5)); // TODO
-    print('Load DB: pageKey = $pageKey, category = ${filters.category}');
+    final hasMore = data.length == queryLimit;
+    if (data.isNotEmpty) data.removeLast();
 
-    return data.map((e) => Post.fromJson(e)).toList();
+    final loaded = data.map((e) => Post.fromJson(e)).toList();
+    final items = prev == null ? loaded : prev.items + loaded;
+
+    //   await Future.delayed(Duration(seconds: 5)); // TODO
+    print('Load DB: pageKey = $pageKey, hasMore = $hasMore, category = ${filters.category},'
+        'records = ${data.length}, total = ${items.length}');
+    if (loaded.isNotEmpty) print('     nextPageKey = ${loaded.last.id}');
+    st.stop();
+    print('      Execution time: ${st.elapsedMilliseconds}ms');
+
+    return Posts(items: items, isFirst: prev == null, hasMore: hasMore);
   }
 
   Future<List<City>> loadCities() async {

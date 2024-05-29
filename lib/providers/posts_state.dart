@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:post_board/providers/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,23 +11,30 @@ part 'posts_state.g.dart';
 @riverpod
 class PostsState extends _$PostsState {
   @override
-  Future<List<Post>> build(Filters filters) => loadData(filters);
+  Future<Posts> build() => loadData();
 
-  Future<List<Post>> loadData(Filters filters) async {
+  Future<Posts> loadData() async {
     ref.cacheFor(RepositorySettings.postsCacheDuration);
-    return remoteRepository.loadPosts(filters, RepositorySettings.postsMaxId);
+
+    final filters = ref.watch(filtersStateProvider);
+    return remoteRepository.loadPosts(filters, null);
   }
 
   Future<void> loadNext() async {
-    state.whenData(
-      (data) async {
-        if (data.isNotEmpty) {
-          state = await AsyncValue.guard(() async {
-            final posts = await remoteRepository.loadPosts(filters, state.value!.last.id);
-            return [...data, ...posts];
-          });
-        }
-      },
-    );
+    if (state is AsyncLoading) {
+      // 1
+      print('Already loading next page');
+      return;
+    }
+    if (!state.requireValue.hasMore) {
+      // 2
+      print('No more pages to load');
+      return;
+    }
+
+    state = await AsyncValue.guard(() async {
+      final filters = ref.watch(filtersStateProvider);
+      return remoteRepository.loadPosts(filters, state.requireValue);
+    });
   }
 }

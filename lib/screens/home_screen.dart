@@ -93,9 +93,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
       await remoteRepository.savePost(post);
       ref.read(filtersStateProvider.notifier).category = category;
-
-      final filters = ref.read(filtersStateProvider);
-      ref.invalidate(postsStateProvider(filters));
+      ref.invalidate(postsStateProvider);
 
       showSnackBar('SubmitScreen.SubmitSuccess'.tr());
       if (mounted) context.navigateTo(const PostsRoute());

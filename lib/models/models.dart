@@ -4,6 +4,7 @@ export 'country.dart';
 export 'converters.dart';
 export 'filters.dart';
 export 'post.dart';
+export 'posts.dart';
 export 'profile.dart';
 export 'region.dart';
 export 'types.dart';
