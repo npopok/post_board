@@ -53,7 +53,7 @@ class PostListItem extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: Text(post.text),
+      subtitle: Text(post.text + '\n#' + post.id.toString()), // TODO
       onTap: () => _showContactMenu(context, post),
     );
   }

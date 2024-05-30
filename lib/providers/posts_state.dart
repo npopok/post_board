@@ -16,22 +16,13 @@ class PostsState extends _$PostsState {
   Future<Posts> loadData() async {
     ref.cacheFor(RepositorySettings.postsCacheDuration);
 
+    print('PostsState.loadData()');
+
     final filters = ref.watch(filtersStateProvider);
     return remoteRepository.loadPosts(filters, null);
   }
 
   Future<void> loadNext() async {
-    if (state is AsyncLoading) {
-      // 1
-      print('Already loading next page');
-      return;
-    }
-    if (!state.requireValue.hasMore) {
-      // 2
-      print('No more pages to load');
-      return;
-    }
-
     state = await AsyncValue.guard(() async {
       final filters = ref.watch(filtersStateProvider);
       return remoteRepository.loadPosts(filters, state.requireValue);

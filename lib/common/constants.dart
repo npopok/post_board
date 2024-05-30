@@ -29,7 +29,7 @@ class RepositorySettings {
 
   static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';
-  static const postsCacheDuration = Duration(seconds: 10);
+  static const postsCacheDuration = Duration(minutes: 15);
   static const postsMaxId = (1 << 63) - 1;
   static const postsPageSize = 20;
 

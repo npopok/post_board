@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:post_board/helpers/helpers.dart';
 
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 import 'package:post_board/widgets/widgets.dart';
 
 class PostsListView extends ConsumerStatefulWidget {
-  static const scrollThreshold = 200;
-
   final String emptyText;
   final String errorText;
   final String errorItem;
@@ -24,23 +23,20 @@ class PostsListView extends ConsumerStatefulWidget {
 }
 
 class _PostsListViewState extends ConsumerState<PostsListView> {
-  final scrollController = ScrollController();
+  var scrollController = ScrollController();
   bool hasMore = true;
   bool isLoadingMore = false;
+  bool isRefreshing = false;
 
   @override
   void initState() {
     super.initState();
-
-    scrollController.addListener(_scrollListener);
-    ref.listenManual(postsStateProvider, (_, state) => _resetScrollPosition(state));
+    ref.listenManual(postsStateProvider, (_, state) => _resetScrollController(state));
   }
 
   @override
   void dispose() {
-    scrollController.removeListener(_scrollListener);
     scrollController.dispose();
-
     super.dispose();
   }
 
@@ -48,72 +44,99 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   Widget build(BuildContext context) {
     final posts = ref.watch(postsStateProvider);
 
+    print('isRefreshing = ${isRefreshing}');
+
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(postsStateProvider.future),
+      onRefresh: () {
+        isRefreshing = true;
+        logEvent(AnalyticsEvent.postsRefresh);
+        return ref.refresh(postsStateProvider.future);
+      },
       child: posts.when(
-        data: (data) => data.items.isNotEmpty
-            ? _buildListView(data)
-            : _buildPlaceholder(EmptyPlaceholder(text: widget.emptyText)),
-        error: (_, __) => _buildPlaceholder(ErrorPlaceholder(text: widget.errorText)),
+        skipLoadingOnRefresh: isRefreshing,
+        data: (data) {
+          isRefreshing = false;
+          if (data.items.isNotEmpty) {
+            return _buildListView(data);
+          } else {
+            return EmptyPlaceholder(text: widget.emptyText);
+          }
+        },
+        error: (_, __) {
+          isRefreshing = false;
+          return _buildErrorPlaceholder();
+        },
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );
   }
 
-  void _scrollListener() async {
-    final maxPos = scrollController.position.maxScrollExtent;
-    final currentPos = scrollController.position.pixels;
-    bool showMore = (maxPos - currentPos) <= PostsListView.scrollThreshold;
-
-    if (hasMore && showMore && !isLoadingMore) {
-      isLoadingMore = true;
-
-      await ref.read(postsStateProvider.notifier).loadNext();
-      final posts = ref.read(postsStateProvider);
-      if (posts.hasValue) hasMore = posts.value!.hasMore;
-
-      print('loadNext(): hasMore = $hasMore');
-      isLoadingMore = false;
-    }
-  }
-
-  void _resetScrollPosition(AsyncValue<Posts> state) {
-    if (state.hasValue && state.requireValue.isFirst) {
-      print('Reset scroll controller');
-      if (scrollController.hasClients) scrollController.jumpTo(0);
-    }
-  }
-
   Widget _buildListView(Posts posts) {
     print('_buildListView: data.length = ${posts.items.length}');
 
-    return ListView.builder(
-      controller: scrollController,
-      itemCount: posts.items.length + (posts.hasMore ? 1 : 0),
-      itemBuilder: (_, index) {
-        if (index < posts.items.length) {
-          return PostListItem(post: posts.items[index]);
-        } else {
-          return _buildLoadMoreIndicator();
-        }
+    return NotificationListener<ScrollEndNotification>(
+      child: ListView.builder(
+        controller: scrollController,
+        itemCount: posts.items.length + (posts.hasMore ? 1 : 0),
+        itemBuilder: (_, index) {
+          if (index < posts.items.length) {
+            return PostListItem(post: posts.items[index]);
+          } else {
+            return _buildLoadMoreIndicator();
+          }
+        },
+      ),
+      onNotification: (notification) {
+        _loadMoreItems();
+        return false;
       },
     );
   }
 
-  Widget _buildPlaceholder(Widget child) {
+  Widget _buildErrorPlaceholder() {
     return CustomScrollView(
-      slivers: [SliverFillRemaining(child: child)],
+      slivers: [
+        SliverFillRemaining(
+          child: ErrorPlaceholder(text: widget.errorText),
+        ),
+      ],
     );
   }
 
   Widget _buildLoadMoreIndicator() {
     return const Padding(
-      padding: EdgeInsets.only(top: 8, bottom: 16),
+      padding: EdgeInsets.only(top: 12, bottom: 24),
       child: Center(
           child: SizedBox.square(
         dimension: 24,
         child: CircularProgressIndicator(strokeWidth: 3),
       )),
     );
+  }
+
+  void _loadMoreItems() async {
+    print('loadMoreItems()');
+
+    if (hasMore && !isLoadingMore) {
+      isLoadingMore = true;
+
+      print('loadNext()');
+
+      await ref.read(postsStateProvider.notifier).loadNext();
+      final posts = ref.read(postsStateProvider);
+
+      hasMore = posts.value?.hasMore ?? false;
+      isLoadingMore = false;
+    }
+  }
+
+  void _resetScrollController(AsyncValue<Posts> state) {
+    if (state.value?.isFirst == true) {
+      print('Reset scroll controller');
+      hasMore = true;
+      if (scrollController.hasClients) {
+        scrollController.jumpTo(0);
+      }
+    }
   }
 }

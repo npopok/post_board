@@ -49,7 +49,7 @@ class _InputDialogState extends State<InputDialog> {
           child: TextFormField(
             initialValue: selectedValue,
             maxLength: widget.maxLength,
-            textCapitalization: TextCapitalization.sentences,
+            textCapitalization: TextCapitalization.words,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(counterText: ''),
             validator: TextLengthValidator(
