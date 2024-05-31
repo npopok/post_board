@@ -73,12 +73,12 @@ class RemoteRepository {
           '*, createdAt:created_at, createdBy:created_by,'
           'city:cities(*, region:regions(*, country:countries(*)))',
         )
-        .lt('id', pageKey)
         .eq('city_id', filters.city.id)
         .eq('category', filters.category.name)
         .eq('gender', filters.gender.name)
         .gte('age', filters.age.min)
         .lte('age', filters.age.max)
+        .lt('id', pageKey)
         .order('created_at')
         .order('id')
         .limit(queryLimit);
