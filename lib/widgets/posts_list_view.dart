@@ -44,8 +44,6 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   Widget build(BuildContext context) {
     final posts = ref.watch(postsStateProvider);
 
-    print('isRefreshing = ${isRefreshing}');
-
     return RefreshIndicator(
       onRefresh: () {
         isRefreshing = true;
@@ -72,9 +70,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   }
 
   Widget _buildListView(Posts posts) {
-    print('_buildListView: data.length = ${posts.items.length}');
-
-    return NotificationListener<ScrollEndNotification>(
+    return NotificationListener<OverscrollNotification>(
       child: ListView.builder(
         controller: scrollController,
         itemCount: posts.items.length + (posts.hasMore ? 1 : 0),
@@ -87,7 +83,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
         },
       ),
       onNotification: (notification) {
-        _loadMoreItems();
+        if (notification.overscroll > 0) _loadMoreItems();
         return false;
       },
     );
@@ -115,12 +111,8 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   }
 
   void _loadMoreItems() async {
-    print('loadMoreItems()');
-
     if (hasMore && !isLoadingMore) {
       isLoadingMore = true;
-
-      print('loadNext()');
 
       await ref.read(postsStateProvider.notifier).loadNext();
       final posts = ref.read(postsStateProvider);
@@ -132,7 +124,6 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
 
   void _resetScrollController(AsyncValue<Posts> state) {
     if (state.value?.isFirst == true) {
-      print('Reset scroll controller');
       hasMore = true;
       if (scrollController.hasClients) {
         scrollController.jumpTo(0);

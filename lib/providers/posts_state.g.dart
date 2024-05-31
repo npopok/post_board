@@ -6,7 +6,7 @@ part of 'posts_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsStateHash() => r'ae9380165a9b30879cf68b96175cf2672be579a7';
+String _$postsStateHash() => r'ef4ef71fd2963375da6a1af17d9705d3f42caf3d';
 
 /// See also [PostsState].
 @ProviderFor(PostsState)

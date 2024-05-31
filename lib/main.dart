@@ -79,7 +79,6 @@ class _MainAppState extends ConsumerState<MainApp> {
 
     connectivity.subscribe(
       onConnect: () {
-        print('onConnect: invalidate Posts');
         ref.invalidate(postsStateProvider);
         routes.popForced();
       },

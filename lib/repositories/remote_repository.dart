@@ -67,8 +67,6 @@ class RemoteRepository {
     const queryLimit = RepositorySettings.postsPageSize + 1;
     final pageKey = prev?.items.lastOrNull?.id ?? RepositorySettings.postsMaxId;
 
-    final st = Stopwatch()..start();
-
     final data = await supabase
         .from(RepositorySettings.postsRemoteTable)
         .select(
@@ -94,12 +92,6 @@ class RemoteRepository {
 
     final loaded = data.map((e) => Post.fromJson(e)).toList();
     final items = prev == null ? loaded : prev.items + loaded;
-
-    print('Load DB: pageKey = $pageKey, hasMore = $hasMore, category = ${filters.category},'
-        'records = ${data.length}, total = ${items.length}');
-    if (loaded.isNotEmpty) print('     nextPageKey = ${loaded.last.id}');
-    st.stop();
-    print('      Execution time: ${st.elapsedMilliseconds}ms');
 
     return Posts(items: items, isFirst: prev == null, hasMore: hasMore);
   }
