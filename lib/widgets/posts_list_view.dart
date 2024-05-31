@@ -57,7 +57,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
           if (data.items.isNotEmpty) {
             return _buildListView(data);
           } else {
-            return EmptyPlaceholder(text: widget.emptyText);
+            return Center(child: EmptyPlaceholder(text: widget.emptyText));
           }
         },
         error: (_, __) {
