@@ -73,6 +73,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
     return NotificationListener<OverscrollNotification>(
       child: ListView.builder(
         controller: scrollController,
+        physics: const ClampingScrollPhysics(),
         itemCount: posts.items.length + (posts.hasMore ? 1 : 0),
         itemBuilder: (_, index) {
           if (index < posts.items.length) {
