@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,10 +14,10 @@ class SelectCityScreen extends TemplateScreen {
   const SelectCityScreen({super.key});
 
   @override
-  ScreenInfo get screenInfo => const ScreenInfo(
-        title: 'Где искать?',
+  ScreenInfo get screenInfo => ScreenInfo(
+        title: 'SelectCityScreen.Title'.tr(),
         progress: (step: 3, count: 4),
-        nextScreen: FinishRoute(),
+        nextScreen: const FinishRoute(),
       );
 
   @override

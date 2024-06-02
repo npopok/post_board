@@ -45,6 +45,7 @@ class LocationDialog extends StatefulWidget {
 }
 
 class _LocationDialogState extends State<LocationDialog> {
+  final formKey = GlobalKey<FormState>();
   late ValueNotifier<LocationDialogStatus> currentStatus;
   late List<City> cities;
   late City selectedValue;
@@ -85,6 +86,7 @@ class _LocationDialogState extends State<LocationDialog> {
               context,
               widget.buttonTitle!,
               () => selectedValue.isNotEmpty ? selectedValue : widget.initialValue,
+              formKey,
             )
         ],
       ),
@@ -97,17 +99,21 @@ class _LocationDialogState extends State<LocationDialog> {
       builder: (_, value, __) {
         return Column(
           children: [
-            TextFormField(
-              key: ValueKey(selectedValue),
-              initialValue: selectedValue.toString(),
-              readOnly: selectedValue.isNotEmpty,
-              autofocus: value == LocationDialogStatus.searchStart,
-              onTap: _inputTapHandler,
-              onChanged: _inputChangedHandler,
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  onPressed: _determineCityHandler,
-                  icon: const Icon(Icons.near_me),
+            Form(
+              key: formKey,
+              child: TextFormField(
+                key: ValueKey(selectedValue),
+                initialValue: selectedValue.toString(),
+                readOnly: selectedValue.isNotEmpty,
+                autofocus: value == LocationDialogStatus.searchStart,
+                validator: (value) => value!.isEmpty ? '' : null,
+                onTap: _inputTapHandler,
+                onChanged: _inputChangedHandler,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: _determineCityHandler,
+                    icon: const Icon(Icons.near_me),
+                  ),
                 ),
               ),
             ),

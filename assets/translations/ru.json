@@ -54,6 +54,12 @@
     "SettingsScreen.ThemeMode": "Режим темы",
     
     "OfflineScreen.ErrorText": "Нет соединения с интернетом.\nПроверьте подключение.",
+    
+    "WelcomeScreen.Title": "Добро пожаловать!",
+    "WelcomeScreen.Text": "Нажимая кнопку Далее, вы подтверждаете, что вам исполнилось 18 лет.",
+    
+    "SelectGenderScreen.Title": "Кого вы ищете?",
+    "SelectCityScreen.Title": "Где искать?",
 
     "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",

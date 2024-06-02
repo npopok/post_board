@@ -16,10 +16,10 @@ class SelectGenderScreen extends TemplateScreen {
   const SelectGenderScreen({super.key});
 
   @override
-  ScreenInfo get screenInfo => const ScreenInfo(
-        title: 'Кого вы ищете?',
+  ScreenInfo get screenInfo => ScreenInfo(
+        title: 'SelectGenderScreen.Title'.tr(),
         progress: (step: 2, count: 4),
-        nextScreen: SelectCityRoute(),
+        nextScreen: const SelectCityRoute(),
       );
 
   @override

@@ -52,6 +52,14 @@
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.ThemeMode": "Theme mode",
 
+    "OfflineScreen.ErrorText": "No Internet.\nCheck your connection.",
+   
+    "WelcomeScreen.Title": "Welcome!",
+    "WelcomeScreen.Text": "By clicking the Next button you confirm that you are over 18 years of age.",
+    
+    "SelectGenderScreen.Title": "Who you look for?",
+    "SelectCityScreen.Title": "Where to look?",
+
     "LocationDialog.SearchText": "Enter the city name or click on the icon to automatically determine it.",
     "LocationDialog.EmptyText": "City not found.",
     "LocationDialog.ErrorText": "Error occuried. Try again later.",

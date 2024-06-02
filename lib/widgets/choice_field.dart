@@ -18,7 +18,6 @@ class ChoiceField<T> extends FormField<T> {
   }) : super(
           builder: (FormFieldState<T> state) {
             final colorScheme = Theme.of(state.context).colorScheme;
-            state.didChange(initialValue);
 
             return Wrap(
               spacing: 12,
