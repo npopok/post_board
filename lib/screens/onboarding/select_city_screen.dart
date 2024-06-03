@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/dialogs/dialogs.dart';
+import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
 
 import 'template_screen.dart';
@@ -22,11 +23,14 @@ class SelectCityScreen extends TemplateScreen {
 
   @override
   Widget buildContent(BuildContext context, WidgetRef ref) {
-    return LocationDialog(
-      initialValue: ref.watch(profileStateProvider).city,
-      successText: '',
-      contentPadding: EdgeInsets.zero,
-      onSelected: (value) => ref.read(filtersStateProvider.notifier).city = value,
+    return FormField<City>(
+      builder: (FormFieldState<City> state) => LocationDialog(
+        initialValue: ref.watch(profileStateProvider).city,
+        successText: '',
+        contentPadding: EdgeInsets.zero,
+        onSelected: (value) => ref.read(filtersStateProvider.notifier).city = value,
+      ),
+      validator: (value) => value?.isNotEmpty == true ? null : '',
     );
   }
 }

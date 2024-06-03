@@ -31,10 +31,10 @@ class Routes extends _$Routes {
         SlideLeftRoute(page: WelcomeRoute.page),
         SlideLeftRoute(page: SelectGenderRoute.page),
         SlideLeftRoute(page: SelectCityRoute.page),
-        SlideLeftRoute(page: FinishRoute.page),
+        SlideLeftRoute(page: FinishRoute.page, initial: true),
         AutoRoute(
           page: HomeRoute.page,
-          initial: true,
+          //  initial: true,
           children: [
             AutoRoute(page: PostsRoute.page),
             AutoRoute(page: ProfileRoute.page),
