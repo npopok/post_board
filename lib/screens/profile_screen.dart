@@ -170,7 +170,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   void _updateCity(City value) {
     ref.read(profileStateProvider.notifier).city = value;
-    ref.read(filtersStateProvider.notifier).city = value;
     logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileCity: value.name});
   }
 

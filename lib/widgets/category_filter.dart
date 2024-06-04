@@ -23,6 +23,7 @@ class CategoryFilter extends ConsumerWidget implements PreferredSizeWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: ChoiceField<Category>(
+          key: ValueKey(filters.category),
           initialValue: filters.category,
           values: Category.values,
           textBuilder: (value) => value.toString().tr(),

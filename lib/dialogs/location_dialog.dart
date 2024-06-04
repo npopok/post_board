@@ -118,7 +118,7 @@ class _LocationDialogState extends State<LocationDialog> {
       initialValue: selectedValue.toString(),
       readOnly: selectedValue.isNotEmpty,
       autofocus: status == LocationDialogStatus.searchStart,
-      validator: (value) => value!.isEmpty ? '' : null,
+      validator: (_) => selectedValue.isEmpty ? '' : null,
       onTap: _inputTapHandler,
       onChanged: _inputChangedHandler,
       decoration: InputDecoration(

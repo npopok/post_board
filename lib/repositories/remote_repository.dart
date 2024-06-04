@@ -88,7 +88,7 @@ class RemoteRepository {
     }
 
     final hasMore = data.length == queryLimit;
-    if (data.isNotEmpty) data.removeLast();
+    if (hasMore) data.removeLast();
 
     final loaded = data.map((e) => Post.fromJson(e)).toList();
     final items = prev == null ? loaded : prev.items + loaded;
