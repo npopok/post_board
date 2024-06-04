@@ -20,7 +20,7 @@
     "FiltersScreen.AgeDialog": "Возраст от {} до {}",    
     "FiltersScreen.CityTile": "Город",
     "FiltersScreen.CityDialog": "Город",
-    "FiltersScreen.CitySuccess": "Будут показываться объявления из данного города.",
+    "FiltersScreen.CitySuccess": "Объявления будут отображаться для выбранного города.",
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",
@@ -45,7 +45,7 @@
     "ProfileScreen.AgeEmpty": "Ваш возраст",
     "ProfileScreen.CityTile": "Город",
     "ProfileScreen.CityDialog": "Ваш город",
-    "ProfileScreen.CitySuccess": "Ваши объявления будут публиковаться в данном городе.",    
+    "ProfileScreen.CitySuccess": "Объявления будут публиковаться в выбранном городе.",    
     "ProfileScreen.ContactTile": "Контакт",
     "ProfileScreen.ContactDialog": "Ваш контакт",
     "ProfileScreen.ContactHint": "Выберите тип",
@@ -64,7 +64,7 @@
     
     "FinishScreen.Title": "Все готово",
     "FinishScreen.Congrats": "Поздравляем! Теперь вы можете начать знакомиться и общаться.",
-    "FinishScreen.Advices": "Следуйте этим простым советам:\n\n• Будьте собой, не стесняйтесь выражать свою уникальность\n\n• Открыто рассказывайте о своих желаниях и интересах\n\n• Добавьте детали, чтобы сделать ваше объявление привлекательным",
+    "FinishScreen.Advices": "Следуйте этим простым советам:\n\nБудьте собой, не стесняйтесь выражать свою уникальность\n\nОткрыто рассказывайте о своих желаниях и интересах\n\nДобавьте детали, чтобы сделать ваше объявление привлекательным",
     "FinishScreen.Wishes": "Желаем удачи и приятных знакомств!",
 
     "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",

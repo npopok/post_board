@@ -30,8 +30,8 @@ class Routes extends _$Routes {
   List<AutoRoute> get routes => [
         SlideLeftRoute(page: WelcomeRoute.page),
         SlideLeftRoute(page: SelectGenderRoute.page),
-        SlideLeftRoute(page: SelectCityRoute.page),
-        SlideLeftRoute(page: FinishRoute.page, initial: true),
+        SlideLeftRoute(page: SelectCityRoute.page, initial: true),
+        SlideLeftRoute(page: FinishRoute.page),
         AutoRoute(
           page: HomeRoute.page,
           //  initial: true,

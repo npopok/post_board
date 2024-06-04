@@ -28,6 +28,7 @@ class LocationDialog extends StatefulWidget {
   final City initialValue;
   final String successText;
   final EdgeInsets? contentPadding;
+  final bool createForm;
   final Function(City)? onSelected;
 
   const LocationDialog({
@@ -36,6 +37,7 @@ class LocationDialog extends StatefulWidget {
     required this.initialValue,
     required this.successText,
     this.contentPadding,
+    this.createForm = true,
     this.onSelected,
     super.key,
   });
@@ -99,24 +101,7 @@ class _LocationDialogState extends State<LocationDialog> {
       builder: (_, value, __) {
         return Column(
           children: [
-            Form(
-              key: formKey,
-              child: TextFormField(
-                key: ValueKey(selectedValue),
-                initialValue: selectedValue.toString(),
-                readOnly: selectedValue.isNotEmpty,
-                autofocus: value == LocationDialogStatus.searchStart,
-                validator: (value) => value!.isEmpty ? '' : null,
-                onTap: _inputTapHandler,
-                onChanged: _inputChangedHandler,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: _determineCityHandler,
-                    icon: const Icon(Icons.near_me),
-                  ),
-                ),
-              ),
-            ),
+            _buildTextField(value),
             SizedBox(
               height: LocationDialog.textAreaHeight,
               child: Center(child: _buildTextArea(context, value)),
@@ -125,6 +110,29 @@ class _LocationDialogState extends State<LocationDialog> {
         );
       },
     );
+  }
+
+  Widget _buildTextField(LocationDialogStatus status) {
+    Widget field = TextFormField(
+      key: ValueKey(selectedValue),
+      initialValue: selectedValue.toString(),
+      readOnly: selectedValue.isNotEmpty,
+      autofocus: status == LocationDialogStatus.searchStart,
+      validator: (value) => value!.isEmpty ? '' : null,
+      onTap: _inputTapHandler,
+      onChanged: _inputChangedHandler,
+      decoration: InputDecoration(
+        suffixIcon: IconButton(
+          onPressed: _determineCityHandler,
+          icon: const Icon(Icons.near_me),
+        ),
+      ),
+    );
+
+    if (widget.createForm) {
+      field = Form(key: formKey, child: field);
+    }
+    return field;
   }
 
   Widget _buildTextArea(BuildContext context, LocationDialogStatus status) {
