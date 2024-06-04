@@ -29,12 +29,9 @@ class FinishScreen extends TemplateScreen {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         Text(
-          'FinishScreen.Advices'.tr(),
-          textAlign: TextAlign.center,
-        ),
-        Text(
           'FinishScreen.Wishes'.tr(),
           textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
     );
