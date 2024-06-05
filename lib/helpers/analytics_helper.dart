@@ -30,7 +30,7 @@ enum AnalyticsParameter {
 }
 
 class AnalyticsHelper {
-  void logEvent(AnalyticsEvent event, [Map<AnalyticsParameter, Object?> data = const {}]) {
+  void logEvent(AnalyticsEvent event, [Map<AnalyticsParameter, Object> data = const {}]) {
     data.forEach((key, value) {
       if (value is DateTime) {
         DateTime date = value;
@@ -45,9 +45,6 @@ class AnalyticsHelper {
       }
       if (value is Enum) {
         data.update(key, (value) => (value as Enum).name);
-      }
-      if (value == null) {
-        data.update(key, (value) => 'null');
       }
     });
 
