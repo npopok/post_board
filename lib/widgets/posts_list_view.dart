@@ -124,7 +124,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   }
 
   void _resetScrollController(AsyncValue<Posts> state) {
-    if (state.value?.isFirst == true) {
+    if (state.hasValue && state.requireValue.isFirst) {
       hasMore = true;
       if (scrollController.hasClients) {
         scrollController.jumpTo(0);
