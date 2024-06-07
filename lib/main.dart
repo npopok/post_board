@@ -79,11 +79,13 @@ class _MainAppState extends ConsumerState<MainApp> {
 
     connectivity.subscribe(
       onConnect: () {
+        routes.removeWhere((route) => route.name == OfflineRoute.name);
         ref.invalidate(postsStateProvider);
-        routes.popForced();
       },
       onDisconnect: () {
-        if (routes.currentHierarchy().isEmpty) routes.push(const HomeRoute());
+        if (routes.currentHierarchy().isEmpty) {
+          routes.push(const HomeRoute());
+        }
         routes.push(const OfflineRoute());
       },
     );

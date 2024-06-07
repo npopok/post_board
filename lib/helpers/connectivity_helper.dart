@@ -13,12 +13,17 @@ class ConnectivityHelper {
 
   void subscribe({Function()? onConnect, Function()? onDisconnect}) {
     final stream = Connectivity().onConnectivityChanged;
+
     _subscription = stream.listen((List<ConnectivityResult> result) {
       debugPrint('ConnectivityHelper: received event $result');
+
       if (result.contains(ConnectivityResult.none)) {
-        _connected = false;
-        onDisconnect?.call();
-      } else {
+        if (isConnected) {
+          _connected = false;
+          onDisconnect?.call();
+        }
+      } else if (result.contains(ConnectivityResult.mobile) ||
+          result.contains(ConnectivityResult.wifi)) {
         if (isDisconnected) {
           _connected = true;
           onConnect?.call();
