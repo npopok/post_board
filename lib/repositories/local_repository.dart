@@ -61,12 +61,12 @@ class LocalRepository {
     );
   }
 
-  void saveOnboarding(bool value) {
-    prefs.setString(RepositorySettings.onboardingLocalKey, value.toString());
+  void saveSetup(bool value) {
+    prefs.setString(RepositorySettings.setupLocalKey, value.toString());
   }
 
-  bool? loadOnboarding() {
-    final data = prefs.getString(RepositorySettings.onboardingLocalKey);
+  bool? loadSetup() {
+    final data = prefs.getString(RepositorySettings.setupLocalKey);
     return data != null ? bool.tryParse(data) : null;
   }
 

@@ -18,7 +18,7 @@ class RepositorySettings {
   static const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
   static const supabaseKey = String.fromEnvironment('SUPABASE_KEY');
 
-  static const onboardingLocalKey = 'onboarding';
+  static const setupLocalKey = 'setup';
   static const profileLocalKey = 'profile';
   static const citiesLocalKey = 'cities';
   static const filtersLocalKey = 'filters';

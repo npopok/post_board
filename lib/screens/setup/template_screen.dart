@@ -74,11 +74,11 @@ class _TemplateScreenState extends ConsumerState<TemplateScreen> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
 
-      localRepository.saveOnboarding(widget.screenInfo.isComplete);
+      localRepository.saveSetup(widget.screenInfo.isComplete);
 
       if (widget.screenInfo.isFinal) {
         context.router.replaceAll([widget.screenInfo.nextScreen]);
-        logEvent(AnalyticsEvent.onboardingComplete);
+        logEvent(AnalyticsEvent.setupComplete);
       } else {
         context.navigateTo(widget.screenInfo.nextScreen);
       }

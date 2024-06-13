@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
 
 enum AnalyticsEvent {
-  onboardingComplete,
+  setupComplete,
   postsMenu,
   postsRefresh,
   postsSubmit,
@@ -48,7 +48,7 @@ class AnalyticsHelper {
       }
     });
 
-    final name = _camelToSnake(event.toString());
+    final name = _camelToSnake(event.name);
     final params = data.map((key, value) => MapEntry(_camelToSnake(key.name), value));
 
     try {

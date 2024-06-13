@@ -16,7 +16,7 @@ class SlideLeftRoute extends CustomRoute {
 class HomeRouteGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    return switch (localRepository.loadOnboarding()) {
+    return switch (localRepository.loadSetup()) {
       null => router.push(const WelcomeRoute()),
       false => router.push(const SelectGenderRoute()),
       true => resolver.next(),
