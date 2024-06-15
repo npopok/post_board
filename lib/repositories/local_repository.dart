@@ -66,6 +66,12 @@ class LocalRepository {
   }
 
   bool? loadSetup() {
+    final oldData = prefs.getString('onboarding'); // TODO: Remove this after migration to 0.2.0
+    if (oldData != null) {
+      prefs.remove('onboarding');
+      return bool.tryParse(oldData);
+    }
+
     final data = prefs.getString(RepositorySettings.setupLocalKey);
     return data != null ? bool.tryParse(data) : null;
   }

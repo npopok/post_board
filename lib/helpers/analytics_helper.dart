@@ -30,7 +30,12 @@ enum AnalyticsParameter {
 }
 
 class AnalyticsHelper {
-  void logEvent(AnalyticsEvent event, [Map<AnalyticsParameter, Object> data = const {}]) {
+  final analytics = FirebaseAnalytics.instance;
+
+  Future<void> logEvent(
+    AnalyticsEvent event, [
+    Map<AnalyticsParameter, Object> data = const {},
+  ]) async {
     data.forEach((key, value) {
       if (value is DateTime) {
         DateTime date = value;
@@ -52,8 +57,8 @@ class AnalyticsHelper {
     final params = data.map((key, value) => MapEntry(_camelToSnake(key.name), value));
 
     try {
-      FirebaseAnalytics.instance.logEvent(name: name, parameters: params);
-      debugPrint('logEvent: event=$name parameters=$params');
+      await analytics.logEvent(name: name, parameters: params);
+      debugPrint('logEvent: event=$name, parameters=$params');
     } catch (e) {
       debugPrint('logEvent: $e}');
     }
