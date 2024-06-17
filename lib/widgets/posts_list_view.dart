@@ -114,6 +114,7 @@ class _PostsListViewState extends ConsumerState<PostsListView> {
   void _loadMoreItems() async {
     if (hasMore && !isLoadingMore) {
       isLoadingMore = true;
+      logEvent(AnalyticsEvent.postsLoad);
 
       await ref.read(postsStateProvider.notifier).loadNext();
       final posts = ref.read(postsStateProvider);
