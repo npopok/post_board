@@ -7,7 +7,7 @@ final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
 
 enum AnalyticsEvent {
   setupComplete,
-  postsMenu,
+  postsAction,
   postsRefresh,
   postsSubmit,
   profileUpdate,

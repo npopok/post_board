@@ -108,7 +108,7 @@ class PostListItem extends StatelessWidget {
   }
 
   Future<bool> _performPostAction(PostAction action, Post post) async {
-    logEvent(AnalyticsEvent.postsMenu, {AnalyticsParameter.postAction: action});
+    logEvent(AnalyticsEvent.postsAction, {AnalyticsParameter.postAction: action});
 
     final contact = post.contact;
     switch (action) {
