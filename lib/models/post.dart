@@ -19,6 +19,9 @@ class Post with _$Post {
     required final Category category,
     required final String text,
     @ContactConverter() required Contact contact,
+    required final double? latitude, // TODO: Make it non-nullable after full migration to 0.3.0
+    required final double? longitude, // TODO: Make it non-nullable after full migration to 0.3.0
+    required final double distance,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
@@ -41,5 +44,8 @@ class Post with _$Post {
         category: category,
         text: text,
         contact: contact,
+        latitude: 0,
+        longitude: 0,
+        distance: 0,
       );
 }

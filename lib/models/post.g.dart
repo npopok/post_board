@@ -18,6 +18,9 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: const ContactConverter().fromJson(json['contact'] as String),
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      distance: (json['distance'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
@@ -33,6 +36,9 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': const ContactConverter().toJson(instance.contact),
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'distance': instance.distance,
     };
 
 const _$GenderEnumMap = {

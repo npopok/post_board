@@ -101,6 +101,11 @@
     "Elapsed.Months": "{} mon ago",
     "Elapsed.Years": "long ago",
 
+    "Distance.Close": "close",
+    "Distance.Meters": "{} m",
+    "Distance.Kilometers": "{} km",
+    "Distance.Far": "far",
+
     "SubmitDialog.CategoryHint": "Category",     
     "SubmitDialog.TextHint": "Post text",
 

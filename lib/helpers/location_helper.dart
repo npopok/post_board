@@ -1,6 +1,8 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'package:post_board/models/models.dart';
+
 enum LocationError { serviceDisabled, permissionDenied, otherError }
 
 class LocationException implements Exception {
@@ -17,7 +19,7 @@ class LocationException implements Exception {
 }
 
 class LocationHelper {
-  static Future<(double, double)> getCurrentPosition() async {
+  static Future<Location> getCurrentPosition() async {
     final enabled = await Geolocator.isLocationServiceEnabled();
     if (!enabled) {
       throw const LocationException(LocationError.serviceDisabled);
@@ -37,9 +39,25 @@ class LocationHelper {
 
     try {
       final position = await Geolocator.getCurrentPosition();
-      return (position.latitude, position.longitude);
+      return (latitude: position.latitude, longitude: position.longitude);
     } catch (e) {
       throw const LocationException(LocationError.otherError);
+    }
+  }
+}
+
+class DistanceFormatter {
+  static String format(double distance) {
+    if (distance < 100) {
+      return 'Distance.Close'.tr();
+    } else if (distance < 1000) {
+      return 'Distance.Meters'.tr(args: [((distance ~/ 100) * 100).toString()]);
+    } else if (distance < 100000) {
+      return 'Distance.Kilometers'.tr(args: [(distance ~/ 1000).toString()]);
+    } else if (distance < 1000000) {
+      return 'Distance.Kilometers'.tr(args: [((distance ~/ 10000) * 10).toString()]);
+    } else {
+      return 'Distance.Far'.tr();
     }
   }
 }

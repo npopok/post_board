@@ -29,32 +29,44 @@ class PostListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       key: ValueKey(post),
-      title: Row(
+      title: Column(
         children: [
-          Expanded(
-            child: Row(
-              children: [
-                Flexible(
-                  child: Text(
-                    post.author,
-                    maxLines: 1,
-                    overflow: TextOverflow.clip,
-                  ),
-                ),
-                const Text(', '),
-                Text(post.age.toString()),
-              ],
-            ),
-          ),
-          FormLayout.textSpacer,
-          Text(
-            post.createdAgo.formatTimeAgo(),
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+          _buildNameAgeTime(context),
+          _buildCityDistance(context),
+          FormLayout.smallSpacer,
         ],
       ),
       subtitle: Text(post.text),
       onTap: () => _showContactMenu(context, post),
+    );
+  }
+
+  Widget _buildNameAgeTime(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '${post.author}, ${post.age}',
+          maxLines: 1,
+          overflow: TextOverflow.clip,
+        ),
+        context.textSmall(post.createdAgo.formatTimeAgo()),
+      ],
+      //   ),
+    );
+  }
+
+  Widget _buildCityDistance(BuildContext context) {
+    return Row(
+      children: [
+        context.textSmall(post.city.name),
+        if (post.distance > 0) ...[
+          FormLayout.smallSpacer,
+          context.textSmall('•'),
+          FormLayout.smallSpacer,
+          context.textSmall(DistanceFormatter.format(post.distance)),
+        ],
+      ],
     );
   }
 

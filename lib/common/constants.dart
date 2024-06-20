@@ -37,8 +37,13 @@ class RepositorySettings {
   static const citiesCacheDuration = Duration(days: 10000);
 }
 
+class LocationSettings {
+  static const cacheDuration = Duration(minutes: 15);
+}
+
 class FormLayout {
   static const contentPadding = EdgeInsets.all(24);
+  static const smallSpacer = SizedBox.square(dimension: 4);
   static const defaultSpacer = SizedBox.square(dimension: 8);
   static const textSpacer = SizedBox.square(dimension: 12);
   static const inputSpacer = SizedBox.square(dimension: 20);

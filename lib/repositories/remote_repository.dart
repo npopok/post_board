@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get_it/get_it.dart';
 
@@ -56,6 +58,7 @@ class RemoteRepository {
     data.remove('createdAgo');
     data.remove('createdBy');
     data.remove('city');
+    data.remove('distance');
     data['city_id'] = value.city.id;
 
     await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
@@ -85,6 +88,7 @@ class RemoteRepository {
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
+      row['distance'] = Random().nextInt(20000); // TODO: Replace by real calculation
     }
 
     final hasMore = data.length == queryLimit;

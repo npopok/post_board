@@ -200,7 +200,11 @@ class _LocationDialogState extends State<LocationDialog> {
     try {
       cities = await cachedRepository.loadCities();
       final city = cities.reduce(
-        (c1, c2) => c1.distanceFrom(pos.$1, pos.$2) < c2.distanceFrom(pos.$1, pos.$2) ? c1 : c2,
+        (c1, c2) {
+          final d1 = c1.distanceFrom(pos.latitude, pos.longitude);
+          final d2 = c2.distanceFrom(pos.latitude, pos.longitude);
+          return d1 < d2 ? c1 : c2;
+        },
       );
       return city;
     } catch (e) {

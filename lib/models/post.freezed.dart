@@ -33,6 +33,11 @@ mixin _$Post {
   String get text => throw _privateConstructorUsedError;
   @ContactConverter()
   Contact get contact => throw _privateConstructorUsedError;
+  double? get latitude =>
+      throw _privateConstructorUsedError; // TODO: Make it non-nullable after full migration to 0.3.0
+  double? get longitude =>
+      throw _privateConstructorUsedError; // TODO: Make it non-nullable after full migration to 0.3.0
+  double get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +60,10 @@ abstract class $PostCopyWith<$Res> {
       City city,
       Category category,
       String text,
-      @ContactConverter() Contact contact});
+      @ContactConverter() Contact contact,
+      double? latitude,
+      double? longitude,
+      double distance});
 
   $CityCopyWith<$Res> get city;
   $ContactCopyWith<$Res> get contact;
@@ -85,6 +93,9 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? distance = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -131,6 +142,18 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -169,7 +192,10 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       City city,
       Category category,
       String text,
-      @ContactConverter() Contact contact});
+      @ContactConverter() Contact contact,
+      double? latitude,
+      double? longitude,
+      double distance});
 
   @override
   $CityCopyWith<$Res> get city;
@@ -198,6 +224,9 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? distance = null,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -244,6 +273,18 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -262,7 +303,10 @@ class _$PostImpl implements _Post {
       required this.city,
       required this.category,
       required this.text,
-      @ContactConverter() required this.contact});
+      @ContactConverter() required this.contact,
+      required this.latitude,
+      required this.longitude,
+      required this.distance});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
@@ -291,10 +335,18 @@ class _$PostImpl implements _Post {
   @override
   @ContactConverter()
   final Contact contact;
+  @override
+  final double? latitude;
+// TODO: Make it non-nullable after full migration to 0.3.0
+  @override
+  final double? longitude;
+// TODO: Make it non-nullable after full migration to 0.3.0
+  @override
+  final double distance;
 
   @override
   String toString() {
-    return 'Post(id: $id, createdAt: $createdAt, createdAgo: $createdAgo, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
+    return 'Post(id: $id, createdAt: $createdAt, createdAgo: $createdAgo, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact, latitude: $latitude, longitude: $longitude, distance: $distance)';
   }
 
   @override
@@ -316,13 +368,33 @@ class _$PostImpl implements _Post {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.contact, contact) || other.contact == contact));
+            (identical(other.contact, contact) || other.contact == contact) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, createdAgo,
-      createdBy, author, gender, age, city, category, text, contact);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      createdAgo,
+      createdBy,
+      author,
+      gender,
+      age,
+      city,
+      category,
+      text,
+      contact,
+      latitude,
+      longitude,
+      distance);
 
   @JsonKey(ignore: true)
   @override
@@ -350,7 +422,10 @@ abstract class _Post implements Post {
       required final City city,
       required final Category category,
       required final String text,
-      @ContactConverter() required final Contact contact}) = _$PostImpl;
+      @ContactConverter() required final Contact contact,
+      required final double? latitude,
+      required final double? longitude,
+      required final double distance}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -377,6 +452,12 @@ abstract class _Post implements Post {
   @override
   @ContactConverter()
   Contact get contact;
+  @override
+  double? get latitude;
+  @override // TODO: Make it non-nullable after full migration to 0.3.0
+  double? get longitude;
+  @override // TODO: Make it non-nullable after full migration to 0.3.0
+  double get distance;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

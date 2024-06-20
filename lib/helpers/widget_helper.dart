@@ -30,4 +30,9 @@ extension BuildContextExtension on BuildContext {
         style: TextStyle(color: Theme.of(this).colorScheme.error),
         textAlign: TextAlign.center,
       );
+
+  Text textSmall(String text) => Text(
+        text,
+        style: Theme.of(this).textTheme.bodySmall,
+      );
 }
