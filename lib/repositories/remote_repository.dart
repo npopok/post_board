@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:geolocator/geolocator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get_it/get_it.dart';
 
@@ -88,8 +87,22 @@ class RemoteRepository {
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
-      row['distance'] = Random().nextInt(20000); // TODO: Replace by real calculation
+      row['distance'] = 0;
     }
+
+    // try {
+    //   final location = await LocationHelper.getCurrentPosition();
+    //   for (final row in data) {
+    //     if (row['latitude'] != 0 && row['longitude'] != 0) {
+    //       row['distance'] = Geolocator.distanceBetween(
+    //         location.latitude,
+    //         location.longitude,
+    //         row['latitude'],
+    //         row['longitude'],
+    //       );
+    //     }
+    //   }
+    // } on LocationException catch (_) {}
 
     final hasMore = data.length == queryLimit;
     if (hasMore) data.removeLast();

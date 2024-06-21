@@ -35,4 +35,9 @@ extension BuildContextExtension on BuildContext {
         text,
         style: Theme.of(this).textTheme.bodySmall,
       );
+
+  Text textMedium(String text) => Text(
+        text,
+        style: Theme.of(this).textTheme.bodyMedium,
+      );
 }

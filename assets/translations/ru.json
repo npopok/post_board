@@ -109,8 +109,9 @@
 
     "SubmitDialog.CategoryHint": "Раздел",  
     "SubmitDialog.TextHint": "Текст",
+    "SubmitDialog.DistanceText": "Показывать расстояние до объявления",
 
-    "LocationException.ServiceDisabled": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
-    "LocationException.PermissionDenied": "Чтобы определить ваш город, разрешите в настройках доступ к вашему местоположению.",
+    "LocationException.ServiceDisabled": "Разрешите в настройках доступ к вашему местоположению.",
+    "LocationException.PermissionDenied": "Разрешите в настройках доступ к вашему местоположению.",
     "LocationException.OtherError": "Произошла ошибка при попытке определения местоположения."
 }

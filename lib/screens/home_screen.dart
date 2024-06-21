@@ -71,7 +71,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _showSubmitDialog(BuildContext context) async {
-    final data = await showModalBottomSheet<(Category, String)>(
+    final data = await showModalBottomSheet<(Category, String, bool)>(
       isScrollControlled: true,
       context: context,
       builder: (_) => SubmitDialog(
@@ -80,16 +80,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
     );
     if (data != null) {
-      await _submitPost(data.$1, data.$2);
+      try {
+        var location = (latitude: 0.0, longitude: 0.0);
+        if (data.$3) location = await LocationHelper.getCurrentPosition();
+        await _submitPost(data.$1, data.$2, location);
+      } on LocationException catch (e) {
+        showSnackBar(e.toString());
+      }
     }
   }
 
-  Future<void> _submitPost(Category category, String text) async {
+  Future<void> _submitPost(Category category, String text, Location location) async {
     logEvent(AnalyticsEvent.postsSubmit);
 
     try {
       final profile = ref.read(profileStateProvider);
-      final post = Post.create(profile, category, text, profile.contact);
+      final post = Post.create(profile, category, text, profile.contact, location);
 
       await remoteRepository.savePost(post);
       ref.read(filtersStateProvider.notifier).category = category;

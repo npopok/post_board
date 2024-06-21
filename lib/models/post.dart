@@ -31,6 +31,7 @@ class Post with _$Post {
     Category category,
     String text,
     Contact contact,
+    Location location,
   ) =>
       Post(
         id: 0,
@@ -44,8 +45,8 @@ class Post with _$Post {
         category: category,
         text: text,
         contact: contact,
-        latitude: 0,
-        longitude: 0,
+        latitude: location.latitude,
+        longitude: location.longitude,
         distance: 0,
       );
 }

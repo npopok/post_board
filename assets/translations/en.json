@@ -108,8 +108,9 @@
 
     "SubmitDialog.CategoryHint": "Category",     
     "SubmitDialog.TextHint": "Post text",
+    "SubmitDialog.DistanceText": "Show distance to post",
 
-    "LocationException.ServiceDisabled": "To determine your city, allow access to location in the settings.",
-    "LocationException.PermissionDenied": "To determine your city, allow access to location in the settings.",
+    "LocationException.ServiceDisabled": "Allow access to your location in the settings.",
+    "LocationException.PermissionDenied": "Allow access to your location in the settings.",
     "LocationException.OtherError": "Error occurred while trying to determine the location."
 }
