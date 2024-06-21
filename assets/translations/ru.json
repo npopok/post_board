@@ -102,10 +102,10 @@
     "Elapsed.Months": "{} мес назад",
     "Elapsed.Years": "давно",
 
-    "Distance.Close": "рядом",
+    "Distance.Near": "рядом",
     "Distance.Meters": "{} м от вас",
     "Distance.Kilometers": "{} км от вас",
-    "Distance.Far": "очень далеко",
+    "Distance.Far": "далеко",
 
     "SubmitDialog.CategoryHint": "Раздел",  
     "SubmitDialog.TextHint": "Текст",

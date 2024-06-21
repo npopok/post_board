@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:post_board/models/models.dart';
+import 'package:post_board/common/common.dart' as common;
 
 enum LocationError { serviceDisabled, permissionDenied, otherError }
 
@@ -55,7 +56,10 @@ class LocationListener {
   Location? location;
 
   LocationListener() {
-    Geolocator.getPositionStream().listen(
+    const settings = LocationSettings(
+      distanceFilter: common.LocationSettings.distanceFilter,
+    );
+    Geolocator.getPositionStream(locationSettings: settings).listen(
       (Position position) {
         location = (latitude: position.latitude, longitude: position.longitude);
         debugPrint('LocationListener: received location $location');
@@ -67,7 +71,7 @@ class LocationListener {
 class DistanceFormatter {
   static String format(double distance) {
     if (distance < 100) {
-      return 'Distance.Close'.tr();
+      return 'Distance.Near'.tr();
     } else if (distance < 1000) {
       return 'Distance.Meters'.tr(args: [((distance ~/ 100) * 100).toString()]);
     } else if (distance < 100000) {

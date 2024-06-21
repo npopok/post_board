@@ -38,7 +38,7 @@ class RepositorySettings {
 }
 
 class LocationSettings {
-  static const updateInterval = Duration(minutes: 1);
+  static const distanceFilter = 1000;
 }
 
 class FormLayout {
