@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -55,10 +56,10 @@ class LocationListener {
 
   LocationListener() {
     Geolocator.getPositionStream().listen(
-      (Position position) => location = (
-        latitude: position.latitude,
-        longitude: position.longitude,
-      ),
+      (Position position) {
+        location = (latitude: position.latitude, longitude: position.longitude);
+        debugPrint('LocationListener: received location $location');
+      },
     );
   }
 }

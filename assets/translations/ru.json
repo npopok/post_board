@@ -109,7 +109,7 @@
 
     "SubmitDialog.CategoryHint": "Раздел",  
     "SubmitDialog.TextHint": "Текст",
-    "SubmitDialog.DistanceText": "Показывать расстояние до объявления",
+    "SubmitDialog.DistanceText": "Показывать расстояние",
 
     "LocationException.ServiceDisabled": "Разрешите в настройках доступ к вашему местоположению.",
     "LocationException.PermissionDenied": "Разрешите в настройках доступ к вашему местоположению.",

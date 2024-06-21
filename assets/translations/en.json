@@ -108,7 +108,7 @@
 
     "SubmitDialog.CategoryHint": "Category",     
     "SubmitDialog.TextHint": "Post text",
-    "SubmitDialog.DistanceText": "Show distance to post",
+    "SubmitDialog.DistanceText": "Show distance",
 
     "LocationException.ServiceDisabled": "Allow access to your location in the settings.",
     "LocationException.PermissionDenied": "Allow access to your location in the settings.",
