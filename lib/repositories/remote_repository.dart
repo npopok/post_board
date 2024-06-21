@@ -1,12 +1,9 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:get_it/get_it.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/helpers/helpers.dart';
-
-final remoteRepository = GetIt.I<RemoteRepository>();
 
 class RemoteRepository {
   final supabase = Supabase.instance.client;
@@ -87,22 +84,8 @@ class RemoteRepository {
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
-      row['distance'] = 0;
+      row['distance'] = await _calculateDistance(row['latitude'], row['longitude']);
     }
-
-    // try {
-    //   final location = await LocationHelper.getCurrentPosition();
-    //   for (final row in data) {
-    //     if (row['latitude'] != 0 && row['longitude'] != 0) {
-    //       row['distance'] = Geolocator.distanceBetween(
-    //         location.latitude,
-    //         location.longitude,
-    //         row['latitude'],
-    //         row['longitude'],
-    //       );
-    //     }
-    //   }
-    // } on LocationException catch (_) {}
 
     final hasMore = data.length == queryLimit;
     if (hasMore) data.removeLast();
@@ -127,6 +110,29 @@ class RemoteRepository {
   Future<void> _checkUserAuth() async {
     if (Supabase.instance.client.auth.currentUser == null) {
       await Supabase.instance.client.auth.signInAnonymously();
+    }
+  }
+
+  Future<double> _calculateDistance(dynamic latitude, dynamic longitude) async {
+    final lat = _checkDouble(latitude);
+    final lng = _checkDouble(longitude);
+
+    if (lat != 0 || lng != 0) {
+      final location = locationLister.location;
+      if (location != null) {
+        return Geolocator.distanceBetween(location.latitude, location.longitude, lat, lng);
+      }
+    }
+    return 0;
+  }
+
+  double _checkDouble(dynamic value) {
+    if (value is int) {
+      return value.toDouble();
+    } else if (value is double?) {
+      return value ?? 0;
+    } else {
+      throw UnimplementedError();
     }
   }
 }

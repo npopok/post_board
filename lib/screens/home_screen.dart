@@ -9,7 +9,6 @@ import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/providers/providers.dart';
-import 'package:post_board/repositories/repositories.dart';
 
 @RoutePage()
 class HomeScreen extends ConsumerStatefulWidget {

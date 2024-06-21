@@ -32,6 +32,7 @@ class PostListItem extends StatelessWidget {
       title: Column(
         children: [
           _buildNameAgeTime(context),
+          FormLayout.tinySpacer,
           _buildCityDistance(context),
           FormLayout.smallSpacer,
         ],

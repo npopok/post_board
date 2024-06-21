@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -19,7 +21,7 @@ class LocationException implements Exception {
 }
 
 class LocationHelper {
-  static Future<Location> getCurrentPosition() async {
+  static Future<Location> getCurrentPosition([bool requestPermission = true]) async {
     final enabled = await Geolocator.isLocationServiceEnabled();
     if (!enabled) {
       throw const LocationException(LocationError.serviceDisabled);
@@ -27,7 +29,9 @@ class LocationHelper {
 
     var permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      if (requestPermission) {
+        permission = await Geolocator.requestPermission();
+      }
       if (permission == LocationPermission.denied) {
         throw const LocationException(LocationError.permissionDenied);
       }
@@ -43,6 +47,19 @@ class LocationHelper {
     } catch (e) {
       throw const LocationException(LocationError.otherError);
     }
+  }
+}
+
+class LocationListener {
+  Location? location;
+
+  LocationListener() {
+    Geolocator.getPositionStream().listen(
+      (Position position) => location = (
+        latitude: position.latitude,
+        longitude: position.longitude,
+      ),
+    );
   }
 }
 

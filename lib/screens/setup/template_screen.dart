@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:post_board/helpers/helpers.dart';
-import 'package:post_board/repositories/repositories.dart';
+import 'package:post_board/common/common.dart';
 
 class ScreenInfo {
   final String title;

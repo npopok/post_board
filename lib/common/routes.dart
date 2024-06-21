@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
-import 'package:post_board/repositories/repositories.dart';
+import 'package:post_board/common/common.dart';
 import 'package:post_board/screens/screens.dart';
 
 part 'routes.gr.dart';

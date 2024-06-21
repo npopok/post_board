@@ -1,9 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-
-final logEvent = GetIt.I<AnalyticsHelper>().logEvent;
 
 enum AnalyticsEvent {
   setupComplete,

@@ -1,11 +1,8 @@
-import 'package:get_it/get_it.dart';
-
 import 'package:post_board/models/models.dart';
+import 'package:post_board/common/common.dart';
 
 import 'local_repository.dart';
 import 'remote_repository.dart';
-
-final cachedRepository = GetIt.I<CachedRepository>();
 
 class CachedRepository {
   final LocalRepository local;

@@ -38,11 +38,12 @@ class RepositorySettings {
 }
 
 class LocationSettings {
-  static const cacheDuration = Duration(minutes: 15);
+  static const updateInterval = Duration(minutes: 1);
 }
 
 class FormLayout {
   static const contentPadding = EdgeInsets.all(24);
+  static const tinySpacer = SizedBox.square(dimension: 2);
   static const smallSpacer = SizedBox.square(dimension: 4);
   static const defaultSpacer = SizedBox.square(dimension: 8);
   static const textSpacer = SizedBox.square(dimension: 12);

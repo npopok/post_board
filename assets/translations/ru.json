@@ -103,9 +103,9 @@
     "Elapsed.Years": "давно",
 
     "Distance.Close": "рядом",
-    "Distance.Meters": "{} м",
-    "Distance.Kilometers": "{} км",
-    "Distance.Far": "далеко",
+    "Distance.Meters": "{} м от вас",
+    "Distance.Kilometers": "{} км от вас",
+    "Distance.Far": "очень далеко",
 
     "SubmitDialog.CategoryHint": "Раздел",  
     "SubmitDialog.TextHint": "Текст",

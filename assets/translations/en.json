@@ -102,9 +102,9 @@
     "Elapsed.Years": "long ago",
 
     "Distance.Close": "close",
-    "Distance.Meters": "{} m",
-    "Distance.Kilometers": "{} km",
-    "Distance.Far": "far",
+    "Distance.Meters": "{} m from you",
+    "Distance.Kilometers": "{} km from you",
+    "Distance.Far": "very far",
 
     "SubmitDialog.CategoryHint": "Category",     
     "SubmitDialog.TextHint": "Post text",
