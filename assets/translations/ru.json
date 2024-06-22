@@ -51,8 +51,9 @@
     "ProfileScreen.ContactHint": "Выберите тип",
 
     "SettingsScreen.Title": "Настройки",
-    "SettingsScreen.ThemeMode": "Режим темы",
-    
+    "SettingsScreen.DarkMode": "Темный режим",
+    "SettingsScreen.ShowDistance": "Показывать расстояние",
+
     "OfflineScreen.ErrorText": "Нет соединения с интернетом.\nПроверьте подключение.",
     
     "WelcomeScreen.Title": "Добро пожаловать!",
@@ -69,10 +70,6 @@
     "LocationDialog.SearchText": "Введите название города или нажмите на значок для автоматического определения.",
     "LocationDialog.EmptyText": "Город не найден.",
     "LocationDialog.ErrorText": "Произошла ошибка. Попробуйте позже.",
-    
-    "ThemeMode.light": "Светлый",
-    "ThemeMode.dark": "Темный",
-    "ThemeMode.system": "Системный",
     
     "Gender.male": "Мужчина",
     "Gender.female": "Женщина",

@@ -50,7 +50,8 @@
     "ProfileScreen.ContactHint": "Select type",
 
     "SettingsScreen.Title": "Settings",
-    "SettingsScreen.ThemeMode": "Theme mode",
+    "SettingsScreen.DarkMode": "Dark mode",
+    "SettingsScreen.ShowDistance": "Show distance",
 
     "OfflineScreen.ErrorText": "No Internet.\nCheck your connection.",
    
@@ -68,10 +69,6 @@
     "LocationDialog.SearchText": "Enter the city name or click on the icon to automatically determine it.",
     "LocationDialog.EmptyText": "City not found.",
     "LocationDialog.ErrorText": "Error occuried. Try again later.",
-
-    "ThemeMode.light": "Light",
-    "ThemeMode.dark": "Dark",
-    "ThemeMode.system": "System",
 
     "Gender.male": "Male",
     "Gender.female": "Female",

@@ -101,7 +101,7 @@ class _MainAppState extends ConsumerState<MainApp> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateTitle: (_) => 'App.Title'.tr(),
-      themeMode: settings.themeMode,
+      themeMode: settings.darkMode ? ThemeMode.dark : ThemeMode.system,
       theme: themes.lightTheme,
       darkTheme: themes.darkTheme,
       scaffoldMessengerKey: getIt<MessengerHelper>().messengerKey,

@@ -53,7 +53,9 @@ class LocationHelper {
 }
 
 class LocationListener {
-  Location? location;
+  Location? _location;
+
+  Location get location => _location ?? common.LocationSettings.emptyLocation;
 
   LocationListener() {
     const settings = LocationSettings(
@@ -61,8 +63,8 @@ class LocationListener {
     );
     Geolocator.getPositionStream(locationSettings: settings).listen(
       (Position position) {
-        location = (latitude: position.latitude, longitude: position.longitude);
-        debugPrint('LocationListener: received location $location');
+        _location = (latitude: position.latitude, longitude: position.longitude);
+        debugPrint('LocationListener: received location $_location');
       },
     );
   }

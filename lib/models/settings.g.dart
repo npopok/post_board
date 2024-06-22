@@ -8,16 +8,12 @@ part of 'settings.dart';
 
 _$SettingsImpl _$$SettingsImplFromJson(Map<String, dynamic> json) =>
     _$SettingsImpl(
-      themeMode: $enumDecode(_$ThemeModeEnumMap, json['themeMode']),
+      darkMode: json['darkMode'] as bool,
+      showDistance: json['showDistance'] as bool,
     );
 
 Map<String, dynamic> _$$SettingsImplToJson(_$SettingsImpl instance) =>
     <String, dynamic>{
-      'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
+      'darkMode': instance.darkMode,
+      'showDistance': instance.showDistance,
     };
-
-const _$ThemeModeEnumMap = {
-  ThemeMode.system: 'system',
-  ThemeMode.light: 'light',
-  ThemeMode.dark: 'dark',
-};

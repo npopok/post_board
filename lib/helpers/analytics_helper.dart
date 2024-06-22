@@ -25,6 +25,7 @@ enum AnalyticsParameter {
   filtersAge,
   filtersCity,
   settingsThemeMode,
+  settingsShowDistance,
 }
 
 class AnalyticsHelper {

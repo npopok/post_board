@@ -40,19 +40,14 @@ class _SubmitDialogState extends State<SubmitDialog> {
         title: widget.title,
         contentPadding: DialogPaddings.inputContent,
         contentBuilder: (context) => Form(
-            key: formKey,
-            child: Column(
-              children: [
-                _buildTextFields(context),
-                FormLayout.defaultSpacer,
-                _buildShowDistance(context),
-              ],
-            )),
+          key: formKey,
+          child: _buildTextFields(context),
+        ),
         actions: [
           DialogActionButton.submit(
             context,
             widget.buttonTitle,
-            () => (category, text, showDistance),
+            () => (category, text),
             formKey,
           ),
         ],
@@ -88,22 +83,6 @@ class _SubmitDialogState extends State<SubmitDialog> {
             minMessage: '',
           ).validate,
           onSaved: (value) => text = value!,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildShowDistance(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        context.textMedium('SubmitDialog.DistanceText'.tr()),
-        Transform.scale(
-          scale: 0.75,
-          child: Switch.adaptive(
-            value: showDistance,
-            onChanged: (value) => setState(() => showDistance = value),
-          ),
         ),
       ],
     );

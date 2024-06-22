@@ -7,8 +7,8 @@ import 'package:post_board/helpers/helpers.dart';
 final getIt = GetIt.I;
 
 final cachedRepository = getIt<CachedRepository>();
-final remoteRepository = GetIt.I<RemoteRepository>();
-final localRepository = GetIt.I<LocalRepository>();
+final remoteRepository = getIt<RemoteRepository>();
+final localRepository = getIt<LocalRepository>();
 
 final logEvent = getIt<AnalyticsHelper>().logEvent;
 final showSnackBar = getIt<MessengerHelper>().showSnackBar;

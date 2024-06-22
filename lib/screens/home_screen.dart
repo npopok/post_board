@@ -80,8 +80,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
     if (data != null) {
       try {
-        var location = (latitude: 0.0, longitude: 0.0);
-        if (data.$3) location = await LocationHelper.getCurrentPosition();
+        final settings = ref.read(settingsStateProvider);
+        final location =
+            settings.showDistance ? locationLister.location : LocationSettings.emptyLocation;
         await _submitPost(data.$1, data.$2, location);
       } on LocationException catch (e) {
         showSnackBar(e.toString());

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/analytics_helper.dart';
 
 import 'package:post_board/helpers/helpers.dart';
@@ -30,31 +29,38 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          _buildThemeMode(context, settings),
+          _buildDarkMode(context, settings),
+          _buildShowDistance(context, settings),
         ],
       ),
     );
   }
 
-  Widget _buildThemeMode(BuildContext context, Settings settings) {
-    return ListTile(
-      leading: const Icon(Icons.dark_mode_outlined),
-      title: Text('SettingsScreen.ThemeMode'.tr()),
-      subtitle: Text('${settings.themeMode}'.tr()),
-      onTap: () => showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        builder: (context) => ValueListDialog<ThemeMode>(
-          values: ThemeMode.values,
-          textBuilder: (value) => value.toString().tr(),
-          initialValue: settings.themeMode,
-        ),
-      ).then((value) => value == null ? 0 : _updateThemeMode(value)),
+  Widget _buildDarkMode(BuildContext context, Settings settings) {
+    return SwitchListTile.adaptive(
+      value: settings.darkMode,
+      secondary: const Icon(Icons.dark_mode_outlined),
+      title: Text('SettingsScreen.DarkMode'.tr()),
+      onChanged: (value) => _updateDarkMode(value),
     );
   }
 
-  void _updateThemeMode(ThemeMode value) {
-    ref.read(settingsStateProvider.notifier).themeMode = value;
+  Widget _buildShowDistance(BuildContext context, Settings settings) {
+    return SwitchListTile.adaptive(
+      value: settings.showDistance,
+      secondary: const Icon(Icons.location_on_outlined),
+      title: Text('SettingsScreen.ShowDistance'.tr()),
+      onChanged: (value) => _updateShowDistance(value),
+    );
+  }
+
+  void _updateDarkMode(bool value) {
+    ref.read(settingsStateProvider.notifier).darkMode = value;
     logEvent(AnalyticsEvent.settingsUpdate, {AnalyticsParameter.settingsThemeMode: value});
+  }
+
+  void _updateShowDistance(bool value) {
+    ref.read(settingsStateProvider.notifier).showDistance = value;
+    logEvent(AnalyticsEvent.settingsUpdate, {AnalyticsParameter.settingsShowDistance: value});
   }
 }

@@ -38,6 +38,7 @@ class RepositorySettings {
 }
 
 class LocationSettings {
+  static const emptyLocation = (latitude: 0.0, longitude: 0.0);
   static const distanceFilter = 1000;
 }
 

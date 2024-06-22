@@ -20,7 +20,8 @@ Settings _$SettingsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Settings {
-  ThemeMode get themeMode => throw _privateConstructorUsedError;
+  bool get darkMode => throw _privateConstructorUsedError;
+  bool get showDistance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res, Settings>;
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({bool darkMode, bool showDistance});
 }
 
 /// @nodoc
@@ -49,13 +50,18 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeMode = null,
+    Object? darkMode = null,
+    Object? showDistance = null,
   }) {
     return _then(_value.copyWith(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
+      darkMode: null == darkMode
+          ? _value.darkMode
+          : darkMode // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showDistance: null == showDistance
+          ? _value.showDistance
+          : showDistance // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$SettingsImplCopyWith<$Res>
       __$$SettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeMode themeMode});
+  $Res call({bool darkMode, bool showDistance});
 }
 
 /// @nodoc
@@ -82,13 +88,18 @@ class __$$SettingsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeMode = null,
+    Object? darkMode = null,
+    Object? showDistance = null,
   }) {
     return _then(_$SettingsImpl(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
+      darkMode: null == darkMode
+          ? _value.darkMode
+          : darkMode // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showDistance: null == showDistance
+          ? _value.showDistance
+          : showDistance // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -96,17 +107,19 @@ class __$$SettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SettingsImpl implements _Settings {
-  const _$SettingsImpl({required this.themeMode});
+  const _$SettingsImpl({required this.darkMode, required this.showDistance});
 
   factory _$SettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SettingsImplFromJson(json);
 
   @override
-  final ThemeMode themeMode;
+  final bool darkMode;
+  @override
+  final bool showDistance;
 
   @override
   String toString() {
-    return 'Settings(themeMode: $themeMode)';
+    return 'Settings(darkMode: $darkMode, showDistance: $showDistance)';
   }
 
   @override
@@ -114,13 +127,15 @@ class _$SettingsImpl implements _Settings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingsImpl &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
+            (identical(other.darkMode, darkMode) ||
+                other.darkMode == darkMode) &&
+            (identical(other.showDistance, showDistance) ||
+                other.showDistance == showDistance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
+  int get hashCode => Object.hash(runtimeType, darkMode, showDistance);
 
   @JsonKey(ignore: true)
   @override
@@ -137,14 +152,17 @@ class _$SettingsImpl implements _Settings {
 }
 
 abstract class _Settings implements Settings {
-  const factory _Settings({required final ThemeMode themeMode}) =
-      _$SettingsImpl;
+  const factory _Settings(
+      {required final bool darkMode,
+      required final bool showDistance}) = _$SettingsImpl;
 
   factory _Settings.fromJson(Map<String, dynamic> json) =
       _$SettingsImpl.fromJson;
 
   @override
-  ThemeMode get themeMode;
+  bool get darkMode;
+  @override
+  bool get showDistance;
   @override
   @JsonKey(ignore: true)
   _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
