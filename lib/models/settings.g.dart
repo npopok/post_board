@@ -8,12 +8,12 @@ part of 'settings.dart';
 
 _$SettingsImpl _$$SettingsImplFromJson(Map<String, dynamic> json) =>
     _$SettingsImpl(
-      darkMode: json['darkMode'] as bool,
+      darkTheme: json['darkTheme'] as bool,
       showDistance: json['showDistance'] as bool,
     );
 
 Map<String, dynamic> _$$SettingsImplToJson(_$SettingsImpl instance) =>
     <String, dynamic>{
-      'darkMode': instance.darkMode,
+      'darkTheme': instance.darkTheme,
       'showDistance': instance.showDistance,
     };

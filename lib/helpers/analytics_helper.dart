@@ -25,7 +25,7 @@ enum AnalyticsParameter {
   filtersAge,
   filtersCity,
   fitlersDistance,
-  settingsThemeMode,
+  settingsDarkTheme,
   settingsShowDistance,
 }
 

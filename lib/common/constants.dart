@@ -13,7 +13,7 @@ class FieldConstraints {
 }
 
 class DefaultSettings {
-  static const darkMode = true;
+  static const darkTheme = true;
   static const showDistance = true;
   static const category = Category.sex;
   static const distance = 50;

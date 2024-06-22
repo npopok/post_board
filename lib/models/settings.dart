@@ -7,14 +7,14 @@ part 'settings.g.dart';
 @freezed
 class Settings with _$Settings {
   const factory Settings({
-    required final bool darkMode,
+    required final bool darkTheme,
     required final bool showDistance,
   }) = _Settings;
 
   factory Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
 
   factory Settings.empty() => const Settings(
-        darkMode: DefaultSettings.darkMode,
+        darkTheme: DefaultSettings.darkTheme,
         showDistance: DefaultSettings.showDistance,
       );
 }

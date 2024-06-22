@@ -54,7 +54,7 @@
     "ProfileScreen.ContactHint": "Выберите тип",
 
     "SettingsScreen.Title": "Настройки",
-    "SettingsScreen.DarkMode": "Темный режим",
+    "SettingsScreen.DarkTheme": "Тёмная тема",
     "SettingsScreen.ShowDistance": "Показывать расстояние",
 
     "OfflineScreen.ErrorText": "Нет соединения с интернетом.\nПроверьте подключение.",

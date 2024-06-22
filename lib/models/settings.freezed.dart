@@ -20,7 +20,7 @@ Settings _$SettingsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Settings {
-  bool get darkMode => throw _privateConstructorUsedError;
+  bool get darkTheme => throw _privateConstructorUsedError;
   bool get showDistance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res, Settings>;
   @useResult
-  $Res call({bool darkMode, bool showDistance});
+  $Res call({bool darkTheme, bool showDistance});
 }
 
 /// @nodoc
@@ -50,13 +50,13 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? darkMode = null,
+    Object? darkTheme = null,
     Object? showDistance = null,
   }) {
     return _then(_value.copyWith(
-      darkMode: null == darkMode
-          ? _value.darkMode
-          : darkMode // ignore: cast_nullable_to_non_nullable
+      darkTheme: null == darkTheme
+          ? _value.darkTheme
+          : darkTheme // ignore: cast_nullable_to_non_nullable
               as bool,
       showDistance: null == showDistance
           ? _value.showDistance
@@ -74,7 +74,7 @@ abstract class _$$SettingsImplCopyWith<$Res>
       __$$SettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool darkMode, bool showDistance});
+  $Res call({bool darkTheme, bool showDistance});
 }
 
 /// @nodoc
@@ -88,13 +88,13 @@ class __$$SettingsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? darkMode = null,
+    Object? darkTheme = null,
     Object? showDistance = null,
   }) {
     return _then(_$SettingsImpl(
-      darkMode: null == darkMode
-          ? _value.darkMode
-          : darkMode // ignore: cast_nullable_to_non_nullable
+      darkTheme: null == darkTheme
+          ? _value.darkTheme
+          : darkTheme // ignore: cast_nullable_to_non_nullable
               as bool,
       showDistance: null == showDistance
           ? _value.showDistance
@@ -107,19 +107,19 @@ class __$$SettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SettingsImpl implements _Settings {
-  const _$SettingsImpl({required this.darkMode, required this.showDistance});
+  const _$SettingsImpl({required this.darkTheme, required this.showDistance});
 
   factory _$SettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SettingsImplFromJson(json);
 
   @override
-  final bool darkMode;
+  final bool darkTheme;
   @override
   final bool showDistance;
 
   @override
   String toString() {
-    return 'Settings(darkMode: $darkMode, showDistance: $showDistance)';
+    return 'Settings(darkTheme: $darkTheme, showDistance: $showDistance)';
   }
 
   @override
@@ -127,15 +127,15 @@ class _$SettingsImpl implements _Settings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingsImpl &&
-            (identical(other.darkMode, darkMode) ||
-                other.darkMode == darkMode) &&
+            (identical(other.darkTheme, darkTheme) ||
+                other.darkTheme == darkTheme) &&
             (identical(other.showDistance, showDistance) ||
                 other.showDistance == showDistance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, darkMode, showDistance);
+  int get hashCode => Object.hash(runtimeType, darkTheme, showDistance);
 
   @JsonKey(ignore: true)
   @override
@@ -153,14 +153,14 @@ class _$SettingsImpl implements _Settings {
 
 abstract class _Settings implements Settings {
   const factory _Settings(
-      {required final bool darkMode,
+      {required final bool darkTheme,
       required final bool showDistance}) = _$SettingsImpl;
 
   factory _Settings.fromJson(Map<String, dynamic> json) =
       _$SettingsImpl.fromJson;
 
   @override
-  bool get darkMode;
+  bool get darkTheme;
   @override
   bool get showDistance;
   @override

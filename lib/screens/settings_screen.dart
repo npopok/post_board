@@ -29,19 +29,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          _buildDarkMode(context, settings),
+          _buildDarkTheme(context, settings),
           _buildShowDistance(context, settings),
         ],
       ),
     );
   }
 
-  Widget _buildDarkMode(BuildContext context, Settings settings) {
+  Widget _buildDarkTheme(BuildContext context, Settings settings) {
     return SwitchListTile.adaptive(
-      value: settings.darkMode,
+      value: settings.darkTheme,
       secondary: const Icon(Icons.dark_mode_outlined),
-      title: Text('SettingsScreen.DarkMode'.tr()),
-      onChanged: (value) => _updateDarkMode(value),
+      title: Text('SettingsScreen.DarkTheme'.tr()),
+      onChanged: (value) => _updateDarkTheme(value),
     );
   }
 
@@ -54,9 +54,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
-  void _updateDarkMode(bool value) {
-    ref.read(settingsStateProvider.notifier).darkMode = value;
-    logEvent(AnalyticsEvent.settingsUpdate, {AnalyticsParameter.settingsThemeMode: value});
+  void _updateDarkTheme(bool value) {
+    ref.read(settingsStateProvider.notifier).darkTheme = value;
+    logEvent(AnalyticsEvent.settingsUpdate, {AnalyticsParameter.settingsDarkTheme: value});
   }
 
   void _updateShowDistance(bool value) {

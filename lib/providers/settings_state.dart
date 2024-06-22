@@ -13,8 +13,8 @@ class SettingsState extends _$SettingsState {
   void saveData() => localRepository.saveSettings(state);
   Settings loadData() => localRepository.loadSettings();
 
-  set darkMode(bool value) {
-    state = state.copyWith(darkMode: value);
+  set darkTheme(bool value) {
+    state = state.copyWith(darkTheme: value);
     saveData();
   }
 

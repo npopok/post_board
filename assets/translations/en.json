@@ -53,7 +53,7 @@
     "ProfileScreen.ContactHint": "Select type",
 
     "SettingsScreen.Title": "Settings",
-    "SettingsScreen.DarkMode": "Dark mode",
+    "SettingsScreen.DarkTheme": "Dark theme",
     "SettingsScreen.ShowDistance": "Show distance",
 
     "OfflineScreen.ErrorText": "No Internet.\nCheck your connection.",
