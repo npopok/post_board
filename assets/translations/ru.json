@@ -21,6 +21,9 @@
     "FiltersScreen.CityTile": "Город",
     "FiltersScreen.CityDialog": "Город",
     "FiltersScreen.CitySuccess": "Объявления будут отображаться для выбранного города.",
+    "FiltersScreen.DistanceTile": "Расстояние",
+    "FiltersScreen.DistanceText": "До {} км",
+    "FiltersScreen.DistanceDialog": "Расстояние до {} км",
 
     "PostDetails.WriteMessage": "Написать сообщение",
     "PostDetails.WriteEmail": "Написать письмо",

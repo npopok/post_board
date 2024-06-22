@@ -8,18 +8,20 @@ part of 'filters.dart';
 
 _$FiltersImpl _$$FiltersImplFromJson(Map<String, dynamic> json) =>
     _$FiltersImpl(
-      city: City.fromJson(json['city'] as Map<String, dynamic>),
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: const NumericRangeConverter().fromJson(json['age'] as String),
+      city: City.fromJson(json['city'] as Map<String, dynamic>),
+      distance: (json['distance'] as num?)?.toInt() ?? DefaultSettings.distance,
     );
 
 Map<String, dynamic> _$$FiltersImplToJson(_$FiltersImpl instance) =>
     <String, dynamic>{
-      'city': instance.city.toJson(),
       'category': _$CategoryEnumMap[instance.category]!,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': const NumericRangeConverter().toJson(instance.age),
+      'city': instance.city.toJson(),
+      'distance': instance.distance,
     };
 
 const _$CategoryEnumMap = {

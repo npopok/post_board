@@ -32,6 +32,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
           _buildGenderTile(context, filters),
           _buildAgeTile(context, filters),
           _buildCityTile(context, filters),
+          _buildDistanceTile(context, filters),
         ],
       ),
     );
@@ -44,7 +45,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
       leading: const Icon(Icons.wc),
       title: Text('FiltersScreen.GenderTile'.tr()),
       subtitle: Text('${filter.gender}'.tr()),
-      onTap: () => showModalBottomSheet(
+      onTap: () => showModalBottomSheet<Gender>(
         isScrollControlled: true,
         context: context,
         builder: (context) => ValueListDialog<Gender>(
@@ -67,7 +68,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
           filter.age.max.toString(),
         ]),
       ),
-      onTap: () => showModalBottomSheet(
+      onTap: () => showModalBottomSheet<NumericRange>(
         isScrollControlled: true,
         context: context,
         builder: (context) => RangeDialog(
@@ -88,7 +89,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
       leading: const Icon(Icons.place),
       title: Text('FiltersScreen.CityTile'.tr()),
       subtitle: Text(filters.city.name),
-      onTap: () => showModalBottomSheet(
+      onTap: () => showModalBottomSheet<City>(
         isScrollControlled: true,
         context: context,
         builder: (_) => LocationDialog(
@@ -98,6 +99,27 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
           successText: 'FiltersScreen.CitySuccess'.tr(),
         ),
       ).then((value) => value != null ? _updateCity(value) : 0),
+    );
+  }
+
+  Widget _buildDistanceTile(BuildContext context, Filters filters) {
+    return ListTile(
+      leading: const Icon(Icons.straighten_outlined),
+      title: Text('FiltersScreen.DistanceTile'.tr()),
+      subtitle: Text('FiltersScreen.DistanceText'.tr(args: [
+        filters.distance!.toString(),
+      ])),
+      onTap: () => showModalBottomSheet<int>(
+        isScrollControlled: true,
+        context: context,
+        builder: (_) => SliderDialog(
+          title: 'FiltersScreen.DistanceDialog'.tr(),
+          titleEmpty: 'FiltersScreen.DistanceDialog'.tr(),
+          buttonTitle: 'Button.Save'.tr(),
+          range: (min: FieldConstraints.distanceMinValue, max: FieldConstraints.distanceMaxValue),
+          initialValue: filters.distance!,
+        ),
+      ).then((value) => value != null ? _updateDistnace(value) : 0),
     );
   }
 
@@ -114,5 +136,10 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   void _updateCity(City value) {
     ref.read(filtersStateProvider.notifier).city = value;
     logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.filtersCity: value.name});
+  }
+
+  void _updateDistnace(int value) {
+    ref.read(filtersStateProvider.notifier).distance = value;
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.fitlersDistance: value});
   }
 }

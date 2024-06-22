@@ -13,11 +13,6 @@ class FiltersState extends _$FiltersState {
   void saveData() => cachedRepository.saveFilters(state);
   Filters loadData() => localRepository.loadFilters();
 
-  set city(City value) {
-    state = state.copyWith(city: value);
-    saveData();
-  }
-
   set category(Category value) {
     state = state.copyWith(category: value);
     saveData();
@@ -30,6 +25,16 @@ class FiltersState extends _$FiltersState {
 
   set age(NumericRange value) {
     state = state.copyWith(age: value);
+    saveData();
+  }
+
+  set city(City value) {
+    state = state.copyWith(city: value);
+    saveData();
+  }
+
+  set distance(int value) {
+    state = state.copyWith(distance: value);
     saveData();
   }
 }

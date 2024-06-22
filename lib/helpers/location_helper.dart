@@ -45,7 +45,7 @@ class LocationHelper {
 
     try {
       final position = await Geolocator.getCurrentPosition();
-      return (latitude: position.latitude, longitude: position.longitude);
+      return Location(latitude: position.latitude, longitude: position.longitude);
     } catch (e) {
       throw const LocationException(LocationError.otherError);
     }
@@ -53,18 +53,16 @@ class LocationHelper {
 }
 
 class LocationListener {
-  Location? _location;
-
-  Location get location => _location ?? common.LocationSettings.emptyLocation;
+  Location location = Location.empty();
 
   LocationListener() {
     const settings = LocationSettings(
-      distanceFilter: common.LocationSettings.distanceFilter,
+      distanceFilter: common.LocationSettings.listenerDistance,
     );
     Geolocator.getPositionStream(locationSettings: settings).listen(
       (Position position) {
-        _location = (latitude: position.latitude, longitude: position.longitude);
-        debugPrint('LocationListener: received location $_location');
+        location = Location(latitude: position.latitude, longitude: position.longitude);
+        debugPrint('LocationListener: received location $location');
       },
     );
   }

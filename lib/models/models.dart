@@ -3,6 +3,7 @@ export 'contact.dart';
 export 'country.dart';
 export 'converters.dart';
 export 'filters.dart';
+export 'location.dart';
 export 'post.dart';
 export 'posts.dart';
 export 'profile.dart';

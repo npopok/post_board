@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:post_board/common/common.dart';
 
 part 'settings.freezed.dart';
 part 'settings.g.dart';
@@ -13,7 +14,7 @@ class Settings with _$Settings {
   factory Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
 
   factory Settings.empty() => const Settings(
-        darkMode: true,
-        showDistance: true,
+        darkMode: DefaultSettings.darkMode,
+        showDistance: DefaultSettings.showDistance,
       );
 }

@@ -21,6 +21,9 @@
     "FiltersScreen.CityTile": "City",
     "FiltersScreen.CityDialog": "City",
     "FiltersScreen.CitySuccess": "Posts will be displayed for the selected city.",
+    "FiltersScreen.DistanceTile": "Distance",
+    "FiltersScreen.DistanceText": "Up to {} km",    
+    "FiltersScreen.DistanceDialog": "Distance up to {} km",
 
     "PostDetails.WriteChat": "Write message",
     "PostDetails.WriteEmail": "Write email",

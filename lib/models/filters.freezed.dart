@@ -20,11 +20,12 @@ Filters _$FiltersFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Filters {
-  City get city => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   @NumericRangeConverter()
   ({int max, int min}) get age => throw _privateConstructorUsedError;
+  City get city => throw _privateConstructorUsedError;
+  int? get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,10 +38,11 @@ abstract class $FiltersCopyWith<$Res> {
       _$FiltersCopyWithImpl<$Res, Filters>;
   @useResult
   $Res call(
-      {City city,
-      Category category,
+      {Category category,
       Gender gender,
-      @NumericRangeConverter() ({int max, int min}) age});
+      @NumericRangeConverter() ({int max, int min}) age,
+      City city,
+      int? distance});
 
   $CityCopyWith<$Res> get city;
 }
@@ -58,16 +60,13 @@ class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
     Object? category = null,
     Object? gender = null,
     Object? age = null,
+    Object? city = null,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -80,6 +79,14 @@ class _$FiltersCopyWithImpl<$Res, $Val extends Filters>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as ({int max, int min}),
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
+      distance: freezed == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -100,10 +107,11 @@ abstract class _$$FiltersImplCopyWith<$Res> implements $FiltersCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {City city,
-      Category category,
+      {Category category,
       Gender gender,
-      @NumericRangeConverter() ({int max, int min}) age});
+      @NumericRangeConverter() ({int max, int min}) age,
+      City city,
+      int? distance});
 
   @override
   $CityCopyWith<$Res> get city;
@@ -120,16 +128,13 @@ class __$$FiltersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
     Object? category = null,
     Object? gender = null,
     Object? age = null,
+    Object? city = null,
+    Object? distance = freezed,
   }) {
     return _then(_$FiltersImpl(
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as City,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -142,6 +147,14 @@ class __$$FiltersImplCopyWithImpl<$Res>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as ({int max, int min}),
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City,
+      distance: freezed == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -150,17 +163,16 @@ class __$$FiltersImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FiltersImpl extends _Filters {
   const _$FiltersImpl(
-      {required this.city,
-      required this.category,
+      {required this.category,
       required this.gender,
-      @NumericRangeConverter() required this.age})
+      @NumericRangeConverter() required this.age,
+      required this.city,
+      this.distance = DefaultSettings.distance})
       : super._();
 
   factory _$FiltersImpl.fromJson(Map<String, dynamic> json) =>
       _$$FiltersImplFromJson(json);
 
-  @override
-  final City city;
   @override
   final Category category;
   @override
@@ -168,10 +180,15 @@ class _$FiltersImpl extends _Filters {
   @override
   @NumericRangeConverter()
   final ({int max, int min}) age;
+  @override
+  final City city;
+  @override
+  @JsonKey()
+  final int? distance;
 
   @override
   String toString() {
-    return 'Filters(city: $city, category: $category, gender: $gender, age: $age)';
+    return 'Filters(category: $category, gender: $gender, age: $age, city: $city, distance: $distance)';
   }
 
   @override
@@ -179,16 +196,19 @@ class _$FiltersImpl extends _Filters {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FiltersImpl &&
-            (identical(other.city, city) || other.city == city) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.age, age) || other.age == age));
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, city, category, gender, age);
+  int get hashCode =>
+      Object.hash(runtimeType, category, gender, age, city, distance);
 
   @JsonKey(ignore: true)
   @override
@@ -206,17 +226,15 @@ class _$FiltersImpl extends _Filters {
 
 abstract class _Filters extends Filters {
   const factory _Filters(
-          {required final City city,
-          required final Category category,
-          required final Gender gender,
-          @NumericRangeConverter() required final ({int max, int min}) age}) =
-      _$FiltersImpl;
+      {required final Category category,
+      required final Gender gender,
+      @NumericRangeConverter() required final ({int max, int min}) age,
+      required final City city,
+      final int? distance}) = _$FiltersImpl;
   const _Filters._() : super._();
 
   factory _Filters.fromJson(Map<String, dynamic> json) = _$FiltersImpl.fromJson;
 
-  @override
-  City get city;
   @override
   Category get category;
   @override
@@ -224,6 +242,10 @@ abstract class _Filters extends Filters {
   @override
   @NumericRangeConverter()
   ({int max, int min}) get age;
+  @override
+  City get city;
+  @override
+  int? get distance;
   @override
   @JsonKey(ignore: true)
   _$$FiltersImplCopyWith<_$FiltersImpl> get copyWith =>

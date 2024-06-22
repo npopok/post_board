@@ -11,10 +11,12 @@ class Filters with _$Filters {
   const Filters._();
 
   const factory Filters({
-    required final City city,
     required final Category category,
     required final Gender gender,
     @NumericRangeConverter() required final NumericRange age,
+    required final City city,
+    @Default(DefaultSettings.distance)
+    final int? distance, // TODO: Make it not-nullable after full migration to 0.3.0
   }) = _Filters;
 
   bool get isComplete => gender != Gender.unknown && city.isNotEmpty;
@@ -22,9 +24,10 @@ class Filters with _$Filters {
   factory Filters.fromJson(Map<String, dynamic> json) => _$FiltersFromJson(json);
 
   factory Filters.empty() => Filters(
-        city: City.empty(),
-        category: Category.sex,
+        category: DefaultSettings.category,
         gender: Gender.unknown,
         age: (min: FieldConstraints.ageMinValue, max: FieldConstraints.ageMaxValue),
+        city: City.empty(),
+        distance: DefaultSettings.distance,
       );
 }

@@ -1,4 +1,3 @@
-import 'package:geolocator/geolocator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:post_board/common/common.dart';
@@ -84,7 +83,8 @@ class RemoteRepository {
 
     for (final row in data) {
       row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
-      row['distance'] = await _calculateDistance(row['latitude'], row['longitude']);
+      final location = Location.parse(row['latitude'], row['longitude']);
+      row['distance'] = location.distanceFrom(locationLister.location);
     }
 
     final hasMore = data.length == queryLimit;
@@ -110,29 +110,6 @@ class RemoteRepository {
   Future<void> _checkUserAuth() async {
     if (Supabase.instance.client.auth.currentUser == null) {
       await Supabase.instance.client.auth.signInAnonymously();
-    }
-  }
-
-  Future<double> _calculateDistance(dynamic latitude, dynamic longitude) async {
-    final lat = _checkDouble(latitude);
-    final lng = _checkDouble(longitude);
-
-    if (lat != 0 || lng != 0) {
-      final location = locationLister.location;
-      if (location != null) {
-        return Geolocator.distanceBetween(location.latitude, location.longitude, lat, lng);
-      }
-    }
-    return 0;
-  }
-
-  double _checkDouble(dynamic value) {
-    if (value is int) {
-      return value.toDouble();
-    } else if (value is double?) {
-      return value ?? 0;
-    } else {
-      throw UnimplementedError();
     }
   }
 }

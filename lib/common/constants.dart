@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:post_board/models/models.dart';
 
 class FieldConstraints {
   static const nameMaxLength = 30;
@@ -7,6 +8,15 @@ class FieldConstraints {
   static const postMinLength = 10;
   static const postMaxLength = 500;
   static const contactMaxLength = 30;
+  static const distanceMinValue = 5;
+  static const distanceMaxValue = 200;
+}
+
+class DefaultSettings {
+  static const darkMode = true;
+  static const showDistance = true;
+  static const category = Category.sex;
+  static const distance = 50;
 }
 
 class RegionalSettings {
@@ -38,8 +48,8 @@ class RepositorySettings {
 }
 
 class LocationSettings {
-  static const emptyLocation = (latitude: 0.0, longitude: 0.0);
-  static const distanceFilter = 1000;
+  static const emptyLocation = Location(latitude: 0.0, longitude: 0.0);
+  static const listenerDistance = 1000;
 }
 
 class FormLayout {
