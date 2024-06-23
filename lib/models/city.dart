@@ -14,7 +14,7 @@ class City with _$City {
     required final int id,
     required final String name,
     required final Region region,
-    required final double latitude,
+    required final double latitude, // TODO: Migrate to location
     required final double longitude,
   }) = _City;
 

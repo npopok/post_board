@@ -119,11 +119,6 @@ class _$LocationImpl extends _Location {
   final double longitude;
 
   @override
-  String toString() {
-    return 'Location(latitude: $latitude, longitude: $longitude)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

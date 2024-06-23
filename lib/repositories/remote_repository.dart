@@ -2,7 +2,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:post_board/common/common.dart';
 import 'package:post_board/models/models.dart';
-import 'package:post_board/helpers/helpers.dart';
 
 class RemoteRepository {
   final supabase = Supabase.instance.client;
@@ -46,6 +45,7 @@ class RemoteRepository {
   Future<void> savePost(Post value) async {
     await _checkUserAuth();
 
+    // TODO: Now working right now!!! Implement it using RPC
     final data = value.toJson();
 
     data.remove('id');
@@ -65,32 +65,25 @@ class RemoteRepository {
     const queryLimit = RepositorySettings.postsPageSize + 1;
     final pageKey = prev?.items.lastOrNull?.id ?? RepositorySettings.postsMaxId;
 
-    final data = await supabase
-        .from(RepositorySettings.postsRemoteTable)
-        .select(
-          '*, createdAt:created_at, createdBy:created_by,'
-          'city:cities(*, region:regions(*, country:countries(*)))',
-        )
-        .eq('city_id', filters.city.id)
-        .eq('category', filters.category.name)
-        .eq('gender', filters.gender.name)
-        .gte('age', filters.age.min)
-        .lte('age', filters.age.max)
-        .lt('id', pageKey)
-        .order('created_at')
-        .order('id')
-        .limit(queryLimit);
-
-    for (final row in data) {
-      row['createdAgo'] = DateTime.parse(row['createdAt']).timeSinceNow();
-      final location = Location.parse(row['latitude'], row['longitude']);
-      row['distance'] = location.distanceFrom(locationLister.location);
-    }
+    final data = await supabase.rpc(
+      'get_posts',
+      params: {
+        'p_city_id': filters.city.id,
+        'p_category': filters.category.name,
+        'p_gender': filters.gender.name,
+        'p_age_min': filters.age.min,
+        'p_age_max': filters.age.max,
+        'p_location': locationLister.location.toString(),
+        'p_distance': filters.distance!,
+        'p_last_id': pageKey,
+        'p_max_rows': queryLimit,
+      },
+    );
 
     final hasMore = data.length == queryLimit;
     if (hasMore) data.removeLast();
 
-    final loaded = data.map((e) => Post.fromJson(e)).toList();
+    final loaded = data.map<Post>((e) => Post.fromJson(e)).toList();
     final items = prev == null ? loaded : prev.items + loaded;
 
     return Posts(items: items, isFirst: prev == null, hasMore: hasMore);
@@ -99,7 +92,7 @@ class RemoteRepository {
   Future<List<City>> loadCities() async {
     await _checkUserAuth();
 
-    var data = await supabase
+    final data = await supabase
         .from(RepositorySettings.citiesRemoteTable)
         .select('*, region:regions(*, country:countries(*))')
         .order('name', ascending: true);

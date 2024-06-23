@@ -23,7 +23,8 @@ mixin _$City {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Region get region => throw _privateConstructorUsedError;
-  double get latitude => throw _privateConstructorUsedError;
+  double get latitude =>
+      throw _privateConstructorUsedError; // TODO: Migrate to location
   double get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -171,6 +172,7 @@ class _$CityImpl extends _City {
   final Region region;
   @override
   final double latitude;
+// TODO: Migrate to location
   @override
   final double longitude;
 
@@ -226,7 +228,7 @@ abstract class _City extends City {
   Region get region;
   @override
   double get latitude;
-  @override
+  @override // TODO: Migrate to location
   double get longitude;
   @override
   @JsonKey(ignore: true)

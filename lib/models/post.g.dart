@@ -8,9 +8,9 @@ part of 'post.dart';
 
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       id: (json['id'] as num).toInt(),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      createdAgo: Duration(microseconds: (json['createdAgo'] as num).toInt()),
-      createdBy: json['createdBy'] as String?,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      createdAgo: (json['created_ago'] as num).toInt(),
+      createdBy: json['created_by'] as String?,
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: (json['age'] as num).toInt(),
@@ -18,17 +18,15 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: const ContactConverter().fromJson(json['contact'] as String),
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
       distance: (json['distance'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'createdAgo': instance.createdAgo.inMicroseconds,
-      'createdBy': instance.createdBy,
+      'created_at': instance.createdAt.toIso8601String(),
+      'created_ago': instance.createdAgo,
+      'created_by': instance.createdBy,
       'author': instance.author,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
@@ -36,8 +34,6 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': const ContactConverter().toJson(instance.contact),
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
       'distance': instance.distance,
     };
 

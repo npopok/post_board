@@ -51,7 +51,7 @@ class PostListItem extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.clip,
         ),
-        context.textSmall(post.createdAgo.formatTimeAgo()),
+        context.textSmall(Duration(seconds: post.createdAgo).formatTimeAgo()),
       ],
       //   ),
     );

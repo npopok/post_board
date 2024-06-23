@@ -9,9 +9,10 @@ part 'post.g.dart';
 class Post with _$Post {
   const factory Post({
     required final int id,
-    required final DateTime createdAt,
-    required final Duration createdAgo,
-    required final String? createdBy, // TODO: Make it non-nullable after removing post scrapper
+    @JsonKey(name: 'created_at') required final DateTime createdAt,
+    @JsonKey(name: 'created_ago') required final int createdAgo,
+    // TODO: Make it non-nullable after removing post scrapper
+    @JsonKey(name: 'created_by') required final String? createdBy,
     required final String author,
     required final Gender gender,
     required final int age,
@@ -19,8 +20,6 @@ class Post with _$Post {
     required final Category category,
     required final String text,
     @ContactConverter() required Contact contact,
-    required final double? latitude, // TODO: Make it non-nullable after full migration to 0.3.0
-    required final double? longitude, // TODO: Make it non-nullable after full migration to 0.3.0
     required final double distance,
   }) = _Post;
 
@@ -36,7 +35,7 @@ class Post with _$Post {
       Post(
         id: 0,
         createdAt: DateTime.timestamp(),
-        createdAgo: Duration.zero,
+        createdAgo: 0,
         createdBy: '',
         author: profile.name,
         gender: profile.gender,
@@ -45,8 +44,6 @@ class Post with _$Post {
         category: category,
         text: text,
         contact: contact,
-        latitude: location.latitude,
-        longitude: location.longitude,
         distance: 0,
       );
 }
