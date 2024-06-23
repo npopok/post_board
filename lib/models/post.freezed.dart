@@ -28,6 +28,7 @@ mixin _$Post {
       throw _privateConstructorUsedError; // TODO: Make it non-nullable after removing post scrapper
   @JsonKey(name: 'created_by')
   String? get createdBy => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
@@ -36,7 +37,6 @@ mixin _$Post {
   String get text => throw _privateConstructorUsedError;
   @ContactConverter()
   Contact get contact => throw _privateConstructorUsedError;
-  double get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,14 +53,14 @@ abstract class $PostCopyWith<$Res> {
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'created_ago') int createdAgo,
       @JsonKey(name: 'created_by') String? createdBy,
+      double distance,
       String author,
       Gender gender,
       int age,
       City city,
       Category category,
       String text,
-      @ContactConverter() Contact contact,
-      double distance});
+      @ContactConverter() Contact contact});
 
   $CityCopyWith<$Res> get city;
   $ContactCopyWith<$Res> get contact;
@@ -83,6 +83,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? createdAt = null,
     Object? createdAgo = null,
     Object? createdBy = freezed,
+    Object? distance = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -90,7 +91,6 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
-    Object? distance = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -109,6 +109,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -137,10 +141,6 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 
@@ -173,14 +173,14 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'created_ago') int createdAgo,
       @JsonKey(name: 'created_by') String? createdBy,
+      double distance,
       String author,
       Gender gender,
       int age,
       City city,
       Category category,
       String text,
-      @ContactConverter() Contact contact,
-      double distance});
+      @ContactConverter() Contact contact});
 
   @override
   $CityCopyWith<$Res> get city;
@@ -202,6 +202,7 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? createdAgo = null,
     Object? createdBy = freezed,
+    Object? distance = null,
     Object? author = null,
     Object? gender = null,
     Object? age = null,
@@ -209,7 +210,6 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? category = null,
     Object? text = null,
     Object? contact = null,
-    Object? distance = null,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -228,6 +228,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -256,10 +260,6 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -272,14 +272,14 @@ class _$PostImpl implements _Post {
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'created_ago') required this.createdAgo,
       @JsonKey(name: 'created_by') required this.createdBy,
+      required this.distance,
       required this.author,
       required this.gender,
       required this.age,
       required this.city,
       required this.category,
       required this.text,
-      @ContactConverter() required this.contact,
-      required this.distance});
+      @ContactConverter() required this.contact});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
@@ -297,6 +297,8 @@ class _$PostImpl implements _Post {
   @JsonKey(name: 'created_by')
   final String? createdBy;
   @override
+  final double distance;
+  @override
   final String author;
   @override
   final Gender gender;
@@ -311,12 +313,10 @@ class _$PostImpl implements _Post {
   @override
   @ContactConverter()
   final Contact contact;
-  @override
-  final double distance;
 
   @override
   String toString() {
-    return 'Post(id: $id, createdAt: $createdAt, createdAgo: $createdAgo, createdBy: $createdBy, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact, distance: $distance)';
+    return 'Post(id: $id, createdAt: $createdAt, createdAgo: $createdAgo, createdBy: $createdBy, distance: $distance, author: $author, gender: $gender, age: $age, city: $city, category: $category, text: $text, contact: $contact)';
   }
 
   @override
@@ -331,6 +331,8 @@ class _$PostImpl implements _Post {
                 other.createdAgo == createdAgo) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
@@ -338,15 +340,13 @@ class _$PostImpl implements _Post {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.contact, contact) || other.contact == contact) &&
-            (identical(other.distance, distance) ||
-                other.distance == distance));
+            (identical(other.contact, contact) || other.contact == contact));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, createdAgo,
-      createdBy, author, gender, age, city, category, text, contact, distance);
+      createdBy, distance, author, gender, age, city, category, text, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -368,14 +368,14 @@ abstract class _Post implements Post {
       @JsonKey(name: 'created_at') required final DateTime createdAt,
       @JsonKey(name: 'created_ago') required final int createdAgo,
       @JsonKey(name: 'created_by') required final String? createdBy,
+      required final double distance,
       required final String author,
       required final Gender gender,
       required final int age,
       required final City city,
       required final Category category,
       required final String text,
-      @ContactConverter() required final Contact contact,
-      required final double distance}) = _$PostImpl;
+      @ContactConverter() required final Contact contact}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -391,6 +391,8 @@ abstract class _Post implements Post {
   @JsonKey(name: 'created_by')
   String? get createdBy;
   @override
+  double get distance;
+  @override
   String get author;
   @override
   Gender get gender;
@@ -405,8 +407,6 @@ abstract class _Post implements Post {
   @override
   @ContactConverter()
   Contact get contact;
-  @override
-  double get distance;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

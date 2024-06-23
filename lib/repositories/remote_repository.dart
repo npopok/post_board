@@ -42,21 +42,19 @@ class RemoteRepository {
     await supabase.from(RepositorySettings.filtersRemoteTable).upsert(data);
   }
 
-  Future<void> savePost(Post value) async {
+  Future<void> savePost(Post post) async {
     await _checkUserAuth();
 
-    // TODO: Now working right now!!! Implement it using RPC
-    final data = value.toJson();
-
-    data.remove('id');
-    data.remove('createdAt');
-    data.remove('createdAgo');
-    data.remove('createdBy');
-    data.remove('city');
-    data.remove('distance');
-    data['city_id'] = value.city.id;
-
-    await supabase.from(RepositorySettings.postsRemoteTable).insert(data);
+    await supabase.rpc(RepositorySettings.functionAddPost, params: {
+      'p_author': post.author,
+      'p_gender': post.gender.name,
+      'p_age': post.age,
+      'p_city_id': post.city.id,
+      'p_contact': post.contact.toString(),
+      'p_category': post.category.name,
+      'p_text': post.text,
+      'p_location': locationLister.location.toString(),
+    });
   }
 
   Future<Posts> loadPosts(Filters filters, Posts? prev) async {
@@ -66,7 +64,7 @@ class RemoteRepository {
     final pageKey = prev?.items.lastOrNull?.id ?? RepositorySettings.postsMaxId;
 
     final data = await supabase.rpc(
-      'get_posts',
+      RepositorySettings.functionGetPosts,
       params: {
         'p_city_id': filters.city.id,
         'p_category': filters.category.name,

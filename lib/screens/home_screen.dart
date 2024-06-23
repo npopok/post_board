@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _showSubmitDialog(BuildContext context) async {
-    final data = await showModalBottomSheet<(Category, String, bool)>(
+    final data = await showModalBottomSheet<(Category, String)>(
       isScrollControlled: true,
       context: context,
       builder: (_) => SubmitDialog(
@@ -95,7 +95,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     try {
       final profile = ref.read(profileStateProvider);
-      final post = Post.create(profile, category, text, profile.contact, location);
+      final post = Post.create(profile, category, text, location);
 
       await remoteRepository.savePost(post);
       ref.read(filtersStateProvider.notifier).category = category;

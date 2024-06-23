@@ -34,16 +34,18 @@ class RepositorySettings {
   static const filtersLocalKey = 'filters';
   static const settingsLocalKey = 'settings';
 
+  static const functionAddPost = 'add_post';
+  static const functionGetPosts = 'get_posts';
+
   static const profilesRemoteTable = 'profiles';
   static const filtersRemoteTable = 'filters';
+  static const citiesRemoteTable = 'cities';
 
-  static const postsRemoteTable = 'posts';
   static const postsQuotaExceeded = 'posts-quota-exceeded';
   static const postsCacheDuration = Duration(minutes: 15);
   static const postsMaxId = (1 << 63) - 1;
   static const postsPageSize = 20;
 
-  static const citiesRemoteTable = 'cities';
   static const citiesCacheDuration = Duration(days: 10000);
 }
 

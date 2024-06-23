@@ -165,7 +165,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   void _updateAge(int value) {
     ref.read(profileStateProvider.notifier).age = value;
-    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.filtersAge: value});
+    logEvent(AnalyticsEvent.profileUpdate, {AnalyticsParameter.profileAge: value});
   }
 
   void _updateCity(City value) {
