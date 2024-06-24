@@ -82,12 +82,8 @@ class RemoteRepository {
   Future<List<City>> loadCities() async {
     await _checkUserAuth();
 
-    final data = await supabase
-        .from(RepositorySettings.citiesRemoteTable)
-        .select('*, region:regions(*, country:countries(*))')
-        .order('name', ascending: true);
-
-    return data.map((e) => City.fromJson(e)).toList();
+    final data = await supabase.rpc(RepositorySettings.functionGetCities);
+    return data.map<City>((e) => City.fromJson(e)).toList();
   }
 
   Future<void> _checkUserAuth() async {

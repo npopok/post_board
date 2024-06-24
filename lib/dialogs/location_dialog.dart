@@ -77,7 +77,10 @@ class _LocationDialogState extends State<LocationDialog> {
                 return _buildContent(context);
               }
               if (snapshot.hasError) {
-                return context.textError('LocationDialog.ErrorText'.tr());
+                return Padding(
+                  padding: DialogPaddings.locationError,
+                  child: context.textError('LocationDialog.ErrorText'.tr()),
+                );
               }
               return const CircularProgressIndicator();
             }),

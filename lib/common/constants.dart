@@ -38,10 +38,7 @@ class RepositorySettings {
   static const functionStoreFilters = 'store_filters';
   static const functionAddPost = 'add_post';
   static const functionGetPosts = 'get_posts';
-
-  static const profilesRemoteTable = 'profiles';
-  static const filtersRemoteTable = 'filters';
-  static const citiesRemoteTable = 'cities';
+  static const functionGetCities = 'get_cities';
 
   static const postsQuotaExceeded = 'posts-quota-exceeded';
   static const postsCacheDuration = Duration(minutes: 15);
@@ -82,6 +79,7 @@ class DialogPaddings {
 
   static const locationContent = EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 8);
   static const locationText = EdgeInsets.all(16);
+  static const locationError = EdgeInsets.only(bottom: 16);
 }
 
 class CommonIcons {
