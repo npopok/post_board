@@ -34,6 +34,8 @@ class RepositorySettings {
   static const filtersLocalKey = 'filters';
   static const settingsLocalKey = 'settings';
 
+  static const functionStoreProfile = 'store_profile';
+  static const functionStoreFilters = 'store_filters';
   static const functionAddPost = 'add_post';
   static const functionGetPosts = 'get_posts';
 

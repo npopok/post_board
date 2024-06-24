@@ -6,40 +6,32 @@ import 'package:post_board/models/models.dart';
 class RemoteRepository {
   final supabase = Supabase.instance.client;
 
-  Future<void> saveProfile(Profile value) async {
+  Future<void> saveProfile(Profile profile) async {
     await _checkUserAuth();
 
-    final data = value.toJson();
-
-    data.remove('city');
-    data['city_id'] = value.city.id;
-
-    final rowId = await supabase
-        .from(RepositorySettings.profilesRemoteTable)
-        .select('id')
-        .eq('created_by', supabase.auth.currentUser!.id)
-        .maybeSingle();
-    if (rowId != null) data['id'] = rowId['id'];
-
-    await supabase.from(RepositorySettings.profilesRemoteTable).upsert(data);
+    await supabase.rpc(RepositorySettings.functionStoreProfile, params: {
+      'p_user_id': supabase.auth.currentUser!.id,
+      'p_name': profile.name,
+      'p_gender': profile.gender.name,
+      'p_age': profile.age,
+      'p_city_id': profile.city.id,
+      'p_contact': profile.contact.toString(),
+    });
   }
 
-  Future<void> saveFilters(Filters value) async {
+  Future<void> saveFilters(Filters filters) async {
     await _checkUserAuth();
 
-    final data = value.toJson();
-
-    data.remove('city');
-    data['city_id'] = value.city.id;
-
-    final rowId = await supabase
-        .from(RepositorySettings.filtersRemoteTable)
-        .select('id')
-        .eq('created_by', supabase.auth.currentUser!.id)
-        .maybeSingle();
-    if (rowId != null) data['id'] = rowId['id'];
-
-    await supabase.from(RepositorySettings.filtersRemoteTable).upsert(data);
+    // TODO: Clean old schema (age as range etc.) in DB after full migraton to 0.3.0
+    await supabase.rpc(RepositorySettings.functionStoreFilters, params: {
+      'p_user_id': supabase.auth.currentUser!.id,
+      'p_category': filters.category.name,
+      'p_gender': filters.gender.name,
+      'p_age_min': filters.age.min,
+      'p_age_max': filters.age.max,
+      'p_city_id': filters.city.id,
+      'p_distance': filters.distance!,
+    });
   }
 
   Future<void> savePost(Post post) async {
