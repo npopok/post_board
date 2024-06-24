@@ -23,7 +23,7 @@ class LocationException implements Exception {
 }
 
 class LocationHelper {
-  static Future<Location> getCurrentPosition([bool requestPermission = true]) async {
+  static Future<Location> getCurrentPosition({bool requestPermission = true}) async {
     final enabled = await Geolocator.isLocationServiceEnabled();
     if (!enabled) {
       throw const LocationException(LocationError.serviceDisabled);
@@ -53,19 +53,48 @@ class LocationHelper {
 }
 
 class LocationListener {
+  static const settings = LocationSettings(
+    distanceFilter: common.LocationSettings.listenerDistance,
+  );
+
+  StreamSubscription? _subscription;
   Location location = Location.empty();
 
-  LocationListener() {
-    const settings = LocationSettings(
-      distanceFilter: common.LocationSettings.listenerDistance,
-    );
-    Geolocator.getPositionStream(locationSettings: settings).listen(
-      (Position position) {
-        location = Location(latitude: position.latitude, longitude: position.longitude);
-        debugPrint('LocationListener: received location $location');
+  static Future<LocationListener> getInstance() async {
+    final listener = LocationListener();
+    await listener.initialize();
+    return listener;
+  }
+
+  Future<void> initialize() async {
+    Geolocator.getServiceStatusStream().listen(
+      (status) {
+        _debugLog(status.toString());
+        if (status == ServiceStatus.enabled) _subscribe();
       },
     );
+
+    try {
+      location = await LocationHelper.getCurrentPosition(requestPermission: false);
+      _debugLog('initial location $location');
+    } on LocationException catch (e) {
+      _debugLog(e.error.toString());
+    }
+    _subscribe();
   }
+
+  void _subscribe() {
+    _subscription?.cancel();
+    _subscription = Geolocator.getPositionStream(locationSettings: settings).listen(
+      (position) {
+        location = Location(latitude: position.latitude, longitude: position.longitude);
+        _debugLog('updated location $location');
+      },
+      onError: (error) => _debugLog(error.toString()),
+    );
+  }
+
+  void _debugLog(String message) => debugPrint('LocationListener: $message');
 }
 
 class DistanceFormatter {

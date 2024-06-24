@@ -33,8 +33,9 @@ class Depedencies {
     );
     getIt.registerSingleton<AnalyticsHelper>(AnalyticsHelper());
     getIt.registerSingleton<MessengerHelper>(MessengerHelper());
-    getIt.registerSingleton<LocationListener>(LocationListener());
-
+    getIt.registerSingletonAsync<LocationListener>(
+      () => LocationListener.getInstance(),
+    );
     return getIt.allReady();
   }
 }
