@@ -55,6 +55,7 @@ class RemoteRepository {
     const queryLimit = RepositorySettings.postsPageSize + 1;
     final pageKey = prev?.items.lastOrNull?.id ?? RepositorySettings.postsMaxId;
 
+    // TODO: Migration to 0.4.0: Remove distance from DB result
     final data = await supabase.rpc(
       RepositorySettings.functionGetPosts,
       params: {

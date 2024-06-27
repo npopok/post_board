@@ -2,6 +2,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:post_board/models/models.dart';
 
+class LocationConverter implements JsonConverter<Location, String> {
+  const LocationConverter();
+
+  @override
+  Location fromJson(String json) => Location.parse(json);
+
+  @override
+  String toJson(Location value) => value.toString();
+}
+
 class ContactConverter implements JsonConverter<Contact, String> {
   const ContactConverter();
 

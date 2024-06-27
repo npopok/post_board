@@ -11,7 +11,6 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       createdAt: DateTime.parse(json['created_at'] as String),
       createdAgo: (json['created_ago'] as num).toInt(),
       createdBy: json['created_by'] as String?,
-      distance: (json['distance'] as num).toDouble(),
       author: json['author'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       age: (json['age'] as num).toInt(),
@@ -19,6 +18,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       category: $enumDecode(_$CategoryEnumMap, json['category']),
       text: json['text'] as String,
       contact: const ContactConverter().fromJson(json['contact'] as String),
+      location: const LocationConverter().fromJson(json['location'] as String),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
@@ -27,7 +27,6 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'created_at': instance.createdAt.toIso8601String(),
       'created_ago': instance.createdAgo,
       'created_by': instance.createdBy,
-      'distance': instance.distance,
       'author': instance.author,
       'gender': _$GenderEnumMap[instance.gender]!,
       'age': instance.age,
@@ -35,6 +34,7 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'category': _$CategoryEnumMap[instance.category]!,
       'text': instance.text,
       'contact': const ContactConverter().toJson(instance.contact),
+      'location': const LocationConverter().toJson(instance.location),
     };
 
 const _$GenderEnumMap = {

@@ -13,14 +13,14 @@ class Post with _$Post {
     @JsonKey(name: 'created_ago') required final int createdAgo,
     // TODO: Make it non-nullable after removing post scrapper
     @JsonKey(name: 'created_by') required final String? createdBy,
-    required final double distance,
     required final String author,
     required final Gender gender,
     required final int age,
     required final City city,
     required final Category category,
     required final String text,
-    @ContactConverter() required Contact contact,
+    @ContactConverter() required final Contact contact,
+    @LocationConverter() required final Location location,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
@@ -36,7 +36,6 @@ class Post with _$Post {
         createdAt: DateTime.timestamp(),
         createdAgo: 0,
         createdBy: '',
-        distance: 0,
         author: profile.name,
         gender: profile.gender,
         age: profile.age,
@@ -44,5 +43,6 @@ class Post with _$Post {
         contact: profile.contact,
         category: category,
         text: text,
+        location: Location.empty(),
       );
 }

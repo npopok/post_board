@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -23,7 +24,7 @@ class LocationException implements Exception {
 }
 
 class LocationHelper {
-  static Future<Location> getCurrentPosition({bool requestPermission = true}) async {
+  static Future<void> checkPermission({required bool requestPermission}) async {
     final enabled = await Geolocator.isLocationServiceEnabled();
     if (!enabled) {
       throw const LocationException(LocationError.serviceDisabled);
@@ -33,15 +34,19 @@ class LocationHelper {
     if (permission == LocationPermission.denied) {
       if (requestPermission) {
         permission = await Geolocator.requestPermission();
-      }
-      if (permission == LocationPermission.denied) {
-        throw const LocationException(LocationError.permissionDenied);
+        if (permission == LocationPermission.denied) {
+          throw const LocationException(LocationError.permissionDenied);
+        }
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       throw const LocationException(LocationError.permissionDenied);
     }
+  }
+
+  static Future<Location> getCurrentPosition({required bool requestPermission}) async {
+    await checkPermission(requestPermission: requestPermission);
 
     try {
       final position = await Geolocator.getCurrentPosition();
@@ -52,21 +57,23 @@ class LocationHelper {
   }
 }
 
-class LocationListener {
+class LocationListener with ChangeNotifier {
   static const settings = LocationSettings(
     distanceFilter: common.LocationSettings.listenerDistance,
   );
 
   StreamSubscription? _subscription;
-  Location location = Location.empty();
+  Location _location = Location.empty();
+
+  Location get location => _location;
 
   static Future<LocationListener> getInstance() async {
     final listener = LocationListener();
-    await listener.initialize();
+    await listener.initialize(requestPermission: true);
     return listener;
   }
 
-  Future<void> initialize() async {
+  Future<void> initialize({required bool requestPermission}) async {
     Geolocator.getServiceStatusStream().listen(
       (status) {
         _debugLog(status.toString());
@@ -75,22 +82,28 @@ class LocationListener {
     );
 
     try {
-      location = await LocationHelper.getCurrentPosition(requestPermission: false);
-      _debugLog('initial location $location');
+      _location = await LocationHelper.getCurrentPosition(requestPermission: requestPermission);
+      _debugLog('initial location $_location');
     } on LocationException catch (e) {
-      _debugLog(e.error.toString());
+      _debugLog('Failed to get current position: ${e.error}');
     }
-    _subscribe();
+
+    try {
+      _subscribe();
+    } catch (e) {
+      _debugLog('Failed to subscribe to position stream: $e}');
+    }
   }
 
   void _subscribe() {
     _subscription?.cancel();
     _subscription = Geolocator.getPositionStream(locationSettings: settings).listen(
       (position) {
-        location = Location(latitude: position.latitude, longitude: position.longitude);
-        _debugLog('updated location $location');
+        _location = Location(latitude: position.latitude, longitude: position.longitude);
+        _debugLog('updated location $_location');
+        notifyListeners();
       },
-      onError: (error) => _debugLog(error.toString()),
+      onError: (error) => _debugLog('Failed to subscribe: $error'),
     );
   }
 

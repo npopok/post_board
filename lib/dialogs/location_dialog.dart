@@ -198,7 +198,7 @@ class _LocationDialogState extends State<LocationDialog> {
   }
 
   Future<City> _getCurrentCity() async {
-    final pos = await LocationHelper.getCurrentPosition();
+    final pos = await LocationHelper.getCurrentPosition(requestPermission: true);
     try {
       cities = await cachedRepository.loadCities();
       final city = cities.reduce(

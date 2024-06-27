@@ -1,7 +1,7 @@
 name: post_board
 description: 'Post Board'
 publish_to: 'none'
-version: 0.3.0+7
+version: 0.4.0+8
 
 environment:
   sdk: '>=3.3.3 <4.0.0'

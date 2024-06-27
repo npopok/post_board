@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_board/common/common.dart';
 
 import 'package:post_board/dialogs/dialogs.dart';
 import 'package:post_board/helpers/helpers.dart';
 import 'package:post_board/models/models.dart';
+import 'package:post_board/providers/location_state.dart';
 import 'package:post_board/widgets/widgets.dart';
 
 enum PostAction {
@@ -17,7 +19,7 @@ enum PostAction {
   copyText,
 }
 
-class PostListItem extends StatelessWidget {
+class PostListItem extends ConsumerWidget {
   final Post post;
 
   const PostListItem({
@@ -26,14 +28,16 @@ class PostListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final location = ref.watch(locationStateProvider);
+
     return ListTile(
       key: ValueKey(post),
       title: Column(
         children: [
           _buildNameAgeTime(context),
           FormLayout.tinySpacer,
-          _buildCityDistance(context),
+          _buildCityDistance(context, location),
           FormLayout.smallSpacer,
         ],
       ),
@@ -57,15 +61,16 @@ class PostListItem extends StatelessWidget {
     );
   }
 
-  Widget _buildCityDistance(BuildContext context) {
+  Widget _buildCityDistance(BuildContext context, Location location) {
+    final distance = post.location.distanceFrom(location);
     return Row(
       children: [
         context.textSmall(post.city.name),
-        if (post.distance > 0) ...[
+        if (distance > 0) ...[
           FormLayout.smallSpacer,
           context.textSmall('•'),
           FormLayout.smallSpacer,
-          context.textSmall(DistanceFormatter.format(post.distance)),
+          context.textSmall(DistanceFormatter.format(distance)),
         ],
       ],
     );
