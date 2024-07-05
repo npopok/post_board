@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:post_board/models/models.dart';
 import 'package:post_board/common/common.dart';
 
@@ -16,14 +17,22 @@ class CachedRepository {
   Future<void> saveProfile(Profile value) async {
     localRepository.saveProfile(value);
     if (value.isComplete) {
-      await remoteRepository.saveProfile(value);
+      try {
+        await remoteRepository.saveProfile(value);
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     }
   }
 
   Future<void> saveFilters(Filters value) async {
     localRepository.saveFilters(value);
     if (value.isComplete) {
-      await remoteRepository.saveFilters(value);
+      try {
+        await remoteRepository.saveFilters(value);
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     }
   }
 
