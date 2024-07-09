@@ -13,6 +13,7 @@ final localRepository = getIt<LocalRepository>();
 final logEvent = getIt<AnalyticsHelper>().logEvent;
 final showSnackBar = getIt<MessengerHelper>().showSnackBar;
 final locationLister = getIt<LocationListener>();
+final packageInfo = getIt<PackageHelper>().info;
 
 class Depedencies {
   static Future<void> initialize() async {
@@ -35,6 +36,9 @@ class Depedencies {
     getIt.registerSingleton<MessengerHelper>(MessengerHelper());
     getIt.registerSingletonAsync<LocationListener>(
       () => LocationListener.getInstance(),
+    );
+    getIt.registerSingletonAsync<PackageHelper>(
+      () => PackageHelper.getInstance(),
     );
     return getIt.allReady();
   }

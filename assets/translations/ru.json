@@ -56,7 +56,14 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.DarkTheme": "Тёмная тема",
     "SettingsScreen.ShowDistance": "Показывать расстояние",
-
+    "SettingsScreen.ShareApp": "Поделиться приложением",
+    "SettingsScreen.RateApp": "Оценить приложение ",
+    "SettingsScreen.ContactDev": "Написать разработчику",
+    "SettingsScreen.AndroidUrl": "https://play.google.com/store/apps/details?id=com.indentix.postboard",
+    "SettingsScreen.iOSUrl": "https://apps.apple.com/app/id6479202666",
+    "SettingsScreen.SupportUrl": "mailto:support@indentix.com?subject={}%20{}",
+    "SettingsScreen.ActionFailed": "Действие невозможно.",
+    
     "OfflineScreen.ErrorText": "Нет соединения с интернетом.\nПроверьте подключение.",
     
     "WelcomeScreen.Title": "Добро пожаловать!",

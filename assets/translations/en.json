@@ -55,6 +55,12 @@
     "SettingsScreen.Title": "Settings",
     "SettingsScreen.DarkTheme": "Dark theme",
     "SettingsScreen.ShowDistance": "Show distance",
+    "SettingsScreen.RateApp": "Rate application ",
+    "SettingsScreen.ContactDev": "Contact developer",
+    "SettingsScreen.AndroidUrl": "https://play.google.com/store/apps/details?id=com.indentix.postboard",
+    "SettingsScreen.iOSUrl": "https://apps.apple.com/app/id6479202666",
+    "SettingsScreen.SupportUrl": "mailto:support@indentix.com?subject={}%20{}",
+    "SettingsScreen.ActionFailed": "Action failed.",
 
     "OfflineScreen.ErrorText": "No Internet.\nCheck your connection.",
    
